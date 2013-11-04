@@ -1,0 +1,88 @@
+{
+    "name": "Rain_Sensor",
+    "href": "/bridge/protected/json/device/Rain_Sensor",
+    "displayName": "Rain_Sensor",
+    "type": "State",
+    "location": "Roof",
+    "status": null,
+    "properties": {
+        "Timestamp": {
+            "val": "2013-08-08T14:55:37.108+02:00",
+            "type": "timestamp"
+        },
+        "Manager": {
+            "name": "Remote0",
+            "val": "/bridge/protected/json/device/Remote0",
+            "type": "uri",
+            "displayName": "Remote0"
+        },
+        "Status": {
+            "val": false,
+            "type": "bool",
+            "writeable": true,
+            "displayName": "Status"
+        }
+    },
+    "history": [
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:14:34.000+02:00",
+            "val": 1,
+            "unit": false
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:14:53.000+02:00",
+            "val": 0,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:26.000+02:00",
+            "val": 1,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:55.000+02:00",
+            "val": 1,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:55.000+02:00",
+            "val": 1,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:29:21.000+02:00",
+            "val": 0,
+            "unit": false
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T12:02:29.000+02:00",
+            "val": 1,
+            "unit": false
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:27.000+02:00",
+            "val": 1,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:28.000+02:00",
+            "val": 1,
+            "unit": true
+        },
+        {
+            "Property": "Status",
+            "Timestamp": "2013-08-07T11:20:30.000+02:00",
+            "val": 0,
+            "unit": false
+        }
+    ]
+}
