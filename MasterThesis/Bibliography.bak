@@ -1,0 +1,100 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: UTF-8
+
+
+@Article{,
+  Title                    = {Smart City Dashboard for Integrating Various Data of Sensor Networks},
+  Author                   = {Sinung Suakanto and Suhono H. Supangkat and Suhardi and Roberd Saragih and  and 5School of Electrical EngineeringInformatics and Institut Teknologi Bandung},
+  Year                     = {2013},
+  Number                   = {problems},
+
+  Abstract                 = {Urban growth may lead to various problems. The  Disaster may occur in urban area such as floods,
+increasing number of citizens at urban areas may lead the landslides, etc. Some disasters such as floods can
+increasing of demand such as new residential, public health, be caused by poor city planning.
+public transport. A city require basic infrastructure such as
+educational facilities, housing, clean water, sanitation, solid Problems caused from cities always related with multiple
+waste, electricity, telecommunications and so and diverse stakeholders [1]. So, Information technology and on. In the socio-
+economic level the increasing of city residents must be supplied communication (ICT can be empowered to help to manage the
+with availability of jobs. A city must be managed and planned city. ICT can be empowered to monitor and record what
+well to handle problems such as traffic congestion, air quality, happens at some specific city area to be reported and acted
+water quality, water supply, energy supplies, and public health upon. With ICT assistance, some problems can be recorded
+quality and so on. At this paper, we proposed tool using quickly and find the solutions as soon as possible. Thus, the
+information technology and communication (ICT) to help local city situation will be more easily to monitor, manage and create
+government to monitoring what currently happened in the city. some decisions. The stakeholder of this system is not only for
+We proposed application for monitoring city in single dashboard the local government but also urban community can also
+to help summarize the current condition of city. The architecture monitor and participate at what happening in a city. Some
+system use network sensor consisting of sensor nodes that has
+f studies associated it with smart city.unction to capture city condition like temperature, air pollution,
+water pollution, traffic situation. Also we can add another In some perspective, smart city relies on a collection of
+information socio-economic situation like public health service, smart computing technologies applied to ICT infrastructure [2].
+economic indicator, energy supplies, etc. We have successfully Smart computing can reflect technology of integrated
+developed the prototype of the smart city dashboard the give hardware, software, and network with real-time awareness of
+more accurate information of Bandung City, one of big cities in the real world. From the results, it can be evaluated by
+Indonesia. advanced analytics to help stakeholder decide more intelligent},
+  File                     = {:/home/uliana/Documents/MasterThesis/Material/Smart City Dashboard for Integrating Various Data of
+Sensor Networks.pdf:PDF},
+  Publisher                = {IEEE},
+  Review                   = {Smart City Dashboard for Integrating Various Data of
+Sensor Networks
+
+Sinung Suakanto#1, Suhono H. Supangkat#2, Suhardi#3, Roberd Saragih#4
+#1,2,3,5School of Electrical Engineering and Informatics , Institut Teknologi Bandung
+
+Jalan Ganesha 10 Bandung 40132, Indonesia
+#4Mathematic Department, Institut Teknologi Bandung
+
+Jalan Ganesha 10 Bandung 40132, Indonesia
+Email: 1sinung@students.itb.ac.id, 2suhono@stei.itb.ac.id, 3suhardi@stei.itb.ac.id, 4roberd@math.itb.ac.id
+
+Abstract— Urban growth may lead to various problems. The  Disaster may occur in urban area such as floods,
+increasing number of citizens at urban areas may lead the landslides, etc. Some disasters such as floods can
+increasing of demand such as new residential, public health, be caused by poor city planning.
+public transport. A city require basic infrastructure such as
+educational facilities, housing, clean water, sanitation, solid Problems caused from cities always related with multiple
+waste, electricity, telecommunications and so and diverse stakeholders [1]. So, Information technology and on. In the socio-
+economic level the increasing of city residents must be supplied communication (ICT can be empowered to help to manage the
+with availability of jobs. A city must be managed and planned city. ICT can be empowered to monitor and record what
+well to handle problems such as traffic congestion, air quality, happens at some specific city area to be reported and acted
+water quality, water supply, energy supplies, and public health upon. With ICT assistance, some problems can be recorded
+quality and so on. At this paper, we proposed tool using quickly and find the solutions as soon as possible. Thus, the
+information technology and communication (ICT) to help local city situation will be more easily to monitor, manage and create
+government to monitoring what currently happened in the city. some decisions. The stakeholder of this system is not only for
+We proposed application for monitoring city in single dashboard the local government but also urban community can also
+to help summarize the current condition of city. The architecture monitor and participate at what happening in a city. Some
+system use network sensor consisting of sensor nodes that has
+f studies associated it with smart city.unction to capture city condition like temperature, air pollution,
+water pollution, traffic situation. Also we can add another In some perspective, smart city relies on a collection of
+information socio-economic situation like public health service, smart computing technologies applied to ICT infrastructure [2].
+economic indicator, energy supplies, etc. We have successfully Smart computing can reflect technology of integrated
+developed the prototype of the smart city dashboard the give hardware, software, and network with real-time awareness of
+more accurate information of Bandung City, one of big cities in the real world. From the results, it can be evaluated by
+Indonesia. advanced analytics to help stakeholder decide more intelligent
+
+Key decisions and do some actions that will optimize businesswords—network sensor, monitoring, smart city, internet function. [2].
+I Smart City could be defined as city that can predict and. INTRODUCTION
+
+accommodate the citizens need. Implementation of ICT
+The increasing numbers of population in urban or city areas technology to make the city smarter could be done in areas
+
+create high demand and cause new problems [1]. The problem such as transport, health and other public services. Smart City
+like difficulty in waste management, scarcity of resources, air concept can be supported at the highest levels of city
+pollution, human health concerns, traffic congestions, and government and has contributed to the daily needs of citizens
+inadequate, deteriorating and aging infrastructures are among [3]. For a smart city, all activities related to public services can
+the more basic technical, physical, and material problems
+[ be managed by developing a platform (dashboard) for1].Urban areas always needs basic infrastructure such as monitoring all relevant data. Visualization of data can result a
+educational facilities, housing, clean water, sanitation, solid variety of indicators, where stakeholders can make decision in
+waste, electricity and telecommunications and so on. the city planning or city managing [3],[4].
+
+Some of the problems occurred mostly in the cities such as: Monitoring the city conditions can be done with sensor
+ The networks. Sensors can be placed at certain places to capture complexity of urban transport and congestion
+
+problems important data. Wireless Sensor Networking (WSN) solutions
+for Smart Cities are being driven by standards such as IEEE
+
+ Health care issues 802.15.4 and ZigBe and other standards.
+ Waste management, especially in big cities From previous work, we have developed part of smart city
+ E concept consist of to monitor environmental and disaster earlynvironment issues such as air quality, water
+
+supply and quality, etc.}
+}
+

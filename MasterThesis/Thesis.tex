@@ -1,0 +1,149 @@
+\documentclass[a4paper, 12pt, twoside]{book}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[top=25mm,bottom=25mm,left=30mm,right=15mm]{geometry}
+\linespread{1.1}
+% First paragraph indents
+% \usepackage{indentfirst}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\usepackage{listings} % nice source code formatting
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{url} % make URLs clickable
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{todonotes}
+\usepackage{setspace}
+\usepackage{fancyhdr} % better page headers and footers, http://texblog.org/2007/11/07/headerfooter-in-latex-with-fancyhdr/	
+\usepackage{lipsum}
+\pagestyle{fancy}
+\synctex=1
+
+\fancyhead[ELH]{\slshape \leftmark}
+\fancyhead[ORH]{\slshape \rightmark}
+\fancyhead[ERH,OLH]{}
+
+\setlength{\headheight}{15pt}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{dkgray}{rgb}{0.3,0.3,0.3}
+\definecolor{ltgray}{rgb}{0.8,0.8,0.8}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=html,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\small\color{ltgray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=10pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+% Hyphenation
+\hyphenpenalty=9000
+\righthyphenmin=3
+\lefthyphenmin=4
+
+% Hyperlinks
+\ifpdf
+	\usepackage[pdftex]{hyperref}
+\else
+	\usepackage{hyperref}
+\fi
+\hypersetup{
+	unicode=true,
+	pdftitle={},
+	pdfauthor={},
+	pdfkeywords={},
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=dkgray
+}
+
+\bibliographystyle{unsrt}
+
+
+
+\begin{document}
+\pagenumbering{roman}
+	\include{title}
+
+% empty page hack
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Selbständigkeitserklärung
+\newpage
+\thispagestyle{empty}
+\begingroup
+  \vspace*{50 mm}
+  {\huge \bf Declaration of Authorship}
+  \vspace{10 mm}
+
+  I, Uliana Andriiehyna, declare that this thesis, titled ``Generic Frontend for Exploring Sensor and Information Services'', and the work presented in it have been done on my own without assistance. All information directly or indirectly taken from external sources is acknowledged and referenced in the bibliography.
+
+  \vspace{10 mm}
+
+  Dresden, XX.XX.2013 \hspace{6.0 cm} \makebox[1.5in]{\hrulefill}
+\endgroup
+
+
+% empty page hack
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\clearpage
+
+\tableofcontents
+
+% empty page hack
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\clearpage
+
+\pagenumbering{arabic}
+%\setcounter{page}{1}
+
+
+	\include{ch1}
+	\include{ch2}
+	\include{ch3}
+	\include{ch4}
+	\include{ch5}
+	\include{ch6}
+  \listoffigures
+    \addcontentsline{toc}{chapter}{List of Figures}
+  \listoftables
+    \addcontentsline{toc}{chapter}{List of Tables}
+	\bibliography{bibliography}
+\end{document}

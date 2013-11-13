@@ -1,0 +1,76 @@
+%!TEX root = Thesis.tex
+\chapter{Foundations and Requirements Analysis}
+
+\section{Terminology}
+The fundamental terms used in this thesis are described below for better under-
+standing of the presented research work.
+\subsection {Portal}
+\subsection {Mashup}
+
+\section{Web-based Frontend Development Framework Analysis}
+ \begin{itemize}
+\item Bootstrap
+\newline
+Bootstrap is definitely the most popular and widely used framework, nowadays. It’s a beautiful, intuitive and powerful web design kit for creating cross browser, consistent and good looking interfaces. It offers many of the popular UI components with a plain-yet-elegant style, a grid system and JavaScript plugins for common scenarios.
+
+It is built with LESS and consists of four main parts:
+
+Scaffolding – global styles, responsive 12-column grids and layouts. Bear in mind that Bootstrap doesn’t include responsive features by default. If your design needs to be responsive you have to enable this functionality manually.
+Base CSS – this includes fundamental HTML elements like tables, forms, buttons, and images, styled and enhanced with extensible classes.
+Components – collection of reusable components like dropdowns, button groups, navigation controls (tabs, pills, lists, breadcrumbs, pagination), thumbnails, progress bars, media objects, and more.
+JavaScript – jQuery plugins which bring the above components to life, plus transitions, modals, tool tips, popovers, scrollspy (for automatically updating nav targets based on scroll position), carousel, typeahead (a fast and fully-featured autocomplete library), affix navigation, and more.
+\item Foundation
+\newline
+Foundation is a powerful, feature-rich, responsive front-end framework. With Foundation you can quickly prototype and build websites or apps that work on any kind of device, with tons of included layout constructs, elements and best practices. It’s built with mobile first in mind, utilitizes semantic features, and uses Zepto instead of jQuery in order to brings better user experience and faster performance.
+
+Foundation has a 12-column flexible, nestable grid powerful enough to let you create rapidly multi-device layouts. In terms of features it provides many. There are styles for typography, buttons, forms, and various navigation controls. Many useful CSS components are provided like panels, pricing tables, progress bars, tables, thumbnails, and flex video that can scale properly your video on any device. And, of course, JavaScript plugins including dropdowns, joyride (a simple and easy website tour), magellan ( a sticky navigation that indicates where you are on the page), orbit (a responsive image slider with touch support), reveal (for creating modal dialogs or pop-up windows),  sections (a powerful replacement for traditional accordions and tabs), and tooltips.
+\item GroundworkCSS
+\newline
+GroundworkCSS is a new, fresh addition to the front-end frameworks family. It’s a fully responsive HTML5, CSS and JavaScript toolkit built with the power of Sass and Compass which gives you the ability to rapidly prototype and build websites and apps that work on virtually any device.
+
+It offers an extremely flexible, nestable, fraction-based, fluid grid system that makes creating any layout possible. GroundworkCSS has some really expressive features like tablets and mobile grids which maintain the grid column structure instead of collapsing the grid columns into individual rows when the viewport is below 768 or 480 pixels wide. Another cool feature is a jQuery ResponsiveText plugin which allows you to have dynamically sized text that adapts to the width of the viewport: extremely useful for scalable headlines and building responsive tables.
+
+The framework includes a rich set of UI components like tabs, responsive data tables, buttons, forms, responsive navigation controls, tiles (a beautiful alternative to radio buttons and other boring standard form elements), tooltips, modals, Cycle2 (a powerful, responsive content slider), and many more useful elements and helpers. It also offers a nice set of vector social icons and a full suite of pictographic icons included in FontAwesome.
+
+To see the framework in action you can use the resizer at the top center of the browser window. This way you can test the responsiveness of the components against different sizes and viewports while exploring the framework’s features.
+
+GroundworkCSS is very well documented with many examples, and to get you started quickly the framework also provides you with several responsive templates. The only thing I consider as a weakness is the missing of a way to customize your download.
+
+http://usablica.github.io/front-end-frameworks/compare.html
+
+\item Gumby
+\newline
+Gumby is simple, flexible, and robust front-end framework built with Sass and Compass.
+
+Its fluid-fixed layout self-optimizes the content for desktop and mobile resolutions. It support multiple types of grids, including nested ones, with different column variations . Gumby has two PSD templates that get you started designing on 12 and 16 column grid systems.
+
+The framework offers feature-rich UI Kit which includes buttons, forms, mobile navigation, tabs, skip links, toggles and switches, drawers, responsive images, retina images, and more. Following the latest design trends the UI elements have Metro style flat design but you can use Pretty style with gradient design too, or to mix up both styles as you wish. An awesome set of responsive, resolution independent Entypo icons, for you to use in your web projects, is completely integrated into the Gumby Framework.
+
+Gumby has also a very good customizer with color pickers which helps you to build your custom download with ease.
+\item Kube
+\newline
+Lastly, if you need a solid, yet simple base without needless complexity and extras, for your new project, Kube can be the right choice. Kube is a minimal, responsive and adaptive framework with no imposed styling which gives you the freedom to create. It offers basic styles for grids, forms, typography, tables, buttons, navigation, and other stuff like links or images.
+
+The framework contains one compact CSS file for building responsive layouts with ease and two JS files for implementing tabs and buttons in your designs. If you are looking for maximum flexibility and customization, you can download developer version which includes LESS files, with variables, mixins and modules.
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
+\includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
+\includegraphics[scale=0.7]{images/Kube.png}  
+\caption[Framework Comparison]{Framework Comparison}
+\label{img:Bootstrap&Foundation.png}
+\label{img:Groundwork&Gumby.png}   
+\label{img:Kube.png}                          
+\end{figure}
+\footnotetext{Image taken from \url{http://usablica.github.io/front-end-frameworks/compare.html}}
+
+\section{Summary}
+In this master thesis, a first web-based prototype (portal) for such services is to be
+created. Along with it, a light-weight scenario service registry will be needed. Users
+should be able to explore not just services, but also the information provided by
+them, and eventually be led to advanced usage patterns such as the development
+of third-party applications to access the information data and real-time streams.
+\section{Basic Functionalities}
+

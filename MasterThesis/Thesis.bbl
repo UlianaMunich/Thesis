@@ -1,0 +1,69 @@
+\begin{thebibliography}{10}
+
+\bibitem{6588063}
+S.~Suakanto, S.H. Supangkat, Suhardi, and R.~Saragih.
+\newblock Smart city dashboard for integrating various data of sensor networks.
+\newblock In {\em ICT for Smart Society (ICISS), 2013 International Conference
+  on}, pages 1--5, 2013.
+
+\bibitem{bendel2013service}
+S~Bendel, T~Springer, D~Schuster, A~Schill, R~Ackermann, and M~Ameling.
+\newblock A service infrastructure for the internet of things based on xmpp.
+\newblock In {\em Pervasive Computing and Communications Workshops (PERCOM
+  Workshops), 2013 IEEE International Conference on}, pages 385--388. IEEE,
+  2013.
+
+\bibitem{song2010real}
+Xianfeng Song, Chaoliang Wang, Masakazu Kagawa, and Venkatesh Raghavan.
+\newblock Real-time monitoring portal for urban environment using sensor web
+  technology.
+\newblock In {\em Geoinformatics, 2010 18th International Conference on}, pages
+  1--5. IEEE, 2010.
+
+\bibitem{eggert2013sensorcloud}
+Michael Eggert, Roger H{\"a}u{\ss}ling, Martin Henze, Lars Hermerschmidt,
+  Ren{\'e} Hummen, Daniel Kerpen, Antonio~Navarro P{\'e}rez, Bernhard Rumpe,
+  Dirk Thi{\ss}en, and Klaus Wehrle.
+\newblock Sensorcloud: Towards the interdisciplinary development of a
+  trustworthy platform for globally interconnected sensors and actuators.
+\newblock {\em arXiv preprint arXiv:1310.6542}, 2013.
+
+\bibitem{taivalsaari2009mashware}
+Antero Taivalsaari.
+\newblock Mashware: The future of web applications.
+\newblock 2009.
+
+\bibitem{koschmider2009elucidating}
+Agnes Koschmider, Victoria Torres, and Vicente Pelechano.
+\newblock Elucidating the mashup hype: Definition, challenges, methodical guide
+  and tools for mashups.
+\newblock In {\em Proceedings of the 2nd Workshop on Mashups, Enterprise
+  Mashups and Lightweight Composition on the Web at WWW}, 2009.
+
+\bibitem{daniel2010toward}
+Florian Daniel, Agnes Koschmider, Tobias Nestler, Marcus Roy, and Abdallah
+  Namoun.
+\newblock Toward process mashups: key ingredients and open research challenges.
+\newblock In {\em Proceedings of the 3rd and 4th International Workshop on Web
+  APIs and Services Mashups}, page~9. ACM, 2010.
+
+\bibitem{aghaee2012reusable}
+Saeed Aghaee, Marcin Nowak, and Cesare Pautasso.
+\newblock Reusable decision space for mashup tool design.
+\newblock In {\em Proceedings of the 4th ACM SIGCHI symposium on Engineering
+  interactive computing systems}, pages 211--220. ACM, 2012.
+
+\bibitem{pautasso2008restful}
+Cesare Pautasso, Olaf Zimmermann, and Frank Leymann.
+\newblock Restful web services vs. big'web services: making the right
+  architectural decision.
+\newblock In {\em Proceedings of the 17th international conference on World
+  Wide Web}, pages 805--814. ACM, 2008.
+
+\bibitem{seong2006usability}
+Daniel Su~Kuen Seong.
+\newblock Usability guidelines for designing mobile learning portals.
+\newblock In {\em Proceedings of the 3rd international conference on Mobile
+  technology, applications \& systems}, page~25. ACM, 2006.
+
+\end{thebibliography}
