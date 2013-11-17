@@ -30,7 +30,10 @@ Michael Eggert, Roger H{\"a}u{\ss}ling, Martin Henze, Lars Hermerschmidt,
 
 \bibitem{wiki:xxx}
 Wikipedia.
-\newblock Front and back ends --- wikipedia{,} the free encyclopedia, 2013.
+\newblock Front and back ends --- wikipedia{,} the free encyclopedia.
+\newblock
+  \\\url{http://en.wikipedia.org/w/index.php?title=Front_and_back_ends&oldid=572495173},
+  2013.
 \newblock [Online; accessed 15-November-2013].
 
 \bibitem{rezayat2000enterprise}
@@ -40,7 +43,10 @@ Mohsen Rezayat.
 
 \bibitem{wiki:portal}
 Wikipedia.
-\newblock Web portal --- wikipedia{,} the free encyclopedia, 2013.
+\newblock Web portal --- wikipedia{,} the free encyclopedia.
+\newblock
+  \\\url{http://en.wikipedia.org/w/index.php?title=Web_portal&oldid=578361576},
+  2013.
 \newblock [Online; accessed 17-November-2013].
 
 \bibitem{yu2008understanding}
