@@ -9,4 +9,5 @@
 *.out
 *.toc
 NOTES.txt
+*.bbl
 
