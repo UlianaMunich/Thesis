@@ -28,6 +28,57 @@ Michael Eggert, Roger H{\"a}u{\ss}ling, Martin Henze, Lars Hermerschmidt,
   trustworthy platform for globally interconnected sensors and actuators.
 \newblock {\em arXiv preprint arXiv:1310.6542}, 2013.
 
+\bibitem{wiki:xxx}
+Wikipedia.
+\newblock Front and back ends --- wikipedia{,} the free encyclopedia, 2013.
+\newblock [Online; accessed 15-November-2013].
+
+\bibitem{rezayat2000enterprise}
+Mohsen Rezayat.
+\newblock The enterprise-web portal for life-cycle support.
+\newblock {\em Computer-Aided Design}, 32(2):85--96, 2000.
+
+\bibitem{wiki:portal}
+Wikipedia.
+\newblock Web portal --- wikipedia{,} the free encyclopedia, 2013.
+\newblock [Online; accessed 17-November-2013].
+
+\bibitem{yu2008understanding}
+Jin Yu, Boualem Benatallah, Fabio Casati, and Florian Daniel.
+\newblock Understanding mashup development.
+\newblock {\em Internet Computing, IEEE}, 12(5):44--52, 2008.
+
+\bibitem{peenikal2009mashups}
+Sunilkumar Peenikal.
+\newblock Mashups and the enterprise.
+\newblock {\em Strategic white paper}, 2009.
+
+\bibitem{hoyer2008enterprise}
+Volker Hoyer, Katarina Stanoesvka-Slabeva, Till Janner, and Christoph Schroth.
+\newblock Enterprise mashups: Design principles towards the long tail of user
+  needs.
+\newblock In {\em Services Computing, 2008. SCC'08. IEEE International
+  Conference on}, volume~2, pages 601--602. IEEE, 2008.
+
+\bibitem{ort2007mashup}
+Ed~Ort, Sean Brydon, and Mark Basler.
+\newblock Mashup styles, part 2: Client-side mashups, 2007.
+
+\bibitem{daniel2007understanding}
+Florian Daniel, Maristella Matera, Jin Yu, Boualem Benatallah, Regis
+  Saint-Paul, and Fabio Casati.
+\newblock Understanding ui integration: A survey of problems, technologies, and
+  opportunities.
+\newblock {\em Internet Computing, IEEE}, 11(3):59--66, 2007.
+
+\bibitem{pietschmann2010application}
+Stefan Pietschmann, Tobias Nestler, and Florian Daniel.
+\newblock Application composition at the presentation layer: alternatives and
+  open issues.
+\newblock In {\em Proceedings of the 12th International Conference on
+  Information Integration and Web-based Applications \& Services}, pages
+  461--468. ACM, 2010.
+
 \bibitem{taivalsaari2009mashware}
 Antero Taivalsaari.
 \newblock Mashware: The future of web applications.

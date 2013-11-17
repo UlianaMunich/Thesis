@@ -2,16 +2,53 @@
 \chapter{Foundations and Requirements Analysis}
 
 \section{Terminology}
-The fundamental terms used in this thesis are described below for better under-
-standing of the presented research work.
-\subsection {Portal}
-\subsection {Mashup}
+The fundamental terms used in this thesis are described below for better understanding of the presented research work.
+\subsection {Frontend and Criteria}
+In computer science, the front end is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend \cite{wiki:xxx} and the separation of software systems into front and back ends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring sensed data.
+\begin{itemize}
+\item Loosely-coupling
+\item Fine-grained structure
+\item Multy-user capability
+\item Cross-platforming
+\item Adaptivity
+\end{itemize}
 
-\section{Web-based Frontend Development Framework Analysis}
+\subsubsection {Web Portal}
+Such a system, that generates requested information dynamically, displays that
+information in a useful manner in Web, maintains control over the created/saved files, automatically updates
+the information, and supports a distributed environment\cite{rezayat2000enterprise}.
+A web portal is most often specially-designed Web page at a website which brings information together from diverse sources in a uniform way. Usually, each information source gets its dedicated area on the page for displaying information (a portlet); often, the user can configure which ones to display.Portals provide a way for enterprises and organizations to provide a consistent look and feel with access control and procedures for multiple applications and databases, which otherwise would have been different web entities at various URLs. The features available may be restricted by whether access is by an authorized and authenticated user (employee,member) or an anonymous site visitor.\cite{wiki:portal}.
+
+\subsubsection {Mashup}
+The mashup application is a composite Web 2.0 application that aggregates and
+integrates heterogeneous web resources offered in a form of available Web APIs and
+sources for creating a new service. Mashups differ from traditional component-based
+applications in providing more situational character of these applications \cite{yu2008understanding}.
+In general there distinguish the following three types of mashups \cite{peenikal2009mashups}. 
+Customer mashups are aimed at the combination and reformation data from various
+public sources according to users’ needs. Data mashups aggregate similar types of
+resources from diverse sources into a new single data representation. And business,
+or enterprise, mashups define composite applications that are focused on solving
+heterogeneous business problems by supporting collaborative activities \cite{hoyer2008enterprise}.
+Concerning architectural styles of mashup applications,
+ server-side and clientside mashups are distinguished. In the server-side mashups a content aggregation
+is realized on a server. The server plays a role of a proxy between the
+mashup application and other web sites that involved in this application. The
+opposite client-side mashups aggregate content on a client, typically, at a client’s
+web browser \cite{ort2007mashup}.
+Earlier, composite web applications covered the integration at the low application
+layers, such as the traditional data and business logic layers. However, mashups with
+their intention to reuse pieces of user interfaces (UIs) from different web resources
+increase the necessity of the UI integration, and the composition at the presentation
+layer \cite{daniel2007understanding}. Several research approaches refer to the problem of the component-
+based development of web applications at the presentation layer \cite{pietschmann2010application}.
+\subsection {Sensor Data Streams}
+
+\section{Web-based Framework Analysis}
  \begin{itemize}
-\item Bootstrap
+\item \textbf{Bootstrap}
 \newline
-Bootstrap is definitely the most popular and widely used framework, nowadays. It’s a beautiful, intuitive and powerful web design kit for creating cross browser, consistent and good looking interfaces. It offers many of the popular UI components with a plain-yet-elegant style, a grid system and JavaScript plugins for common scenarios.
+Bootstrap is the most popular and widely used framework, nowadays. It’s a beautiful, intuitive and powerful web design kit for creating cross browser, consistent and good looking interfaces. It offers many of the popular UI components with a plain-yet-elegant style, a grid system and JavaScript plugins for common scenarios.
 
 It is built with LESS and consists of four main parts:
 
@@ -19,12 +56,12 @@ Scaffolding – global styles, responsive 12-column grids and layouts. Bear in m
 Base CSS – this includes fundamental HTML elements like tables, forms, buttons, and images, styled and enhanced with extensible classes.
 Components – collection of reusable components like dropdowns, button groups, navigation controls (tabs, pills, lists, breadcrumbs, pagination), thumbnails, progress bars, media objects, and more.
 JavaScript – jQuery plugins which bring the above components to life, plus transitions, modals, tool tips, popovers, scrollspy (for automatically updating nav targets based on scroll position), carousel, typeahead (a fast and fully-featured autocomplete library), affix navigation, and more.
-\item Foundation
+\item \textbf{Foundation}
 \newline
 Foundation is a powerful, feature-rich, responsive front-end framework. With Foundation you can quickly prototype and build websites or apps that work on any kind of device, with tons of included layout constructs, elements and best practices. It’s built with mobile first in mind, utilitizes semantic features, and uses Zepto instead of jQuery in order to brings better user experience and faster performance.
 
 Foundation has a 12-column flexible, nestable grid powerful enough to let you create rapidly multi-device layouts. In terms of features it provides many. There are styles for typography, buttons, forms, and various navigation controls. Many useful CSS components are provided like panels, pricing tables, progress bars, tables, thumbnails, and flex video that can scale properly your video on any device. And, of course, JavaScript plugins including dropdowns, joyride (a simple and easy website tour), magellan ( a sticky navigation that indicates where you are on the page), orbit (a responsive image slider with touch support), reveal (for creating modal dialogs or pop-up windows),  sections (a powerful replacement for traditional accordions and tabs), and tooltips.
-\item GroundworkCSS
+\item \textbf{GroundworkCSS}
 \newline
 GroundworkCSS is a new, fresh addition to the front-end frameworks family. It’s a fully responsive HTML5, CSS and JavaScript toolkit built with the power of Sass and Compass which gives you the ability to rapidly prototype and build websites and apps that work on virtually any device.
 
@@ -36,9 +73,7 @@ To see the framework in action you can use the resizer at the top center of the 
 
 GroundworkCSS is very well documented with many examples, and to get you started quickly the framework also provides you with several responsive templates. The only thing I consider as a weakness is the missing of a way to customize your download.
 
-http://usablica.github.io/front-end-frameworks/compare.html
-
-\item Gumby
+\item \textbf{Gumby}
 \newline
 Gumby is simple, flexible, and robust front-end framework built with Sass and Compass.
 
@@ -47,7 +82,7 @@ Its fluid-fixed layout self-optimizes the content for desktop and mobile resolut
 The framework offers feature-rich UI Kit which includes buttons, forms, mobile navigation, tabs, skip links, toggles and switches, drawers, responsive images, retina images, and more. Following the latest design trends the UI elements have Metro style flat design but you can use Pretty style with gradient design too, or to mix up both styles as you wish. An awesome set of responsive, resolution independent Entypo icons, for you to use in your web projects, is completely integrated into the Gumby Framework.
 
 Gumby has also a very good customizer with color pickers which helps you to build your custom download with ease.
-\item Kube
+\item \textbf{Kube}
 \newline
 Lastly, if you need a solid, yet simple base without needless complexity and extras, for your new project, Kube can be the right choice. Kube is a minimal, responsive and adaptive framework with no imposed styling which gives you the freedom to create. It offers basic styles for grids, forms, typography, tables, buttons, navigation, and other stuff like links or images.
 
@@ -59,18 +94,23 @@ The framework contains one compact CSS file for building responsive layouts with
 \includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
 \includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
 \includegraphics[scale=0.7]{images/Kube.png}  
-\caption[Framework Comparison]{Framework Comparison}
+\caption[Framework Comparison]{Framework Comparison\footnote{\url{http://usablica.github.io/front-end-frameworks/compare.html/}}}
 \label{img:Bootstrap&Foundation.png}
 \label{img:Groundwork&Gumby.png}   
 \label{img:Kube.png}                          
 \end{figure}
-\footnotetext{Image taken from \url{http://usablica.github.io/front-end-frameworks/compare.html}}
+
+\section{Prototype Requirements}
+Like most modern applications, each of these is structured into three layers: presentation, 
+application (also called the business-logic layer), and data.
+\begin{enumerate}
+\item the granularity of the functions that the component applications provide is generally well
+suited for high-level integration (for example, we can tell an application to begin monitoring
+machine xyz without considering how this activity will affect data in the integrated appli-
+cation’s database)
+\item it’s more stable because the component application is aware of the integration (it exposes
+the API) and will attempt to stabilize the interface across versions
+\end{enumerate}
 
 \section{Summary}
-In this master thesis, a first web-based prototype (portal) for such services is to be
-created. Along with it, a light-weight scenario service registry will be needed. Users
-should be able to explore not just services, but also the information provided by
-them, and eventually be led to advanced usage patterns such as the development
-of third-party applications to access the information data and real-time streams.
-\section{Basic Functionalities}
 

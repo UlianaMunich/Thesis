@@ -4,41 +4,46 @@
 \contentsline {section}{\numberline {1.3}Structure}{2}{section.1.3}
 \contentsline {chapter}{\numberline {2}Foundations and Requirements Analysis}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Terminology}{3}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Portal}{3}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Mashup}{3}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}Web-based Frontend Development Framework Analysis}{3}{section.2.2}
-\contentsline {section}{\numberline {2.3}Summary}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}Basic Functionalities}{6}{section.2.4}
-\contentsline {chapter}{\numberline {3}State of the Art}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Mashups Development Platforms}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Portal Development Platforms}{7}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Model-View-Control Pattern}{8}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Portlet Framework Design}{8}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Browser Based Collaborative Systems}{8}{section.3.3}
-\contentsline {section}{\numberline {3.4}Non-Browser Based Collaborative Systems}{8}{section.3.4}
-\contentsline {section}{\numberline {3.5}Summary}{8}{section.3.5}
-\contentsline {chapter}{\numberline {4}Concept}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Requirements}{11}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Functional Requirements}{11}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Non-functional Requirements}{11}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Architecture}{11}{section.4.2}
-\contentsline {section}{\numberline {4.3}Frontend}{11}{section.4.3}
-\contentsline {section}{\numberline {4.4}Summary}{11}{section.4.4}
-\contentsline {chapter}{\numberline {5}Implementation and Evaluation}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Overview of Framework}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}Data Flow Model}{13}{section.5.2}
-\contentsline {section}{\numberline {5.3}Database Model}{13}{section.5.3}
-\contentsline {section}{\numberline {5.4}Use Cases}{13}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Frontend}{13}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Choosen Environment}{13}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Choosen Tools}{13}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Use Cases Realization}{13}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Summary}{13}{subsection.5.4.5}
-\contentsline {chapter}{\numberline {6}Conclusion and Outlook}{15}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusion}{15}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Addressed research questions}{15}{subsection.6.1.1}
-\contentsline {subsubsection}{Achieved Goals}{15}{section*.2}
-\contentsline {subsection}{\numberline {6.1.2}Practical results}{15}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Future work}{15}{section.6.2}
-\contentsline {chapter}{List of Figures}{17}{chapter*.3}
-\contentsline {chapter}{List of Tables}{19}{chapter*.4}
+\contentsline {subsection}{\numberline {2.1.1}Frontend and Criteria}{3}{subsection.2.1.1}
+\contentsline {subsubsection}{Web Portal}{3}{section*.2}
+\contentsline {subsubsection}{Mashup}{4}{section*.3}
+\contentsline {subsection}{\numberline {2.1.2}Sensor Data Streams}{4}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Web-based Framework Analysis}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Prototype Requirements}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Summary}{7}{section.2.4}
+\contentsline {chapter}{\numberline {3}State of the Art}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Mashups Development Platforms}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Portal Development Platforms}{9}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Model-View-Control Pattern}{10}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Portlet Framework Design}{10}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Browser Based Collaborative Systems}{10}{section.3.3}
+\contentsline {section}{\numberline {3.4}Non-Browser Based Collaborative Systems}{10}{section.3.4}
+\contentsline {section}{\numberline {3.5}Summary}{10}{section.3.5}
+\contentsline {chapter}{\numberline {4}Concept}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Requirements}{13}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Functional Requirements}{13}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Non-functional Requirements}{13}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Frontend Architecture}{13}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Sensor Registry}{13}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Proxy}{13}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Authentification Stub}{13}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Databases}{13}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Summary}{13}{section.4.3}
+\contentsline {chapter}{\numberline {5}Implementation and Evaluation}{15}{chapter.5}
+\contentsline {section}{\numberline {5.1}Overview of Framework}{15}{section.5.1}
+\contentsline {section}{\numberline {5.2}Data Flow Model}{15}{section.5.2}
+\contentsline {section}{\numberline {5.3}Database Model}{15}{section.5.3}
+\contentsline {section}{\numberline {5.4}Use Cases}{15}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Frontend}{15}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Choosen Environment}{15}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Choosen Tools}{15}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Use Cases Realization}{15}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}Summary}{15}{subsection.5.4.5}
+\contentsline {chapter}{\numberline {6}Conclusion and Outlook}{17}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusion}{17}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Addressed research questions}{17}{subsection.6.1.1}
+\contentsline {subsubsection}{Achieved Goals}{17}{section*.4}
+\contentsline {subsection}{\numberline {6.1.2}Practical results}{17}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Future work}{17}{section.6.2}
+\contentsline {chapter}{List of Figures}{19}{chapter*.5}
+\contentsline {chapter}{List of Tables}{21}{chapter*.6}
