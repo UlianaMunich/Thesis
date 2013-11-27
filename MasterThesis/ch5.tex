@@ -54,6 +54,37 @@ The framework contains one compact CSS file for building responsive layouts with
 \label{img:Kube.png}                          
 \end{figure}
 \section{Data Flow Model}
+\section{Model-View-Control Pattern}
+In the design shown in Figure 1 on page X Model represents the application
+object that implements the application data and business logic. The View is
+responsible for formatting the application results and dynamic page construction.
+The Controller is responsible for receiving the client request, invoking the
+appropriate business logic, and based on the results, selecting the appropriate
+view to be presented to the user.
+The Model represents enterprise data and the business rules that govern
+access to and updates to this data. Often the Model serves as a software
+approximation to a real-world process, so simple real-world modeling
+techniques apply when defining the Model.
+A View renders the contents of a Model. It accesses enterprise data through
+the Model and specifies how that data should be presented.
+It is the View's responsibility to maintain consistency in its presentation when
+the Model changes. This can be achieved by using a push Model, where the
+View registers itself with the Model for change notifications, or a pull Model,
+where the View is responsible for calling the Model when it needs to retrieve
+the most current data.
+A Controller translates interactions with the View into actions to be performed
+by the Model. In a stand-alone GUI client, user interactions could be button
+clicks or menu selections, whereas in a Web application, they appear as GET
+and POST HTTP requests. The actions performed by the Model include
+activating business processes or changing the state of the Model. Based on
+the user interactions and the outcome of the Model actions, the Controller
+responds by selecting an appropriate View.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{images/MVCPattern.png}   
+\caption[MVC Pattern]{MVC Pattern}
+\label{img:MVCPattern}                           
+\end{figure}
 \section{Database Model}
 \section{Use Cases}
   \subsection{Frontend}
