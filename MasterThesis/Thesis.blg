@@ -1,0 +1,72 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Thesis.aux
+The style file: unsrt.bst
+A level-1 auxiliary file: title.aux
+A level-1 auxiliary file: ch1.aux
+A level-1 auxiliary file: ch2.aux
+A level-1 auxiliary file: ch3.aux
+A level-1 auxiliary file: ch4.aux
+A level-1 auxiliary file: ch5.aux
+A level-1 auxiliary file: ch6.aux
+Database file #1: bibliography.bib
+Warning--entry type for "jakob" isn't style-file defined
+--line 246 of file bibliography.bib
+Warning--entry type for "visdesign" isn't style-file defined
+--line 253 of file bibliography.bib
+Warning--entry type for "xmpp" isn't style-file defined
+--line 267 of file bibliography.bib
+Warning--entry type for "vicci" isn't style-file defined
+--line 307 of file bibliography.bib
+I was expecting a `,' or a `}'---line 310 of file bibliography.bib
+ :   year = 2012
+ :              -2013,
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
+while executing---line 944 of file unsrt.bst
+You've used 21 entries,
+            1791 wiz_defined-function locations,
+            566 strings with 7224 characters,
+and the built_in function-call counts, 5137 in all, are:
+= -- 475
+> -- 202
+< -- 9
++ -- 77
+- -- 56
+* -- 279
+:= -- 760
+add.period$ -- 68
+call.type$ -- 21
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 256
+empty$ -- 531
+format.name$ -- 56
+if$ -- 1217
+int.to.chr$ -- 0
+int.to.str$ -- 21
+missing$ -- 15
+newline$ -- 105
+num.names$ -- 21
+pop$ -- 102
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 139
+stack$ -- 0
+substring$ -- 282
+swap$ -- 92
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 51
+width$ -- 23
+write$ -- 228
+(There were 4 error messages)

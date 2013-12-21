@@ -1,30 +1,70 @@
 %!TEX root = Thesis.tex
 \chapter{Foundations and Requirements Analysis}
-
 The fundamental terms used in this thesis are described below for better understanding of the presented research work.
-\section {Frontends}
-In computer science, the front end is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front and back ends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring sensed data.
+
+\section {Frontends Requirements}
+In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front and back ends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring sensed data, i.e. :
 \begin{itemize}
-\item Loosely-coupling
-\item Fine-grained structure
-\item Multy-user capability
-\item Cross-platforming
-\item Adaptivity
-\end{itemize}
+\item Loose coupling: each of systems components has, or makes use of, little or no knowledge of the definitions of other separate 
+      components. Where the main goal is to avoid dependencies between components and easy deployment of future enhancement.
+\item Fine-grained structure: split the system into a small parts, such that it can be distributed across internet, by avoiding single 
+      point of failure.
+\item Multy-user capability: defining to every user according to their type and rights visibility rules and concreate interface view 
+      targeting.
+\item Cross-platforming or multi-platform: a possibility of application to be run on any type of device(e.g., smartphone, notebook,  
+      tablet) without special preparation or changes.
+\item Adaptivity: an ability of a user-friendly interface to automatically adapt to any size of device screen, by provisioning high 
+      usability performance.
+\item User friendly or usability: web-based interface, that can be easily explored by user, without any knowledge about current system.
+\end{itemize} 
+\subsection {Loose Coupling}
+Together with a loose coupling comes into a picture fine-grained system structure. For both of them works the principle to distribute the systems by using small components.
 
-\subsubsection {Web Portal}
-Such a system, that generates requested information dynamically, displays that
-information in a useful manner in Web, maintains control over the created/saved files, automatically updates
-the information, and supports a distributed environment\cite{rezayat2000enterprise}.
-A web portal is most often specially-designed Web page at a website which brings information together from diverse sources in a uniform way. Usually, each information source gets its dedicated area on the page for displaying information (a portlet); often, the user can configure which ones to display.Portals provide a way for enterprises and organizations to provide a consistent look and feel with access control and procedures for multiple applications and databases, which otherwise would have been different web entities at various URLs. The features available may be restricted by whether access is by an authorized and authenticated user (employee,member) or an anonymous site visitor\cite{wiki:portal}.
+\subsection {Multy-User Capabilities}
+Before user loggin into a system, without any knowledge about system, should be clarified what shold be shown on a main screen and how to define usability steps and where. 
 
+\subsection {Design Strategy}
+Because of the competing interests of cross-platform compatibility and advanced functionality, numerous alternative web application design strategies have emerged. Such strategies include:
+\newline
+Graceful degradation
+\newline
+Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a ‘least common denominator’ for more limited client browsers. For example, a user attempting to use a limited-feature browser to access Gmail may notice that Gmail switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
+\newline
+Separation of functionality
+\newline
+Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a ‘complete’ application to the user. (See also: Separation of concerns).
+\newline
+Multiple codebase
+\newline
+Multiple codebase applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
+\newline
+Third-party libraries
+\newline
+Third-party libraries attempt to simplify cross-platform capability by "hiding" the complexities of client differentiation behind a single, unified API.
+\newline
+Responsive Web design
+\newline
+Responsive web design (RWD) is a Web design approach aimed at crafting sites to provide an optimal viewing experience—easy reading and navigation with a minimum of resizing, panning, and scrolling—across a wide range of devices (from mobile phones to desktop computer monitors).
+
+\subsection {Usability} Intuitive interfaces
+The primary notion of usability is that an object designed with a generalized users' psychology and physiology in mind is, for example:
+More efficient to use—takes less time to accomplish a particular task
+Easier to learn—operation can be learned by observing the object
+More satisfying to use
+
+ISO defines usability as "The extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use." The word "usability" also refers to methods for improving ease-of-use during the design process. Usability consultant Jakob Nielsen and computer science professor Ben Shneiderman have written (separately) about a framework of system acceptability, where usability is a part of "usefulness" and is composed of:[4]
+Learnability: How easy is it for users to accomplish basic tasks the first time they encounter the design?
+Efficiency: Once users have learned the design, how quickly can they perform tasks?
+Memorability: When users return to the design after a period of not using it, how easily can they re establish proficiency?
+Errors: How many errors do users make, how severe are these errors, and how easily can they recover from the errors?
+Satisfaction: How pleasant is it to use the design?
 \section {Data Sources}
--types of coommon data sources in Web
+Main focuse 
+-types of common data sources in Web
 \newline
 -interface for interconnection
 \subsection {Sensors}
 
-\subsection {Web}
 \subsection {Generic Considerations}
 
 \section{Concept Requirements}

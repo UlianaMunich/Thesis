@@ -54,41 +54,48 @@ The framework contains one compact CSS file for building responsive layouts with
 \label{img:Kube.png}                          
 \end{figure}
 \section{Data Flow Model}
-\section{Model-View-Control Pattern}
-In the design shown in Figure 1 on page X Model represents the application
-object that implements the application data and business logic. The View is
-responsible for formatting the application results and dynamic page construction.
-The Controller is responsible for receiving the client request, invoking the
-appropriate business logic, and based on the results, selecting the appropriate
-view to be presented to the user.
-The Model represents enterprise data and the business rules that govern
-access to and updates to this data. Often the Model serves as a software
-approximation to a real-world process, so simple real-world modeling
-techniques apply when defining the Model.
-A View renders the contents of a Model. It accesses enterprise data through
-the Model and specifies how that data should be presented.
-It is the View's responsibility to maintain consistency in its presentation when
-the Model changes. This can be achieved by using a push Model, where the
-View registers itself with the Model for change notifications, or a pull Model,
-where the View is responsible for calling the Model when it needs to retrieve
-the most current data.
-A Controller translates interactions with the View into actions to be performed
-by the Model. In a stand-alone GUI client, user interactions could be button
-clicks or menu selections, whereas in a Web application, they appear as GET
-and POST HTTP requests. The actions performed by the Model include
-activating business processes or changing the state of the Model. Based on
-the user interactions and the outcome of the Model actions, the Controller
-responds by selecting an appropriate View.
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.5]{images/MVCPattern.png}   
-\caption[MVC Pattern]{MVC Pattern}
-\label{img:MVCPattern}                           
-\end{figure}
+\subsection{XMPP BOSH Client}
+The Extensible Messaging and Presence Protocol (XMPP) is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community starting in 1999. This page provides a brief chronology of Jabber/XMPP technologies from the perspective of standardization\cite{xmpp}.
+\newline
+\emph{Decentralization}
+\newline
+The architecture of the XMPP network is similar to email; anyone can run their own XMPP server and there is no central master server.
+\newline
+\emph{Open standards}
+\newline
+The Internet Engineering Task Force has formalized XMPP as an approved instant messaging and presence technology under the name of XMPP (the latest specifications are RFC 6120 and RFC 6121). No royalties are required to implement support of these specifications and their development is not tied to a single vendor.
+\newline
+\emph{History}
+\newline
+XMPP technologies have been in use since 1999. Multiple implementations of the XMPP standards exist for clients, servers, components, and code libraries.
+\newline
+\emph{Security}
+\newline
+XMPP servers can be isolated from the public XMPP network (e.g., on a company intranet), and strong security (via SASL and TLS) has been built into the core XMPP specifications.
+\newline
+\emph{Flexibility}
+\newline
+Custom functionality can be built on top of XMPP; to maintain interoperability, common extensions are managed by the XMPP Standards Foundation. XMPP applications beyond IM include groupchat, network management, content syndication, collaboration tools, file sharing, gaming, remote systems control and monitoring, geolocation, middleware and cloud computing, VoIP and Identity services.
+The XMPP network uses a client–server architecture (clients do not talk directly to one another). However, it is decentralized—by design, there is no central authoritative server, as there is with services such as AOL Instant Messenger or Windows Live Messenger. Some confusion often arises on this point as there is a public XMPP server being run at jabber.org, to which a large number of users subscribe. However, anyone may run their own XMPP server on their own domain.
+Every user on the network has a unique Jabber ID (usually abbreviated as JID). To avoid requiring a central server to maintain a list of IDs, the JID is structured like an email address with a username and a domain name (or IP address[16]) for the server where that user resides, separated by an at sign (@), such as username@example.com.
+
+\section{Browther Support}
+In past years a Flash-based media player in more than sufficient for streaming on the Web and this technology is still necessary to support legacy browsers. But thankfully modern standards have advanced and the inclusion of HTML5 video opens doors for dozens of new opportunities.
+
+In this guide I’d like to offer an introduction to HTML5 video for the Web. It will take some practice to understand the native in-browser player and all its functionality. When you’re working with a flash video player it’s all too common to associate all video formats in .flv. While this does work, most flv files cannot retain quality anywhere near the more advanced file formats/codecs. There are 3 important video types which are supported by HTML5: MP4, WebM, and Ogg/Ogv. The MPEG-4 file type is generally encoded in H.264 which allows for playback in third party Flash players. This means you don’t need to keep a .flv video copy to support a fallback method! WebM and Ogg are two much newer file types related to HTML5 video. Ogg uses Theora encoding which is based on the open-source standard audio file format. These can be saved with a .ogg or .ogv extension.
+So which of these file types do you need for your website? Well ideally all 3 would be great as they provide the full support spectrum. Yet this isn’t realistic, and in fact, you can cover all the bases with only two of them. Here is a breakdown of what works for each browser:
+
+Mozilla Firefox – WebM, Ogg
+Google Chrome – WebM, Ogg
+Opera – WebM, Ogg
+Safari – MP4
+Internet Explorer 9 – MP4
+Internet Explorer 6-8 – No HTML5, Flash Only!
+Most flash video players will support MP4 files as long as they’re encoded in H.264. As such, each of these browsers will embed MP4+Flash as a final resort. This means you only need to create two different video formats to support all browsers. MP4 for Safari/IE9 and a choice between WebM or Ogg for the rest.
 \section{Database Model}
 \section{Use Cases}
   \subsection{Frontend}
-  \subsection{Choosen Environment}
-  \subsection{Choosen Tools}
+  \subsection{3-tier Architecture in Software Projection}
+  \subsection{Evaluation}
   \subsection{Use Cases Realization}
 \subsection{Summary}
