@@ -20,7 +20,7 @@ Figure 4.1 shows this architecure:
 \end{figure}
 \emph{Client Tier} hosts the presentation layer components. The main function of the interface is to translate tasks and results to graphical user interface that can be easily understandable and explorable from any kind of device. That satisfy requirements of the usability(section 3.4).
 \newline
-\emph{Application Tier} includes business logic, logic tier, data access tier. It controls an application's functionality by performing detailed processing, transformation of one type data to another one, defines an interface of interconnection between client tier and data tier.
+\emph{Application Tier} includes business logic, logic tier and data access tier. It controls an application's functionality by performing detailed processing, transformation of one type data to another one, defines an interface of interconnection between client tier and data tier.
 \newline
 \emph{Data Tier} consists source of data that have to be retrieved by application tier to a Client Tier, by request from a end user. This tier keeps data neutral and independent from application server or business logic. Giving data its own tier also improves scalability. 
 \newline
@@ -41,7 +41,7 @@ In the next chapter begins detailed explaination about every tier in 3-tier arch
   \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.5]{images/Mockup.png}   
-  \caption[GUI Mocku]{GUI Mockup}
+  \caption[GUI Mockup]{GUI Mockup}
   \label{img:GUI Mockup}                           
   \end{figure}
   1. Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc.
@@ -49,11 +49,10 @@ In the next chapter begins detailed explaination about every tier in 3-tier arch
   3. Data Volume shows what is the average data stream volume needed to retrieve sensor data(Kb/s).
 
 \section{Application Tier}
-- Web server
-\newline
-- Registry
-\newline
-- Proxy
+	\subsection{Web server}
+	\subsection{Sensor Registry}
+	\subsection{Proxy}
+	\subsection{Authentication Stub}
 
 \begin{figure}[!ht]
 \centering
@@ -62,7 +61,7 @@ In the next chapter begins detailed explaination about every tier in 3-tier arch
 \label{img:structure}                           
 \end{figure}
 
-\subsection{Functional Requirements}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.5]{images/Interface.png}   
@@ -94,15 +93,5 @@ In the next chapter begins detailed explaination about every tier in 3-tier arch
   %Your model of data streams should consider that some streams can be replayed
 %and some cannot because they contain live data. Also, some may be adaptive,
 
-\subsection{Sensor Registry}
-\subsection{Proxy}
-\subsection{Authentification Stub}
-\subsection{Databases}
-
 \section{Summary}
-In this master thesis, a first web-based prototype (portal) for such services is to be
-created. Along with it, a light-weight scenario service registry will be needed. Users
-should be able to explore not just services, but also the information provided by
-them, and eventually be led to advanced usage patterns such as the development
-of third-party applications to access the information data and real-time streams.
-When dealing with videos, delivering the best possible video experience is the ultimate goal for every web team.  We all have seen good evidence that several HTML5 compliant video players (VideoJS, HTML5Video, JW Player, etc.) are becoming excellent alternatives when a fallback for non-flash support is required.  Perhaps the answer for the title/question of this article “is HTML5 the real fix for videos?” remains unanswered; but the hybrid solutions (Flash and HTML5) can be good examples of how to deliver video content, regardless of which device or browser users are using. After all, users do not necessarily care about how their videos are being delivered or processed. 
+	In this master thesis, a first web-based prototype (portal) for such services is to be created. Along with it, a light-weight scenario service registry will be needed. Users should be able to explore not just services, but also the information provided by them, and eventually be led to advanced usage patterns such as the development of third-party applications to access the information data and real-time streams. When dealing with videos, delivering the best possible video experience is the ultimate goal for every web team.  We all have seen good evidence that several HTML5 compliant video players (VideoJS, HTML5Video, JW Player, etc.) are becoming excellent alternatives when a fallback for non-flash support is required.  Perhaps the answer for the title/question of this article “is HTML5 the real fix for videos?” remains unanswered; but the hybrid solutions (Flash and HTML5) can be good examples of how to deliver video content, regardless of which device or browser users are using. After all, users do not necessarily care about how their videos are being delivered or processed. 

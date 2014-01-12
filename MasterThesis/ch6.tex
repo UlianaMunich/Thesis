@@ -2,27 +2,38 @@
 \chapter{Conclusion and Outlook}
 
 \section{Conclusion}
-The chapter summarizes the presented thesis providing an overview of each chapter
-and describing the achievement of the thesis’s goals defined in the section 1.2. At
-the end of the chapter suggestions for the future work are made.
-\subsection{Addressed research questions}
-
-\subsubsection{Achieved Goals}
-
-\begin{itemize}
-\item Some;
-\item Statements;
-\item Here;
-\end{itemize}
-
-\subsection{Practical results}
+	The chapter summarizes the presented thesis providing an overview of each chapter and describing the achievement of the thesis’s goals defined in the section 1.2. At the end of the chapter suggestions for the future work are made.
+	The presented thesis consists of six chapters including the current chapter. The chapter 1 Introduction states the motivation (section 1.1) of the work arguing the necessity of creation of generic frontend. The main research questions and the goals that have to be achieved in the thesis are described in the section 1.2. The description of the thesis’s structure (section 1.3) completes the first chapter.
+\section{Achieved Goals}
 
 \section{Future work}
-To conclude the thesis, suggestions for the future work are made. These suggestions
-are devoted to improve either the developed concept or the current implementation.
-\newline
-Visualization and interaction metaphor for the introduced access control
-\newline
-Enhanced user interface for application part
-\newline
-User interface to support the introduced dynamic composition
+	To conclude the thesis, suggestions for the future work are made. These suggestions
+	are devoted to improve either the developed concept or the current implementation.
+	\newline
+	Visualization and interaction metaphor for the introduced access control
+	\newline
+	Enhanced user interface for application part
+	\newline
+	User interface to support the introduced dynamic composition
+
+	\subsection{Conceptual Aspects}
+	This subsection describes possible improvements on the concept level.
+	\section{Addressed research questions}
+		\subsubsection {SLA}
+		Differentiation of SLA depending on user type/rights. Typization of SLA and filtering . Easy enhancement in case of SLA changes, then come in to a picture next questions: How to re-sign SLA with user, how to nitfy about changes frontend and user itself, that have already once accepted it, how will system react in case user will not accept new SLA. How can frontend predefine all future changes that can appear according to SLA changes?
+		\subsubsection{Privacy and security}
+		Cookies stored on a mobile device can be easily be sotollen via hacking attack on browser or account in browser. To avoid this should be in detail researched another possibility to encrypt data or to make authorisation process more secure.
+		\subsubsection {Introducing the interaction awareness}
+		 In principle, when a user open first time an application, different information can be interesting to him. Therefore, to introduce a convenient awareness, the following research questions should be investigated:
+		 \begin{itemize}
+		\item What kind of interaction awareness information end users are really need?
+		\item Does a user want to configure the received awareness information?
+		\item In case of providing a configuration, what an appropriate visualization and interaction metaphor can be provided? 
+		\end{itemize}
+		\subsubsection {Integration with other application via Internet}
+		 The best opportunity to make application widely-used is to enhance list of supported hardware and software sensors. But a lot of system already propose their own sensors and corresponding app to it. How possible will be to create additional module for enhancement that will play arole of retranslator or proxy between two different systems?
+		\subsubsection {Resource limitations: energy, bandwidth and computation}
+		Since mobile devices face internal and external resource limitations, the need of differentiation of connection properties is important. For example, location data can be provided using GPS, WiFi, and GSM, with decreasing levels of accuracy. Compared to WiFi and GSM, continuous GPS location sampling drains the battery faster. One approach to this problem uses low duty cycling to reduce energy consumption of high-quality sensors (i.e., GPS), and alternates between high- and low-quality sensors depending on the energy levels of the device (e.g., sample WiFi often when battery level is less than 70 percent). This approach trades off ata quality and accuracy for energy. 
+
+\section {Implementation Aspects}
+	Due to the provided implemented background that supports statically defined applications and due to the lack of the time to extend this basic implementation, thedeveloped concept has been implemented partly. The future implementation work can be split up into the following tasks:
