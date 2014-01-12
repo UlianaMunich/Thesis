@@ -50,10 +50,13 @@ In the next chapter begins detailed explaination about every tier in 3-tier arch
 
 \section{Application Tier}
 	\subsection{Web server}
+  The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content. 
+  \newline In proposed concetp Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are deligated to an external components such as Registry, Proxy and Frontend. these external components can be interchange without dependency to teh system itself.
 	\subsection{Sensor Registry}
+  Sensor Registry is a module resposible for keeping all required metadata of vailable sensors, for connecting arbitrary sensors. Frontend gets info from Registry by using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, can be easily used within system. Concept provides a possibility to dyna,ically connect and disconnect different Registries, that are required in a different context of usage.
 	\subsection{Proxy}
-	\subsection{Authentication Stub}
-
+  \subsectiom{Web-based Frontend}
+    \subsubsection{Authentication Stub}
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.5]{images/Structure.png}   
