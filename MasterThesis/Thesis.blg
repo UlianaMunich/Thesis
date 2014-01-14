@@ -28,45 +28,45 @@ Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ame
 while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
-You've used 22 entries,
+You've used 23 entries,
             1791 wiz_defined-function locations,
-            571 strings with 7432 characters,
-and the built_in function-call counts, 5498 in all, are:
-= -- 508
-> -- 213
+            576 strings with 7560 characters,
+and the built_in function-call counts, 5644 in all, are:
+= -- 520
+> -- 217
 < -- 10
-+ -- 81
-- -- 59
-* -- 298
-:= -- 805
-add.period$ -- 71
-call.type$ -- 22
++ -- 83
+- -- 60
+* -- 301
+:= -- 828
+add.period$ -- 74
+call.type$ -- 23
 change.case$ -- 21
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 277
-empty$ -- 569
-format.name$ -- 59
-if$ -- 1309
+cite$ -- 23
+duplicate$ -- 287
+empty$ -- 588
+format.name$ -- 60
+if$ -- 1344
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 16
-newline$ -- 110
-num.names$ -- 22
-pop$ -- 108
+int.to.str$ -- 23
+missing$ -- 18
+newline$ -- 115
+num.names$ -- 23
+pop$ -- 115
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 155
+skip$ -- 157
 stack$ -- 0
 substring$ -- 310
-swap$ -- 103
+swap$ -- 104
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 54
-width$ -- 24
-write$ -- 239
+while$ -- 55
+width$ -- 25
+write$ -- 249
 (There were 4 error messages)

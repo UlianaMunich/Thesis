@@ -26,43 +26,95 @@ Figure 4.1 shows this architecure:
 \newline
 The three tiers architecture may seem similar to the model-view-controller (MVC) concept. However, topologically they are different. A fundamental rule in a three tier architecture is the client tier never communicates directly with the data tier; in a three-tier model all communication must pass through the middle tier. Conceptually the three-tier architecture is linear. However, the MVC architecture is triangular: the view sends updates to the controller, the controller updates the model, and the view gets updated directly from the model.
 From a historical perspective the three-tier architecture concept emerged in the 1990s from observations of distributed systems (e.g., web applications) where the client, middleware and data tiers ran on physically separate platforms. Today, MVC and similar model-view-presenter (MVP) are Separation of Concerns design patterns that apply exclusively to the presentation layer of a larger system. In simple scenarios MVC may represent the primary design of a system, reaching directly into the database; however, in most scenarios the Controller and Model in MVC have a loose dependency on either a Service or Data layer/tier. This is all about Client-Server architecture.
-
-In the next chapter begins detailed explaination about every tier in 3-tier architecture.
+\newline
+In the next section gives an detailed explaination about structure modules in 3-tier architecture.
 
 \section{Client Tier}
+  The client tier or another name is presentation tier is a layer which users can access directly such as a web page by using browser. It is the first that user see. This tier consists logic and GUI by using which, user can communicate with sensor in a way that is presentd on Figure 4.3. Also Client Tier responsible to be adapted to any kind of mobile or desktop devices that user can use. Therefore as a cross-platforming approach was chosen web-based solution, where all communication flows through the browser.
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.5]{images/User_Case.png}   
-\caption[Use Case]{Use Case}
-\label{img:structure}                           
-\end{figure}
-  \subsection{GUI}
-  \begin{figure}[!ht]
-  \centering
-  \includegraphics[scale=0.5]{images/Mockup.png}   
-  \caption[GUI Mockup]{GUI Mockup}
-  \label{img:GUI Mockup}                           
-  \end{figure}
-  1. Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc.
-  2. User can subscribe only to the available services. If some services become unavailable they will be automaticaly inactivated and after refreshing will be deleted from the list.
-  3. Data Volume shows what is the average data stream volume needed to retrieve sensor data(Kb/s).
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.4]{images/Mockup.png}   
+    \caption[GUI Mockup]{GUI Mockup}
+    \label{img:GUI Mockup}                           
+    \end{figure}
+    Figure 4.3 presents simple content layout in which user can be interested in. It consists:
+      \begin{itemize}
+      \item Login form with user name and password fields. After user logged in, the system defines his/her rights and applied visibility rulesa ccording to credentials. User that have an admin rights reeives an opportunity to control and manupulate sensors. Simple user will receive an opportunity receive a statistic and inforamtion from sensors.
+      \item Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc. In such a way user can easily, even in seconds, understand and catch what is the main fundtion of a sensor in the list.
+      \item Availability or unavailability to see alive statitics. User can subscribe only to the available services. If some services become unavailable it will be automaticaly marked as inactive and after refreshing will be deleted from the list of available sensors and moved to a history tab.
+      \item Data Volume icon shows what is the average data stream volume needed to retrieve sensor data(Kb/s). The dashboard should automatically adapt quality of streaming data to necessary and possible bandwidth of available connection(Wi-Fi, 3G, GPRS)
+      \end{itemize}
+    The common use case from a end-user point of view shown on Figure 4.3. User can use any type of mobile device and his favourite browser to receive informaion from the sensors by using web-site as a dashboard.
+
+        \begin{figure}[!ht]
+        \centering
+        \includegraphics[scale=0.5]{images/User_Case.png}   
+        \caption[Use Case]{Use Case}
+        \label{img:structure}                           
+        \end{figure}
 
 \section{Application Tier}
+  This layer coordinates the application, processes commands, makes logical decisions and evaluations, and performs calculations. It also moves and processes data between the two surrounding layers.
+  \newline
+  Application tier consists all logical modules as: Web server, Sensor registry, Proxy and Web-based Frontend. All these modules connects to each other as shpown on a Figure 4.4. Detailed information about functionality of every module described in sections above.
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.5]{images/Structure.png}   
+    \caption[System Architecture]{System Architecture}
+    \label{img:structure}                           
+    \end{figure}
+
 	\subsection{Web server}
   The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content. 
   \newline In proposed concetp Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are deligated to an external components such as Registry, Proxy and Frontend. these external components can be interchange without dependency to teh system itself.
+
 	\subsection{Sensor Registry}
-  Sensor Registry is a module resposible for keeping all required metadata of vailable sensors, for connecting arbitrary sensors. Frontend gets info from Registry by using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, can be easily used within system. Concept provides a possibility to dyna,ically connect and disconnect different Registries, that are required in a different context of usage.
+  Sensor Registry is a module resposible for keeping all required metadata of vailable sensors, for connecting arbitrary sensors. Frontend gets info from Registry by using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, can be easily used within system. Concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage.
+
 	\subsection{Proxy}
-  \subsectiom{Web-based Frontend}
+  Since concept of generic frontend is meant to support any type of sensor, regardless of its interface, Proxy is responsible for mapping interface of particular sensors data stream into JSOn message, delivered through XMPP protocol. Requirements to Proxy are:
+  \begin{itemize}
+  \item convert sensor data into particular JSON supporting scheme(specification*)
+  \item implement XMPP protocol to provide exchange message with XMPP server
+  \item get and parse sensor data
+  \end{itemize}
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.6]{images/Protocol_flow.png}   
+    \caption[Protocol flow]{Protocol flow}
+    \label{img:protocol}                           
+    \end{figure}
+
+  \subsection{Web-based Frontend}
+    \subsubsection{Interfaces}
+    According to RESTful API and simple structure of registry data, communication between Frontend and Registry will done by using HTTP get request and JSON format.
+    \newline
+    According to requirements to retrieve streaming data from the sensors, it is necessary to use XMPP protocol\cite{XMPPbook}.
+    XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
+    The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features tothe web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
+    XMPP, like all protocols, defines a format for moving data between two or more communicating
+entities. In XMPP’s case, the entities are normally a client and a server, although it also allows for
+peer-to-peer communication between two servers or two clients. Many XMPP servers exist on the
+Internet, accessible to all, and form a federated network of interconnected systems.
+Data exchanged over XMPP is in XML, giving the communication a rich, extensible structure.
+Many modern protocols forgo the bandwidth savings of a binary encoding for the more practical
+feature of being human readable and therefore easily debugged. XMPP’s choice to piggyback on
+XML means that it can take advantage of the large amount of knowledge and supporting software
+for dealing with XML.
+One major feature XMPP gets by using XML is XML’s extensibility. It is extremely easy to add new
+features to the protocol that are both backward and forward compatible. This extensibility is put to
+great use in the more than 200 protocol extensions registered with the XMPP Standards Foundation
+and has provided developers with a rich and practically unlimited set of tools.
+XML is known primarily as a document format, but in XMPP, XML data is organized as a pair
+of streams, one stream for each direction of communication. Each XML stream consists of an
+opening element, followed by XMPP stanzas and other top-level elements, and then a closing ele-
+ment. Each XMPP stanza is a first-level child element of the stream with all its descendent elements
+and attributes. At the end of an XMPP connection, the two streams form a pair of valid XML
+documents.
     \subsubsection{Authentication Stub}
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.5]{images/Structure.png}   
-\caption[System Architecture]{System Architecture}
-\label{img:structure}                           
-\end{figure}
+
+
 
 
 \begin{figure}[!ht]
