@@ -30,7 +30,7 @@ From a historical perspective the three-tier architecture concept emerged in the
 In the next section gives an detailed explaination about structure modules in 3-tier architecture.
 
 \section{Client Tier}
-  The client tier or another name is presentation tier is a layer which users can access directly such as a web page by using browser. It is the first that user see. This tier consists logic and GUI by using which, user can communicate with sensor in a way that is presentd on Figure 4.3. Also Client Tier responsible to be adapted to any kind of mobile or desktop devices that user can use. Therefore as a cross-platforming approach was chosen web-based solution, where all communication flows through the browser.
+  The client tier or another name is presentation tier is a layer which users can access directly such as a web page by using browser. It is the first that user see. This tier consists logic and GUI by using which, user can communicate with sensor in a way that is presentd on Figure 4.2. Also Client Tier responsible to be adapted to any kind of mobile or desktop devices that user can use. Therefore as a cross-platforming approach was chosen web-based solution, where all communication flows through the browser.
 
     \begin{figure}[!ht]
     \centering
@@ -38,11 +38,11 @@ In the next section gives an detailed explaination about structure modules in 3-
     \caption[GUI Mockup]{GUI Mockup}
     \label{img:GUI Mockup}                           
     \end{figure}
-    Figure 4.3 presents simple content layout in which user can be interested in. It consists:
+    Figure 4.2 presents simple content layout in which user can be interested in. It consists:
       \begin{itemize}
-      \item Login form with user name and password fields. After user logged in, the system defines his/her rights and applied visibility rulesa ccording to credentials. User that have an admin rights reeives an opportunity to control and manupulate sensors. Simple user will receive an opportunity receive a statistic and inforamtion from sensors.
+      \item Login form with user name and password fields. After user logged in, the system defines his/her rights and applies visibility rules according to credentials. User that have an admin rights receives an opportunity to control and manupulate sensors. Simple user will receive an opportunity to get a statistic and inforamtion from sensors.
       \item Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc. In such a way user can easily, even in seconds, understand and catch what is the main fundtion of a sensor in the list.
-      \item Availability or unavailability to see alive statitics. User can subscribe only to the available services. If some services become unavailable it will be automaticaly marked as inactive and after refreshing will be deleted from the list of available sensors and moved to a history tab.
+      \item Availability or unavailability to see alive statitics. User can subscribe only to the available services. If some services become unavailable it will be automatically marked as inactive and after refreshing will be deleted from the list of available sensors and moved to a history tab.
       \item Data Volume icon shows what is the average data stream volume needed to retrieve sensor data(Kb/s). The dashboard should automatically adapt quality of streaming data to necessary and possible bandwidth of available connection(Wi-Fi, 3G, GPRS)
       \end{itemize}
     The common use case from a end-user point of view shown on Figure 4.3. User can use any type of mobile device and his favourite browser to receive informaion from the sensors by using web-site as a dashboard.
@@ -70,7 +70,7 @@ In the next section gives an detailed explaination about structure modules in 3-
   \newline In proposed concetp Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are deligated to an external components such as Registry, Proxy and Frontend. these external components can be interchange without dependency to teh system itself.
 
 	\subsection{Sensor Registry}
-  Sensor Registry is a module resposible for keeping all required metadata of vailable sensors, for connecting arbitrary sensors. Frontend gets info from Registry by using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, can be easily used within system. Concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage.
+  Sensor Registry is a module resposible for keeping all required metadata of vailable sensors, for connecting arbitrary sensors. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, availability(true or false), SLA, necessary bandwidth for retrivng data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
 
 	\subsection{Proxy}
   Since concept of generic frontend is meant to support any type of sensor, regardless of its interface, Proxy is responsible for mapping interface of particular sensors data stream into JSOn message, delivered through XMPP protocol. Requirements to Proxy are:
@@ -92,30 +92,35 @@ In the next section gives an detailed explaination about structure modules in 3-
     \newline
     According to requirements to retrieve streaming data from the sensors, it is necessary to use XMPP protocol\cite{XMPPbook}.
     XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
-    The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features tothe web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
-    XMPP, like all protocols, defines a format for moving data between two or more communicating
-entities. In XMPP’s case, the entities are normally a client and a server, although it also allows for
-peer-to-peer communication between two servers or two clients. Many XMPP servers exist on the
-Internet, accessible to all, and form a federated network of interconnected systems.
-Data exchanged over XMPP is in XML, giving the communication a rich, extensible structure.
-Many modern protocols forgo the bandwidth savings of a binary encoding for the more practical
-feature of being human readable and therefore easily debugged. XMPP’s choice to piggyback on
-XML means that it can take advantage of the large amount of knowledge and supporting software
-for dealing with XML.
-One major feature XMPP gets by using XML is XML’s extensibility. It is extremely easy to add new
-features to the protocol that are both backward and forward compatible. This extensibility is put to
-great use in the more than 200 protocol extensions registered with the XMPP Standards Foundation
-and has provided developers with a rich and practically unlimited set of tools.
-XML is known primarily as a document format, but in XMPP, XML data is organized as a pair
-of streams, one stream for each direction of communication. Each XML stream consists of an
-opening element, followed by XMPP stanzas and other top-level elements, and then a closing ele-
-ment. Each XMPP stanza is a first-level child element of the stream with all its descendent elements
-and attributes. At the end of an XMPP connection, the two streams form a pair of valid XML
-documents.
+    \newline
+    The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features to the web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
+    \newline
+    XMPP, like all protocols, defines a format for moving data between two or more communicating entities. In XMPP’s case, the entities are normally a client and a server, although it also allows for peer-to-peer communication between two servers or two clients. Many XMPP servers exist on the Internet, accessible to all, and form a federated network of interconnected systems. Data exchanged over XMPP is in XML, giving the communication a rich, extensible structure. Many modern protocols forgo the bandwidth savings of a binary encoding for the more practical feature of being human readable and therefore easily debugged. XMPP’s choice to piggyback on XML means that it can take advantage of the large amount of knowledge and supporting software for dealing with XML. One major feature XMPP gets by using XML is XML’s extensibility. It is extremely easy to add new features to the protocol that are both backward and forward compatible. This extensibility is put to great use in the more than 200 protocol extensions registered with the XMPP Standards Foundation and has provided developers with a rich and practically unlimited set of tools. XML is known primarily as a document format, but in XMPP, XML data is organized as a pair of streams, one stream for each direction of communication. Each XML stream consists of an opening element, followed by XMPP stanzas and other top-level elements, and then a closing element. Each XMPP stanza is a first-level child element of the stream with all its descendent elements and attributes. At the end of an XMPP connection, the two streams form a pair of valid XML documents.
+    The Extensible Messaging and Presence Protocol (XMPP) is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community starting in 1999. This page provides a brief chronology of Jabber/XMPP technologies from the perspective of standardization\cite{xmpp}.
+    \begin{itemize}
+      \item \emph{Decentralization}
+      \newline
+      The architecture of the XMPP network is similar to email; anyone can run their own XMPP server and there is no central master server.
+      \newline
+      \item \emph{Open standards}
+      \newline
+      The Internet Engineering Task Force has formalized XMPP as an approved instant messaging and presence technology under the name of XMPP (the latest specifications are RFC 6120 and RFC 6121). No royalties are required to implement support of these specifications and their development is not tied to a single vendor.
+      \newline
+      \item \emph{History}
+      \newline
+      XMPP technologies have been in use since 1999. Multiple implementations of the XMPP standards exist for clients, servers, components, and code libraries.
+      \newline
+      \item \emph{Security}
+      \newline
+      XMPP servers can be isolated from the public XMPP network (e.g., on a company intranet), and strong security (via SASL and TLS) has been built into the core XMPP specifications.
+      \newline
+      \item \emph{Flexibility}
+      \newline
+      Custom functionality can be built on top of XMPP; to maintain interoperability, common extensions are managed by the XMPP Standards Foundation. XMPP applications beyond IM include groupchat, network management, content syndication, collaboration tools, file sharing, gaming, remote systems control and monitoring, geolocation, middleware and cloud computing, VoIP and Identity services.
+      \end{itemize}
+      The XMPP network uses a client–server architecture (clients do not talk directly to one another). However, it is decentralized—by design, there is no central authoritative server, as there is with services such as AOL Instant Messenger or Windows Live Messenger. Some confusion often arises on this point as there is a public XMPP server being run at jabber.org, to which a large number of users subscribe. However, anyone may run their own XMPP server on their own domain.
+      Every user on the network has a unique Jabber ID (usually abbreviated as JID). To avoid requiring a central server to maintain a list of IDs, the JID is structured like an email address with a username and a domain name (or IP address[16]) for the server where that user resides, separated by an at sign (@), such as username@example.com.
     \subsubsection{Authentication Stub}
-
-
-
 
 \begin{figure}[!ht]
 \centering
@@ -149,4 +154,29 @@ documents.
 %and some cannot because they contain live data. Also, some may be adaptive,
 
 \section{Summary}
-	In this master thesis, a first web-based prototype (portal) for such services is to be created. Along with it, a light-weight scenario service registry will be needed. Users should be able to explore not just services, but also the information provided by them, and eventually be led to advanced usage patterns such as the development of third-party applications to access the information data and real-time streams. When dealing with videos, delivering the best possible video experience is the ultimate goal for every web team.  We all have seen good evidence that several HTML5 compliant video players (VideoJS, HTML5Video, JW Player, etc.) are becoming excellent alternatives when a fallback for non-flash support is required.  Perhaps the answer for the title/question of this article “is HTML5 the real fix for videos?” remains unanswered; but the hybrid solutions (Flash and HTML5) can be good examples of how to deliver video content, regardless of which device or browser users are using. After all, users do not necessarily care about how their videos are being delivered or processed. 
+	In this chapter, a first web-based concept for sensor streaming services is to be created. Along with it, a light-weight scenario service registry will be needed. Users should be able to explore not just services, but also the information provided by them, and eventually be led to advanced usage patterns such as the development of third-party applications to access the information data and real-time streams. When dealing with streamin data, delivering the best possible video experience is the ultimate goal for every web team. 
+  \newline
+  Proxy responsibiliies:
+  \begin{itemize}
+  \item 1
+  \item 2
+  \item 3
+  \end{itemize}
+  Registry responsibiliies:
+  \begin{itemize}
+  \item 1
+  \item 2
+  \item 3
+  \end{itemize}
+  Web-server responsibiliies:
+  \begin{itemize}
+  \item 1
+  \item 2
+  \item 3
+  \end{itemize}
+  Frontend responsibiliies:
+  \begin{itemize}
+  \item 1
+  \item 2
+  \item 3
+  \end{itemize}
