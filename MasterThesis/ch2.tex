@@ -2,26 +2,48 @@
 \chapter{Foundations and Requirements Analysis}
 The fundamental terms used in this thesis are described below for better understanding of the presented research work.
 
-\section {Frontends Requirements}
-In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front and back ends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring sensed data, i.e. :
+\section {Frontend's Requirements}
+In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring data sources, i.e. :
 \begin{itemize}
-\item Loose coupling: each of systems components has, or makes use of, little or no knowledge of the definitions of other separate 
-      components. Where the main goal is to avoid dependencies between components and easy deployment of future enhancement.
-\item Fine-grained structure: split the system into a small parts, such that it can be distributed across internet, by avoiding single 
-      point of failure.
-\item Multy-user capability: defining to every user according to their type and rights visibility rules and concreate interface view 
-      targeting.
-\item Cross-platforming or multi-platform: a possibility of application to be run on any type of device(e.g., smartphone, notebook,  
-      tablet) without special preparation or changes.
-\item Adaptivity: an ability of a user-friendly interface to automatically adapt to any size of device screen, by provisioning high 
-      usability performance.
-\item User friendly or usability: web-based interface, that can be easily explored by user, without any knowledge about current system.
-\end{itemize} 
-\subsection {Loose Coupling}
-Together with a loose coupling comes into a picture fine-grained system structure. For both of them works the principle to distribute the systems by using small components.
 
-\subsection {Multy-User Capabilities}
-Before user loggin into a system, without any knowledge about system, should be clarified what shold be shown on a main screen and how to define usability steps and where. 
+\item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other separate components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
+
+\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces to any type of data format, Information resources in Web), such that it can be distributed across internet, and can be apllied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend
+
+\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and concrete interface view targeting by using JID\index{Jabber ID}. Every account have to be unique binded to any data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
+
+\item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, notebook, tablet) without special preparation or changes. this gives an possibility to be flexible.
+
+\item \emph{Adaptivity:} an ability of a GUI automatically adapt to any size of device screen, by provisioning high 
+      usability performance.
+
+\item \emph{Usability:} web-based interface, that can be easily explored in social platfroms and connects any type of news feeds.
+\end{itemize} 
+
+\subsection {Loose Coupling}
+Together with a loose coupling comes into a picture fine-grained system structure. For both of them works the principle of distributed systems by using small components.
+
+Where the fine-grained structure of a sytem  means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it garantees necessary performance in response time.
+
+The degree of the loose coupling can be measured by noting the number of changes in data elements that could occur in the sending or receiving systems and determining if the computers would still continue communicating correctly. These changes include items such as:
+\begin{itemize}
+\item adding new data elements to messages
+\item changing the order of data elements
+\item changing the names of data elements
+\item changing the structures of data elements
+\item omitting data elements
+\end{itemize}
+Loose coupling of interfaces can be dramatically enhanced when publishers of data transmit messages using a flexible file format such as XML or JSON to enable subscribers to publish clear definitions of how they subsequently use this data. For example, a subscriber could publish the collection of statements used to extract information from a publisher's messages by sharing the relevant XPath expressions used for data transformation, or the JSON Schema. This would allow a responsible data publisher to test whether their subscriber's extraction methods would fail when a published format changes.
+
+\subsection {Multi-User Capabilities}
+In order to provide better user experience needed to be distinguish main user types of a system itself:
+\begin{itemize}
+\item Backend developer, that needs an acceptable interface for his backend and adaptable modules for his data structure
+\item Administrator of a system, that have to add new functionality and modules/blocks to GUI
+\item User of an application, that wants to see and control sensors and statistic.
+\end{itemize}
+
+Before user login into a system, without any knowledge about system, should be clarified what should be shown on a main screen and how to define usability steps and where. 
 
 \subsection {Design Strategy}
 Because of the competing interests of cross-platform compatibility and advanced functionality, numerous alternative web application design strategies have emerged. Such strategies include:
@@ -34,9 +56,9 @@ Separation of functionality
 \newline
 Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a ‘complete’ application to the user. (See also: Separation of concerns).
 \newline
-Multiple codebase
+Multiple code base
 \newline
-Multiple codebase applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
+Multiple code base applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
 \newline
 Third-party libraries
 \newline
@@ -59,7 +81,7 @@ Memorability: When users return to the design after a period of not using it, ho
 Errors: How many errors do users make, how severe are these errors, and how easily can they recover from the errors?
 Satisfaction: How pleasant is it to use the design?
 \section {Data Sources}
-Main focuse 
+Main focus 
 -types of common data sources in Web
 \newline
 -interface for interconnection

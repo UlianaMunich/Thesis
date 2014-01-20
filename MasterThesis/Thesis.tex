@@ -22,6 +22,8 @@
 \usepackage{setspace}
 \usepackage{fancyhdr} % better page headers and footers, http://texblog.org/2007/11/07/headerfooter-in-latex-with-fancyhdr/	
 \usepackage{lipsum}
+\usepackage{glossaries}
+\makeglossaries
 \pagestyle{fancy}
 \synctex=1
 
@@ -94,10 +96,18 @@
 
 \bibliographystyle{unsrt}
 
+%### acronyms
+\newacronym{GUI}{GUI}{Graphical User Interface}
+\newacronym{RPC}{RPC}{Remote Procedure Call}
+\newacronym{XMPP}{XMPP}{Extensible Messaging and Presence Protocol}
+\newacronym{DOM}{DOM}{Document Object Model}
+\newacronym{JSON}{JSON}{JavaScript Object Notation}
+
+
 \begin{document}
+\include{INP-00-glossary}
 \pagenumbering{roman}
 	\include{title}
-
 % empty page hack
 \newpage
 \thispagestyle{empty}
@@ -135,7 +145,6 @@
 
 \pagenumbering{arabic}
 \setcounter{page}{1}
-
 	\include{ch1}
 	\include{ch2}
 	\include{ch3}
@@ -146,5 +155,6 @@
     \addcontentsline{toc}{chapter}{List of Figures}
   \listoftables
     \addcontentsline{toc}{chapter}{List of Tables}
+  \printglossary[type=\acronymtype,style=long,title=List of Abbreviations,toctitle=List of Abbreviations]
   \bibliography{bibliography}
 \end{document}

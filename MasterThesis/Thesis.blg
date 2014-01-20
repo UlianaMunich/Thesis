@@ -2,6 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 The style file: unsrt.bst
+A level-1 auxiliary file: INP-00-glossary.aux
 A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: ch1.aux
 A level-1 auxiliary file: ch2.aux
@@ -22,51 +23,55 @@ I was expecting a `,' or a `}'---line 310 of file bibliography.bib
  :   year = 2012
  :              -2013,
 I'm skipping whatever remains of this entry
+Repeated entry---line 329 of file bibliography.bib
+ : @inproceedings{nath2006challenges
+ :                                  ,
+I'm skipping whatever remains of this entry
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
-You've used 23 entries,
+You've used 24 entries,
             1791 wiz_defined-function locations,
-            576 strings with 7560 characters,
-and the built_in function-call counts, 5644 in all, are:
-= -- 520
-> -- 217
+            580 strings with 7685 characters,
+and the built_in function-call counts, 5836 in all, are:
+= -- 532
+> -- 228
 < -- 10
-+ -- 83
-- -- 60
-* -- 301
-:= -- 828
-add.period$ -- 74
-call.type$ -- 23
-change.case$ -- 21
++ -- 87
+- -- 63
+* -- 310
+:= -- 858
+add.period$ -- 77
+call.type$ -- 24
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 287
-empty$ -- 588
-format.name$ -- 60
-if$ -- 1344
+cite$ -- 24
+duplicate$ -- 299
+empty$ -- 613
+format.name$ -- 63
+if$ -- 1389
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 18
-newline$ -- 115
-num.names$ -- 23
-pop$ -- 115
+int.to.str$ -- 24
+missing$ -- 19
+newline$ -- 120
+num.names$ -- 24
+pop$ -- 122
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 157
+skip$ -- 160
 stack$ -- 0
 substring$ -- 310
-swap$ -- 104
+swap$ -- 106
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 55
-width$ -- 25
-write$ -- 249
-(There were 4 error messages)
+while$ -- 56
+width$ -- 26
+write$ -- 259
+(There were 5 error messages)
