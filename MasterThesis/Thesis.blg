@@ -13,8 +13,6 @@ A level-1 auxiliary file: ch6.aux
 Database file #1: bibliography.bib
 Warning--entry type for "jakob" isn't style-file defined
 --line 246 of file bibliography.bib
-Warning--entry type for "visdesign" isn't style-file defined
---line 253 of file bibliography.bib
 Warning--entry type for "xmpp" isn't style-file defined
 --line 267 of file bibliography.bib
 Warning--entry type for "vicci" isn't style-file defined
@@ -27,51 +25,77 @@ Repeated entry---line 329 of file bibliography.bib
  : @inproceedings{nath2006challenges
  :                                  ,
 I'm skipping whatever remains of this entry
+Warning--entry type for "ethan" isn't style-file defined
+--line 424 of file bibliography.bib
+Warning--entry type for "pettit" isn't style-file defined
+--line 431 of file bibliography.bib
+I was expecting a `,' or a `}'---line 438 of file bibliography.bib
+ : 
+ : @online{mashA,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "mashA" isn't style-file defined
+--line 438 of file bibliography.bib
+Warning--entry type for "mashB" isn't style-file defined
+--line 445 of file bibliography.bib
+Repeated entry---line 469 of file bibliography.bib
+ : @article{yu2008understanding
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 488 of file bibliography.bib
+ : @inproceedings{hoyer2008enterprise
+ :                                   ,
+I'm skipping whatever remains of this entry
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
-You've used 24 entries,
+Warning--empty journal in firestone1984study
+Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashA
+while executing---line 944 of file unsrt.bst
+Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashB
+while executing---line 944 of file unsrt.bst
+You've used 38 entries,
             1791 wiz_defined-function locations,
-            580 strings with 7685 characters,
-and the built_in function-call counts, 5836 in all, are:
-= -- 532
-> -- 228
-< -- 10
-+ -- 87
-- -- 63
-* -- 310
-:= -- 858
-add.period$ -- 77
-call.type$ -- 24
-change.case$ -- 22
+            656 strings with 9862 characters,
+and the built_in function-call counts, 8976 in all, are:
+= -- 811
+> -- 349
+< -- 17
++ -- 134
+- -- 96
+* -- 477
+:= -- 1313
+add.period$ -- 119
+call.type$ -- 38
+change.case$ -- 36
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 299
-empty$ -- 613
-format.name$ -- 63
-if$ -- 1389
+cite$ -- 39
+duplicate$ -- 454
+empty$ -- 952
+format.name$ -- 96
+if$ -- 2126
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 19
-newline$ -- 120
-num.names$ -- 24
-pop$ -- 122
+int.to.str$ -- 38
+missing$ -- 28
+newline$ -- 187
+num.names$ -- 40
+pop$ -- 193
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 160
+skip$ -- 251
 stack$ -- 0
-substring$ -- 310
-swap$ -- 106
-text.length$ -- 10
+substring$ -- 469
+swap$ -- 162
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 56
-width$ -- 26
-write$ -- 259
-(There were 5 error messages)
+warning$ -- 1
+while$ -- 87
+width$ -- 40
+write$ -- 405
+(There were 10 error messages)

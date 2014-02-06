@@ -1,31 +1,74 @@
 %!TEX root = Thesis.tex
 \chapter{Foundations and Requirements Analysis}
-The fundamental terms used in this thesis are described below for better understanding of the presented research work.
+	The main goal of the following chapter is a definition of requirements to generic frontend for exploring sensor and information services. To achieve this, fundamental terms in the presented research area are formulated at the beginning of the chapter. Basic aspects concerning data sources definition, types of information services in the web that have to be retrieved are described in the section 2.2. According to aforementioned parts of an approach, summary section underlines the chapter by combining needs of frontend and data sources and defines requirements to a common concept. Such a concept described in details in the chapter 4.
 
 \section {Frontend's Requirements}
-In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring data sources, i.e. :
+	In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring data sources, i.e. :
 \begin{itemize}
 
-\item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other separate components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
-
-\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces to any type of data format, Information resources in Web), such that it can be distributed across internet, and can be apllied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend
-
-\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and concrete interface view targeting by using JID\index{Jabber ID}. Every account have to be unique binded to any data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
-
-\item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, notebook, tablet) without special preparation or changes. this gives an possibility to be flexible.
-
-\item \emph{Adaptivity:} an ability of a GUI automatically adapt to any size of device screen, by provisioning high 
+\item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other 
+       separate components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
+\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces to any type of data 
+      format, Information resources in Web), such that it can be distributed across internet, and can be apllied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend
+\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and concrete interface view  
+       targeting by using JID\index{Jabber ID}. Every account have to be unique binded to any data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
+\item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, 	       notebook, tablet) without special preparation or changes. this gives an possibility to be flexible.
+\item \emph{Responsive web design:} an ability of a GUI automatically adapt to any size of device screen, by provisioning high 
       usability performance.
-
 \item \emph{Usability:} web-based interface, that can be easily explored in social platfroms and connects any type of news feeds.
 \end{itemize} 
 
+\subsection {Fine-grained structure}
+The fine-grained structure of a sytem provides a possibility to distribute task between responsible modules of a system. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new part of a system, without influence to an any another module. Thus individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it garantees necessary performance in response time. In order to attain the best parallel performance, the best balance between load and communication overhead needs to be found. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from load imbalance.
+
+Hereby, generic frontend have to be splitted to a modules, responsible for a separated task, that in the same time gives a possibility to expand the system.
+
 \subsection {Loose Coupling}
-Together with a loose coupling comes into a picture fine-grained system structure. For both of them works the principle of distributed systems by using small components.
+The goal of loose coupling is to reduce dependencies between systems. And this term mostly related to an internal software structure of the system, e.g. classes, patterns, asynchronous requests. But to make it clear, why generic approach in building dynamic frontend have to be loosely coupled it is necessary to compare tight- and loose coupling in Table 2.1\footnote{A High-level Comparison of Tight and Loose Coupling,\url{http://wiki.scn.sap.com/wiki/display/BBA/Loose+Coupling+Through+Web+Services}}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|L{3cm}|L{5cm}|l|}
+	\hline
+	Target 			      & \textbf{Tight Coupling} & \textbf{Loose Coupling} \\
+	\hline
+	\hline
+	Physical Connection		         & Point-to-Point & Via mediation (a)  \\
+	\hline
+	Communication Style		         & Synchronous & Asynchronous  \\
+	\hline
+	Data Model		                 & Complex common types & Simple common types  \\
+	\hline
+	Service Discovery and Binding    & Static & Dynamic  \\
+	\hline
+	Dependence on Platform-Specific Functionality		& Strong/many & Weak/few  \\
+	\hline
+	Interaction Pattern		         & Via complex object trees & Via data-centric, self-contained messages  \\
+	\hline
+	Transactional Behavior		    & Controlled by a central transaction manager (e.g., two-phase commit) & Compensation (b)  \\
+	\hline
+	Control of Process Logic		& Central control & Distributed control  \\
+	\hline
+	Deployment	                    & At the same time (c) & Different point in time if desired  \\
+	\hline 		
+	Versioning(d) 		            & Explicit/forced upgrades & Implicit upgrades  \\
+	\hline 
+	\end{tabular}
+	\caption[A High-level Comparison of Tight and Loose Coupling]{A High-level Comparison of Tight and Loose Coupling}
+	\label{tab:loose_coupling}
+	\end{table}
+Where: 
+\newline
+a. Mediation implies that some mechanism must handle communication between the composite application and the backend system, filling the role of the service contract implementation layer.
+\newline
+b. Compensation means that for every modifying service, a dedicated compensational service must explicitly be developed for rollback purposes. If the modifying service is part of a service chain that has to be executed as one transaction and an error occurs, the compensational service helps to undo the first modifying operation and sets the system back to its initial state. 
+\newline
+c. For tightly coupled applications, the parts must always be deployed at the same time. Loosely coupled applications do not have this requirement (though of course the parts could be deployed at the same time). Consider an interface change for a web service that performs a write. When a tightly coupled service is called, if the interface has changed, it simply will not work. A loosely coupled service operation will write the data to the service contract implementation layer and continue. Once the new write operation is in place, it can handle all buffered calls. 
+\newline
+d. Consider versioning of services. If a service provider changes the interface of a service, it is probable that not all consumers can update their applications at the same time. In case of tight coupling, all consumers must explicitly update their applications as well. With loose coupling, the provider offers separate versions at the same time so that consumers don't have to update their applications. Alternatively, the provider supports the new functionality behind the old interface and fills new parameters with default values (an implicit upgrade that does not affect the consumer).
 
-Where the fine-grained structure of a sytem  means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it garantees necessary performance in response time.
+Table 2.1 shows how important is to realize loose coupling in generic sytems, namely frontend, to make it dynamic, independent and distributed.
 
-The degree of the loose coupling can be measured by noting the number of changes in data elements that could occur in the sending or receiving systems and determining if the computers would still continue communicating correctly. These changes include items such as:
+The degree of the loose coupling can be measured by noting the number of changes in data elements that could occur in the sending or receiving systems and determining if the computers would still continue communicating correctly\cite{firestone1984study,danneels2003tight}. These changes include items such as:
 \begin{itemize}
 \item adding new data elements to messages
 \item changing the order of data elements
@@ -33,71 +76,141 @@ The degree of the loose coupling can be measured by noting the number of changes
 \item changing the structures of data elements
 \item omitting data elements
 \end{itemize}
-Loose coupling of interfaces can be dramatically enhanced when publishers of data transmit messages using a flexible file format such as XML or JSON to enable subscribers to publish clear definitions of how they subsequently use this data. For example, a subscriber could publish the collection of statements used to extract information from a publisher's messages by sharing the relevant XPath expressions used for data transformation, or the JSON Schema. This would allow a responsible data publisher to test whether their subscriber's extraction methods would fail when a published format changes.
 
-\subsection {Multi-User Capabilities}
-In order to provide better user experience needed to be distinguish main user types of a system itself:
-\begin{itemize}
-\item Backend developer, that needs an acceptable interface for his backend and adaptable modules for his data structure
-\item Administrator of a system, that have to add new functionality and modules/blocks to GUI
-\item User of an application, that wants to see and control sensors and statistic.
-\end{itemize}
+	Benefits of loose coupling include flexibility and agility. A loosely coupled approach offers unparalleled flexibility for adaptations to changing landscapes. Since there are no assumptions about the landscape your application is running against, you can easily adapt the composite application as needed. This is especially important for ISVs and system integrators who develop applications once and install and configure them at diverse customer sites. The application itself stays untouched. Another aspect to consider is the probability of landscape changes during the lifetime of the application. Due to mergers and acquisitions and system consolidations, the landscape underneath the application is constantly changing. Without loose coupling, you'll be forced to adapt your application again and again. In essence, loose coupling means reducing the number of assumptions to a bare minimum. The goal of loose coupling is to minimize dependencies between systems. However, note that loose coupling comes at a price---every form of loose coupling has disadvantages (especially with regard to complexity) that must be considered.
 
-Before user login into a system, without any knowledge about system, should be clarified what should be shown on a main screen and how to define usability steps and where. 
+\subsection {Multi-User Binding}
+	In order to provide better user experience needed to be distinguish main user types of a system itself:
+	\begin{itemize}
+	\item Backend developer, that needs an acceptable interface for backend and adaptable modules for its data structure, to easily 
+	      integrate already existed backend with new frontend. Comprehensive and detailed service descriptions is a first entry point for developers, who starts to work with web service. Well or poorly described service measures the amount of efforts, made by developers
+	\item Administrator of a system, that have to add new functionality and modules/blocks to GUI or change already existed.     
+	      Administrator have to have an experience with defined 
+	\item User of an application, that wants to see and control sensors and statistic
+	\end{itemize}
+	According to defined types of users, needed to be specified what are the main requirements from a user prospective to the researched frontend approach.
+	\newline 
+	Backend developer, who starts to work with the web service, needs comprehensive and detailed service descriptions, because it is a first entry point for him. Well or poorly described service measures the amount of efforts, made by developers. Therefore generic frontend have to support common standards in a field of interface, protocols, approaches of web services.
+	\newline
+	Administrator plays a role of experienced user, that knows the purpose of a system, how it works, which frameworks and platforms have been used for implementation and how to help developer with integration. Also administrator have an opportunity to change frontend GUI and system structure intself from an inside.
+	\newline
+	After user login into a system, without any knowledge about a system, should be clarified what should be shown on a main screen and how to define usage scenario in an understandable for user way. In case of user task to sign contracts between him and resource provider, frontend have to provide examples of data, such that user can decide what is usefull for him and what is not.
 
-\subsection {Design Strategy}
-Because of the competing interests of cross-platform compatibility and advanced functionality, numerous alternative web application design strategies have emerged. Such strategies include:
-\newline
-Graceful degradation
-\newline
-Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a ‘least common denominator’ for more limited client browsers. For example, a user attempting to use a limited-feature browser to access Gmail may notice that Gmail switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
-\newline
-Separation of functionality
-\newline
-Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a ‘complete’ application to the user. (See also: Separation of concerns).
-\newline
-Multiple code base
-\newline
-Multiple code base applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
-\newline
-Third-party libraries
-\newline
-Third-party libraries attempt to simplify cross-platform capability by "hiding" the complexities of client differentiation behind a single, unified API.
-\newline
-Responsive Web design
-\newline
-Responsive web design (RWD) is a Web design approach aimed at crafting sites to provide an optimal viewing experience—easy reading and navigation with a minimum of resizing, panning, and scrolling—across a wide range of devices (from mobile phones to desktop computer monitors).
+	In context of a generic frontend the term multi-user binding means to satisfy personalized users' requirements with corresponding credentials, preferences and personal settings. To use client-side data binding and dependency injection to build dynamic views of data that change immediately in response to user actions.
 
-\subsection {Usability} Intuitive interfaces
-The primary notion of usability is that an object designed with a generalized users' psychology and physiology in mind is, for example:
-More efficient to use—takes less time to accomplish a particular task
-Easier to learn—operation can be learned by observing the object
-More satisfying to use
+\subsection {Cross-Platfroming}
+	Because of the competing interests of cross-platform compatibility and advanced functionality, numerous alternative web application design strategies have emerged. Such strategies include:
 
-ISO defines usability as "The extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use." The word "usability" also refers to methods for improving ease-of-use during the design process. Usability consultant Jakob Nielsen and computer science professor Ben Shneiderman have written (separately) about a framework of system acceptability, where usability is a part of "usefulness" and is composed of:[4]
-Learnability: How easy is it for users to accomplish basic tasks the first time they encounter the design?
-Efficiency: Once users have learned the design, how quickly can they perform tasks?
-Memorability: When users return to the design after a period of not using it, how easily can they re establish proficiency?
-Errors: How many errors do users make, how severe are these errors, and how easily can they recover from the errors?
-Satisfaction: How pleasant is it to use the design?
-\section {Data Sources}
-Main focus 
--types of common data sources in Web
-\newline
--interface for interconnection
-\subsection {Sensors}
+	\emph{Graceful degradation}
+	\newline
+	Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a "least common denominator" for more limited client browsers. For example, a user attempting to use a limited-feature browser to access Gmail may notice that Gmail switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
 
-\subsection {Generic Considerations}
+	\emph{Separation of functionality}
+	\newline
+	Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a "complete" application to the user(maybe separation of concerns).
 
-\section{Concept Requirements}
-Like most modern applications, each of these is structured into three layers: presentation, 
-application (also called the business-logic layer), and data.
-\begin{enumerate}
-\item the granularity of the functions that the component applications provide is generally well
-suited for high-level integration (for example, we can tell an application to begin monitoring
-machine xyz without considering how this activity will affect data in the integrated application’s database)
-\item it’s more stable because the component application is aware of the integration (it exposes
-the API) and will attempt to stabilize the interface across versions
-\end{enumerate}
+	\emph{Multiple code base}
+	\newline
+	Multiple code base applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
+
+	\emph{Third-party libraries}
+	\newline
+	Third-party libraries attempt to simplify cross-platform capability by "hiding" the complexities of client differentiation behind a single, unified API.
+
+
+\subsection {Responsive web design}
+	Responsive web design (RWD)\cite{ wiki:RWD, CSS3} is a Web design approach aimed at crafting sites to provide an optimal viewing experience—easy reading and navigation with a minimum of resizing, panning, and scrolling—across a wide range of devices (from mobile phones to desktop computer monitors).
+
+	A site designed with RWD\cite{pettit, ethan}adapts the layout to the viewing environment by using fluid, proportion-based grids,flexible images, and CSS3 media queries, an extension of the @media rule.
+    \begin{itemize}
+	\item The fluid grid concept calls for page element sizing to be in relative units like percentages, rather than absolute units like pixels or points. 
+	\item Flexible images are also sized in relative units, so as to prevent them from displaying outside their containing element. 
+	\item Media queries allow the page to use different CSS style rules based on characteristics of the device the site is being displayed on, most commonly the width of the browser. 
+	\item Server-side components (RESS) in conjunction with client-side ones such as media queries can produce faster-loading sites for access over cellular networks and also deliver richer functionality/usability avoiding some of the pitfalls of device-side-only solutions.
+	\end{itemize}
+
+\subsection {Usability}
+     Usability is the ease of use and learnability of a human-made object. In human-computer interaction and computer science, usability studies the elegance and clarity with which the interaction with a computer program or a web site (web usability) is designed.
+	 According to Jakob Nielsen, "Studies of user behavior on the Web find a low tolerance for difficult designs or slow sites. People don't want to wait. And they don't want to learn how to use a home page. There's no such thing as a training class or a manual for a Web site. People have to be able to grasp the functioning of the site immediately after scanning the home page—for a few seconds at most."\cite{wiki:usability} Otherwise, most casual users simply leave the site and browse elsewhere.
+
+	ISO defines usability as "The extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use." The word "usability" also refers to methods for improving ease-of-use during the design process. Usability consultant Jakob Nielsen and computer science professor Ben Shneiderman have written (separately) about a framework of system acceptability, where usability is a part of "usefulness" and is composed of\cite{jakob}:
+	\begin{itemize}
+	\item Learnability: How easy is it for users to accomplish basic tasks the first time they encounter the design?
+	\item Efficiency: Once users have learned the design, how quickly can they perform tasks?
+	\item Memorability: When users return to the design after a period of not using it, how easily can they re establish proficiency?
+	\item Errors: How many errors do users make, how severe are these errors, and how easily can they recover from the errors?
+	\item Satisfaction: How pleasant is it to use the design?
+	\end{itemize}
+
+	In scope of this master thesis will be covered such chracteristics of usability as: learnability, efficiency and satisfaction. Rest of it together with possible enhancement will be proposed in Chapter 6 in section Future Work.
+
+\section {Types of Data Sources}
+    In order to distinguish what type of data sources can be retrieved, all data sources was splited to physical and software sensors. 
+
+	\subsection {Physical Sensors}
+	A sensor is a converter that measures a physical quantity and converts it into a signal which can be read by a observer. After receiving this signal backend have to reconvert it to a signal that can be retrieved by frontend. The main task of frontend in this case to determine what are the main types of physical sensors, how to structurize and differentiate it according to their functionality and make a standard data format, by using which, backend and frontend can always easily integrate new sensors.
+    
+    Together with software sensors the proposed data standard is justified and explained in Section 4.3.3
+
+	\subsection {Software Sensors}
+	Nowadays more and more physical information move to a Web by simplifying the way of sharing information. Already implemented thousands of public services such as: GPS coordination, weather forecast with all arising from this data, e.g. outside temperature, humidity, pressure etc., news feeds, traffic feeds, social networks. People got used to it, and today has become an inseparable part of their lives. Software sensor is not only an information from the web but all that have already implemented software support that can be used through the standard inteface.
+	
+	An important research question is: how to manupulate data, made by different vendors, by using single dashboard. To define most common approach, used by vendors was made categorization\cite{schomm2013marketplaces}.
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|L{2cm}|L{7cm}|L{6cm}|}
+	\hline
+	\textbf{Dimension} 			& \textbf{Categories} & \textbf{Question to be answered} \\
+	\hline
+	\hline 
+	Type		                & Web Crawler, Customizable Crawler, Search Engine, Pure Data Vendor, Complex Data Vendor, Matching 
+	                                   Vendor, Enrichment Tagging, Enrichment Sentiment, Enrichment Analysis, Data Market Place & What is the type of the core offering?  \\
+	\hline
+	Time Frame	                & Static/Factual, Up To Date & Is the data static or real-time?  \\
+	\hline
+	Domain		                & All, Finance/Economy, Bio Medicine, Social Media, Geo Data, Address Data & What is the data about?  \\
+	\hline
+	Data Origin                 & Internet, Self-Generated, User, Community, Government, Authority & Where does the data come 
+	                                       from?Who is the author?  \\
+	\hline
+	Pricing Model		        & Free, Freemium, Pay-Per-Use, Flat Rate & Is the offer free, pay-per-use or usable with a flat rate? \\
+	\hline
+	Data Access		            & API, Download, Specialized Software, Web Interface & What technical means are offered to access the data? \\
+	\hline
+	Data Output		            & XML, CSV/XLS, JSON, RDF, Report& In what way is the data formatted for the user?  \\
+	\hline
+	Language 		            & English, German, More & What is the language of the website? Does it differ from the language of the 
+	                                data? \\
+	\hline 
+	Target Audience		        & Business, Customer & Towards whom is the product geared?  \\
+	\hline
+	Trustworthiness	            & Low, Medium, High & How trustworthy is the vendor? Can the original data source be tracked or 
+	                                 verified?  \\
+	\hline 		
+	Size of Vendor 		        & Startup, Medium, Big, Global Player & How big is the vendor?  \\
+	\hline 
+     Maturity                   & Research Project, Beta, Medium, High & Is the product still in beta or already established? \\
+	\hline 
+	\end{tabular}
+	\caption[Categorization of Data Vendors]{Categorization of Data Vendors}
+	\label{tab:categorization}
+	\end{table}
+
+	The facts about the data vendors were gathered by means of a Web search. As every vendor or marketplace has a website, this publicly available information was used to determine how to categorize each vendor. After having done that with the initial set of vendors, it was checked how many entries a category had to justify its existence. When a cat- egory had only few entries, a new Web search for more data suppliers falling into that category was started in order to make sure no important vendors were omitted. If more companies were found, the list was extended iteratively, and the new companies were analyzed regarding the other dimensions.
+
+	\textbf{Data Access}
+	The data access dimension describes through which means end-users receive their data from vendors. The main categories identified and presented in Fig- ure 6 are: 
+	\begin{itemize}
+	\item API: An API (application programming in- terface) is used to provide a language- and platform-independent programmatic access to data over the Internet.
+	\item Download: Traditional download of files is the easiest way to access a data set, because anyone can use such a service with only a Web browser. 
+	\item Specialized Software: Some vendors have im- plemented a specialized software client to con- nect with their Web service. While this ap- proach does have downsides (implementation and maintenance expense, dependency issues, etc.), there are some scenarios in which the con- cept is worthwhile, for example, providing the customer with an easy-to-use graphical user in- terface as an out-of-the-box solution that needs no further customization, or granting access to real-time streams of data. 
+	\item Web Interface: In a Web interface, the data is displayed to the customer directly on a website. 
+	\end{itemize}
+
+	The flexibility and modularity of APIs have made these the most popular of all access methods. More than 70\% of all vendors offer an API. However, less than 30\% of all vendors have an API as their only way to access data. Most vendors offer an API next to other methods. For example, Web interfaces or file downloads are used to give previews of the dataset, to make it easier and more accessible for the customer to see what the actual data looks like, e. g., Factual.com has an extensive Web frontend that renders tables or geodata. The concept of specialized software does not seem to stand very well on its own.This approach lacks flexibility, because customers are restricted in the way they can use the data by the functionality of the provided software. Nevertheless, most customers who want data do not want any restrictions on how they can access and process the data. From a theoretical point of view, it seems to be the best approach for a vendor to offer all the aforementioned means of access to his data, because that allows customers to choose their preferred way of access. 
+
+	Besides aforementioned properties of data format, the main issue for generic frontend is to dynamically retrieve information provided by data sources. It has to be done independently from the data type by using only one channel for all of them. Data will change its value during some period of time and as soon as it happens, user have to receive it automatically. Frontend is responsible for collecting and aggregating data, keeping connection with it, notifying user and visulization on GUI. Doesn't metter how often the data will be changed, but all of it can be transfered as streaming. The term streaming data, usually applied to such type of data as video, audio, or map of values. But usual approaches as HTTP GET/POST become usefull in retrieving static data value. And the same approach for real-time data doesn't work. Based on that, one of the most important requirement to concept, that support any type of data, is to configure interface between backend and frontend, by using streaming channel. It provides possibility for frontend universally transfer any kind of data.
+
 
 \section{Summary}
+	This chapter gives an overview of a basic requirements to a generic frontend. Starting from main properties in Section 2.1 namely, loose couling, fine-grained structure, multi-user binding, cross-platforming, responsive design and usability. And continuing in Section 2.2 with definition of data sources, typization and separation to a physical and software sensors. It helps to define main channels of retrived data in which user can be interested in and based on that build a system architecture. An important part of data retrieval, without dependency on data type, is to guarantee real-time streaming. This approach provides an universal way to derive information services and possible solutions for implementation described and explained in detaile in the Chapter 5.

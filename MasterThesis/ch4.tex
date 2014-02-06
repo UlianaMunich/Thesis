@@ -9,7 +9,7 @@ to a 3-tier architecture, in which presentation, application processing, and dat
 Figure 4.1 shows this architecture:
 \begin{itemize}
 \item Data Tier: data from different types of sensors
-\item Application Tier: registry and proxy
+\item Application Tier: registry and datahub
 \item Client Tier: web-based UI
 \end{itemize} 
 \begin{figure}[!ht]
@@ -34,7 +34,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
 
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.4]{images/Mockup.png}   
+    \includegraphics[scale=0.5]{images/Mockup.png}   
     \caption[GUI Mockup]{GUI Mockup}
     \label{img:GUI Mockup}                           
     \end{figure}
@@ -49,7 +49,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
 
         \begin{figure}[!ht]
         \centering
-        \includegraphics[scale=0.5]{images/User_Case.png}   
+        \includegraphics[scale=0.6]{images/User_Case.png}   
         \caption[Use Case]{Use Case}
         \label{img:structure}                           
         \end{figure}
@@ -57,23 +57,24 @@ In the next section gives an detailed explanation about structure modules in 3-t
 \section{Application Tier}
   This layer coordinates the application, processes commands, makes logical decisions and evaluations, and performs calculations. It also moves and processes data between the two surrounding layers.
   \newline
-  Application tier consists all logical modules as: Web server, Sensor registry, Proxy and Web-based Frontend. All these modules connects to each other as shown on a Figure 4.4. Detailed information about functionality of every module described in sections above.
+  Application tier consists all logical modules as: Web server, Sensor registry, DataHub and Web-based Frontend. All these modules connects to each other as shown on a Figure 4.4. Detailed information about functionality of every module described in sections above.
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.5]{images/Structure.png}   
+    \includegraphics[scale=0.6]{images/Structure.png}   
     \caption[System Architecture]{System Architecture}
     \label{img:structure}                           
     \end{figure}
 
 	\subsection{Web server}
   The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content. 
-  \newline In proposed concept Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are delegated to an external components such as Registry, Proxy and Frontend. these external components can be interchange without dependency to the system itself.
+  \newline In proposed concept Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are delegated to an external components such as Registry, DataHub and Frontend. these external components can be interchange without dependency to the system itself.
 
 	\subsection{Sensor Registry}
   Sensor Registry is a module responsible for keeping all required metadata of available sensors, for connecting arbitrary sensors. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, availability(true or false), SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
+  Before publishing data to SensorMap, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, loca- tion, data type, units, URL, as well as a free text de- scription of the sensors, and is used in searching sen- sors for a given user query. In SensorMap, we use a Sensor Description Markup Language (SDML) to encode these properties. Unlike SensorML [2], SDML only describes sensor data interfaces rather than the internal structure of sensors. Thus, it is much simpler and lighter-weight than SensorML. However, SDML syntax is similar to SensorML’s; we can incorporate SensorML’s features into SDML as we need and Sen- sorMap can incorporate SensorML when it matures.
 
-	\subsection{Proxy}
-  Since concept of generic frontend is meant to support any type of sensor, regardless of its interface, Proxy is responsible for mapping interface of particular sensors data stream into JSOn message, delivered through XMPP protocol. Requirements to Proxy are:
+	\subsection{DataHub}
+  Since concept of generic frontend is meant to support any type of sensor, regardless of its interface, DataHub is responsible for mapping interface of particular sensors data stream into JSOn message, delivered through XMPP protocol. Requirements to DatahUb are:
   \begin{itemize}
   \item convert sensor data into particular JSON supporting scheme(specification*)
   \item implement XMPP protocol to provide exchange message with XMPP server
@@ -81,7 +82,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
   \end{itemize}
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.6]{images/Protocol_flow.png}   
+    \includegraphics[scale=0.5]{images/Protocol_flow.png}   
     \caption[Protocol flow]{Protocol flow}
     \label{img:protocol}                           
     \end{figure}
@@ -156,7 +157,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
 \section{Summary}
 	In this chapter, a first web-based concept for sensor streaming services is to be created. Along with it, a light-weight scenario service registry will be needed. Users should be able to explore not just services, but also the information provided by them, and eventually be led to advanced usage patterns such as the development of third-party applications to access the information data and real-time streams.
   \newline
-  Proxy responsibilities:
+  DataHub responsibilities:
   \begin{itemize}
   \item 1
   \item 2
