@@ -170,12 +170,11 @@ To retrieve data from different resources in one web-based interface was specifi
 	Another possibility is that the overall concept of portals is replaced by new technologies like Ajax widget libraries and even JavaFX. Many of the limitations of JSR-168 portlets seem quaint now that we are in the age of the interactive Web 2.0 or even Web 3.0.
 
 \subsection{Non-Browser Based Systems}
-Of the major mobile platforms in operation, Android and Apple's iOS have, by far, the greatest market share, but there are others, including the Blackberry and Windows Phone operating systems. Developing native apps involves targeting one or more of these platforms, each of which has its own software development kit (SDK)\footnote{Native App,\url{http://www.techopedia.com/2/28134/development/web-development/native-app-or-mobile-web-app}}.
-A native mobile app is a smartphone application that is coded in a specific programming language, such as Objective C for iOS and Java for Android operating systems. Native mobile apps provide fast performance and a high degree of reliability. They also have access to a phone's various devices, such as its camera and address book. In addition, users can use some apps without an Internet connection. However, this type of app is expensive to develop because it is tied to one type of operating system, forcing the company that creates the app to make duplicate versions that work on other platforms.
+Another synonym of non-browser based sytem is native application, that is targeted to create software specificly for operation system used by device. It is become popular when usual mobile phone started to have parts of computer functionality, e.g. smartphones, tablets. Of course enormous numbers of portable devices increased number of operation systems, requirements and restrictions. But native application always provide best user experience and possibility to use all resources of mobile device. Android and Apple's iOS have, by far, the greatest market share, but there are others, including the Blackberry and Windows Phone operating systems. Developing native apps involves targeting one or more of these platforms, each of which has its own software development kit (SDK)\footnote{Native App,\url{http://www.techopedia.com/2/28134/development/web-development/native-app-or-mobile-web-app}}. A native mobile app is a smartphone application that is coded in a specific programming language, such as Objective C for iOS and Java for Android operating systems. Native mobile apps provide fast performance and a high degree of reliability. They also have access to a phone's various devices, such as its camera and address book. In addition, users can use some apps without an Internet connection. However, this type of app is expensive to develop because it is tied to one type of operating system, forcing the company that creates the app to make duplicate versions that work on other platforms.
 
 Rather than being accessed via the Web, native apps are mainly deployed through app marketplaces that are also mostly targeted at particular platforms. These markets allow apps to be downloaded for free or commercially, with the app store taking a percentage cut of sales revenue.
 
-ative apps enjoy a number of natural advantages over Web apps for certain types of tasks. Native user interfaces provide an interaction level and quality that currently cannot be achieved through a Web app running in a browser. In addition, native app processing can employ mobile device hardware features, such as GPS and other localization facilities, accelerometers and touchscreens. As HTML5 develops, Web apps will also be able to exploit some or all of these features. But for now, these bells and whistles are mostly exclusive to native apps.
+Native apps enjoy a number of natural advantages over Web apps for certain types of tasks. Native user interfaces provide an interaction level and quality that currently cannot be achieved through a Web app running in a browser. In addition, native app processing can employ mobile device hardware features, such as GPS and other localization facilities, accelerometers and touchscreens. As HTML5 develops, Web apps will also be able to exploit some or all of these features. But for now, these bells and whistles are mostly exclusive to native apps.
 
 A native app also has the ability to use offline data storage. Again, the advance of Web technologies, such as HTML5, will begin to close this gap because Web apps will be able to store data for offline use as mobile caching models continue to improve.
 
@@ -185,19 +184,16 @@ Depending on the app, there also may be significant costs related to distributio
 
 Another potential disadvantage of native apps is the level of control the app stores and platforms exert. This applies to apps and user data. Marketplace policies vary, but for some, particularly Apple's Mac App Store, content is subject to a strict approval system. In some cases, apps have been quickly withdrawn from the store, leaving with little recourse for developers. Since the official stores are the main sources of distribution for the major platforms, your apps are totally dependent on them and at the mercy of their decisions. In addition, there is the possibility that these apps may be removed from user devices, in which case users could permanently lose their data.
 
-
-
-
-
-
-
+also need to consider the kind of data that your application manipulates and where it is stored, and how the users will feel about that. People are obviously okay having their facebook profile data stored on a webserver, but they might feel differently if you're writing a finance application like MYOB and you want to store all their personal financial details on your server. You might be able to get that to work, but it would require a lot of effort to implement the required security and to assure the userbase that their data is safe. In that situation you might decide that the overall effort is lower if you go with a native GUI app.
 
 \subsection{Browser Based Systems}
+An application that runs within the Web browser (such as Firefox, Internet Explorer or Chrome, for example). The instructions, typically written in a combination of HTML and JavaScript, are embedded within the Web page that is downloaded from a Web site. The advantage of browser-based applications is that they can run in a Windows PC, Mac or Linux machine, since all Web browsers are required to render HTML and execute JavaScript in the same manner, no matter their environment. In practice, there are minor differences in page rendering, which are generally tolerable. See Web application, JavaScript and HTML.
 
-Web applications optimized for mobile use also offer significant benefits for certain projects. This is an area that is set to undergo enormous change over the next few years, particularly through technologies such as HTML5 and jQuery Mobile, not to mention improvements in network connectivity. Although it is difficult to accurately predict time frames for these changes, it is clear that, in terms of functionality, they will greatly impact the ability of Web apps to compete with native apps.
+One of the main benefits of browser-based applications is that there are no downloads necessary in order to make them run. And no need anymore to reinstall and update software manually. This means that, generally, even users behind firewalls can benefit from using these types of tools\footnote{Browser based sytem definition,\url{http://www.pcmag.com/encyclopedia/term/61816/browser-based-application}}.
+
+Web applications optimized for mobile use also offer significant benefits for certain projects. This is an area that is set to undergo enormous change over the next few years, particularly through technologies such as HTML5 and jQuery Mobile, not to mention improvements in network connectivity. Although it is difficult to accurately predict time frames for these changes, it is clear that, in terms of functionality, they will greatly impact the ability of Web apps\footnote{WEB APPLICATIONS,\url{http://www.w3.org/2008/webapps/}} to compete with native apps.
 
 The major advantage of using Web apps to deliver services is the simple fact that only one application needs to be developed. Of course, a successful Web app is tested and refined to cope with browser, operating system and hardware differences, but the bulk of application processing remains accessible from any mobile user environment. Mobile browsers are advancing at a fast pace, and the functionality gap between them and their desktop counterparts is gradually narrowing.
-
 
 To satisfy one of the main requirement about dynamic user-friendly interface, adaptable to any kind of device, mashup architecture should be enhanced with a HTML5 Technology. Based on various design principles, that truly embody a new vision of possibility and practicality\cite{hickson2011html5}.
 \begin{itemize}
@@ -213,5 +209,31 @@ Some organizations have adopted a range of flexible techniques to provide a nati
 
 
 \section{Summary}
-The chapter has introduced main approaches for building web-based dashboards by retrieving sensed data. Main focus was given to the  Where portal and mashup technology come into a picture. 
+The chapter has introduced main approaches for building web-based dashboards for different types of sensed data. The section 3.1 provides list of projects devoted to retrieve sensed data from the web and another resources such as: temperaure, humidity, traffic sensors. Was studied not only scientific research projects but also private customer-oriented solutions for Big Data managment. In total 13 projects was structured and characterized according to properties of generic frontend concept.
 
+The section 3.2 consists main technologie that was defined to implement frontend: portal with portles, mashup, native applications and non-browser based sytems. As result, mashup technologies based on browser satisfy all necessary requirements to create generic frontend for exploring sensor and information services. 
+Benefits of browser-based interface:
+\begin{itemize}
+\item Easier to manage: no installation required on user machines, upgrades need only be performed on server side and are immediately available to all users. Data backup can be performed on a single machine as data won't be spread out across multiple clients.
+\item Application can be accessed from any machine with a browser.
+\item Can easily support multiple platforms consistently.
+\item Memory and CPU requirements may be considerably less on the client side as intensive operations can be performed on the server.
+\item Increased security: data is stored on a single server instead of multiple client machines and access can be better controlled.
+\item Many other benefits of a centralized environment including logging, data entered from multiple sources can immediately be available from other clients, etc.
+\item In my experience, it is often easier to debug and faster to develop web-based solutions.
+\item They require no upgrade procedure since all new features are implemented on the server and automatically delivered to the users;
+\item Web applications integrate easily into other server-side web procedures, such as email and searching.
+\item They also provide cross-platform compatibility in most cases (i.e., Windows, Mac, Linux, etc.) because they operate within a web browser window.
+\item With the advent of HTML5, programmers can create richly interactive environments natively within browsers. Included in the list of new features are native audio, video and animations, as well as improved error handling.
+\item Modern web applications support greater interactivity and greatly improved usability through technologies such as AJAX that efficiently exchange data between the browser and the server.
+\item Web applications allow for easier introduction of new user devices (e.g. smartphones, tablets) because they have built-in browsers.
+\item Benefits of GUI-based interface:
+
+\item May be easier to design a more responsive, fluid interface.
+\item Can take advantage of OS-specific functionality that may not be available via a browser.
+\item Doesn't necessarily require network access.
+\item Don't need to worry about browser compatibility issues.
+\item No single point of failure if server goes down or becomes unavailable.
+\end{itemize}
+
+Based on this deciosion in the chapter 4, defined system architecture and described responsibility of every module. 

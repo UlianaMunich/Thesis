@@ -60,7 +60,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
   Application tier consists all logical modules as: Web server, Sensor registry, DataHub and Web-based Frontend. All these modules connects to each other as shown on a Figure 4.4. Detailed information about functionality of every module described in sections above.
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.6]{images/Structure.png}   
+    \includegraphics[scale=0.5]{images/Structure.png}   
     \caption[System Architecture]{System Architecture}
     \label{img:structure}                           
     \end{figure}
@@ -121,7 +121,16 @@ In the next section gives an detailed explanation about structure modules in 3-t
       \end{itemize}
       The XMPP network uses a client–server architecture (clients do not talk directly to one another). However, it is decentralized—by design, there is no central authoritative server, as there is with services such as AOL Instant Messenger or Windows Live Messenger. Some confusion often arises on this point as there is a public XMPP server being run at jabber.org, to which a large number of users subscribe. However, anyone may run their own XMPP server on their own domain.
       Every user on the network has a unique Jabber ID (usually abbreviated as JID). To avoid requiring a central server to maintain a list of IDs, the JID is structured like an email address with a username and a domain name (or IP address[16]) for the server where that user resides, separated by an at sign (@), such as username@example.com.
+
     \subsubsection{Authentication Stub}
+    \subsubsection{Frontend MVC}
+     In the design shown in Figure 1 on page 8, Model represents the application object that implements the application data and business logic. The View is responsible for formatting the application results and dynamic page construction. The Controller is responsible for receiving the client request, invoking the appropriate business logic, and based on the results, selecting the appropriate view to be presented to the user. The Model represents enterprise data and the business rules that govern access to and updates to this data. Often the Model serves as a software approximation to a real-world process, so simple real-world modeling techniques apply when defining the Model. A View renders the contents of a Model. It accesses enterprise data through the Model and specifies how that data should be presented. It is the View's responsibility to maintain consistency in its presentation when the Model changes. This can be achieved by using a push Model, where the View registers itself with the Model for change notifications, or a pull Model, where the View is responsible for calling the Model when it needs to retrieve the most current data. A Controller translates interactions with the View into actions to be performed by the Model. In a stand-alone GUI client, user interactions could be button clicks or menu selections, whereas in a Web application, they appear as GET and POST HTTP requests. The actions performed by the Model include activating business processes or changing the state of the Model. Based on the user interactions and the outcome of the Model actions, the Controller responds by selecting an appropriate View. 
+     \begin{figure}[!ht]
+     \centering
+     \includegraphics[scale=0.7]{images/MVCPattern.png}   
+     \caption[MVC Pattern]{MVC Pattern \footnotetext{Image taken from, \url{blog.csdn.net/cain/article/details/6617173}}}
+     \label{img:MVCPattern}                           
+     \end{figure}
 
 \begin{figure}[!ht]
 \centering
