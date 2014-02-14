@@ -114,9 +114,17 @@
 \label{img:Kube.png}                          
 \end{figure}
 
-\section{Data Flow Model}
+\section{PubSub}
 Data Flow model describes the 
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.6]{images/PubSub.png}   
+    \caption[Service PubSub]{Service PubSub}
+    \label{img:pub_sub}                           
+    \end{figure}
+
 	\subsection{XMPP implementation}
+
 	\subsubsection{XMPP Stanzas}
 	Work is accomplished in XMPP by the sending and receiving of XMPP stanzas over an XMPP stream. Three basic stanzas make up the core XMPP toolset. These stanzas are <presence> , <message> , and <iq> . Each type of stanza has its place and purpose, and by composing the right kinds of quantities of these stanzas, sophisticated behaviors can be achieved. Remember that an XMPP stream is a set of two XML documents, one for each direction of communication. These documents have a root <stream:stream> element. The children of this <stream:stream> element consist of routable stanzas and stream related top-level children. Each stanza is an XML element, including its children. The end points of XMPP communication process input and generate output on a stanza-by-stanza basis.The following example shows a simplified and short XMPP session::
 		\begin{figure}[!ht]

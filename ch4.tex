@@ -1,36 +1,41 @@
 %!TEX root = Thesis.tex
 \chapter{Concept}
      The chapter poses and describes a concept of a user-friendly generic frontend for exploring sensor data, 
-     through designing a software architecture and a mockup of a web-based user interface that in the same time controlled and provisioned by end users request. The concept is developed based on the analysis of the current state of the art, up-to-date technologies and usability characteristics. According to defined requirements in chapter 2 to the third-party services and applications and knowledge gained from the studied related works (chapter 3), was proposed concept based on 3-tier architecture and in details described in section 4.2 - 4.4.
+     through designing a software architecture and a mockup of a web-based user interface that in the same time controlled and provisioned by end users request. The concept is developed based on the analysis of the current state of the art, up-to-date technologies and requirements formulated in chapter 2. 
+     \newline
+     Section 4.1 begins this chapter with software architecture according to 3-tier architecture, which consists client tier, application tier and data tier. Next sections presents detailed descriptions of every module, responsible for provoding component functionality of every tier. Summary of this chapter underlines responsibility and requirements to every part of system infrastructure, such that prototype can be realized and implemented accordingly.
+
 
 \section{3-tier Architecture}
-Since the concept of a generic frontend should be distributed as much as possible, it is necessary to determine software architecture 
-to a 3-tier architecture, in which presentation, application processing, and data management functions are logically separated.
-Figure 4.1 shows this architecture:
-\begin{itemize}
-\item Data Tier: data from different types of sensors
-\item Application Tier: registry and datahub
-\item Client Tier: web-based UI
-\end{itemize} 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/3tier.png}   
-\caption[3-tier Architecture]{3-tier Architecture}
-\label{img:3-tier Architecture}                           
-\end{figure}
-\emph{Client Tier} hosts the presentation layer components. The main function of the interface is to translate tasks and results to graphical user interface that can be easily understandable and explorable from any kind of device. That satisfy requirements of the usability(section 3.4).
-\newline
-\emph{Application Tier} includes business logic, logic tier and data access tier. It controls an application's functionality by performing detailed processing, transformation of one type data to another one, defines an interface of interconnection between client tier and data tier.
-\newline
-\emph{Data Tier} consists source of data that have to be retrieved by application tier to a Client Tier, by request from a end user. This tier keeps data neutral and independent from application server or business logic. Giving data its own tier also improves scalability. 
-\newline
-The three tiers architecture may seem similar to the model-view-controller (MVC) concept. However, topologically they are different. A fundamental rule in a three tier architecture is the client tier never communicates directly with the data tier; in a three-tier model all communication must pass through the middle tier. Conceptually the three-tier architecture is linear. However, the MVC architecture is triangular: the view sends updates to the controller, the controller updates the model, and the view gets updated directly from the model.
-From a historical perspective the three-tier architecture concept emerged in the 1990s from observations of distributed systems (e.g., web applications) where the client, middleware and data tiers ran on physically separate platforms. Today, MVC and similar model-view-presenter (MVP) are Separation of Concerns design patterns that apply exclusively to the presentation layer of a larger system. In simple scenarios MVC may represent the primary design of a system, reaching directly into the database; however, in most scenarios the Controller and Model in MVC have a loose dependency on either a Service or Data layer/tier. This is all about Client-Server architecture.
-\newline
-In the next section gives an detailed explanation about structure modules in 3-tier architecture.
+  Since the concept of a generic frontend should be scalable and easy integrated to any kind of backend, become necessary to determine software architecture according to a 3-tier architecture, in which presentation, application processing, and data management functions are logically separated. Multitier architecture provides to developer abstract structure of every module and gives a possibility to define in which module of system developer is interested in. Also it describes how different parts of Froned interconnected with each other and what are extensions and integrations points for backend.
+
+  Figure 4.1 shows concept infrastructure:
+  \begin{itemize}
+  \item Client Tier: web-based GUI
+  \item Application Tier: application logic, interface of collaboration between tiers, backend integration point
+  \item Data Tier: data from different types of sensors
+  \end{itemize} 
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.7]{images/3tier.png}   
+  \caption[3-tier Architecture]{3-tier Architecture}
+  \label{img:3-tier Architecture}                           
+  \end{figure}
+
+  \emph{Client Tier} hosts the presentation layer components. The main function of the interface is to translate tasks and results to graphical user interface that can be easily understandable and explorable from any kind of device. That satisfy requirements of the usability(section 3.4).
+  \newline
+  \emph{Application Tier} includes business logic, logic tier and data access tier. It controls an application's functionality by performing detailed processing, transformation of one type data to each other, defines an interface of interconnection between client tier and data tier. Besides posesing application logic between two another tiers of infrastructure, this tier also consists integration point for backend systems.
+  \newline
+  \emph{Data Tier} consists source of data that have to be retrieved by application tier to a client tier, by request from a user. This tier keeps data neutral and independent from application server or business logic. Giving data its own tier also improves scalability and loose coupling. 
+  
+   The three tiers architecture may seem similar to the model-view-controller (MVC) concept. However, topologically they are different. A fundamental rule in a three tier architecture is the client tier never communicates directly with the data tier; in a three-tier model all communication must pass through the middle tier. Conceptually the three-tier architecture is linear. However, the MVC architecture is triangular: the view sends updates to the controller, the controller updates the model, and the view gets updated directly from the model.
+   \newline
+    From a historical perspective the three-tier architecture concept emerged in the 1990s from observations of distributed systems\cite{wiki:3tier}(e.g., web applications) where the client, middleware and data tiers ran on physically separate platforms. Today, MVC and similar model-view-presenter (MVP) are Separation of Concerns design patterns that apply exclusively to the presentation layer of a larger system. In simple scenarios MVC may represent the primary design of a system, reaching directly into the database; however, in most scenarios the Controller and Model in MVC have a loose dependency on either a Service or Data layer/tier. Thus, to ensure highly adaptive GUI independently from data that have to be retrieved MVC pattern come into a picture. As a part of frontend logic it will be described in section 4.3.
+
+  The next section gives a detailed explanation about structure modules in every tier respectively to 3-tier architecture.
 
 \section{Client Tier}
-  The client tier or another name is presentation tier is a layer which users can access directly such as a web page by using browser. It is the first that user see. This tier consists logic and GUI by using which, user can communicate with sensor in a way that is presented on Figure 4.2. Also Client Tier responsible to be adapted to any kind of mobile or desktop devices that user can use. Therefore as a cross-platforming approach was chosen web-based solution, where all communication flows through the browser.
+  The client tier or another name is presentation tier is a layer which user can access directly such as a web page by using browser. It is the first that user see and comprised of widgets structured according to responsive layout. This tier consists GUI by using which, user can communicate with sensor in a user-friendly way that is presented on Figure 4.2. Also Client Tier responsible for adaptation to any kind of mobile or desktop devices that can be used by user. Therefore as a cross-platform approach was chosen web-based solution, where all communication flows through the browser. 
 
     \begin{figure}[!ht]
     \centering
@@ -38,14 +43,18 @@ In the next section gives an detailed explanation about structure modules in 3-t
     \caption[GUI Mockup]{GUI Mockup}
     \label{img:GUI Mockup}                           
     \end{figure}
-    Figure 4.2 presents simple content layout in which user can be interested in. It consists:
+
+    Figure 4.2 presents simple content layout that have to be presented on a web-page in order to satisfy all possible user requirements. It consists:
       \begin{itemize}
-      \item Login form with user name and password fields. After user logged in, the system defines his/her rights and applies visibility rules according to credentials. User that have an admin rights receives an opportunity to control and manipulate sensors. Simple user will receive an opportunity to get a statistic and information from sensors.
-      \item Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc. In such a way user can easily, even in seconds, understand and catch what is the main function of a sensor in the list.
-      \item Availability or unavailability to see alive statistics. User can subscribe only to the available services. If some services become unavailable it will be automatically marked as inactive and after refreshing will be deleted from the list of available sensors and moved to a history tab.
-      \item Data Volume icon shows what is the average data stream volume needed to retrieve sensor data(Kb/s). The dashboard should automatically adapt quality of streaming data to necessary and possible bandwidth of available connection(Wi-Fi, 3G, GPRS)
+      \item Login form with user name and password fields. After user logged in, the system defines his/her rights and applies visibility rules according to credentials. Independently from user rights, a user can explore description of every data retrieved by system, but only after subscription to a data sensor become possible to get streaming data, provided by sensor. User that have an admin rights receives an opportunity to control and manipulate sensors. Normal user without privileges, receives an opportunity to get statistic and information from sensors and to manipulte his/her own account data.
+      \item Sensor icon defines what is the current type of sensor, e.g. light, temperature, heating, robot lego, etc. It helps user easily, even in seconds, understand and catch what is the main function of a sensor in the list, especially if among icon he/she has already used some sensors and famous producers of data.
+      \item Availability or unavailability to see alive statistics. User can subscribe only to the available services. If some services become unavailable it will be automatically marked as inactive and after refreshing will be deleted from the list of available sensors. If user has already subscribed to any sensor, this sensor automatically added to a list/tab of subscriptions made by user. Also user has a possibility to define sequince order in which sensor information have to be displayed. It is done by using "favorite" label/tab. It helps user in a fast way recieve information from a sensor.
+      \item Data Volume icon shows what is the average data stream volume needed to retrieve sensor data(Kb/s). User can self-define how possible to get such type of streaming data according to his/her available Internet connection. Ideallyt, the dashboard should automatically adapt quality of streaming data to necessary and possible bandwidth of available connection(Wi-Fi, 3G, GPRS), such that it will not disturb user and other application on a mobile device.
+      \item Description and preview. To give a user full information about sensed data and to help recognize how usufull will be to make a subscription, the best is give a preview or examples of data. It's not only description but also real graphics, real examples of video or audio, images etc.
+      \item Access and providers. Data can be private or public. If public, user don't have to accept any SLA to get real data from a sensor. But for private data very important to accept SLA between subscriber and provider, before user will get any real data.
       \end{itemize}
-    The common use case from a end-user point of view shown on Figure 4.3. User can use any type of mobile device and his favorite browser to receive information from the sensors by using web-site as a dashboard.
+
+    The common use case from a end-user point of view shown on Figure 4.3. User can use any type of mobile device and his favorite browser to receive information from the sensors by using web-page as a dashboard.
 
         \begin{figure}[!ht]
         \centering
@@ -56,42 +65,26 @@ In the next section gives an detailed explanation about structure modules in 3-t
 
 \section{Application Tier}
   This layer coordinates the application, processes commands, makes logical decisions and evaluations, and performs calculations. It also moves and processes data between the two surrounding layers.
-  \newline
-  Application tier consists all logical modules as: Web server, Sensor registry, DataHub and Web-based Frontend. All these modules connects to each other as shown on a Figure 4.4. Detailed information about functionality of every module described in sections above.
+
+  Application tier consists all logical modules as: Web server, Sensor registry, Data Hub and Web-based Frontend. All these modules connects to each other as shown on the Figure 4.4. 
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.5]{images/Structure.png}   
+    \includegraphics[scale=0.6]{images/Structure.png}   
     \caption[System Architecture]{System Architecture}
     \label{img:structure}                           
     \end{figure}
 
-	\subsection{Web server}
+    System Architecture splited to a backend and frontend implementation, that gives an overview how these two part interconnected. Also on the Figure 4.4 presents a end-user, which doesn't know anything about implementation behind the scenes. Registry and Data Hub defined and standardized by frontend in order to provide as much as possible common interface for collaboration between backend and frontend. 
+
+	\subsubsection{Web server}
   The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content. 
-  \newline In proposed concept Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are delegated to an external components such as Registry, DataHub and Frontend. these external components can be interchange without dependency to the system itself.
+  \newline In proposed concept Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are delegated to an external components such as Registry, Data Hub and Frontend. these external components can be interchange without dependency to the system itself.
 
-	\subsection{Sensor Registry}
-  Sensor Registry is a module responsible for keeping all required metadata of available sensors, for connecting arbitrary sensors. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, availability(true or false), SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
-  Before publishing data to SensorMap, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, loca- tion, data type, units, URL, as well as a free text de- scription of the sensors, and is used in searching sen- sors for a given user query. In SensorMap, we use a Sensor Description Markup Language (SDML) to encode these properties. Unlike SensorML [2], SDML only describes sensor data interfaces rather than the internal structure of sensors. Thus, it is much simpler and lighter-weight than SensorML. However, SDML syntax is similar to SensorML’s; we can incorporate SensorML’s features into SDML as we need and Sen- sorMap can incorporate SensorML when it matures.
-
-	\subsection{DataHub}
-  Since concept of generic frontend is meant to support any type of sensor, regardless of its interface, DataHub is responsible for mapping interface of particular sensors data stream into JSOn message, delivered through XMPP protocol. Requirements to DatahUb are:
-  \begin{itemize}
-  \item convert sensor data into particular JSON supporting scheme(specification*)
-  \item implement XMPP protocol to provide exchange message with XMPP server
-  \item get and parse sensor data
-  \end{itemize}
-    \begin{figure}[!ht]
-    \centering
-    \includegraphics[scale=0.5]{images/Protocol_flow.png}   
-    \caption[Protocol flow]{Protocol flow}
-    \label{img:protocol}                           
-    \end{figure}
-
-  \subsection{Web-based Frontend}
+  \subsubsection{Web-based Frontend}
     \subsubsection{Interfaces}
-    According to RESTful API and simple structure of registry data, communication between Frontend and Registry will done by using HTTP get request and JSON format.
+    According to RESTful API and simple structure of registry data, communication between Frontend and Registry will done by using HTTP get request and JSON format, retrieved from Registry.
     \newline
-    According to requirements to retrieve streaming data from the sensors, it is necessary to use XMPP protocol\cite{XMPPbook}.
+    According to requirements to retrieve any type of data streaming from sensors, it is necessary to use stateful protocol with XMPP protocol\cite{XMPPbook}.
     XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
     \newline
     The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features to the web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
@@ -100,31 +93,31 @@ In the next section gives an detailed explanation about structure modules in 3-t
     The Extensible Messaging and Presence Protocol (XMPP) is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community starting in 1999. This page provides a brief chronology of Jabber/XMPP technologies from the perspective of standardization\cite{xmpp}.
     \begin{itemize}
       \item \emph{Decentralization}
-      \newline
-      The architecture of the XMPP network is similar to email; anyone can run their own XMPP server and there is no central master server.
-      \newline
+        The architecture of the XMPP network is similar to email; anyone can run their own XMPP server and there is no central master server.
+    
       \item \emph{Open standards}
-      \newline
-      The Internet Engineering Task Force has formalized XMPP as an approved instant messaging and presence technology under the name of XMPP (the latest specifications are RFC 6120 and RFC 6121). No royalties are required to implement support of these specifications and their development is not tied to a single vendor.
-      \newline
+          The Internet Engineering Task Force has formalized XMPP as an approved instant messaging and presence technology under the name of XMPP (the latest specifications are RFC 6120 and RFC 6121). No royalties are required to implement support of these specifications and their development is not tied to a single vendor.
       \item \emph{History}
-      \newline
-      XMPP technologies have been in use since 1999. Multiple implementations of the XMPP standards exist for clients, servers, components, and code libraries.
-      \newline
+        XMPP technologies have been in use since 1999. Multiple implementations of the XMPP standards exist for clients, servers, components, and code libraries.
       \item \emph{Security}
-      \newline
-      XMPP servers can be isolated from the public XMPP network (e.g., on a company intranet), and strong security (via SASL and TLS) has been built into the core XMPP specifications.
-      \newline
+           XMPP servers can be isolated from the public XMPP network (e.g., on a company intranet), and strong security (via SASL and TLS) has been built into the core XMPP specifications.
       \item \emph{Flexibility}
-      \newline
-      Custom functionality can be built on top of XMPP; to maintain interoperability, common extensions are managed by the XMPP Standards Foundation. XMPP applications beyond IM include groupchat, network management, content syndication, collaboration tools, file sharing, gaming, remote systems control and monitoring, geolocation, middleware and cloud computing, VoIP and Identity services.
+           Custom functionality can be built on top of XMPP; to maintain interoperability, common extensions are managed by the XMPP Standards Foundation. XMPP applications beyond IM include groupchat, network management, content syndication, collaboration tools, file sharing, gaming, remote systems control and monitoring, geolocation, middleware and cloud computing, VoIP and Identity services.
       \end{itemize}
-      The XMPP network uses a client–server architecture (clients do not talk directly to one another). However, it is decentralized—by design, there is no central authoritative server, as there is with services such as AOL Instant Messenger or Windows Live Messenger. Some confusion often arises on this point as there is a public XMPP server being run at jabber.org, to which a large number of users subscribe. However, anyone may run their own XMPP server on their own domain.
-      Every user on the network has a unique Jabber ID (usually abbreviated as JID). To avoid requiring a central server to maintain a list of IDs, the JID is structured like an email address with a username and a domain name (or IP address[16]) for the server where that user resides, separated by an at sign (@), such as username@example.com.
 
-    \subsubsection{Authentication Stub}
-    \subsubsection{Frontend MVC}
-     In the design shown in Figure 1 on page 8, Model represents the application object that implements the application data and business logic. The View is responsible for formatting the application results and dynamic page construction. The Controller is responsible for receiving the client request, invoking the appropriate business logic, and based on the results, selecting the appropriate view to be presented to the user. The Model represents enterprise data and the business rules that govern access to and updates to this data. Often the Model serves as a software approximation to a real-world process, so simple real-world modeling techniques apply when defining the Model. A View renders the contents of a Model. It accesses enterprise data through the Model and specifies how that data should be presented. It is the View's responsibility to maintain consistency in its presentation when the Model changes. This can be achieved by using a push Model, where the View registers itself with the Model for change notifications, or a pull Model, where the View is responsible for calling the Model when it needs to retrieve the most current data. A Controller translates interactions with the View into actions to be performed by the Model. In a stand-alone GUI client, user interactions could be button clicks or menu selections, whereas in a Web application, they appear as GET and POST HTTP requests. The actions performed by the Model include activating business processes or changing the state of the Model. Based on the user interactions and the outcome of the Model actions, the Controller responds by selecting an appropriate View. 
+
+      \begin{figure}[!ht]
+      \centering
+      \includegraphics[scale=0.5]{images/Interface.png}   
+      \caption[Interface]{Interface}
+      \label{img:interfaces}                           
+      \end{figure}
+
+      The XMPP network uses a client–server architecture (clients do not talk directly to one another). However, it is decentralized—by design, there is no central authoritative server, as there is with services such as AOL Instant Messenger or Windows Live Messenger. Some confusion often arises on this point as there is a public XMPP server being run at jabber.org, to which a large number of users subscribe. However, anyone may run their own XMPP server on their own domain.
+      Every user on the network has a unique Jabber ID (usually abbreviated as JID). To avoid requiring a central server to maintain a list of IDs, the JID is structured like an email address with a username and a domain name (or IP address) for the server where that user resides, separated by an at sign (@), such as username@example.com.
+
+  \subsubsection{Frontend MVC}
+     In the design shown in Figure 4.6, Model represents the application object that implements the application data and business logic. The View is responsible for formatting the application results and dynamic page construction. The Controller is responsible for receiving the client request, invoking the appropriate business logic, and based on the results, selecting the appropriate view to be presented to the user. The Model represents enterprise data and the business rules that govern access to and updates to this data. Often the Model serves as a software approximation to a real-world process, so simple real-world modeling techniques apply when defining the Model. A View renders the contents of a Model. It accesses enterprise data through the Model and specifies how that data should be presented. It is the View's responsibility to maintain consistency in its presentation when the Model changes. This can be achieved by using a push Model, where the View registers itself with the Model for change notifications, or a pull Model, where the View is responsible for calling the Model when it needs to retrieve the most current data. A Controller translates interactions with the View into actions to be performed by the Model. In a stand-alone GUI client, user interactions could be button clicks or menu selections, whereas in a Web application, they appear as GET and POST HTTP requests. The actions performed by the Model include activating business processes or changing the state of the Model. Based on the user interactions and the outcome of the Model actions, the Controller responds by selecting an appropriate View. 
      \begin{figure}[!ht]
      \centering
      \includegraphics[scale=0.7]{images/MVCPattern.png}   
@@ -132,12 +125,29 @@ In the next section gives an detailed explanation about structure modules in 3-t
      \label{img:MVCPattern}                           
      \end{figure}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.5]{images/Interface.png}   
-\caption[Interface]{Interface}
-\label{img:interfaces}                           
-\end{figure}
+	\subsubsection{Sensor Registry}
+  Sensor Registry is a module responsible for keeping all required metadata of available sensors, for connecting arbitrary sensors. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, availability(true or false), SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
+  Before publishing data to Registry, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, availability, data type, access type, provider name and further details, and also if possible some real ecamples of data or preview possibility, as well as a free text description of the sensors, and is used in searching sensors for a given user query. In Registry,was used JSON format to encode these properties. Thus, it is much simpler and lighter-weight than XML.
+
+	\subsubsection{Data Hub}
+  Since concept of a generic frontend is meant to support any type of sensor, and distribute and separate metadata that describes sensor from real data, regardless of its interface, Data Hub is responsible for mapping interface of particular sensor data stream into a format supported by frontend and delivered through the XMPP protocol. It means that Data hub has to satisfy next requirements:
+
+  \begin{itemize}
+  \item be aware of metadata provided by Registry to frontend
+  \item bind metadata from registry with user choice
+  \item get and parse sensor streaming data and reconvert it to the type supported by XMPP protocol
+  \item implement XMPP protocol to provide exchange message with XMPP server in order to make possible retrieve streaming data from sensor through XMPP server
+
+  \end{itemize}
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.5]{images/Protocol_flow.png}   
+    \caption[Protocol flow]{Protocol flow}
+    \label{img:protocol}                           
+    \end{figure}
+  
+    \subsubsection{Authentication Stub}
+    Authentication Stub responsible for registering user in system, providing User ID and define user role. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After a user verifies and confirms credentials, it becomes possible to bind user id with personal preferences. Such preferences can be: user subscriptions, favorites, social sharing and even cookies. Since all these data have to be loosely coupled from backend, and web-based application has no access to internal storage of portable device, this problem solved enhancing functionality of XMPP protocol and using namespace approach of XMPP server storage.
 
 \section{Data Tier}
    As was mentioned in section 4.1 Data Tier consists source of data that have to be retrieved by application tier to a client tier. Where is source of data is a data provided by sensors, in a specific type by using specific protocol, that will be handled by Application Tier. The main focus of this section determine possible characteristics of streamed data that can be retrieved by Client Tier in a lightweight scenario for mobile devices.
@@ -166,7 +176,7 @@ In the next section gives an detailed explanation about structure modules in 3-t
 \section{Summary}
 	In this chapter, a first web-based concept for sensor streaming services is to be created. Along with it, a light-weight scenario service registry will be needed. Users should be able to explore not just services, but also the information provided by them, and eventually be led to advanced usage patterns such as the development of third-party applications to access the information data and real-time streams.
   \newline
-  DataHub responsibilities:
+  Data Hub responsibilities:
   \begin{itemize}
   \item 1
   \item 2

@@ -14,35 +14,35 @@ Database file #1: bibliography.bib
 Warning--entry type for "jakob" isn't style-file defined
 --line 246 of file bibliography.bib
 Warning--entry type for "xmpp" isn't style-file defined
---line 267 of file bibliography.bib
+--line 260 of file bibliography.bib
 Warning--entry type for "vicci" isn't style-file defined
---line 307 of file bibliography.bib
-I was expecting a `,' or a `}'---line 310 of file bibliography.bib
+--line 300 of file bibliography.bib
+I was expecting a `,' or a `}'---line 303 of file bibliography.bib
  :   year = 2012
  :              -2013,
 I'm skipping whatever remains of this entry
-Repeated entry---line 329 of file bibliography.bib
+Repeated entry---line 322 of file bibliography.bib
  : @inproceedings{nath2006challenges
  :                                  ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "ethan" isn't style-file defined
---line 424 of file bibliography.bib
+--line 417 of file bibliography.bib
 Warning--entry type for "pettit" isn't style-file defined
---line 431 of file bibliography.bib
-I was expecting a `,' or a `}'---line 438 of file bibliography.bib
+--line 424 of file bibliography.bib
+I was expecting a `,' or a `}'---line 431 of file bibliography.bib
  : 
  : @online{mashA,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--entry type for "mashA" isn't style-file defined
---line 438 of file bibliography.bib
+--line 431 of file bibliography.bib
 Warning--entry type for "mashB" isn't style-file defined
---line 445 of file bibliography.bib
-Repeated entry---line 469 of file bibliography.bib
+--line 438 of file bibliography.bib
+Repeated entry---line 462 of file bibliography.bib
  : @article{yu2008understanding
  :                             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 488 of file bibliography.bib
+Repeated entry---line 481 of file bibliography.bib
  : @inproceedings{hoyer2008enterprise
  :                                   ,
 I'm skipping whatever remains of this entry
@@ -57,45 +57,45 @@ Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entr
 while executing---line 944 of file unsrt.bst
 Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashB
 while executing---line 944 of file unsrt.bst
-You've used 38 entries,
+You've used 39 entries,
             1791 wiz_defined-function locations,
-            656 strings with 9862 characters,
-and the built_in function-call counts, 8976 in all, are:
-= -- 811
-> -- 349
+            659 strings with 9967 characters,
+and the built_in function-call counts, 9103 in all, are:
+= -- 821
+> -- 353
 < -- 17
-+ -- 134
-- -- 96
-* -- 477
-:= -- 1313
-add.period$ -- 119
-call.type$ -- 38
-change.case$ -- 36
++ -- 136
+- -- 97
+* -- 478
+:= -- 1332
+add.period$ -- 122
+call.type$ -- 39
+change.case$ -- 37
 chr.to.int$ -- 0
-cite$ -- 39
-duplicate$ -- 454
-empty$ -- 952
-format.name$ -- 96
-if$ -- 2126
+cite$ -- 40
+duplicate$ -- 459
+empty$ -- 970
+format.name$ -- 97
+if$ -- 2156
 int.to.chr$ -- 0
-int.to.str$ -- 38
+int.to.str$ -- 39
 missing$ -- 28
-newline$ -- 187
-num.names$ -- 40
-pop$ -- 193
+newline$ -- 192
+num.names$ -- 41
+pop$ -- 200
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 251
+skip$ -- 254
 stack$ -- 0
 substring$ -- 469
-swap$ -- 162
+swap$ -- 163
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 87
-width$ -- 40
-write$ -- 405
+while$ -- 88
+width$ -- 41
+write$ -- 415
 (There were 10 error messages)
