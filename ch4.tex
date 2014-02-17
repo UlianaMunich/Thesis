@@ -76,15 +76,16 @@
 
     System Architecture splited to a backend and frontend implementation, that gives an overview how these two part interconnected. Also on the Figure 4.4 presents a end-user, which doesn't know anything about implementation behind the scenes. Registry and Data Hub defined and standardized by frontend in order to provide as much as possible common interface for collaboration between backend and frontend. 
 
-	\subsubsection{Web server}
+	\subsection{Web server}
   The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content. 
-  \newline In proposed concept Web server responsible for dynamic distribution of tasks between various modules of common system to serve efficiently static files. Such specific operation logic like authentication of user, registration of sensors and users are delegated to an external components such as Registry, Data Hub and Frontend. these external components can be interchange without dependency to the system itself.
+  \newline 
+  In proposed concept Web server is responsible for robust and efficient serving of static files. The goal is to exclude dependencies on concrete backend platforms or frameworks and to provide generic frontend as easily plugable component. Such a common and simplified design desicion makes possible to extend and scale every part of distributed system independently. Specific operation logic like authentication of user, registration of sensors and users are delegated to external components such as Registry, Data Hub and Authentification Hub, these external components can be interchanged without dependency to the system itself.
 
-  \subsubsection{Web-based Frontend}
+  \subsection{Web-based Frontend}
     \subsubsection{Interfaces}
     According to RESTful API and simple structure of registry data, communication between Frontend and Registry will done by using HTTP get request and JSON format, retrieved from Registry.
     \newline
-    According to requirements to retrieve any type of data streaming from sensors, it is necessary to use stateful protocol with XMPP protocol\cite{XMPPbook}.
+    According to requirements to retrieve any type of data streaming from sensors, it is necessary to use stateful protocol that can keep connection between frontend and backend and retrieve data asynchronously. Among all possible solutions two protocols fully satisfy all requirements: XMPP\cite{XMPPbook} amnd MQTT\footnote{MQ Telemetry Transport,\url{http://mqtt.org/}}.
     XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
     \newline
     The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features to the web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
@@ -125,27 +126,32 @@
      \label{img:MVCPattern}                           
      \end{figure}
 
-	\subsubsection{Sensor Registry}
-  Sensor Registry is a module responsible for keeping all required metadata of available sensors, for connecting arbitrary sensors. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, availability(true or false), SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
-  Before publishing data to Registry, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, availability, data type, access type, provider name and further details, and also if possible some real ecamples of data or preview possibility, as well as a free text description of the sensors, and is used in searching sensors for a given user query. In Registry,was used JSON format to encode these properties. Thus, it is much simpler and lighter-weight than XML.
+	\subsection{Sensor Registry}
+    First of all the Sensor Registry is a module responsible for storing an info about available sensors registered in the network in order to provide information for a user. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consits such info as: id of sensor, description, availability(true or false), access(private or public), provider of sensed data, SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
+    Before publishing data to Registry, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, availability, data type, access type, provider name and further details, and also if possible some real examples of data or preview possibility, as well as a free text description of the sensors, and is used in searching sensors for a given user query. 
 
-	\subsubsection{Data Hub}
-  Since concept of a generic frontend is meant to support any type of sensor, and distribute and separate metadata that describes sensor from real data, regardless of its interface, Data Hub is responsible for mapping interface of particular sensor data stream into a format supported by frontend and delivered through the XMPP protocol. It means that Data hub has to satisfy next requirements:
+    And secondary, the Registry, provides simple interface standard in JSON format to encode these properties. Thus, it is much simpler and lighter-weighter than XML. And separate metadata of a sensor from a real data. 
 
-  \begin{itemize}
-  \item be aware of metadata provided by Registry to frontend
-  \item bind metadata from registry with user choice
-  \item get and parse sensor streaming data and reconvert it to the type supported by XMPP protocol
-  \item implement XMPP protocol to provide exchange message with XMPP server in order to make possible retrieve streaming data from sensor through XMPP server
+	\subsection{Data Hub}
+    Since concept of a generic frontend is meant to support any type of sensor, and distribute and separate metadata that describes sensor from real data, regardless of its interface, Data Hub is responsible for mapping interface of particular sensor data stream into a format supported by frontend and delivered through the XMPP protocol. It means that Data hub has to satisfy next requirements:
 
-  \end{itemize}
-    \begin{figure}[!ht]
-    \centering
-    \includegraphics[scale=0.5]{images/Protocol_flow.png}   
-    \caption[Protocol flow]{Protocol flow}
-    \label{img:protocol}                           
-    \end{figure}
-  
+    \begin{itemize}
+    \item be aware of metadata provided by Registry to frontend
+    \item bind metadata from registry and user choice
+    \item get and parse sensor streaming data and reconvert it to the type supported by XMPP protocol
+    \item implement XMPP protocol to provide exchange message with XMPP server in order to make possible retrieve streaming data from sensor through XMPP server
+
+    \end{itemize}
+      \begin{figure}[!ht]
+      \centering
+      \includegraphics[scale=0.6]{images/Protocol_flow.png}   
+      \caption[Protocol flow]{Protocol flow}
+      \label{img:protocol}                           
+      \end{figure}
+    
+    \textbf{Backend entry point}
+    Data Hub and Sensor Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of this parts supports common standards such as RESTful API, HTTP GET/POST, AJAX, JSON file format, it makes esily possible to implement it inside any backend system.
+      
     \subsubsection{Authentication Stub}
     Authentication Stub responsible for registering user in system, providing User ID and define user role. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After a user verifies and confirms credentials, it becomes possible to bind user id with personal preferences. Such preferences can be: user subscriptions, favorites, social sharing and even cookies. Since all these data have to be loosely coupled from backend, and web-based application has no access to internal storage of portable device, this problem solved enhancing functionality of XMPP protocol and using namespace approach of XMPP server storage.
 
@@ -178,21 +184,19 @@
   \newline
   Data Hub responsibilities:
   \begin{itemize}
-  \item 1
-  \item 2
-  \item 3
+  \item be aware of metadata provided by Registry to frontend
+  \item bind metadata from registry with user choice
+  \item get and parse sensor streaming data and reconvert it to the type supported by XMPP protocol
+  \item implement XMPP protocol to provide exchange message with XMPP server in order to make possible retrieve streaming data from sensor through XMPP server
   \end{itemize}
   Registry responsibilities:
   \begin{itemize}
-  \item 1
-  \item 2
-  \item 3
+  \item stores an info about available sensors registered in the network
+  \item provides simple interface standard in JSON format
   \end{itemize}
   Web-server responsibilities:
   \begin{itemize}
-  \item 1
-  \item 2
-  \item 3
+  \item handles delivery to end user static structure of the web-page
   \end{itemize}
   Frontend responsibilities:
   \begin{itemize}

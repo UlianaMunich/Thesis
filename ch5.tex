@@ -114,8 +114,18 @@
 \label{img:Kube.png}                          
 \end{figure}
 
-\section{PubSub}
-Data Flow model describes the 
+\section{XEP-0060: Publish-Subscribe}
+This specification defines an XMPP protocol extension for generic publish-subscribe functionality. The protocol enables XMPP entities to create nodes (topics) at a pubsub service and publish information at those nodes; an event notification (with or without payload) is then broadcasted to all entities that have subscribed to the node. Pubsub therefore adheres to the classic Observer design pattern and can serve as the foundation for a wide variety of applications, including news feeds, content syndication, rich presence, geolocation, workflow systems, network management systems, and any other application that requires event notifications\footnote{XEP-0060: Publish-Subscribe, \url{http://xmpp.org/extensions/xep-0060.html}}.
+
+\subsection{Overview}
+The XMPP publish-subscribe extension provides a framework for a wide variety of applications, including news feeds, content syndication, extended presence, geolocation, avatar management, shared bookmarks, auction and trading systems, workflow systems, network management systems, NNTP gateways, profile management, and any other application that requires event notifications.
+
+This technology uses the classic "publish-subscribe" or "observer" design pattern: a person or application publishes information, and an event notification (with or without payload) is broadcasted to all authorized subscribers. In general, the relationship between the publisher and subscriber is mediated by a service that receives publication requests, broadcasts event notifications to subscribers, and enables privileged entities to manage lists of people or applications that are authorized to publish or subscribe. The focal point for publication and subscription is a "node" to which publishers send data and from which subscribers receive event notifications. Nodes can also maintain a history of events and provide other services that supplement the pure pubsub model.
+   
+	\subsection{XMPP implementation}
+	Although this specification is large because it defines many side use cases and possible error flows, the basic idea is simple:
+
+	An entity publishes information to a node at a publish-subscribe service. The pubsub service pushes an event notification to all entities that are authorized to learn about the published information. Perhaps the most popular application of pubsub-like functionality is content syndication, which has become familiar from the RSS and Atom (RFC 4287\footnote{The Atom Syndication Format, \url{http://tools.ietf.org/html/rfc4287}}) feeds associated with weblogs, news sites, and other frequently-updated information available on the Internet. 
     \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.6]{images/PubSub.png}   
@@ -123,7 +133,7 @@ Data Flow model describes the
     \label{img:pub_sub}                           
     \end{figure}
 
-	\subsection{XMPP implementation}
+	Some example of code screenshot
 
 	\subsubsection{XMPP Stanzas}
 	Work is accomplished in XMPP by the sending and receiving of XMPP stanzas over an XMPP stream. Three basic stanzas make up the core XMPP toolset. These stanzas are <presence> , <message> , and <iq> . Each type of stanza has its place and purpose, and by composing the right kinds of quantities of these stanzas, sophisticated behaviors can be achieved. Remember that an XMPP stream is a set of two XML documents, one for each direction of communication. These documents have a root <stream:stream> element. The children of this <stream:stream> element consist of routable stanzas and stream related top-level children. Each stanza is an XML element, including its children. The end points of XMPP communication process input and generate output on a stanza-by-stanza basis.The following example shows a simplified and short XMPP session::
