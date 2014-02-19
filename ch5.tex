@@ -4,12 +4,12 @@
 	2.3. The prototype implements the major aspects proposed in the concept (chapter 4).
 	The implementation consists the major aspects proposed in the concept, according to 3-tier architecture. Namely next components:
 	 \begin{itemize}
-		\item \textbf{Client Tier} presents adaptive to different screens GUI, dynamically changed content and multi-user access
+		\item \textbf{Client Tier} presents adaptive to different screens GUI, dynamically changed content and cookies for authorization
 		\item \textbf{Application Tier} consists Apache Web-server, XMPP server and guarantee appropriate interface of collaboration between tiers via JSON format and defined structure
-		\item \textbf{Data Tier} consists cookies for authorization
+		\item \textbf{Data Tier} consists data streaming of map of vslues, images and text
 	\end{itemize}
 	To make evaluations real, system will use data from the VICCI(Visual and Interactive Cyber-physical Systems Control and Integration) project at the Faculty of Computer Science of the Dresden University of Technology. The scope includes smart home environments and supporting people in the ambient assisted living. Also it was connected by using Data Hub as a Proxy, that is the part of Master Thesis of Luiz Alberto Borges, "Data Hub for Adaptive Data Services".
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Development Environment}
 	As a programming languages for implementation of this work jQuery\footnote{jQuery programming language, \url{http://jquery.com/}} and HTML5\footnote{HTML specification, \url{http://www.w3.org/wiki/HTML/Specifications}} together with CSS3\footnote{CSS specification, \url{http://www.w3.org/Style/CSS/specs.en.html}} are chosen. jQuery is a fast, small, well documented, easy and widely used and feature-rich JavaScript library. In addition it has such an important properties as: chaining, easy-to-use AJAX, event handlers, CSS selectors, pluins. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. It enables the project code to be portable over different platforms and provides opportunity for robust and effective development. The choice is dictated mostly by two aspects. On the one hand, the system that is being developed is distributed by it’s nature. On the other hand, jQuery has low entry barrier, and the code written in this language is extremely readable, laconic and understandable. These facts make further support of written code much easier for other developers that have an experience with any other JavaScript library. 
 	\newline
@@ -69,6 +69,11 @@
 	\label{tab:internal_results}
 	\end{table}
 
+	\subsection{JavaScript MV*}
+	JavaScript has become one of the most popular programming languages on the web. At first, developers didn’t take it seriously, simply because it was not intended for server side programming. It was a common misconception among professional developers that this language was meant for “Amateurs” as it focused only on User Interface. JavaScript got the spotlight when the usage of Ajax came to light and professional programmers gave importance to the responsiveness of the page. But now the language has become more popular than ever as the User Experience has become the key part of web development. Accessing web is not limited to browsers alone – there are lot many devices with varying screen sizes accessing the same content. With the rise of HTML5 and CSS3 the web will become more adaptive and responsive than ever and JavaScript plays a major role in it. It has also gained popularity in the server side programming which is made possible by NodeJS framework.
+
+	Increase in usage of JavaScript in modern applications demand developers to write maintainable code, separate concerns and improve testability. JavaScript is a "class" less language and it was not designed to support Object Oriented Programming, however you can achieve similar results by workarounds. So if you are a developer from an Object Oriented Programming world, then you will find it hard until you get used to it. Though there are some DOM manipulation libraries like jQuery which simplifies client side scripting of HTML, they actually do not solve the problem of effectively handling separation of concerns. You will end up writing lot many jQuery selectors and callbacks to keep the data in sync between the HTML, JavaScript and the data fetched from the server and we’re still stuck with the Spaghetti code.
+
 
 \section{Web-based Framework Analysis}
  \begin{itemize}
@@ -114,7 +119,32 @@
 \label{img:Kube.png}                          
 \end{figure}
 
-\section{XEP-0060: Publish-Subscribe}
+\section{JavaScript MV* Frameworks}
+	As was mentioned in the section 4.3.3, very important to separate visualization of graphical modules on a web page from code that is responsible for retrieving content and appearence of a modules. Thus was used AngularJS\footnote{AngularJS,\url{http://angularjs.org/}}. It is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment web-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.The library reads in HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is fully extensible and works well with other libraries such as jQuery, on top of which was build XMPP. Every feature can be modified or replaced to suit your unique development workflow and feature needs.
+
+	AngularJS is built around the belief that declarative programming should be used for building user interfaces and wiring software components, while imperative programming is excellent for expressing business logic\footnote{What Is Angular?,\url{http://docs.angularjs.org/guide/introduction}} The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding that allows for the automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
+
+	\emph{Design goals}:
+
+	Decouple DOM manipulation from application logic. This improves the testability of the code.
+	Regard application testing as equal in importance to application writing. Testing difficulty is dramatically affected by the way the code is structured.
+	Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
+	Guide developers through the entire journey of building an application: from designing the UI, through writing the business logic, to testing.
+	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the backend is reduced, leading to much lighter web applications.The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding that allows for the automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
+
+	Design goals:
+
+	Decouple DOM manipulation from application logic. This improves the testability of the code.
+	Regard application testing as equal in importance to application writing. Testing difficulty is dramatically affected by the way the code is structured.
+	Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
+	Guide developers through the entire journey of building an application: from designing the UI, through writing the business logic, to testing.
+	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the backend is reduced, leading to much lighter web applications.
+
+   \emph{Two-way data binding}
+	AngularJS' two-way data binding is its most notable feature and reduces the amount of code written by relieving the server backend from templating responsibilities. Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model. The \$scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.
+
+
+\section{XEP-0049: Publish-Subscribe}
 This specification defines an XMPP protocol extension for generic publish-subscribe functionality. The protocol enables XMPP entities to create nodes (topics) at a pubsub service and publish information at those nodes; an event notification (with or without payload) is then broadcasted to all entities that have subscribed to the node. Pubsub therefore adheres to the classic Observer design pattern and can serve as the foundation for a wide variety of applications, including news feeds, content syndication, rich presence, geolocation, workflow systems, network management systems, and any other application that requires event notifications\footnote{XEP-0060: Publish-Subscribe, \url{http://xmpp.org/extensions/xep-0060.html}}.
 
 \subsection{Overview}
