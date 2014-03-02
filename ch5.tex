@@ -71,7 +71,7 @@
     
     \textbf{XMPP Client on JavaScript}
 
-	  The web browser is probably the most deployed and most used application platform that has ever existed. Web browsers exist on every kind of computer and even many mobile phones, and more importantly, the users of these devices tend to be very familiar with the browser and web applications. As more and more sophistication has been demanded of web applications, new technologies and 	abstractions have been created to evolve the platform. XMPP brings yet another new set of tech- nologies and abstractions, but with it comes enormous potential for real-time, interactive, and collaborative applications. The rise of the social Web has given rise to social applications, and if developers want to take more steps toward connecting the human race, technologies like XMPP will help them do it. For XMPP developers, targeting the web browser as a platform makes enormous sense. Web appli- cations are cross-platform, easily deployable, and come with a large user base already familiar with them. More than that, web technologies make heavy use of HTML, and it is often the case that tools for manipulating HTML work very well on XML, and therefore, on XMPP. One such tool, familiar to many web developers, is the jQuery library. jQuery makes many mun- dane manipulations of HTML and CSS easy and fun. This power is also almost equally applicable to XML data, because it shares a very similar structure. This book’s applications use jQuery to process and manipulate both the user interface, a combination of HTML and CSS, and the incom- ing XMPP data. Web technologies have their warts, but from a practical standpoint, both web developers and XMPP developers could scarcely ask for a better platform on which to create new and wonderful things. The necessity of jQuery usage caused by existent XMPP client, which is based on jQuery exceptionally-Strophe.js.
+	   Web applications are cross-platform, easily deployable, and come with a large user base already familiar with them. More than that, web technologies make heavy use of HTML, and it is often the case that tools for manipulating HTML work very well on XML, and therefore, on XMPP. One such tool, familiar to many web developers, is the jQuery library. jQuery makes many mun- dane manipulations of HTML and CSS easy and fun. This power is also almost equally applicable to XML data, because it shares a very similar structure. This book’s applications use jQuery to process and manipulate both the user interface, a combination of HTML and CSS, and the incom- ing XMPP data. Web technologies have their warts, but from a practical standpoint, both web developers and XMPP developers could scarcely ask for a better platform on which to create new and wonderful things. The necessity of jQuery usage caused by existent XMPP client, which is based on jQuery exceptionally-Strophe.js.
 
     \textbf{Strophe} is a collection of libraries for speaking the XMPP protocol, targeting browser-based clients. While most XMPP libraries and implementations are focused on chat-based applications, Strophe takes a grander view. It has been used to implement real-time games, notification systems, search engines, as well as traditional instant messaging. The implementations are production ready, well documented, easy to use, and easy to extend. It uses BOSH, a binding of XMPP to HTTP using long polling and WebSockets, a full-duplex single socket connection to a server. Strophe.js makes creating real-time web applications easy. Strophe.js is available under the MIT license.
 
@@ -105,34 +105,30 @@
 	
 	\item \textbf{Kube}
 	\newline
-	Lastly, if user need a solid, yet simple base without needless complexity and extras, for your new project, Kube can be the right choice. Kube is a minimal, responsive and adaptive framework with no imposed styling which gives to user the freedom to create. It offers basic styles for grids, forms, typography, tables, buttons, navigation, and other stuff like links or images.
-
-	The framework contains one compact CSS file for building responsive layouts with ease and two JS files for implementing tabs and buttons in your designs. If user is looking for maximum flexibility and customization, user can download developer version which includes LESS files, with variables, mixins and modules.
+    Kube is a minimal, responsive and adaptive framework with no imposed styling which gives to user the freedom to create. It offers basic styles for grids, forms, typography, tables, buttons, navigation, and other stuff like links or images. The framework contains one compact CSS file for building responsive layouts with ease and two JS files for implementing tabs and buttons in your designs. If user is looking for maximum flexibility and customization, user can download developer version which includes LESS files, with variables, mixins and modules.
 	\end{itemize}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
-\includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
-\includegraphics[scale=0.7]{images/Kube.png}  
-\caption[Framework Comparison]{Framework Comparison\footnote{\url{http://usablica.github.io/front-end-frameworks/compare.html}}}
-\label{img:Bootstrap&Foundation.png}
-\label{img:Groundwork&Gumby.png}   
-\label{img:Kube.png}                          
-\end{figure}
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
+	\includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
+	\includegraphics[scale=0.7]{images/Kube.png}  
+	\caption[Framework Comparison]{Framework Comparison\footnote{\url{http://usablica.github.io/front-end-frameworks/compare.html}}}
+	\label{img:Bootstrap&Foundation.png}
+	\label{img:Groundwork&Gumby.png}   
+	\label{img:Kube.png}                          
+	\end{figure}
+
+ Among all of the described above Web frameworks the most reasonable to chooose Twitter Bootstrap. It has all possible nowadays visualization modules, have been used for more than 1500+ sites, well-known among developers, reach API and examples, supported by all browsers, has a build-in fluid grid systems, that is simplify a lot building an cross-browser application.
 
 \section{JavaScript MV* Frameworks}
-	As was mentioned in the section 4.3.3, very important to separate visualization of graphical modules on a web page from code that is responsible for retrieving content and appearence of a modules. Thus was used AngularJS\footnote{AngularJS,\url{http://angularjs.org/}}. It is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment web-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.The library reads in HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is fully extensible and works well with other libraries such as jQuery, on top of which was build XMPP. Every feature can be modified or replaced to suit your unique development workflow and feature needs.
+	As was mentioned in the section 4.3.3, very important to realize loosely coupled system. Needs to be separated visualization of graphical modules on a web page from a code that is responsible for retrieving of a content. Thus was used AngularJS\footnote{AngularJS,\url{http://angularjs.org/}}. It is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment web-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.The library reads in HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is fully extensible and works well with other libraries such as jQuery, on top of which was build XMPP. Every feature can be modified or replaced to suit unique development workflow and feature needs.
 
-	AngularJS is built around the belief that declarative programming should be used for building user interfaces and wiring software components, while imperative programming is excellent for expressing business logic\footnote{What Is Angular?,\url{http://docs.angularjs.org/guide/introduction}} The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding(Figure 5.2) that allows for the automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
+	AngularJS is built around the belief that declarative programming should be used for building user interfaces and wiring software components, while imperative programming is excellent for expressing business logic\footnote{What Is Angular?,\url{http://docs.angularjs.org/guide/introduction}}. The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding(Figure 5.2) that allows for the automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
 
 	\emph{Design goals}:
-
-	Decouple DOM manipulation from application logic. This improves the testability of the code.
-	Regard application testing as equal in importance to application writing. Testing difficulty is dramatically affected by the way the code is structured.
-	Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
-	Guide developers through the entire journey of building an application: from designing the UI, through writing the business logic, to testing.
-	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the backend is reduced, leading to much lighter web applications.The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding that allows for the automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
+	\newline
+	Decouple DOM manipulation from application logic. This improves the testability of the code. Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the backend is reduced, leading to much lighter web applications.
 
    \emph{Two-way data binding}
    \begin{figure}[!ht]
@@ -143,7 +139,7 @@
 		\end{figure}
 	AngularJS two-way data binding is its most notable feature and reduces the amount of code written by relieving the server backend from templating responsibilities. Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model. The \$scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.
 
-	The way Angular templates works is different, as illustrated on the Figure 5.3. They are different because first the template (which is the uncompiled HTML along with any additional markup or directives) is compiled on the browser, and second, the compilation step produces a live view. Any changes to the view are immediately reflected in the model, and any changes in the model are propagated to the view. This makes the model always the single-source-of-truth for the application state, greatly simplifying the programming model for the developer. You can think of the view as simply an instant projection of your model.
+	The way Angular templates works is different, as illustrated on the Figure 5.3. They are different because first the template (which is the uncompiled HTML along with any additional markup or directives) is compiled on the browser, and second, the compilation step produces a live view. Any changes to the view are immediately reflected in the model, and any changes in the model are propagated to the view. This makes the model always the single-source-of-truth for the application state, greatly simplifying the programming model for the developer. View in such a way simply an instant projection of a model.
 	    \begin{figure}[!ht]
 		\centering
 		\includegraphics[scale=0.6]{images/3wayBinding.png}   
@@ -151,7 +147,50 @@
 		\label{img:interfaces}                           
 		\end{figure}
         
-    Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. 
+    Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. As shown on the figure above, the resulting view can be applied to every data available ona  backend. Model handeler automaticaly generates a view for every new sensor. No need to change code or add new id and dependent handlers, variables, channels.
+    The code realization of such a flow are shown on a listing~\ref{angular_template}
+    \begin{lstlisting}[label=angular_template,caption=Template registry.html]
+<div id="sensor_list">
+    <div class="grid-sizer"></div>
+    <div class="masonry-brick sensor-wrapper" id="{{sensor.id}}" ng-repeat="sensor in sensors | filter:{title: query}">
+        <div class="sensor" ng-controller="SensorModalCtrl" ng-click="open()">
+            <div class="icon">
+                <img class="img-responsive" ng-src="{{sensor.icon}}">
+                <h4>{{sensor.title}}</h4>
+                <span class="label label-success" ng-show="user.check_subscribe(sensor.id)">Subscribed</span>
+            </div>
+            <div ng-show="sensor.picture">
+                <img class="img-responsive" ng-src="{{sensor.picture}}">
+            </div>
+            <span class="description">{{sensor.description}}</span>
+        </div>
+    </div>
+</div>
+    \end{lstlisting}
+    Model explicitly integrated to the HTML. As shown on the listing 5.1: ng-repeat,ng-src,ng-click and also variables {{sensor.*}}. Listin~\ref{angular_controller} shows controller implementation.
+
+     \begin{lstlisting}[label=angular_controller,caption=Controller controller.js]
+var sensdash_controllers = angular.module('sensdash.controllers', []);
+
+sensdash_controllers.controller('RegistryCtrl', ['$scope', 'Sensor', 'User',
+    function ($scope, Sensor, User) {
+        $scope.sensors = Sensor.query();
+        $scope.user = User;
+}]);
+    \end{lstlisting}
+On the listing~\ref{angular_service} factory service, module of the AngularJS, parses REST API and creating sensors array based on factory pattern.
+    \begin{lstlisting}[label=angular_service,caption=Controller controller.js]
+var sensdash_services = angular.module('sensdash.services', ['ngResource']);
+
+sensdash_services.factory('Sensor', ['$resource',
+    function ($resource) {
+        return $resource('api/sensors/:sensorId', {}, {
+            query: {method: 'GET', params: {sensorId: 'all'}, isArray: true}
+        });
+    }]);
+    \end{lstlisting}
+\section{Twitter Bootstrap usage}
+
 
 \section{Interface Implementation}
 	 According to system architecture system has to implement two intefaces:
@@ -164,7 +203,7 @@
 	    \begin{figure}[!ht]
 		\centering
 		\includegraphics[scale=0.6]{images/XMPPflow.png}   
-		\caption[XMPP BOSH/Stream]{TXMPP interface flow}
+		\caption[XMPP BOSH/Stream]{XMPP interface flow}
 		\label{img:interfaces}                           
 		\end{figure}
 

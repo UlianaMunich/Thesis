@@ -53,6 +53,7 @@
       \item Data Volume icon shows what is the average data stream volume needed to retrieve sensor data(Kb/s). User can self-define how possible to get such type of streaming data according to his/her available Internet connection. Ideally, the dashboard should automatically adapt quality of streaming data to necessary and possible bandwidth of available connection(Wi-Fi, 3G, GPRS), such that it will not disturb user and other application on a mobile device.
       \item Description and preview. To give a user full information about sensed data and to help recognize how useful will be to make a subscription, the best is give a preview or examples of data. It's not only description but also real graphics, real examples of video or audio, images etc.
       \item Access and providers. Data can be private or public. If public, user don't have to accept any SLA to get real data from a sensor. But for private data very important to accept SLA between subscriber and provider, before user will get any real data.
+      \item Search panel. Have to be done by filtering available sensors only based on information available for Frontend. Without any queries to Backend and waiting for answer.
       \end{itemize}
 
     The common use case shown on Figure 4.3. User can use any type of mobile device and his favorite browser to receive information from data sources(sensors) by using web-page as a dashboard. Once a user log in to the dashboard, he/she can explore all available sensors around him. If he/she already has used this dashboard at another location and subscribed to some sensors, it will be automatically available in another tab named subscriptions. 
@@ -97,13 +98,6 @@
     \item store history of a data sources
     \end{itemize}
 
-      \begin{figure}[!ht]
-      \centering
-      \includegraphics[scale=0.6]{images/Protocol_flow.png}   
-      \caption[Protocol flow]{Protocol flow}
-      \label{img:protocol}                           
-      \end{figure}
-
     \subsubsection{Authentication Handler}
     Authentication Handler responsible for registering user in system, providing User ID and define user role. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After a user verifies and confirms credentials, it becomes possible to bind user id with personal preferences. Such preferences can be: user subscriptions, favorites, social sharing and even cookies. Since all these data have to be loosely coupled from backend, and web-based application has no access to internal storage of portable device, this problem solved enhancing functionality of XMPP protocol and using namespace approach of XMPP server storage.
 
@@ -125,9 +119,11 @@
       \end{itemize}
 
       \emph{Registry to Directory Manager Interface}
+      \newline
       According to Web API and simple structure of a registry data, communication between these two modules have to be done by using HTTP GET request and JSON format, retrieved from Registry. It is one-way connection, because frontend needs only get metadata from Sensors Registry and all changes that occurs on a web page end through interface between Data Hub and DataStream Handler. Such structure provides possibility independently integrate new Sensors Registry.
 
       \emph{Data Hub to/from Directory Manager Interface/AuthHandler}
+      \newline
       Communication between Data Hub and another 2 modules: Directory Manager Interface and AuthHandler, have to be supported through the one common universal interface. This interface have to satisfy next requirements:
       \begin{itemize}
       \item have a public license
@@ -137,6 +133,18 @@
       \item keep connection alive(stateful, through the TCP connection)
       \item simplicity of enhancement and customization
       \end{itemize}
+
+      Three inetfaces have to work with data sources in the way that shown on Figure 4.4
+
+      \begin{figure}[!ht]
+      \centering
+      \includegraphics[scale=0.6]{images/Protocol_flow.png}   
+      \caption[Protocol flow]{Protocol flow}
+      \label{img:protocol}                           
+      \end{figure}
+      Such a structure decouple sensors specific interface and interface between frontend and backend. In such a way, any sensor can be added and retrieved by frontend. 
+    
+      The web browser is probably the most deployed and most used application platform that has ever existed. Web browsers exist on every kind of computer and even many mobile phones, and more importantly, the users of these devices tend to be very familiar with the browser and web applications. As more and more sophistication has been demanded of web applications, new technologies and abstractions have been created to evolve the platform. XMPP brings yet another new set of technologies and abstractions, but with it comes enormous potential for real-time, interactive, and collaborative applications. The rise of the social Web has given rise to social applications, and if developers want to take more steps toward connecting the human race, technologies like XMPP will help them do it. For XMPP developers, targeting the web browser as a platform makes enormous sense.
 
       In order to satisfy all aforementioned requirements, nowadays exist two main protocols: \emph{XMPP\cite{XMPPbook}}:a protocol best for connecting devices to people, a special case of the device-to-server pattern, since people are connected to the servers and \emph{MQTT\footnote{MQ Telemetry Transport,\url{http://mqtt.org/}}}: a protocol for collecting device data and communicating it to servers. Based on their functionality and specification can be managed questions of authentification, registration and user preferences storage.
 
