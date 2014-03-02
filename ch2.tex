@@ -8,8 +8,8 @@
 
 \item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other 
        separate components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
-\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces to any type of data 
-      format, Information resources in Web), such that it can be distributed across internet, and can be applied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend
+\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces for every type of data 
+      format, Information resources in the Web), such that it can be distributed across internet, and can be applied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend.
 \item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and concrete interface view  
        targeting by using JID\index{Jabber ID}. Every account have to be unique binded to any data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
 \item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, notebook, tablet) without special preparation or changes. This gives an possibility to be flexible.
@@ -18,9 +18,9 @@
 \end{itemize} 
 
 \subsection {Fine-grained structure}
-The fine-grained structure of a system provides a possibility to distribute task between responsible modules of a system. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new part of a system, without influence to an any another module. Thus individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it guarantees necessary performance in response time. In order to attain the best parallel performance, the best balance between load and communication overhead needs to be found. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from load imbalance.
+The fine-grained structure of a system provides a possibility to distribute task between responsible modules of a system. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new part of a system, without influence to an any another module. Thus individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it guarantees necessary performance in response time. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from load imbalance.
 
-Hereby, generic frontend have to be splitted to a modules, responsible for a separated task, that in the same time gives a possibility to expand the system.
+Hereby, generic frontend have to be splitted to independent modules, responsible for a separated task, that in the same time gives a possibility to expand the system.
 
 \subsection {Loose Coupling}
 The goal of loose coupling is to reduce dependencies between systems. And this term mostly related to an internal software structure of the system, e.g. classes, patterns, asynchronous requests. But to make it clear, why generic approach in building dynamic frontend have to be loosely coupled it is necessary to compare tight- and loose coupling in Table 2.1\footnote{A High-level Comparison of Tight and Loose Coupling,\url{http://wiki.scn.sap.com/wiki/display/BBA/Loose+Coupling+Through+Web+Services}}

@@ -11,9 +11,9 @@
 
   Figure 4.1 shows concept infrastructure:
   \begin{itemize}
-  \item Client Tier: web-based GUI
-  \item Application Tier: application logic, interface of collaboration between tiers, backend integration point
-  \item Data Tier: data from different types of sensors
+  \item \textbf{Client Tier:} web-based GUI
+  \item \textbf{Application Tier:} application logic, interface of collaboration between tiers, backend integration point
+  \item \textbf{Data Tier:} data from different types of sensors
   \end{itemize} 
   \begin{figure}[!ht]
   \centering
@@ -35,7 +35,7 @@
   The next section gives a detailed explanation about structure modules in every tier respectively to 3-tier architecture.
 
 \section{Client Tier}
-  The client tier or another name is presentation tier is a layer which user can access directly such as a web page by using browser. It is the first that user see and comprised of widgets structured according to responsive layout. This tier consists GUI by using which, user can communicate with sensor in a user-friendly way that is presented on Figure 4.2. Also Client Tier responsible for adaptation to any kind of mobile or desktop devices that can be used by user. Therefore as a cross-platform approach was chosen web-based solution, where all communication flows through the browser. 
+  The client tier or another name is presentation tier is a layer which user can access directly such as a web page by using browser. It is the first that user see and comprised of widgets structured according to the responsive layout. This tier consists GUI by using which, user can communicate with sensor in a user-friendly way that is presented on the Figure 4.2. From a developer prospect of view, client tier gives an overview of a design layout, consists basic information about system architecture, provides technical details of a system such as: end-points configuration, API documentation or get sample applications. It is made in such a way, that by using only graphical interface, developer can retrieve on it personal data sources. Also Client Tier responsible for adaptation to any kind of mobile or desktop devices that can be used by user. Therefore as a cross-platform approach was chosen web-based solution, where all communication flows through the browser. 
 
     \begin{figure}[!ht]
     \centering
@@ -55,7 +55,7 @@
       \item Access and providers. Data can be private or public. If public, user don't have to accept any SLA to get real data from a sensor. But for private data very important to accept SLA between subscriber and provider, before user will get any real data.
       \end{itemize}
 
-    The common use case from a end-user point of view shown on Figure 4.3. User can use any type of mobile device and his favorite browser to receive information from the sensors by using web-page as a dashboard. Once a user log in to the dashboard, he/she can explore all available sensors around him. If he/she already has used this dashboard at another location and subscribed to some sensors, it will be automatically available in another tab named subscriptions. 
+    The common use case shown on Figure 4.3. User can use any type of mobile device and his favorite browser to receive information from data sources(sensors) by using web-page as a dashboard. Once a user log in to the dashboard, he/she can explore all available sensors around him. If he/she already has used this dashboard at another location and subscribed to some sensors, it will be automatically available in another tab named subscriptions. 
 
         \begin{figure}[!ht]
         \centering
@@ -78,13 +78,13 @@
     System Architecture splitted to a backend and frontend implementation, that gives an overview how these two part interconnected. Also on the Figure 4.4 presents a end-user, which doesn't know anything about implementation behind the scenes. Registry and Data Hub defined and standardized by frontend in order to provide as much as possible common interface for collaboration between backend and frontend. 
 
   \subsection{Sensors Registry}
-    First of all the Sensors Registry is a module responsible for storing an info about available sensors registered in the network in order to provide information for a user. Frontend gets info from Registry about registered sensors and their availability. By using simple RESTful API, so that any Registry that implements suggested API and returns valid JSON, which consists such info as: id of sensor, description, availability(true or false), access(private or public), provider of sensed data, SLA, necessary bandwidth for retrieving data, title and type. By using RESTful API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
+    First of all the Sensors Registry is a module responsible for storing an info about available sensors registered in the network in order to provide information for a user. Frontend gets info from Registry about registered sensors and their availability. By using simple Web API, so that any Registry that implements suggested API and returns valid JSON, which consists such info as: id of sensor, description, availability(true or false), access(private or public), provider of sensed data, SLA, necessary bandwidth for retrieving data, title and type. By using Web API, the concept provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. 
     \newline
     Before publishing data to Registry, a data publisher must first register the sensor by providing its static description. This meta data describes sensor name, sensing type, availability, data type, access type, provider name and further details, and also if possible some real examples of data or preview possibility, as well as a free text description of the sensors, and is used in searching sensors for a given user query.
     \newline
     Such structure helps system to structure sensors according to the type, as a result to automatically generate the graphical container for it. Based on standard description, rendering of the sensor data in the client tier become essential part, because it simplifies the way of sensors integration. 
 
-    And secondary, the Registry, provides simple interface standard in JSON format to encode these properties that can be simply transferred by using RESTful API approach. Thus, it is much simpler and light-weighted than XML. And separate metadata of a sensor from a real data. 
+    And secondary, the Registry, provides simple interface standard in JSON format to encode these properties that can be simply transferred by using Web API approach. Thus, it is much simpler and light-weighted than XML. And separate metadata of a sensor from a real data. 
 
   \subsection{Data Hub}
     Since Sensors Registry responsible for collecting metadata of sensors, Data Hub is responsible for mapping interface of particular sensor data stream into a format supported by frontend and delivered through the common universal protocol. It means that Data hub has to satisfy next requirements:
@@ -94,6 +94,7 @@
     \item bind metadata from registry and user choice
     \item get and parse sensor streaming data and reconvert it to the type supported by universal protocol
     \item implement universal protocol to provide exchange message with a server in order to make possible retrieve streaming data from sensor
+    \item store history of a data sources
     \end{itemize}
 
       \begin{figure}[!ht]
@@ -107,7 +108,7 @@
     Authentication Handler responsible for registering user in system, providing User ID and define user role. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After a user verifies and confirms credentials, it becomes possible to bind user id with personal preferences. Such preferences can be: user subscriptions, favorites, social sharing and even cookies. Since all these data have to be loosely coupled from backend, and web-based application has no access to internal storage of portable device, this problem solved enhancing functionality of XMPP protocol and using namespace approach of XMPP server storage.
 
     \textbf{Backend entry point}
-    Data Hub and Sensor Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of this parts support common standards such as RESTful API, HTTP GET/POST, AJAX, JSON file format, it makes easily possible to implement it inside any backend system.
+    Data Hub and Sensor Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of this parts support common standards such as Web API, HTTP GET, AJAX, JSON file format, it makes easily possible to implement it inside any backend system.
 
   \subsection{Web-based Frontend}
     \subsubsection{Web server}
@@ -124,13 +125,13 @@
       \end{itemize}
 
       \emph{Registry to Directory Manager Interface}
-      According to RESTful API and simple structure of a registry data, communication between these two modules have to be done by using HTTP GET request and JSON format, retrieved from Registry. It is one-way connection, because frontend needs only get metadata from Sensors Registry and all changes that occurs on a web page end through interface between Data Hub and DataStream Handler. Such structure provides possibility independently integrate new Sensors Registry.
+      According to Web API and simple structure of a registry data, communication between these two modules have to be done by using HTTP GET request and JSON format, retrieved from Registry. It is one-way connection, because frontend needs only get metadata from Sensors Registry and all changes that occurs on a web page end through interface between Data Hub and DataStream Handler. Such structure provides possibility independently integrate new Sensors Registry.
 
       \emph{Data Hub to/from Directory Manager Interface/AuthHandler}
       Communication between Data Hub and another 2 modules: Directory Manager Interface and AuthHandler, have to be supported through the one common universal interface. This interface have to satisfy next requirements:
       \begin{itemize}
       \item have a public license
-      \item handle RESTful API requests
+      \item handle Web API requests
       \item support service-user n:n connections
       \item support different types of data sended through the one channel, message differentiation
       \item keep connection alive(stateful, through the TCP connection)
@@ -174,7 +175,46 @@
       The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an excellent companion protocol to HTTP. XMPP-powered web applications are to AJAX what AJAX was to the static web site; they are the next level of interactivity and dynamism. Where JavaScript and dynamic HTML have brought desktop application features to the web browser, XMPP brings new communications possibilities to the Web. XMPP has many common social web features built in, due to its instant messaging heritage. Contact lists and subscriptions create social graphs, presence updates help users keep track of who is doing what, and private messaging makes communication among users trivial. XMPP also has nearly 300 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
       \newline
       XMPP, like all protocols, defines a format for moving data between two or more communicating entities. In XMPP’s case, the entities are normally a client and a server, although it also allows for peer-to-peer communication between two servers or two clients. Many XMPP servers exist on the Internet, accessible to all, and form a federated network of interconnected systems. Data exchanged over XMPP is in XML, giving the communication a rich, extensible structure. Many modern protocols forgo the bandwidth savings of a binary encoding for the more practical feature of being human readable and therefore easily debugged. XMPP’s choice to piggyback on XML means that it can take advantage of the large amount of knowledge and supporting software for dealing with XML. One major feature XMPP gets by using XML is XML’s insensibility. It is extremely easy to add new features to the protocol that are both backward and forward compatible. This extensibility is put to great use in the more than 200 protocol extensions registered with the XMPP Standards Foundation and has provided developers with a rich and practically unlimited set of tools. XML is known primarily as a document format, but in XMPP, XML data is organized as a pair of streams, one stream for each direction of communication. Each XML stream consists of an opening element, followed by XMPP stanzas and other top-level elements, and then a closing element. Each XMPP stanza is a first-level child element of the stream with all its descendant elements and attributes. At the end of an XMPP connection, the two streams form a pair of valid XML documents.
-      The Extensible Messaging and Presence Protocol (XMPP) is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community starting in 1999. This page provides a brief chronology of Jabber/XMPP technologies from the perspective of standardization\cite{xmpp}.
+      The Extensible Messaging and Presence Protocol (XMPP) is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community starting in 1999\cite{xmpp}.
+
+      \textbf{Pushing Data}
+
+      HTTP clients can only request data from a server. Unless the server is responding to a client request,
+      it cannot send data to the client. XMPP connections, on the other hand, are bidirectional. Either party
+      can send data to the other at any time, as long as the connection is open.
+      This ability to push data greatly expands the possibilities for web applications and protocol design.
+      Instead of inefficient polling for updates, applications can instead receive notifications when new
+      information is available. Not only does this result in many fewer requests, it also makes the latency
+      between the time new information is available and the time the client is aware of this information
+      nearly zero.
+
+      \textbf{Pleasing Firewalls}
+
+      Some web applications support the use of HTTP callbacks, where the web server makes requests to
+      another HTTP server in order to send data. This would be a handy feature to push data if it weren’t
+      for firewalls, network address translation (NAT), and other realities of the Internet. In practice it is
+      very hard to enable arbitrary connections to clients from the outside world.
+      XMPP connections are firewall and NAT friendly because the client initiates the connection on
+      which server-to-client communication takes place. Once a connection is established, the server can
+      push all the data it needs to the client, just as it can in the response to an HTTP request.
+
+      \textbf{Improving Security}
+
+      XMPP is built on top of TLS and SASL technologies, which provide robust encryption and security
+      for XMPP connections. Though HTTP uses SSL, the HTTP authentication mechanisms did not see
+      much implementation or use by developers. Instead, the Web is full of sites that have implemented
+      their own authentication schemes, often badly.
+
+      \textbf{Statefulness}
+
+      HTTP is a stateless protocol; XMPP is stateful. Stateless protocols are easier to scale because each
+      server does not need to know the entire state in order to serve a request. This drawback of XMPP
+      is less onerous in practice because most non-trivial web applications make extensive use of cookies,
+      backend databases, and many other forms of stored state.
+      Many of the same tools used to scale HTTP-based applications can also be used to scale XMPP-based
+      ones, although the number and diversity of such tools is more limited, due to XMPP’s younger age and
+      lesser popularity.
+
     \begin{itemize}
       \item \emph{Decentralization}
         The architecture of the XMPP network is similar to email; anyone can run their own XMPP server and there is no central master server.
@@ -202,14 +242,14 @@
     JavaScript has become one of the most popular programming languages on the web, when the usage of Ajax came to light and professional programmers gave importance to the responsiveness of the page. But now the language has become more popular than ever as the User Experience has become the key part of web development. Accessing web is not limited to browsers alone – there are lot many devices with varying screen sizes accessing the same content. With the rise of HTML5 and CSS3 the web will become more adaptive and responsive than ever and JavaScript plays a major role in it. It has also gained popularity in the server side programming which is made possible by NodeJS framework.
 
     Increase in usage of JavaScript in modern applications demand developers to write maintainable code, separate concerns and improve testability. JavaScript is a "class" less language and it was not designed to support Object Oriented Programming. There are some DOM manipulation libraries like jQuery which simplifies client side scripting of HTML, they actually do not solve the problem of effectively handling separation of concerns. The problem with this is that it doesn’t take long to get lost in a nested pile of jQuery callbacks and DOM elements without any real structure in place for applications. Source code that has a complex and tangled control structure, especially one using many GOTOs, exceptions, threads, or other "unstructured" branching constructs can lead to become a bottleneck. 
-
-    In the design shown on the Figure 4.9, takes place common Model-View-Controller pattern. Where a Model represents the application object that implements the application data and business logic. The View is responsible for formatting the application results and dynamic page construction. The Controller is responsible for receiving the client request, invoking the appropriate business logic, and based on the results, selecting the appropriate view to be presented to the user. The Model represents enterprise data and the business rules that govern access to and updates to this data. Often the Model serves as a software approximation to a real-world process, so simple real-world modeling techniques apply when defining the Model. A View renders the contents of a Model. It accesses enterprise data through the Model and specifies how that data should be presented. It is the View's responsibility to maintain consistency in its presentation when the Model changes. This can be achieved by using a push Model, where the View registers itself with the Model for change notifications, or a pull Model, where the View is responsible for calling the Model when it needs to retrieve the most current data. A Controller translates interactions with the View into actions to be performed by the Model. In a stand-alone GUI client, user interactions could be button clicks or menu selections, whereas in a Web application, they appear as GET and POST HTTP requests. The actions performed by the Model include activating business processes or changing the state of the Model. Based on the user interactions and the outcome of the Model actions, the Controller responds by selecting an appropriate View. 
      \begin{figure}[!ht]
      \centering
-     \includegraphics[scale=0.7]{images/MVCPattern.png}   
-     \caption[MVC Pattern]{MVC Pattern \footnotetext{Image taken from, \url{blog.csdn.net/cain/article/details/6617173}}}
+     \includegraphics[scale=0.5]{images/MVCPattern.png}   
+     \caption[MVC Pattern]{MVC Pattern\footnotetext{Image taken from, \url{blog.csdn.net/cain/article/details/6617173}}}
      \label{img:MVCPattern}                           
      \end{figure}
+
+    In the design shown on the Figure 4.9, takes place common Model-View-Controller pattern. Where a Model represents the application object that implements the application data and business logic. The View is responsible for formatting the application results and dynamic page construction. The Controller is responsible for receiving the client request, invoking the appropriate business logic, and based on the results, selecting the appropriate view to be presented to the user. The Model represents enterprise data and the business rules that govern access to and updates to this data. Often the Model serves as a software approximation to a real-world process, so simple real-world modeling techniques apply when defining the Model. A View renders the contents of a Model. It accesses enterprise data through the Model and specifies how that data should be presented. It is the View's responsibility to maintain consistency in its presentation when the Model changes. This can be achieved by using a push Model, where the View registers itself with the Model for change notifications, or a pull Model, where the View is responsible for calling the Model when it needs to retrieve the most current data. A Controller translates interactions with the View into actions to be performed by the Model. In a stand-alone GUI client, user interactions could be button clicks or menu selections, whereas in a Web application, they appear as GET request. The actions performed by the Model include activating business processes or changing the state of the Model. Based on the user interactions and the outcome of the Model actions, the Controller responds by selecting an appropriate View. 
 
   Though all the frameworks out there somewhat tries to be MVC but they do not necessarily follow the pattern strictly. The idea of all the patterns is to separate Model, View and Logic that hooks the two behind which is the controller for the best separate of concerns. On the other side we do have other libraries which implement Model-View-Presenter(MVP) and Model-View-ViewModel(MVVM) pattern. For this reason we will refer these frameworks as MV* implementation. So it's much more depends on framework and researched in the Chapter 5 in details.
       
@@ -233,10 +273,25 @@
   \newline
   In other words, the media stream can increase or decrease the bit rate and resolution (its quality) in real time so that it’s always streaming the best possible quality the available network connection can support. The better the network connection, the better the video image quality. The fact that the stream handles all of this complexity means the mobile video viewer doesn’t have to do anything; everything is left to the stream and the player.
 
-  Very important aspect in streaming data that some of data can be cashed on a server side, thus become possible to retrieve data after it was produced. But some streaming data consists only live data, thus there is no other options except live streaming, where the connection configuration, aliveness and quality become a key aspect. Consider absence of any concrete backend system, cashing on it's side and on frontend side can be covered in scope of this Master Thesis. As a good example of live streaming will be simulated map of values, images and text.
+  An important aspect in streaming data that some of data can be cashed on a server side, thus become possible to retrieve data after it was produced. But some streaming data consists only live data, thus there is no other options except live streaming, where the connection configuration, aliveness and quality become a key aspect. Consider absence of any concrete backend system, cashing on it's side and on frontend side can be covered in scope of this Master Thesis. As a good example of live streaming will be simulated map of values, images and text.
+
+  \textbf{Sensor Functional Characteristics}
+  An essential part of concept to garantee reliable and secure data transportation. Thus, based on a system architecture every data source can acquire additional properties. Such properties can be:
+  \begin{itemize}
+  \item reliability
+  \item perfomance
+  \item security
+  \end{itemize}
+  All these three characteristics rely on quantity of available XMPP end-points of every data source. A simple sensor, with a low level of reliability, has one and only one XMPP end-point. A reliable sensor has two endpoints, where is one is a primary, the other one is a backup/failover. A highly reliable sensor has three endpoints, among which consensus voting about the values can be done. 
+
+  A high-performance sensor has more than 2 endpoints, out of which one is always chosen randomly to spread the load. 
+
+  A high level secure sensor has two endpoints, each of which carries encryption key and another one data itself. Without each part become not possible to retrieve whole data at all. Such type of secure data parallelization can be done by using few XMPP connections, extracted from a pool of available sensor connection.
+
+ All this characteristics have to be automatically captured by Frontend from a predefined attributes in a standard specification provided by Registry. So that developers can know about the expected quality of the data streams even in case some endpoints become unavailable.
 
 \section{Summary}
-	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Such type of structure provides clear separation of concern between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier.
+	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Such type of structure provides clear separation of concern between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier. To every data souce was assigned such characteristics as reliability, perfomance and level of secure information. Every characteristics rely on a number of dependent for sensor XMPP end-point.
   As a result was identified next most important modules of Application Tier: Sensors Registry, Data Hub, AuthHandler. 
   Data Hub responsibilities:
   \begin{itemize}
@@ -256,7 +311,7 @@
   \end{itemize}
   Frontend responsibilities:
   \begin{itemize}
-  \item Interconnect all modules by using appropriate interfaces: RESTful API for Sensors Registry and XMPP Protocol for Data Hub and AuthHandler
+  \item Interconnect all modules by using appropriate interfaces: Web API for Sensors Registry and XMPP Protocol for Data Hub and AuthHandler
   \item Build a responsive and adaptable to changes GUI
   \item Scalable system structure
   \end{itemize}
