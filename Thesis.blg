@@ -12,37 +12,37 @@ A level-1 auxiliary file: ch5.aux
 A level-1 auxiliary file: ch6.aux
 Database file #1: bibliography.bib
 Warning--entry type for "jakob" isn't style-file defined
---line 246 of file bibliography.bib
+--line 249 of file bibliography.bib
 Warning--entry type for "xmpp" isn't style-file defined
---line 260 of file bibliography.bib
+--line 263 of file bibliography.bib
 Warning--entry type for "vicci" isn't style-file defined
---line 300 of file bibliography.bib
-I was expecting a `,' or a `}'---line 303 of file bibliography.bib
+--line 303 of file bibliography.bib
+I was expecting a `,' or a `}'---line 306 of file bibliography.bib
  :   year = 2012
  :              -2013,
 I'm skipping whatever remains of this entry
-Repeated entry---line 322 of file bibliography.bib
+Repeated entry---line 325 of file bibliography.bib
  : @inproceedings{nath2006challenges
  :                                  ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "ethan" isn't style-file defined
---line 417 of file bibliography.bib
+--line 420 of file bibliography.bib
 Warning--entry type for "pettit" isn't style-file defined
---line 424 of file bibliography.bib
-I was expecting a `,' or a `}'---line 431 of file bibliography.bib
+--line 427 of file bibliography.bib
+I was expecting a `,' or a `}'---line 434 of file bibliography.bib
  : 
  : @online{mashA,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--entry type for "mashA" isn't style-file defined
---line 431 of file bibliography.bib
+--line 434 of file bibliography.bib
 Warning--entry type for "mashB" isn't style-file defined
---line 438 of file bibliography.bib
-Repeated entry---line 462 of file bibliography.bib
+--line 441 of file bibliography.bib
+Repeated entry---line 465 of file bibliography.bib
  : @article{yu2008understanding
  :                             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 481 of file bibliography.bib
+Repeated entry---line 484 of file bibliography.bib
  : @inproceedings{hoyer2008enterprise
  :                                   ,
 I'm skipping whatever remains of this entry
@@ -53,51 +53,50 @@ while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Bendel, Springer, Schuster, Schill, Ackermann, Ameling" for entry bendel2013service
 while executing---line 944 of file unsrt.bst
 Warning--empty journal in firestone1984study
-Warning--empty journal in XMPPext
 Warning--empty journal in ACDSense
 Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashA
 while executing---line 944 of file unsrt.bst
 Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashB
 while executing---line 944 of file unsrt.bst
-You've used 42 entries,
+You've used 41 entries,
             1791 wiz_defined-function locations,
-            669 strings with 10286 characters,
-and the built_in function-call counts, 9600 in all, are:
-= -- 853
-> -- 391
+            670 strings with 10314 characters,
+and the built_in function-call counts, 9405 in all, are:
+= -- 839
+> -- 374
 < -- 17
-+ -- 150
-- -- 108
-* -- 503
-:= -- 1421
-add.period$ -- 131
-call.type$ -- 42
-change.case$ -- 40
++ -- 144
+- -- 103
+* -- 490
+:= -- 1385
+add.period$ -- 128
+call.type$ -- 41
+change.case$ -- 39
 chr.to.int$ -- 0
-cite$ -- 45
-duplicate$ -- 480
-empty$ -- 1016
-format.name$ -- 108
-if$ -- 2260
+cite$ -- 43
+duplicate$ -- 472
+empty$ -- 1002
+format.name$ -- 103
+if$ -- 2223
 int.to.chr$ -- 0
-int.to.str$ -- 42
-missing$ -- 30
-newline$ -- 207
-num.names$ -- 44
-pop$ -- 217
+int.to.str$ -- 41
+missing$ -- 29
+newline$ -- 202
+num.names$ -- 43
+pop$ -- 212
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 263
+skip$ -- 260
 stack$ -- 0
-substring$ -- 469
+substring$ -- 465
 swap$ -- 164
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 91
-width$ -- 44
-write$ -- 443
+warning$ -- 2
+while$ -- 89
+width$ -- 43
+write$ -- 434
 (There were 10 error messages)

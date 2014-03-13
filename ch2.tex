@@ -1,29 +1,26 @@
 %!TEX root = Thesis.tex
-\chapter{Foundations and Requirements Analysis}
-	The main goal of the following chapter is a definition of requirements to generic frontend for exploring sensor and information services. To achieve this, fundamental terms in the presented research area are formulated at the beginning of the chapter. Basic aspects concerning data sources definition, types of information services in the web that have to be retrieved are described in the section 2.2. According to aforementioned parts of an approach, summary section underlines the chapter by combining needs of frontend and data sources and defines requirements to a common concept. Such a concept described in details in the chapter 4.
+\chapter{Foundation and Requirements Analysis}
+	The main goal of the following chapter is a definition of requirements to generic frontend for exploring sensor and information services. To achieve formalized goal, fundamental terms in the presented research area are formulated at the beginning of the chapter. Basic aspects concerning data source definition, types of information services in the web that have to be retrieved are described in the section 2.2. According to aforementioned parts of an approach, summary section underlines the chapter by combining needs of frontend and data sources and defines requirements to a common concept, which in details described in the chapter 4.
 
 \section {Frontend's Requirements}
-	In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to conform to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backends simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements to a generic frontend for exploring data sources, i.e. :
+	In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to confirm to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backend simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements of a generic frontend for exploring data sources, i.e. :
 \begin{itemize}
 
-\item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other 
-       separate components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
-\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces for every type of data 
-      format, Information resources in the Web), such that it can be distributed across internet, and can be applied to any resource and mobile device everywhere. It is also include ease of expansion and integration with backend system, independently from platform used on a backend and web frameworks used on a frontend.
-\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and concrete interface view  
-       targeting by using JID\index{Jabber ID}. Every account have to be unique binded to any data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
+\item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other separated components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
+\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces for every type of data format, Information resources in the Web), such that it can be distributed across Internet, and can be applied to any resource and mobile device everywhere. It also includes ease of expansion and integration with backend system, independently from platform used on a backend and frameworks/tools used on a frontend side.
+\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and load personilized bookmarks/preferences, targeting by using JID\index{Jabber ID} and password. Every account have to be unique binded to a data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
 \item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, notebook, tablet) without special preparation or changes. This gives an possibility to be flexible.
 \item \emph{Responsive web design:} an ability of a GUI automatically adapt to any size of device screen, by provisioning high usability performance.
-\item \emph{Usability:} web-based interface, that can be easily explored in social platforms and connects any type of news feeds.
+\item \emph{Usability:} web-based interface, which gives an easy to understand user-friendly presentation of a different data types. User-oriented design provides fast and simple awareness of what frontend propose and how it can be explored by user.
 \end{itemize} 
 
 \subsection {Fine-grained structure}
-The fine-grained structure of a system provides a possibility to distribute task between responsible modules of a system. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new part of a system, without influence to an any another module. Thus individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Also it guarantees necessary performance in response time. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from load imbalance.
+The fine-grained structure of a system provides a possibility to distribute task between responsible modules of a system. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new parts of a system, without influence to an any another module. Also it guarantees necessary performance in response time and makes a system to be highly scalable. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from load imbalance.
 
-Hereby, generic frontend have to be splitted to independent modules, responsible for a separated task, that in the same time gives a possibility to expand the system.
+Hereby, generic frontend have to be splitted to independent modules, responsible for a separated task, that in the same time gives a possibility to scale the system. Also, every module can be implemented independently from framework or language or interface of an implementation. 
 
 \subsection {Loose Coupling}
-The goal of loose coupling is to reduce dependencies between systems. And this term mostly related to an internal software structure of the system, e.g. classes, patterns, asynchronous requests. But to make it clear, why generic approach in building dynamic frontend have to be loosely coupled it is necessary to compare tight- and loose coupling in Table 2.1\footnote{A High-level Comparison of Tight and Loose Coupling,\url{http://wiki.scn.sap.com/wiki/display/BBA/Loose+Coupling+Through+Web+Services}}
+The goal of loose coupling is to reduce dependencies between system's parts. And this term mostly related to an internal software structure of the system, e.g. classes, patterns, asynchronous requests. But to make it clear, why generic approach in building dynamic frontend have to be loosely coupled it is necessary to compare tight- and loose coupling as shown on the Table 2.1\footnote{A High-level Comparison of Tight and Loose Coupling,\url{http://wiki.scn.sap.com/wiki/display/BBA/Loose+Coupling+Through+Web+Services}}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|L{3cm}|L{5cm}|l|}
@@ -65,33 +62,31 @@ c. For tightly coupled applications, the parts must always be deployed at the sa
 \newline
 d. Consider versioning of services. If a service provider changes the interface of a service, it is probable that not all consumers can update their applications at the same time. In case of tight coupling, all consumers must explicitly update their applications as well. With loose coupling, the provider offers separate versions at the same time so that consumers don't have to update their applications. Alternatively, the provider supports the new functionality behind the old interface and fills new parameters with default values (an implicit upgrade that does not affect the consumer).
 
-Table 2.1 shows how important is to realize loose coupling in generic systems, namely frontend, to make it dynamic, independent and distributed.
+Table 2.1 shows an importance of realizing loose coupling in generic systems, namely frontend, to make it dynamic, independent and distributed.
 
 The degree of the loose coupling can be measured by noting the number of changes in data elements that could occur in the sending or receiving systems and determining if the computers would still continue communicating correctly\cite{firestone1984study,danneels2003tight}. These changes include items such as:
 \begin{itemize}
-\item adding new data elements to messages
+\item adding new data elements to messages/GUI elements
 \item changing the order of data elements
 \item changing the names of data elements
 \item changing the structures of data elements
 \item omitting data elements
 \end{itemize}
 
-	Benefits of loose coupling include flexibility and agility. A loosely coupled approach offers unparalleled flexibility for adaptations to changing landscapes. Since there are no assumptions about the landscape your application is running against, you can easily adapt the composite application as needed. This is especially important for ISVs and system integrators who develop applications once and install and configure them at diverse customer sites. The application itself stays untouched. Another aspect to consider is the probability of landscape changes during the lifetime of the application. Due to mergers and acquisitions and system consolidations, the landscape underneath the application is constantly changing. Without loose coupling, you'll be forced to adapt your application again and again. In essence, loose coupling means reducing the number of assumptions to a bare minimum. The goal of loose coupling is to minimize dependencies between systems. However, note that loose coupling comes at a price---every form of loose coupling has disadvantages (especially with regard to complexity) that must be considered.
+	Benefits of loose coupling include flexibility and agility. A loosely coupled approach offers unparalleled flexibility for adaptations of a changes in content which have to be retrieved by GUI. Another aspect to consider is the probability of layout changes during the lifetime of the application. Due to mergers and acquisitions and system consolidations, the layout underneath the application is constantly changing. Without loose coupling, user will be forced to adapt application again and again. In essence, loose coupling means reducing the number of assumptions to a bare minimum. The goal of loose coupling is to minimize dependencies between systems. 
 
 \subsection {Multi-User Binding}
 	In order to provide better user experience needed to be distinguish main user types of a system itself:
 	\begin{itemize}
-	\item Backend developer, that needs an acceptable interface for backend and adaptable modules for its data structure, to easily 
-	      integrate already existed backend with new frontend. Comprehensive and detailed service descriptions is a first entry point for developers, who starts to work with web service. Well or poorly described service measures the amount of efforts, made by developers
-	\item Administrator of a system, that have to add new functionality and modules/blocks to GUI or change already existed.     
-	      Administrator have to have an experience with defined 
-	\item User of an application, that wants to see and control sensors and statistic
+	\item Backend developer, which needs an acceptable interface for integration with a backend and adaptable modules for its data structure, to easily interconnect already existed backend with new frontend. Comprehensive and detailed service descriptions is a first entry point for developers, who starts to work with web service. Well or poorly described service measures the amount of efforts, made by developers.
+	\item COnsumer application developer, which is the main task to find necessary sensors as fast as possible, explore metadata provided by data soutce, SLA if exist and get an example of provided by sensor data format, configuration of end-points and system architecture.
+	\item Simple user of an application, that wants to see and control sensors and statistic.
 	\end{itemize}
 	According to defined types of users, needed to be specified what are the main requirements from a user prospective to the researched frontend approach.
 	\newline 
 	Backend developer, who starts to work with the web service, needs comprehensive and detailed service descriptions, because it is a first entry point for him. Well or poorly described service measures the amount of efforts, made by developers. Therefore generic frontend have to support common standards in a field of interface, protocols, approaches of web services.
 	\newline
-	Administrator plays a role of experienced user, that knows the purpose of a system, how it works, which frameworks and platforms have been used for implementation and how to help developer with integration. Also administrator have an opportunity to change frontend GUI and system structure itself from an inside.
+	Consumer application developer plays a role of a new user, that knows the purpose of a system, how it works, which frameworks and platforms have been used for implementation and how to help developer with integration. Also administrator have an opportunity to change frontend GUI and system structure itself from an inside.
 	\newline
 	After user log in into a system, without any knowledge about a system, should be clarified what should be shown on a main screen and how to define usage scenario in an understandable for user way. In case of user task to sign contracts between him and resource provider, frontend have to provide examples of data, such that user can decide what is useful for him and what is not.
 
@@ -102,11 +97,11 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 	\emph{Graceful degradation}
 	\newline
-	Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a "least common denominator" for more limited client browsers. For example, a user attempting to use a limited-feature browser to access Gmail may notice that Gmail switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
+	Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a "least common denominator" for more limited client browsers. For example, a user attempting to use a limited-feature browser to access web-based application may notice that application itself switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
 
 	\emph{Separation of functionality}
 	\newline
-	Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a "complete" application to the user(maybe separation of concerns).
+	Separation of functionality attempts to simply omit those subsets of functionality that are not capable from within certain client browsers or operating systems, while still delivering a fully-functional application to the user.
 
 	\emph{Multiple code base}
 	\newline
@@ -120,7 +115,7 @@ The degree of the loose coupling can be measured by noting the number of changes
 \subsection {Responsive web design}
 	Responsive web design (RWD)\cite{ wiki:RWD, CSS3} is a Web design approach aimed at crafting sites to provide an optimal viewing experience—easy reading and navigation with a minimum of re-sizing, panning, and scrolling—across a wide range of devices (from mobile phones to desktop computer monitors).
 
-	A site designed with RWD\cite{pettit, ethan}adapts the layout to the viewing environment by using fluid, proportion-based grids,flexible images, and CSS3 media queries, an extension of the @media rule.
+	A site designed with RWD\cite{pettit, ethan}adapts the layout to the viewing environment by using fluid, proportion-based grids, flexible images, and CSS3 media queries, an extension of the @media rule.
     \begin{itemize}
 	\item The fluid grid concept calls for page element sizing to be in relative units like percentages, rather than absolute units like pixels or points. 
 	\item Flexible images are also sized in relative units, so as to prevent them from displaying outside their containing element. 
@@ -141,34 +136,23 @@ The degree of the loose coupling can be measured by noting the number of changes
 	\item Satisfaction: How pleasant is it to use the design?
 	\end{itemize}
 
-	In scope of this master thesis will be covered such characteristics of usability as: learnability, efficiency and satisfaction. Rest of it together with possible enhancement will be proposed in Chapter 6 in section Future Work.
+	In scope of this master thesis will be covered such characteristics of usability as: learnability, efficiency and satisfaction. Rest of it together with possible enhancement will be proposed in Chapter 6 in the section Future Work.
 
 \section {Types of Data Sources}
-    In order to distinguish what type of data sources can be retrieved, all data sources was splitted to physical and software sensors.
-
-    Table of categorization of data sources:
-    \begin{itemize}
-    \item feeds from the web, RSS, video and music streaming
-    \item traffic information sensor network from the city ("smart city")
-    \item home automation sensors ("smart home")
-    \item continuously growing log files from researchers
-    \item crowdsourced sensors, for example road quality or running speed measured in a decentralized way with smartphones, but again also non-sensor datasets and streams
-    \item industrial/embedded sensors, robots
-    \item virtual data sources which result from aggregation
-    \end{itemize}
+    In order to distinguish what type of data sources can be retrieved, all data sources was differentiated as physical and software sensors. Sensor in such a way not just a hardware, but everything that "senses"/provides a data.
 
 	\subsection {Physical Sensors}
-	A sensor is a converter that measures a physical quantity and converts it into a signal which can be read by a observer. After receiving this signal backend have to reconvert it to a signal that can be retrieved by frontend. The main task of frontend in this case to determine what are the main types of physical sensors, how to structure and differentiate it according to their functionality and make a standard data format, by using which, backend and frontend can always easily integrate new sensors.
+	A sensor is a converter that measures a physical quantity and converts it into a signal which can be read by a observer. After receiving this signal backend have to reconvert it to a signal that can be retrieved by frontend. The main task of frontend in this case to determine what are the main types of physical sensors, how to structure and differentiate it according to their functionality and make a standard data format, by using which, backend and frontend can not only easily integrate new sensors, but can always rely on it and understand how to visualize and present it to the user.
     
-    Together with software sensors the proposed data standard is justified and explained in Section 4.3.3
+    Together with software sensors the proposed data standard is justified and explained in the Section 4.4
 
 	\subsection {Software Sensors}
-	Nowadays more and more physical information move to a Web by simplifying the way of sharing information. Already implemented thousands of public services such as: GPS coordination, weather forecast with all arising from this data, e.g. outside temperature, humidity, pressure etc., news feeds, traffic feeds, social networks. People got used to it, and today has become an inseparable part of their lives. Software sensor is not only an information from the web but all that have already implemented software support that can be used through the standard interface.
+	Nowadays more and more physical information move to a Web by simplifying the way of sharing information. Already implemented thousands of public services such as: GPS coordinate, weather forecast with all arising from it data, e.g. ambient temperature, humidity, pressure, traffic feeds. Not only physical sensors become available through the Web, but through Web 2.0, blogs, tweets, RSS feeds, social networks makes possible to create human-behavioral sensors. People got used to it, and today has become an inseparable part of their lives. Software sensor is not only an information from the web, but everything that can be interconnected through the standard web interface by using internal software from provider.
 	
-	An important research question is: how to manipulate data, made by different vendors, by using single dashboard. To define most common approach, used by vendors was made categorization\cite{schomm2013marketplaces}.
+	An important research question is: how to manipulate data, made by different vendors, by using single dashboard? To get an answer to this question and define most common approach, was used categorization by vendors\cite{schomm2013marketplaces}.
 	\begin{table}[H]
 	\centering
-	\begin{tabular}{|L{2cm}|L{7cm}|L{6cm}|}
+	\begin{tabular}{|L{2.5cm}|L{7cm}|L{6cm}|}
 	\hline
 	\textbf{Dimension} 			& \textbf{Categories} & \textbf{Question to be answered} \\
 	\hline
@@ -208,19 +192,22 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 	The facts about the data vendors were gathered by means of a Web search. As every vendor or marketplace has a website, this publicly available information was used to determine how to categorize each vendor. After having done that with the initial set of vendors, it was checked how many entries a category had to justify its existence. When a category had only few entries, a new Web search for more data suppliers falling into that category was started in order to make sure no important vendors were omitted. If more companies were found, the list was extended iteratively, and the new companies were analyzed regarding the other dimensions.
 
-	\textbf{Data Access}
-	The data access dimension describes through which means end-users receive their data from vendors. The main categories identified: 
-	\begin{itemize}
-	\item API: An API (application programming interface) is used to provide a language- and platform-independent programmatic access to data over the Internet.
-	\item Download: Traditional download of files is the easiest way to access a data set, because anyone can use such a service with only a Web browser. 
-	\item Specialized Software: Some vendors have implemented a specialized software client to connect with their Web service. While this approach does have downsides (implementation and maintenance expense, dependency issues, etc.), there are some scenarios in which the concept is worthwhile, for example, providing the customer with an easy-to-use graphical user interface as an out-of-the-box solution that needs no further customization, or granting access to real-time streams of data. 
-	\item Web Interface: In a Web interface, the data is displayed to the customer directly on a website. 
-	\end{itemize}
+	Such categorization clarify main important attributes in which customer can be interest in, namely: data access, data output, trustworthiness, data origin and time frame. Such typization appear as an appropriate attribute in a data standard, which described in details in the Section 4.4
 
-	The flexibility and modularity of APIs have made these the most popular of all access methods. More than 70\% of all vendors offer an API. However, less than 30\% of all vendors have an API as their only way to access data. Most vendors offer an API next to other methods. For example, Web interfaces or file downloads are used to give previews of the dataset, to make it easier and more accessible for the customer to see what the actual data looks like, e. g., Factual.com has an extensive Web frontend that renders tables or geodata. The concept of specialized software does not seem to stand very well on its own.This approach lacks flexibility, because customers are restricted in the way they can use the data by the functionality of the provided software. Nevertheless, most customers who want data do not want any restrictions on how they can access and process the data. From a theoretical point of view, it seems to be the best approach for a vendor to offer all the aforementioned means of access to his data, because that allows customers to choose their preferred way of access. 
+	As shown in the Table 2.2 the flexibility and modularity of APIs have made these the most popular of all data access methods. More than 70\% of all vendors offer an API. However, less than 30\% of all vendors have an API as their only way to access data. Most vendors offer an API next to other methods. For example, Web interfaces or file downloads are used to give previews of the dataset, to make it easier and more accessible for the customer to see what the actual data looks like. Preview together with all data source descriptions as a metadata will be structurized and accessible through the Web API by using data standard description.
 
-	Besides aforementioned properties of data format, the main issue for generic frontend is to dynamically retrieve information provided by data sources. It has to be done independently from the data type by using only one channel for all of them. Data will change its value during some period of time and as soon as it happens, user have to receive it automatically. Frontend is responsible for collecting and aggregating data, keeping connection with it, notifying user and visualization on GUI. Doesn't matter how often the data will be changed, but all of it can be transferred as streaming. The term streaming data, usually applied to such type of data as video, audio, or map of values. But usual approaches as HTTP GET/POST become useful in retrieving static data value. And the same approach for real-time data doesn't work. Based on that, one of the most important requirement to concept, that support any type of data, is to configure interface between backend and frontend, by using streaming channel. It provides possibility for frontend universally transfer any kind of data.
+	Besides aforementioned properties of a metadata format, the main issue for generic frontend is to dynamically retrieve information provided by data sources. It has to be done independently from the data type. Data will change its value during some period of time and as soon as it happens, user have to receive it automatically. Frontend is responsible for collecting and aggregating data, keeping connection with it, notifying user and visualize it on a GUI. Doesn't matter how often the data will be changed, but all of it can be transferred as streaming. The term streaming data, usually applied to such type of data as video, audio, or map of values. But usual approaches as HTTP GET/POST become useful in retrieving static data value. And the same approach for real-time data doesn't work. Based on that, one of the most important requirement to the concept, that support any type of data, is to configure interface between backend and frontend, by using streaming channel. 
 
+    The data categorization on which concept of a generic frontend focused on are:
+    \begin{itemize}
+    \item feeds from the web, RSS, video and music streaming
+    \item traffic information sensor network from the city ("smart city")
+    \item home automation sensors ("smart home")
+    \item continuously growing log files from researchers
+    \item crowdsourced sensors, for example road quality or running speed measured in a decentralized way with smartphones, but again also non-sensor datasets and streams
+    \item industrial/embedded sensors, robots
+    \item virtual data sources which result from aggregation
+    \end{itemize}
 
 \section{Summary}
-	This chapter gives an overview of a basic requirements to a generic frontend. Starting from main properties in Section 2.1 namely, loose coupling, fine-grained structure, multi-user binding, cross-platforming, responsive design and usability. And continuing in Section 2.2 with definition of data sources, typization and separation to a physical and software sensors. It helps to define main channels of retrieved data in which user can be interested in and based on that build a system architecture. An important part of data retrieval, without dependency on data type, is to guarantee real-time streaming. This approach provides an universal way to derive information services and possible solutions for implementation described and explained in detail in the Chapter 5.
+	This chapter gives an overview of a basic requirements to a generic frontend. Starting from main properties in Section 2.1 namely, loose coupling, fine-grained structure, multi-user binding, cross-platforming, responsive design and usability. And continuing in Section 2.2 with definition of data sources, typization and separation to a physical and software sensors. It helps to define main channels of retrieved data in which user can be interested in and based on that build a system architecture. An important part of data retrieval, without dependency on data type, is to guarantee real-time streaming. This approach provides an universal way to derive information services and possible solutions for implementation described and explained in details in the Chapter 5.

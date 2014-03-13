@@ -174,7 +174,7 @@
       \end{figure}
       XMPP uses the XML text format as its native type, making person-to-person communications natural. Like MQTT, it runs over TCP, or perhaps over HTTP on top of TCP. Its key strength is a name@domain.com addressing scheme that helps connect the needles in the huge Internet haystack.
 
-      In the IoT context, XMPP offers an easy way to address a device. This is especially handy if that data is going between distant, mostly unrelated points, just like the person-to-person case. It’s not designed to be fast. In fact, most implementations use polling, or checking for updates only on demand. A protocol called BOSH (Bidirectional streams over Synchronous HTTP) lets severs push messages. But "real time" to XMPP is on human scales, measured in seconds. Its strengths in addressing, security, and scalability make it ideal for consumer-oriented IoT applications.
+      In the IoT context, XMPP offers an easy way to address a device. This is especially handy if that data is going between distant, mostly unrelated points, just like the person-to-person case. It’s not designed to be fast. In fact, most implementations use polling, or checking for updates only on demand. A protocol called BOSH (directional streams over Synchronous HTTP) lets severs push messages. But "real time" to XMPP is on human scales, measured in seconds. Its strengths in addressing, security, and scalability make it ideal for consumer-oriented IoT applications.
 
       XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
 
@@ -284,23 +284,27 @@
   An important aspect in streaming data that some of data can be cashed on a server side, thus become possible to retrieve data after it was produced. But some streaming data consists only live data, thus there is no other options except live streaming, where the connection configuration, aliveness and quality become a key aspect. Consider absence of any concrete backend system, cashing on it's side and on frontend side can be covered in scope of this Master Thesis. As a good example of live streaming will be simulated map of values, images and text.
 
   \textbf{Sensor Functional Characteristics}
-  An essential part of concept to garantee reliable and secure data transportation. Thus, based on a system architecture every data source can acquire additional properties. Such properties can be:
+  \newline
+  An essential part of concept to garantee reliable and secure data transportation. Thus, based on a system architecture every data source can acquire additional properties:
   \begin{itemize}
   \item reliability
   \item perfomance
   \item security
   \end{itemize}
-  All these three characteristics rely on quantity of available XMPP end-points of every data source. A simple sensor, with a low level of reliability, has one and only one XMPP end-point. A reliable sensor has two endpoints, where is one is a primary, the other one is a backup/failover. A highly reliable sensor has three endpoints, among which consensus voting about the values can be done. 
+  All these three characteristics rely on quantity of available DataHubs which includes XMPP modules and provides data streaming. Since DataHub have to provide data from sensor through XMPP connection it has to support XMPP data channel configurations and plays a role of end-point for Frontend. If sensor has 2 end-points it should be mentioned in Sensor Registries attribute, the same as type of data transfer protocol(PubSub or MUC).
 
-  A high-performance sensor has more than 2 endpoints, out of which one is always chosen randomly to spread the load. 
+  A simple sensor, with a low level of reliability, has one and only one end-point. A reliable sensor has two end-points, where is one is a primary, the other one is a backup/failover. A highly reliable sensor has three endpoints, which is guarantee data receiving in case if another end-points will failover. 
 
-  A high level secure sensor has two endpoints, each of which carries encryption key and another one data itself. Without each part become not possible to retrieve whole data at all. Such type of secure data parallelization can be done by using few XMPP connections, extracted from a pool of available sensor connection.
+  A high-performance sensor has more than 2 end-points, out of which one is always chosen based on minimal latency message income. In case of big data transportation all data can be splitted and sended in parallel through the more than 2 end-points. 
 
- All this characteristics have to be automatically captured by Frontend from a predefined attributes in a standard specification provided by Registry. So that developers can know about the expected quality of the data streams even in case some endpoints become unavailable.
+  A secure sensor has at least two end-points, each of which carries some part of a data. Without each part become not possible to retrieve whole data at all. 
+
+ All this characteristics have to be automatically captured by Frontend from a predefined attributes in a standard specification provided by Registry. So that developers can get to know about the expected quality of the data streams even in case some endpoints become unavailable or add new end-points. In the meanwhile, Frontend has predefined logic, which calculate numbers of related end-point for every sensor and by using graphical elements such as icons and labels, presents this information to the user.
 
 \section{Summary}
 	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Such type of structure provides clear separation of concern between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier. To every data souce was assigned such characteristics as reliability, perfomance and level of secure information. Every characteristics rely on a number of dependent for sensor XMPP end-point.
   As a result was identified next most important modules of Application Tier: Sensors Registry, Data Hub, AuthHandler. 
+
   Data Hub responsibilities:
   \begin{itemize}
   \item be aware of metadata provided by Registry to frontend
