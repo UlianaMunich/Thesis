@@ -592,14 +592,14 @@ Demonstration of activity scenario was made by using 3d party user which is appl
 \textbf{Step 4:} To get info about personal account Max have to use Settings Tab. Where exists personal profile settings(Figure 5.14). 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.6]{Screenshots/UseCaseSettings.png}   
+\includegraphics[scale=0.6]{Screenshots/UseCaseScreenshot6.png}   
 \caption[Settings Tab]{Settings Tab}                         
 \end{figure}
 
 \textbf{Step 5:} As a developer, Max might be interested in technical details of sensor data retieval process, e.g. API references, end-point configuration, sensor data format, interface and system architecture in order to interconnect with backend directly. So Max has to go to the Admin References Tab(Figure 5.15), where he can find all available implementation detailes of a frontend itself, protocol and its extensions realization and system architecture. 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.6]{Screenshots/UseCaseScreenshot6.png}   
+\includegraphics[scale=0.6]{Screenshots/UseCaseReferences.png}   
 \caption[Administrator Tab]{Administrator Tab}                         
 \end{figure}
 
@@ -633,12 +633,16 @@ Application logic calculate automatically number of available end-points for eve
 The SensDash logic builded on top of AngularJS skeleton(Appendix C). By using two-way data binding, aggregation and presentation of a sensor metadatadata was done by using factory pattern. Together with creation of a sensor entity as a graphical object, all handlers, functionality and interconnection protocol also created for every object accrodnigly, based on abstract methods. Such a general manipulation of objects makes possible to loosely couple code and object. All sensors metadata will be automatically parsed from Sensor Registry and presented on a SensDash always in the same way. Everything done in runtime, such that if a new sensor registers itself in Registry it will appear as soon as user reload the page. 
 
 \section{Summary}
-This chapter presents details of implementation of the generic frontend concept. At first, choosen tools and development environment were presented: jQuery, HTML5, CSS as a programming language, AngularJS together with Bootstrap to interconnect application logic with XMPP interface standard and Strophe.js was picked to implement the XMPP mechanism and it's extensions. Web API was defined and afterwards used to retrieve from the Registry all available sensors by sending direct HTTP GET request. Authentification and data streaming from a web browser and XMPP server was made by using XMPP BOSH standard and XEP0049, XEP0045 extensions, based on Strophe.js and part of the was refectored as skeleton for AngularJS. 
+This chapter presents details of implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation section 5.5. 
 
-All used technologies, protocols, libraries and methodologies was gathered together in order to realize working prototype. A summary overview of all described above compunents and tools are shown on the Figure 5.19
-\begin{figure}[!ht]
+At the begining of a chapter, choosen tools and development environment were discovered and presented: jQuery, HTML5, CSS as a programming languages, AngularJS together with Bootstrap to interconnect application logic with XMPP interface standard and Strophe.js was picked to implement the XMPP mechanism and it's extensions. Web API was defined and afterwards used to retrieve from the Registry all available sensors by sending direct HTTP GET request to the Registry. Authentification and data streaming handling through the XMPP server was made by using XMPP BOSH standard and XEP0049, XEP0045 extensions, based on Strophe.js. In order to connect, disconnet, authorize, save, load, initiate connection through the XMPP interface all these methods and functions was refactored as skeleton, based on AngularJS directives and syntax. 
+
+Was presented the convinsing scenario based on ambient temperature sensor from room INF3084(hardware sensor) and IT news Feed(software sensor) and consumer application developer's requirements.
+
+All used technologies, protocols, libraries and methodologies was gathered together in order to realize working prototype. A summary overview of all implemented above components and tools are shown on the Figure 5.18.
+\begin{figure}[H]
+\centering
 \includegraphics[scale=0.5]{images/ch5Summary.png}   
 \caption[Implementation Architecture]{Implementation Architecture}                         
 \end{figure}
-Was presented the convinsing scenario based on ambient temperature sensor from room INF3084 and consumer application developer's requirements.
 
