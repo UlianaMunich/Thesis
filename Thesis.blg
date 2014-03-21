@@ -2,7 +2,6 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 The style file: unsrt.bst
-A level-1 auxiliary file: INP-00-glossary.aux
 A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: ch1.aux
 A level-1 auxiliary file: ch2.aux
@@ -10,6 +9,7 @@ A level-1 auxiliary file: ch3.aux
 A level-1 auxiliary file: ch4.aux
 A level-1 auxiliary file: ch5.aux
 A level-1 auxiliary file: ch6.aux
+A level-1 auxiliary file: appendix.aux
 Database file #1: bibliography.bib
 Warning--entry type for "jakob" isn't style-file defined
 --line 249 of file bibliography.bib
@@ -60,7 +60,7 @@ Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entr
 while executing---line 944 of file unsrt.bst
 You've used 41 entries,
             1791 wiz_defined-function locations,
-            670 strings with 10314 characters,
+            670 strings with 10307 characters,
 and the built_in function-call counts, 9405 in all, are:
 = -- 839
 > -- 374
