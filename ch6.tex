@@ -31,7 +31,7 @@
 	   \newline
 	   The concept has to have as much fine-grained structure as possible. Thus every module has to perform independent task. In such a way provides a possibility to scale and maintain system without influence to another modules. 
 
-       \textbf{What type of data sources have to be retrieved and what is the most universal interface for collaboration between backend and frontend systems? Which protocol can perform real-time data streaming independently from type of data in it?}
+       \textbf{What type of data sources have to be retrieved and what is the most universal interface for collaboration between backend and frontend systems? Which protocol can perform real-time data streaming and access to historical archives of data streams independently from type of data in it?}
        \newline
        The main type of data that have to be retrieved is a real-time streaming data. Based on XMPP interface it becomes not important which concreate type of data has any stream: text, images, array or map of vallues etc. The main technic that can be used for keeping a connection alive and guarantee the information arrival to a client side is a long-polling. 
        \newline
@@ -63,7 +63,12 @@
 		\end{itemize}
 
 		\subsubsection{Privacy and security}
-		Cookies stored inside any browser on any kind of device can be easily stollen via hacking attack on browser or account used in browser. Especially when system use single sign on it can lead to more global problems. To avoid this should be in detail researched additional possibility to encrypt data or to make authorisation process more secure.
+		Personal credentials stored via cookies inside any browser on any kind of device can be easily stollen via hacking attack. Especially when system use single sign on approach it can lead to more global problems. To avoid this should be researched in details additional possibility to encrypt data or to make authorisation process more secure.
+        \newline
+        An opportunity to specify data source as high secure if its data splitted between more than 1 end-point have to be discovered. Even if the data will be splitted to 2, 3 or more parts and then combined to one on a frontend side, an encryption system have to be used. Since all frontend are client-based, exist an opportunity to debug and rewrite everything from a console of a browser, if JID and password are known.
+
+        \subsubsection{Collaborative space}
+         In order to perform social collaboration between different users, would be helpful to have a possibility to rate the data source or left comments. Users can share their experience, help each other, define hot topics, leave personal rating and help administrator to improve the system itself. Since now, personal preferences such as: subscriptions, favorites, user data are stored on a XMPP server by using XEP0049(XML-based private namespace), it is not possible to share personal rating or comments with someone else, because someone else can change everything froma  browser. Thus, needed to be explored another family of XMPP extension, which can provide sharing space with opportunity to lock possibility to vote twice, or to change comments of another user and etc.  
 
 		\subsubsection {Integration with other application via Internet}
 		 The best opportunity to make application widely-used is to enhance list of supported hardware and software sensors. But a lot of system already propose their own sensors and corresponding app to it. How possible will be to create additional module for enhancement that will play a role of retranslator or proxy between two different systems? In which information in such a case interested a developer of a consumer application? Would not be better firstly to specify main topics and propose to choose the most relevant for his/her search?

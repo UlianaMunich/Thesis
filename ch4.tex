@@ -66,9 +66,9 @@
         \end{figure}
 
 \section{Application Tier}
-  This layer coordinates the application, processes commands, makes logical decisions and evaluations, and performs calculations. It also moves and processes data between the two surrounding layers.
+  This layer coordinates the application, processes commands, makes logical decisions and evaluations and performs calculations. It also moves and processes data between the two surrounding layers.
 
-  Application tier consists all logical modules: Web server, Sensor Registry, Data Hub and Web-based Frontend. All these modules connect to each other as shown on the Figure 4.4. 
+  Application tier consists all logical modules: Web server, Registry, Data Hub and Web-based Frontend. All these modules connect to each other as shown on the Figure 4.4. 
     \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.6]{images/Structure.png}   
@@ -78,13 +78,13 @@
     System Architecture splitted to a backend and frontend, that gives an overview how these two parts interconnected. Respectively backend/frontend implementation means that all modules of each side have to be implemented according to system architecture. Such module as Registry and Data Hub defined and standardized by frontend side but implementation of it are a backend responsibility. Also on the Figure 4.4 presents a end-user, which doesn't know anything about implementation behind the scenes. Registry and Data Hub defined and standardized by frontend in order to clarify interface of collaboration with backend system.
 
   \subsection{Registry}
-    The Registry is a module responsible for storing an info about all available sensors registered in the network in order to provide descriptional overview to the user. Frontend's GUI requests and aggregates info from Registry about registered sensors and their availability. By using simple Web API, so that any Registry that implements suggested API and returns valid JSON, which consists such info as: id of sensor, description, availability(true or false), access(private or public), provider of sensed data, SLA, number of end-points available for one sensor, title and type. By using Web API, the concept define an interface standard and provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. By simply using browser GUI a user can add new Registry address and submit it by using respective form.
+    The Registry is a module responsible for storing an info about all available sensors registered in the network in order to provide descriptional overview to a user. Frontend's GUI requests and aggregates info from Registry about registered data sources and their availability. By using simple Web API, so that any Registry that implements suggested API and returns valid JSON, which consists such info as: id of sensor, description, availability(true or false), access(private or public), provider of sensed data, SLA, number of end-points available for one sensor, title and type. By using Web API, the concept define an interface standard and provides a possibility to dynamically connect and disconnect different Registries, that are required in a different context of usage. By simply using browser GUI a user can add new Registry address, which fully corresponds to defined structure, and submit it by using respective form.
 
-    Before publishing data to Registry, a data publisher, which is a part of backend, have to register the sensor by providing its static descriptions. This metadata consists sensor name, type, availability, SLA, data type(text, map of values, images and etc.), access type, provider name and further details, and also if possible some real examples of a data or preview possibility, as well as a free text description for a user searching query.
+    Before publishing data to Registry, a data publisher, which is a part of backend, have to register the sensor by providing its static descriptions. This metadata consists sensor name, type, availability, SLA, data type(text, map of values, images and etc.), access type, provider name and further details, and also if possible some real examples of a data or preview possibility, as well as a free text description for a user searching query. An important attribute of a sensor is its "id". It must be unique for every data source, in order to avoid inconsistency between different registries. End-points responsible for one sensor, have to be sctuctured in heuristic order, in order to switch between end-points when another one is failover. The number of end-points through which data streaming are performed not limited.
 
-    Such architecture module helps system to structure sensors according to the type,  and as a result automatically generate the graphical container for it. Based on standard description, rendering of the sensor data in the client tier become essential part, because it simplifies the way of sensors integration. 
+    Such architecture module helps system to structure sensors according to the type and as a result automatically generate the graphical container for it. Based on standard description, rendering of the sensor data in the client tier become essential part, because it simplifies the way of sensors integration. 
 
-    The Registry, specifies simple interface standard in JSON format to encode all available attributes and properties, transferred by using Web API approach. Thus, it is much simpler and light-weighted than XML. And separate metadata of a sensor from a real-time data stream. 
+    The Registry, specifies simple interface standard in JSON format to encode all available attributes and properties, transferred by using Web API approach. Thus, it is much simpler and light-weighted than XML and separate metadata of a sensor from a real-time data stream. 
 
   \subsection{Data Hub}
     Since Registry of sensors responsible for collecting metadata of sensors, Data Hub is responsible for mapping interface of particular sensor data stream into a format supported by frontend and delivered through the common universal protocol. It means that Data Hub has to satisfy next requirements:
@@ -102,7 +102,8 @@
 
     \textbf{Backend Entry Point}
     \newline
-    Data Hub and Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of these parts support common standards such as Web API, HTTP GET, AJAX, JSON file format, it makes easily possible to implement it inside any backend system without dependency on OS type, Framework or implementation language on both sides.
+    Data Hub and Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of these parts support common standards such as Web API, HTTP GET, AJAX, JSON file format, it makes possible to implement it inside any backend system without dependency on OS type, Framework or implementation language on both sides. Separation between metadata and streaming data increase scalaility of a system, such that any number of Registries and Data Hubs can be deployed in runtime of a system. All content of a new data will appear ynamically on the web page.
+
 
   \subsection{Web-based Frontend}
     \subsubsection{Web server}
@@ -270,16 +271,20 @@
   \end{itemize}
   All these three characteristics rely on quantity of available Data Hubs which includes XMPP modules and provides data streaming. Since Data Hub have to provide data from sensor through XMPP connection it has to support XMPP data channel configurations and plays a role of end-point for Frontend. If sensor has 2 end-points it should be mentioned in Registries attribute, the same as type of data transfer protocol.
 
-  A simple sensor, with a low level of reliability, has one and only one end-point. A reliable sensor has two end-points, where is one is a primary, the other one is a backup/failover. A highly reliable sensor has three endpoints, which is guarantee data receiving in case if another end-points will failover. 
+  A simple sensor, with a low level of reliability, has one and only one end-point(Figure 4.10 a). A reliable sensor has two end-points, where is one is a primary, the other one is a backup/failover(Figure 4.10 c). A highly reliable sensor has three endpoints, which is guarantee data receiving in case if another end-points will failover. 
+     \begin{figure}[!ht]
+     \centering
+     \includegraphics[scale=0.6]{images/FuncCharacteristics.png}   
+     \caption[MVC Pattern]{Sensor Functional Characteristics}                      
+     \end{figure}
+  A high-performance sensor has more than 2 end-points(Figure 4.10 c), out of which one is always chosen based on minimal latency message income. In case of big data transportation all data can be splitted and sended in parallel through the more than 2 end-points. 
+    
+  A secure sensor has at least two end-points, each of which carries some part of a data(Figure 4.10 b). Without each part become not possible to retrieve whole data at all. 
 
-  A high-performance sensor has more than 2 end-points, out of which one is always chosen based on minimal latency message income. In case of big data transportation all data can be splitted and sended in parallel through the more than 2 end-points. 
-
-  A secure sensor has at least two end-points, each of which carries some part of a data. Without each part become not possible to retrieve whole data at all. 
-
- All this characteristics have to be automatically captured by Frontend from a predefined attributes in a standard specification provided by Registry. So that user can get to know about the expected quality of the data streams even in case some endpoints become unavailable or add new end-points. In the meanwhile, Frontend has predefined logic, which calculate numbers of related end-point for every sensor and by using graphical elements such as icons and labels, present this information to the user.
+ All this characteristics have to be automatically captured by Frontend from a predefined attributes in a standard specification provided by Registry. So that user can get to know about the expected quality of the data streams even in case some end-points become unavailable. In the meanwhile, Frontend has predefined logic, which calculate numbers of related end-point for every sensor and by using graphical elements such as icons and labels, presents this information to the user on the welcome screen. In case if one end-point will failover, and data source has additional end-point, Frontend automatically through the AJAX request, reconnects to the next end-point and user can continue receiving data. Such users, as developer of a mobile application, which wants to use Frontend as a proxy for their application, would be necessary to understand the order of end-points, and clarify how to interconnect them in order to provide high-secure, reliable and high-performance data retrieval.
 
 \section{Summary}
-	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Fine-grained structure provides clear separation of concern between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally, Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier. To an every data souce was assigned such characteristics as reliability, perfomance and level of secure information. Every characteristics rely on a number of responsible for sensor XMPP end-point. As a result was identified next most important modules of Application Tier: Registry, Data Hub, AuthHandler. 
+	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Fine-grained structure provides clear separation of concerns between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally, Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier. To an every data souce was assigned such characteristics as reliability, perfomance and level of secure information. Every characteristics rely on a number of responsible for sensor XMPP end-point. As a result was identified next most important modules of Application Tier: Registry, Data Hub, AuthHandler. 
 
   Data Hub responsibilities:
   \begin{itemize}

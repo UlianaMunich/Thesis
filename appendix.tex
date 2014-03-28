@@ -1,12 +1,12 @@
 \chapter{Registry JSON Standard}
-For hardware sensor from INF3084 university room, which produces a map of temperature values, a standart metadata descriptions shown in the Listing~\ref{hardware_registry}
+In the Section 5.3 \emph{Evaluation} was introduced only some part of a Regisry interface standrad. The whole metadata which is needed from sensor in order to dynamically build whole content and functional handlers are shown in the Listing~\ref{hardware_registry}, on the example of ambient temperature sensor. Type of data provided by this sensor is a map of temperature values, which is updated every 5 seconds.
 \begin{lstlisting}[label=hardware_registry,caption=JSON Description Format]
 [
      {
             "id": "30",
             "title": "Ambient Temperature INF3084",
             "availability": true,
-            "last_update": "2013-08-07T11:14:34.000+02:00",
+            "last_update": "2014-04-03T11:14:34.000+02:00",
             "description": "DSE students receive an opportunity to get current outdoor temperature in Dresden Momsenstr.20. This sensor provides temperature updates with 5-second frequency and represents a class of low-cost, high-performance sensors. It is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time.",
             "sla": "Sensor resolution is 0.5 C, measurements taken every 10 seconds. Uptime 95% from 6:00 till 22:00.",
             "sla_last_update":"1395005996",
@@ -33,7 +33,7 @@ For hardware sensor from INF3084 university room, which produces a map of temper
                 },
                 {
                     "type": "muc",
-                    "name": "xmpp://chat1@conference.likepro.co",
+                    "name": "xmpp://inf3086@conference.mobilis-dev.inf.tu-dresden.de",
                     "pwd": null
                 }
             ],
@@ -82,29 +82,28 @@ For software sensor,which produces text messages, a standart metadata descriptio
 [
     {
         "id": "20",
-        "title": "City Traffic",
+        "title": "IT News Feed",
         "availability": true,
-        "last_update": "2013-08-07T11:14:34.000+02:00",
-        "description": "Provides an overview of current traffic jams level in the city my using googlemap",
+        "last_update": "2014-04-02T11:14:34.000+02:00",
+        "description": "Provides up to date news in IT and Telecommunication area together with information about new gadgets.",
         "sla": "",
-        "sla_last_update": "",
-        "icon": "img/icon/traffic_icon.png",
-        "picture": "img/sensor_images/dresdentraffic.jpg",
+        "sla_last_update": "1395663569",
+        "icon": "img/sensor_images/itIcon.jpg",
+        "picture": "img/sensor_images/itNews.jpg",
         "preview": "",
         "access": "public",
-        "provider_name": "Google",
-        "provider_www": "www.google.com",
+        "provider_name": "TU Dresden",
+        "provider_www": "http://www.inf.tu-dresden.de/",
         "location": "Dresden",
         "dev_details": "true",
         "EPConfig": "config20.pdf",
         "end_points": [
             {
                 "type": "muc",
-                "name": "xmpp://testraum@conference.mobilis-dev.inf.tu-dresden.deo",
+                "name": "xmpp://testraum@conference.mobilis-dev.inf.tu-dresden.de",
                 "pwd": null
             }
         ],
-        "trust_level": "",
         "type": "text",
         "template": ""
     }
@@ -112,14 +111,14 @@ For software sensor,which produces text messages, a standart metadata descriptio
 \end{lstlisting}
 
 \chapter{XEP0049 saving user preferences}
-Subscriptions map:
+In the Section 5.3.2 \emph{SensDash Implementation} the functionality to save and retrieve personal preferences of a user by using the XMPP private XML-based namespace are shown below in the subscriptions map:
 \begin{lstlisting}
 {
     "20": [
         "0": {
             "handler_id": "20",
             "handler_type": "text",
-            "name": "xmpp://testraum@conference.mobilis-dev.inf.tu-dresden.deo",
+            "name": "xmpp://testraum@conference.mobilis-dev.inf.tu-dresden.de",
             "pwd": null,
             "sla_last_update": "",
             "type": "muc"
@@ -144,10 +143,37 @@ Subscriptions map:
     ]
 }
 \end{lstlisting}
-Where in the same time favorites array consists only ids of sensor which Max added: ["1", "4"].
+But in comparison to subscriptions map of a user the his/her personal favorites are saved in array, which consists only ids of sensor: ["20", "30"].
+
+\chapter{AngularJS and Reliable Sensor Functionality}
+In the Section 5.3.2 \emph{SensDash Implementation} the one of the main functional characteristic of a sensor, namely reliability was implemented.
+
+Firstly, the list of end-points defined in Registry as "end\_points" have to be sorted based on their priority on a server side, example are in the Appendix A. Then, SensDash checks if the room is not empty and also if it has someone except of a user. The part of a code below are shown below:
+\begin{lstlisting}
+ check_room: function(full_room_name, end_points) {
+            if (!xmpp.endpoints_to_handler_map[full_room_name]) {
+                return;
+            }
+            var ep = xmpp.endpoints_to_handler_map[full_room_name];
+            if (ep.participants.length == 0) {
+                console.log("Room is empty, endpoint rejected: " + full_room_name);
+                for (var i = 0; i < end_points.length; i++) {
+                    // find invalid room in all end_points list, delete it, and call subscribe again
+                    if (end_points[i].handler_id == ep.handler_id) {
+                        xmpp.unsubscribe(end_points[i]);
+                        end_points.splice(i, 1);
+                        xmpp.subscribe(end_points);
+                    }
+                }
+            } else {
+                console.log("Room is not empty, endpoint approved: " + full_room_name);
+            }
+        }
+\end{lstlisting}
+This functionality enhance the basic list of xmpp-based functions and called for xmpp subscriptions(joining the room).
 
 \chapter{AngularJS factory for XMPP Connection}
-Skeleton of XEP0049 and XEP0045 are shown above:
+In the Section 5.3.2 \emph{SensDash Implementation} in order to handle all requests which goes through the XMPP, was implemented next skeleton:
 \begin{lstlisting}
 sensdash_services.factory("XMPP", ["$location", "Graph", "Text", function ($location, Graph, Text) {
     if (typeof Config === "undefined") {
@@ -287,3 +313,4 @@ sensdash_services.factory("XMPP", ["$location", "Graph", "Text", function ($loca
     return xmpp;
 }]);
 \end{lstlisting}
+Which has main functions: XMPP.connect(), XMPP.subscribe()(In case of MUC chat room it means join the room), XMPP.unsubscribe()(For MUC chat rooms it means leave the room), XMPP.handle\_incoming\_muc(), XMPP.handle\_incoming\_pubsub(). Last two functions handles MUC or PubSub connection, based on the type of end\_point, given in a Registry.

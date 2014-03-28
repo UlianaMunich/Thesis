@@ -12,6 +12,7 @@
 
 
 \section{Development Environment}
+ \subsection{Programming language}
 	As a programming languages for implementation of this work jQuery\footnote{jQuery programming language, \url{http://jquery.com/}} and HTML5\footnote{HTML specification, \url{http://www.w3.org/wiki/HTML/Specifications}} together with CSS\footnote{CSS specification, \url{http://www.w3.org/Style/CSS/specs.en.html}} was chosen. jQuery is a fast, small, well documented, easy and widely used and feature-rich JavaScript library. Where the JavaScript is most commonly used as part of web browsers, whose implementations allow client-side scripts to interact with the user, control the browser, communicate asynchronously, and alter the document content that is displayed. It is also being used in server-side programming, game development and the creation of desktop and mobile applications. In addition to JavaScript Jquery has such an important properties as: chaining, easy-to-use AJAX, event handlers, CSS selectors, pluins. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. It enables the project code to be portable over different platforms and provides opportunity for robust and effective development. The choice is dictated mostly by two aspects. On the one hand, the system that is being developed is distributed by it's nature. On the other hand, jQuery has low entry barrier, and the code written in this language is extremely readable, laconic and understandable. These facts make further support of written code much easier for other developers that have an experience with any other JavaScript library. 
 	\newline
 	To show justification of choosen approach was made comprehensive comparison between main web toolkits/libraries as Dojo\footnote{Dojo documentation, \url{http://dojotoolkit.org/features/}}, Prototype\footnote{Prototype documentation, \url{http://prototypejs.org/}}, Yahoo User Interface(YUI) and ExtJS\footnote{ExtJS documentation,\url{http://docs.sencha.com/extjs/4.2.2/}} that shown in the Table 5.1. 
@@ -43,7 +44,7 @@
 	Touch events		& with Plugin & yes & yes & - & yes \\
 	\hline 
 	\end{tabular}
-	\caption[Caption in TOC]{Comparison of JavaScript frameworks}
+	\caption[Comparison of JavaScript frameworks]{Comparison of JavaScript frameworks}
 	\label{tab:JS_frameworks}
 	\end{table}
 	Also the most important part is a version of browser support which is presented in the Table 5.2 . jQuery\footnote{jQuery browser support, \url{http://jquery.com/browser-support/}}, Dojo\footnote{Dojo browser support,\url{http://livedocs.dojotoolkit.org/releasenotes/1.4}}, Prototype\footnote{Prototype browser support, \url{http://prototypejs.org/doc/latest/Prototype/Browser/index.html}}, YUI\footnote{YUI browser support, \url{http://yuilibrary.com/yui/environments/}}, ExtJS\footnote{ExtJS browser support, \url{http://www.sencha.com/products/extjs/}}.
@@ -66,11 +67,10 @@
 	Internet Explorer		& 6+ & 6+ & 6+ & 6+ & 6+ \\
 	\hline
 	\end{tabular}
-	\caption[Caption in TOC]{Browser Support}
-	\label{tab:internal_results}
+	\caption[Browser Support]{Browser Support}
 	\end{table}
-    
-    \textbf{XMPP Client on JavaScript}
+
+    \subsection{XMPP Client on JavaScript}
 
 	Web applications are cross-platform, easily deployable, and come with a large user base already familiar with them. More than that, web technologies make heavy use of HTML, and it is often the case that tools for manipulating HTML work very well on XML, and therefore, on XMPP, which is build based on Jquery. XMPP specification standardized the format of message by using stanzas, which is based on XML format and use XMPP-oriented tags. Thus, in order to implement web-based client-side application based on XMPP was used Strophe.js\footnote{Strophe.js an XMPP library for JavaScript, \url{http://strophe.im/strophejs/}}.
 
@@ -78,54 +78,26 @@
 
     Strophe.js define and implements main methods and functions to generate, send and transfer XML-based stanzas. Also it has methods which allows to connect to a XMPP server, to send a message to a user, to add a contact - and it knows about the XML that needs to be sent to the server to carry out these actions. 
 
-\section{Web-based Framework Analysis}
- \begin{itemize}
-	\item \textbf{Twitter Bootstrap}
-	\newline
+\subsection{Web Frameworks}
+   \subsubsection{Twitter Bootstrap}
 	Twitter Bootstrap is the most popular and widely used framework, nowadays. It's a beautiful, intuitive and powerful web design kit for creating cross browser, consistent and good looking interfaces. It offers many of the popular UI components with a plain-yet-elegant style, a grid system and JavaScript plugins for common scenarios.
 
 	It consists of four main parts:
 	Scaffolding – global styles, responsive 12-column grids and layouts. Has some expressive features like tablets and mobile grids which maintain the grid column structure instead of collapsing the grid columns into individual rows when the viewport is below 768 or 480 pixels wide. Base CSS – this includes fundamental HTML elements like tables, forms, buttons, and images, styled and enhanced with extensible classes. Components – collection of reusable components like dropdowns, button groups, navigation controls (tabs, pills, lists, breadcrumbs, pagination), thumbnails, progress bars, media objects, and more. JavaScript – jQuery plugins which bring the above components to life, plus transitions, modals, tool tips, popovers, scrollspy (for automatically updating nav targets based on scroll position), carousel, typeahead (a fast and fully-featured autocomplete library), affix navigation, and more. Twitter Bootstrap in addition to vanilla CSS includes support for the two most popular preprocessors, Less and Sass.
 	
-	\item \textbf{Foundation}
-	\newline
-	Foundation is a powerful, feature-rich, responsive front-end framework. With Foundation user can quickly prototype and build websites or apps that work on any kind of device, with tons of included layout constructs, elements and best practices. It's built with mobile first in mind, utilitizes semantic features, and uses Zepto instead of jQuery in order to brings better user experience and faster performance.
+	%\begin{figure}[!ht]
+	%\centering
+	%\includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
+	%\includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
+	%\includegraphics[scale=0.7]{images/Kube.png}  
+	%\caption[Framework Comparison]{Framework Comparison\footnote{\url{http://usablica.github.io/front-end-frameworks/compare.html}}}                        
+	%\end{figure}
 
-	Foundation has a 12-column flexible, nestable grid powerful enough to create rapidly multi-device layouts. There are styles for typography, buttons, forms, and various navigation controls. And, JavaScript plugins including dropdowns, orbit (a responsive image slider with touch support), reveal(for creating modal dialogues or pop-up windows) and tooltips.
-	
-	\item \textbf{GroundworkCSS}
-	\newline
-	GroundworkCSS is a new, fresh addition to the front-end frameworks family. It's a fully responsive HTML5, CSS and JavaScript toolkit built with the power of Sass and Compass which gives the ability to rapidly prototype and build websites and apps that work on virtually any device.
-
-	It offers an flexible and fluid grid system that makes creating any layout possible. Feature is a jQuery ResponsiveText plugin which allows to have dynamically sized text that adapts to the width of the viewport: extremely useful for scalable headlines and building responsive tables. The framework includes UI components like tabs, responsive data tables, buttons, forms, responsive navigation controls, tooltips, modals and many more. It also offers a set of vector social icons and a full suite of pictographic icons included in FontAwesome. GroundworkCSS is well documented with many examples. The only thing as a weakness is the missing of a way to customize download.
-
-	\item \textbf{Gumby}            
-	\newline
-	Gumby is simple, flexible, and robust front-end framework built with Sass and Compass.
- 
-	Its fluid-fixed layout self-optimizes the content for desktop and mobile resolutions. It supports multiple types of grids, including nested ones, with different column variations. Gumby has two PSD templates that get user started designing on 12 and 16 column grid systems. The framework offers feature-rich UI Kit which includes buttons, forms, mobile navigation, tabs, skip links, toggles and switches, drawers, responsive images, retina images, and more. An awesome set of responsive, resolution independent Entypo icons, is completely integrated into the Gumby Framework. Gumby has also a good customization. 
-	
-	\item \textbf{Kube}
-	\newline
-    Kube is a minimal, responsive and adaptive framework with no imposed styling which gives to user the freedom to create. It offers basic styles for grids, forms, typography, tables, buttons, navigation, and other stuff like links or images. The framework contains one compact CSS file for building responsive layouts with ease and two JS files for implementing tabs and buttons in your designs. If user is looking for maximum flexibility and customization, user can download developer version which includes LESS files, with variables, mixins and modules.
-	\end{itemize}
-
-	\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.7]{images/Bootstrap&Foundation.png}
-	\includegraphics[scale=0.7]{images/Groundwork&Gumby.png} 
-	\includegraphics[scale=0.7]{images/Kube.png}  
-	\caption[Framework Comparison]{Framework Comparison\footnote{\url{http://usablica.github.io/front-end-frameworks/compare.html}}}
-	\label{img:Bootstrap&Foundation.png}
-	\label{img:Groundwork&Gumby.png}   
-	\label{img:Kube.png}                          
-	\end{figure}
-
- Among all of the described above Web frameworks the most reasonable to choose Twitter Bootstrap. It has all possible nowadays visualization modules, have been used for more than 1500+ sites, well-known among developers, reach API and examples, supported by all browsers, has a build-in fluid grid systems, customizable, that is simplify a lot development of a cross-browser application.
+ The reason to use Twitter Bootstrap, based on available visualization modules, it was used for more than 1500+ sites, well-known among developers, reach API and examples, supported by all browsers, has a build-in fluid grid systems, customizable, that is simplify a lot development of a cross-browser application.
 
  Examples of used modules of a Twitter Bootstrap are shown on a screenshots in the section 5.7. It consists: buttons, navigation tabs bar, log in form, search field, 4/3/2-columns  grid layout, modals, tooltips and carousel for preview images. All GUI was made by using only CSS and HTML structure of a Twitter Bootstrap. All animations, appearence, dynamic adaptivity was done by using special tags, anchors and classes. 
 
-\section{JavaScript MV* Frameworks}
+\subsubsection{JavaScript MV* Frameworks}
 	As was mentioned in the section 4.3.3, very important to realize loosely coupled system. Needs to be separated visualization of graphical modules on a web page from a code that is responsible for retrieving of a content. Thus was used AngularJS\footnote{AngularJS,\url{http://angularjs.org/}}. It is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment web-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing simpler.The library reads in HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is fully extensible and works well with other libraries such as jQuery, on top of which was build XMPP. Every feature can be modified or replaced to suit unique development workflow and feature needs.
 
     The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding(Figure 5.2) that allows automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
@@ -504,14 +476,9 @@ Figure 5.8 shows the process flow of how and when a client can subscribe/retriev
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%EVALUATION%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluation}
 Evaluation are done as a proof of concept by demonstrating a scenario of distributed XMPP-driven web site accessing data from a hardware and software sensors. Where as software sensor was taken a bot, which periodically sends some IT news in a text format. And as a hardware sensor was used a temperature sensor from university. To the prototype was given a name: SensDash(Sensor Dashboard). Temperature sensor was provided as a testing environment in scope of ACDSee project, together with TU Dresden, BTU Cottbus - Senftenberg and RWTH Aachen University. It locates in the room INF3084, Faculty of Information Technology, Chair of Computer Science. The sensor part represents a class of low-cost, high-performance sensors. It is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time. Everything concerning sensor are installed on Mobilis server. According to the system architecture on the Figure 5.10, everything concerning sensor data are assumed implemented on a DataHub. Which has pre-installed XMPP server supporting MUC rooms, each carry a description field which qualifies them as sensor MUC rooms. The temperature sensor itself is a Data Source 1 and Data Source 2 respectively is a software sensor  presented on the Figure 5.10.
-        \begin{figure}[!ht]
-		\centering
-		\includegraphics[scale=0.6]{images/UseCaseScheme1.png}   
-		\caption[Use Case System Architecture Scheme]{System Architecture Scheme}                         
-		\end{figure}
 
-The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobilis-dev.inf.tu-dresden.de and has the next JSON description(Listing~\ref{json_sensor}):
-	\begin{lstlisting}[label=json_sensor,caption=JSON Description Format]
+The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobilis-dev.inf.tu-dresden.de and has the next JSON description(Listing~\ref{json_sensor_1}):
+	\begin{lstlisting}[label=json_sensor_1,caption=JSON Description Format]
 {
     "sensormuc": {
         "type": "AMBIENT_TEMPERATURE",
@@ -525,42 +492,39 @@ The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobi
     }
 }
 	\end{lstlisting}
+     \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.6]{images/UseCaseScheme1.png}   
+        \caption[Use Case System Architecture Scheme]{System Architecture Scheme}                         
+        \end{figure}
 Firstly it has to be registered in the Sensor Registry with an unique id and fulfill the attributes defined in JSON Registry standard accordingly. Since in scope of Master Thesis neither in scope of ACDSee project not included to implement automative Registry, where sensor have to be registered, metadata describing temperature sensor was added manually. The full example of metadata existed in Registry can be found in Appendix A, and the Listing~\ref{sensor_registry} below presents only main charactristics, defined as attribute:
 	\begin{lstlisting}[label=sensor_registry,caption=JSON Description Format]
-	[
-     {
+[
+    {
             "id": "30",
             "title": "Ambient Temperature INF3084",
             "availability": true,
             "description": "DSE students receive an opportunity to get current outdoor temperature in Dresden Momsenstr.20. This sensor provides temperature updates with 5-second frequency and represents a class of low-cost, high-performance sensors. It is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time.",
-            "sla": "Sensor resolution is 0.5 C, measurements taken every 10 seconds. Uptime 95% from 6:00 till 22:00.",
+            "sla": "Sensor resolution is 0.5 C, measurements taken every 5 seconds. Uptime 95% from 6:00 till 22:00.",
             "sla_last_update":"1395005996",
             "access": "private",
             "provider_name": "Provider TU Dresden",
-            "location": "Dresden",
+            "location": "Dresden",            
+            "type": "chart",
             "end_points": [
                 {
                     "type": "muc",
-                    "priority": "main",
                     "name": "xmpp://inf3084@conference.mobilis-dev.inf.tu-dresden.de",
                     "pwd": null
                 },
                 {
                     "type": "muc",
-                    "priority": "alternative",
                     "name": "xmpp://inf3086@conference.mobilis-dev.inf.tu-dresden.de",
-                    "pwd": null
-                },
-                {
-                    "type": "muc",
-                    "priority": "optional",
-                    "name": "xmpp://inf3087@conference.mobilis-dev.inf.tu-dresden.de",
                     "pwd": null
                 }
 
-            ],
-            "type": "chart"
-        }
+            ]
+    }
 ]
 	\end{lstlisting}
 Demonstration of activity scenario was made by using 3d party user which is application consumer developer. His name Max and he has to create specific mobile application. A sa result, firstly he needs to define which sensors to use and how to retrieve an info from it. 
@@ -610,15 +574,14 @@ After real example of SensDash usage was described in the previous section, need
 
 \textbf{Preferences Saving} are done by using XEP0049 and stored on the XMPP server. When a user sign in to the system first time, application logic creates fully empty account with no subscriptions and favorites. Once a user subscribes to any resource, this resource automatically appear on Subscriptions Tab and added to the subscriptions map. The same for favorites and Favorite Tab, but favorites, due to simple structure are saved in a simple favorites array. It means that system has saved this preferences on XMPP server by using one of the extension called XEP0049, based on private space for every JID without interconnection with backend. Next time when user will log in to the system, all saved subscriptions and favorites will be loaded in the meanwhile and appear in corresponding tabs. An example subscriptions map and favorites array for Max are presented in Appendix B.
 
-\textbf{Functional characteristic of a sensor}
-\newline
+\subsubsection{Functional characteristic of a sensor}
 In the section 4.4 was clarified 3 main characteristics which acquire sensor based on a system architecture. Since realization of a Data Hub fully rely on a backend, but in proposed evaluation was used XMPP server, become possible to differentiate security, reliability and performance level based only on a server configuration. Where every end-point is a MUC chat room(Figure 5.16). 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{images/security.png}   
 \caption[Security]{Data secure transfer using Chat Rooms}                         
 \end{figure}
-Application logic calculate automatically number of available end-points for every sensor, based on Registry info and shows it on the main page as shown above on the Figure 5.17. The rules of how was calculated the security level or reliability are described in the Section 4.4, Subsection "Sensor Functional Characteristics".
+Application logic calculate automatically number of available end-points for every sensor, based on Registry info and shows it on the main page as shown above on the Figure 5.17. The rules of how was calculated the security level or reliability are described in the Section 4.4, Subsection "Sensor Functional Characteristics"(Appendix C).
 \newline
 \begin{figure}[!ht]
 \centering
@@ -630,7 +593,7 @@ Application logic calculate automatically number of available end-points for eve
 
 \textbf{Data Streaming} is the point where Data Hub as a part of a backend come into a picture. All data streaming works through XMPP extensions called XEP0049(MUC) or XEP0045(MUC). In presented example with ambient temprature in INF3084 was used MUC for retrieving real-time data throug the BOSH. Since generic frontend supposed to support all possible approaches, it also provides realization for PubSub(XEP0060). By using Strophe.js as a client-side web-based library was made refactoring according to skeleton defined by AngularJS. 
 \newline
-The SensDash logic builded on top of AngularJS skeleton(Appendix C). By using two-way data binding, aggregation and presentation of a sensor metadatadata was done by using factory pattern. Together with creation of a sensor entity as a graphical object, all handlers, functionality and interconnection protocol also created for every object accrodnigly, based on abstract methods. Such a general manipulation of objects makes possible to loosely couple code and object. All sensors metadata will be automatically parsed from Sensor Registry and presented on a SensDash always in the same way. Everything done in runtime, such that if a new sensor registers itself in Registry it will appear as soon as user reload the page. 
+The SensDash logic builded on top of AngularJS skeleton(Appendix D). By using two-way data binding, aggregation and presentation of a sensor metadatadata was done by using factory pattern. Together with creation of a sensor entity as a graphical object, all handlers, functionality and interconnection protocol also created for every object accrodnigly, based on abstract methods. Such a general manipulation of objects makes possible to loosely couple code and object. All sensors metadata will be automatically parsed from Sensor Registry and presented on a SensDash always in the same way. Everything done in runtime, such that if a new sensor registers itself in Registry it will appear as soon as user reload the page. 
 
 \section{Summary}
 This chapter presents details of implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation section 5.5. 
@@ -643,6 +606,6 @@ All used technologies, protocols, libraries and methodologies was gathered toget
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{images/ch5Summary.png}   
-\caption[Implementation Architecture]{Implementation Architecture}                         
+\caption[Implementation Architecture]{Integrated Implementation Architecture}                         
 \end{figure}
 
