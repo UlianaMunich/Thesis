@@ -2,11 +2,11 @@
 \chapter{Conclusions and Outlook}
 
 \section{Conclusions}
-	This chapter presents the achivement of the presented thesis and provides an brief overview of each chapter.  The presented thesis consists of six chapters including the current chapter. An overall answers to the addressed researched questions are given. And chapter underlined with future work proposals and descriptions.
+	This chapter contains the achivement of the presented thesis and provides a brief overview of each chapter. The presented thesis consists of six chapters including the current chapter. An overall answers to the addressed researched questions are given. And chapter underlined with future work proposals and descriptions.
 
 	\textbf{Chapter 1}:Introduction
 	\newline
-	 the motivation(section 1.1) of the work arguing the necessity of creation of a generic frontend. The main research questions and the goals that have to be achieved in the thesis are formalized in the section 1.2. The structure of the master thesis(section 1.4) completes the first chapter. 
+	 the motivation(Section 1.1) of the work arguing the necessity of creation of a generic frontend. A global area of application usage presented in the Section 1.2, covering infrastructure, tools and protocols and application overview iself. The main research questions and the goals that have to be achieved in the thesis are formalized in the section 1.2. The structure of the master thesis(Section 1.4) completes the first chapter. 
    
     \textbf{Chapter 2}: Foundation and Requirements
     \newline
@@ -14,9 +14,9 @@
     
     \textbf{Chapter 3}: State of the Art
     \newline
-	has introduced main approaches of building web-based dashboards for different types of sensed data. The section 3.1 provides list of projects devoted to retrieve sensed data from the web and another resources such as: temperature, humidity, traffic sensors. Was studied not only scientific research projects but also private customer-oriented solutions for Big Data management. In total 13 projects was structured and characterized according to formulated properties of a generic frontend concept.
+	has introduced main approaches of building web-based dashboards for different types of sensed data. The section 3.1 provides list of projects devoted to retrieve sensed data from the web and another resources such as: temperature, humidity, traffic sensors. During writing this thesis, not only scientific research projects were discovered but also private customer-oriented solutions for Big Data management. In total 13 projects were structured and characterized according to formulated properties of a generic frontend concept.
 
-	The section 3.2 consists main methodologies of a design and implementation of a generic frontend: portal with portles, mashup, native applications and non-browser based systems. As result, mashup technologies based on browser satisfy all necessary requirements to create generic frontend for exploring sensor and information services. Based on this decision in the chapter 4, defined system architecture and described responsibility of an every module.
+	The section 3.2 consists of main methodologies of a design and implementation of a generic frontend: portal with portles, mashup, native applications and non-browser based systems. As result, mashup technologies based on browser satisfy all necessary requirements to create generic frontend for exploring sensor and information services. Based on this decision in the chapter 4, defined system architecture and described responsibility of an every module.
 
     \textbf{Chapter 4}: Concept
     \newline
@@ -35,11 +35,11 @@
        \newline
        The main type of data that have to be retrieved is a real-time streaming data. Based on XMPP interface it becomes not important which concreate type of data has any stream: text, images, array or map of vallues etc. The main technic that can be used for keeping a connection alive and guarantee the information arrival to a client side is a long-polling. 
        \newline
-       XMPP BOSH approach are completelty satisfy all requirements to the system interface. Together with its extensions XEP0049, XEP0060 and XEP0049 it shows only part of possible strength.
+       XMPP BOSH approach satisfies all requirements to the system interface completely. Together with its extensions XEP0049, XEP0060 and XEP0049 it shows only part of possible strength.
 
        \textbf{Which software components might be applied to the concept in order to be applicable to the most available data sources and platforms? How can be a generic GUI designed and implemented by providing dynamic content retrieving?} 
        \newline
-       Nowadays available a variety of different software solutions for a web-based applications. Among all of them for the GUI implementation was used Twitter Bootstrap version 3.0, together with HTML5 and CSS. Also, only one successful library for XMPP client-oriented application are available - Strophe.js, which is build on top of jQuery and JavaScript of course. And to make possible to combine all these together in order to have easy extensible and maintainable code was used AngularJS (MVC JavaScript Framework). Without AngularJS it would not be possible to create a dynamic content visualization on GUI in a such canonical structure of the code.
+       Nowadays a variety of different software solutions for a web-based applications are available. Among all of them for the GUI implementation Twitter Bootstrap version 3.0, together with HTML5 and CSS were used. Also, only one successful library for XMPP client-oriented application are available - Strophe.js, which is build on top of jQuery and JavaScript of course. And to combine all aforementioned tecnologies together and to make  easy extensible and maintainable code AngularJS (MVC JavaScript Framework) was used. Without AngularJS it would not be possible to create a dynamic content visualization on GUI in such a canonical structure of the code.
 
  \section{Future work}
 	To conclude the thesis, suggestions for the future work are made. These suggestions are devoted to improve either the conceptual aspects or the current implementation.
@@ -47,15 +47,15 @@
 \subsection{Conceptual Aspects}
 	This subsection describes possible improvements on the concept level.
 		\subsubsection {SLA}
-		Differentiation of SLA depending on user type/rights. Easy enhancement in case of SLA changes, then come in to a picture next questions: How to re-sign SLA with user(it was done by automatically unsubscribing from sensor), how to notify about changes frontend and user itself, that have already accepted it once, how will system react in case user will not accept new SLA? How can frontend predefine all future changes that can appear according to SLA changes? How possible to accept one SLA which gives an access to many sensors? How to handle billing aspects?
+		Differentiation of SLA depending on user type/rights. Easy enhancement in case of SLA changes brings nwxt questions into a picture: How to re-sign SLA with user(it was done by automatically unsubscribing from sensor), how to notify the frontend and user himself about changes, that have already accepted it once, how will system react in case user will not accept new SLA? How can frontend predefine all future changes that can appear according to SLA changes? Is it possible to accept one SLA which gives an access to many sensors? How to handle billing aspects?
 
-		The thesis was focused on the core architectural design and development aspects, so current contracting implementation is mostly a not "user-friendly" design, but shows possible way of the contracting mechanism. The questions of billing, contracting and SLA are still open and left for future work. The billing should use fine-grained approach to make sure that the consumers of cloud resources only pay for what they use. Contract phase may be more closely integrated with the SPACE platform by reusing the Contract Wizard component. The SLA should be taken into account during on-the-fly rescaling, as this procedure may result in the capacity change, which in its turn result in pricing changes. 
+		The thesis was focused on the core architectural design and development aspects, so current contracting implementation is mostly a not "user-friendly" design, but shows possible way of the contracting mechanism. The questions of billing, contracting and SLA are still open ed and left for future work. The billing should use fine-grained approach to make sure that the consumers of cloud resources only pay for what they use. Contract phase may be more closely integrated with the SPACE platform by reusing the Contract Wizard component. The SLA should be taken into account during on-the-fly rescaling, as this procedure may result in the capacity change, which in its turn result in pricing changes. 
 
 	\subsection{Implementation Area}
     This subsection describes possible improvements and enhancement on the implementation level.
 
 		\subsubsection {Introducing the interaction awareness}
-		In principle, when a user open first time an application, different information can be interesting to him. Therefore, to introduce a convenient awareness, the following research questions should be investigated:
+		In principle, when a user opens an application first time, different information can be interesting for him. Therefore, to introduce a convenient awareness, the following research questions should be investigated:
 		 \begin{itemize}
 		\item What kind of interaction awareness information end users are really need?
 		\item Does a user want to configure the received awareness information?
@@ -63,18 +63,18 @@
 		\end{itemize}
 
 		\subsubsection{Privacy and security}
-		Personal credentials stored via cookies inside any browser on any kind of device can be easily stollen via hacking attack. Especially when system use single sign on approach it can lead to more global problems. To avoid this should be researched in details additional possibility to encrypt data or to make authorisation process more secure.
+		Personal credentials stored via cookies inside any browser on any kind of device can be easily stollen via hacking attack. Especially when system use single sign on approach it can lead to more global problems. To avoid this additional possibility to encrypt data or to make authorisation process more secure should be researched.
         \newline
-        An opportunity to specify data source as high secure if its data splitted between more than 1 end-point have to be discovered. Even if the data will be splitted to 2, 3 or more parts and then combined to one on a frontend side, an encryption system have to be used. Since all frontend are client-based, exist an opportunity to debug and rewrite everything from a console of a browser, if JID and password are known.
+        An opportunity to specify data source as high secure if its data would be splitted between more than 1 end-points have to be discovered. Even if the data will be splitted onto 2, 3 or more parts and then combined to one on a frontend side, an encryption system have to be used. Since all frontend are client-based, exists an opportunity to debug and rewrite everything from a console of a browser, if JID and password are known.
 
         \subsubsection{Collaborative space}
-         In order to perform social collaboration between different users, would be helpful to have a possibility to rate the data source or left comments. Users can share their experience, help each other, define hot topics, leave personal rating and help administrator to improve the system itself. Since now, personal preferences such as: subscriptions, favorites, user data are stored on a XMPP server by using XEP0049(XML-based private namespace), it is not possible to share personal rating or comments with someone else, because someone else can change everything froma  browser. Thus, needed to be explored another family of XMPP extension, which can provide sharing space with opportunity to lock possibility to vote twice, or to change comments of another user and etc.  
+         In order to perform social collaboration between different users, it would be helpful to have a possibility to rate the data source or left comments. Users can share their experience, help each other, define hot topics, leave personal rating and help administrator to improve the system itself. Since now, personal preferences such as: subscriptions, favorites, user data are stored on a XMPP server by using XEP0049(XML-based private namespace), it is not possible to share personal rating or comments with someone else, because someone else can change everything froma  browser. Thus, another family of XMPP extension, which can provide sharing space with opportunity to lock possibility to vote twice, or to change comments of another user and etc needed to be explored .  
 
 		\subsubsection {Integration with other application via Internet}
-		 The best opportunity to make application widely-used is to enhance list of supported hardware and software sensors. But a lot of system already propose their own sensors and corresponding app to it. How possible will be to create additional module for enhancement that will play a role of retranslator or proxy between two different systems? In which information in such a case interested a developer of a consumer application? Would not be better firstly to specify main topics and propose to choose the most relevant for his/her search?
+		 The best opportunity to make application widely-used is to enhance list of supported hardware and software sensors. But a lot of system already propose their own sensors and corresponding app to it. How possible will be to create additional module for enhancement that will play a role of retranslator or proxy between two different systems? In which information in such a case a developer of a consumer application would be interested? Would not it be better to specify main topics and propose to choose the most relevant for his/her search at first?
 
 		\subsubsection {Resource limitations: energy, bandwidth and computation}
 		Since mobile devices face internal and external resource limitations, the need of differentiation of connection properties is important. For example, location data can be provided using GPS, WiFi, and GSM, with decreasing levels of accuracy. Compared to WiFi and GSM, continuous GPS location sampling drains the battery faster. One approach to this problem uses low duty cycling to reduce energy consumption of high-quality sensors (i.e., GPS), and alternates between high- and low-quality sensors depending on the energy levels of the device (e.g., sample WiFi often when battery level is less than 70 percent). This approach trades off data quality and accuracy for energy. 
 
 		\subsubsection {Visibility Rules}
-		In scope of this master thesis was not cover the definition of roles of every user. Assigning to the user a role "administrator", "backend developer", "vendor of sensor", "3d party developer", "consumer" gives a possibility to significantly expand visibility rules. Add new modules such as: statistic of sensor usage/subscriptions, overview of user behaviour, business analysis of user interests, feedbacks, comments and ratings. In the meanwhile, for "administrator" and "backend developer" modules oriented on "sales" or "marketing" can be hided, in order to leave only technical part of implementation. Such features as: receiving notification about new changes from subscriptions by e-mail or sms can become also very interesting for the user.
+		In scope of this master thesis was not cover the definition of roles of every user and visibility rules according to it. Assigning a role "administrator", "backend developer", "vendor of sensor", "3d party developer", "consumer" to user groups significantly expand a graphical interface. Also it makes possible to add new modules such as: statistic of sensor usage/subscriptions, overview of user behaviour, business analysis of user interests, feedbacks, comments and ratings. In the meanwhile, for "administrator" and "backend developer" modules oriented on "sales" or "marketing" can be hidden, in order to leave only technical part of implementation. Such features as: receiving notification about new changes from subscriptions by e-mail or sms can become also very interesting for the user.
