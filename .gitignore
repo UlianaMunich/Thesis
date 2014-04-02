@@ -10,4 +10,5 @@
 *.toc
 NOTES.txt
 *.bbl
-
+*.blg
+*.pdf
