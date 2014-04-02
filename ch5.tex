@@ -1,133 +1,128 @@
 %!TEX root = Thesis.tex
 \chapter{Implementation and Evaluation}
-	The chapter contains practical part of the work, describing implementation of modules defined in the Chapter 4 within convincing scenario. The prototype implements major aspects proposed in the concept, including following tiers:
+	The chapter contains practical part of the work, describing implementation of modules defined in the Chapter 4 within a convincing scenario. The prototype implements major aspects proposed in the concept, including following tiers:
 	 \begin{itemize}
 		\item \textbf{Client Tier} includes adaptive GUI with related libraries, modules for dynamic content updates and session management;
-		\item \textbf{Application Tier} contains XMPP server with protocol extensions, ensuring appropriate interface for collaboration between tiers;
+		\item \textbf{Application Tier} contains XMPP server with protocol extensions, ensuring appropriate interface for communication between tiers;
 		\item \textbf{Data Tier} contains descriptional metadata of sensors and is responsible for streaming text, images or arbitary data provided by heterogeneous sources.
 	\end{itemize}
 	To make precise evaluation, system will use real data from temperature sensor which is provided by ACDSense project, together with TU Dresden, BTU Cottbus-Senftenberg and RWTH Aachen University. It is located in the room INF3084, Faculty of Computer Science, Chair of Computer Science.
 
 
-\section{Development Environment}
- \subsection{Programming language and dependencies}
-	In order to maximize application compatibility, standard web-stack tools have been selected for this work: Javascript for frontend logic, HTML\footnote{HTML specification, \url{http://www.w3.org/wiki/HTML/Specifications}} for layout markup, CSS\footnote{CSS specification, \url{http://www.w3.org/Style/CSS/specs.en.html}} for block styling.
+\section{Implementation requirements}
+\subsection{Programming language and libraries}
+In order to maximize application compatibility, standard web-stack tools have been selected for this work: Javascript for frontend logic, HTML\footnote{HTML specification, \url{http://www.w3.org/wiki/HTML/Specifications}} for layout markup, CSS\footnote{CSS specification, \url{http://www.w3.org/Style/CSS/specs.en.html}} for block styling.
 
-	To select additional software tools responsible for css selectors, function chaining, event handlers, AJAX etc, a comprehensive comparison of libraries was made, including most popular web toolkits like jQuery\footnote{jQuery Javascript library, \url{http://jquery.com/}}, Dojo\footnote{Dojo documentation, \url{http://dojotoolkit.org/features/}}, Prototype\footnote{Prototype documentation, \url{http://prototypejs.org/}}, Yahoo User Interface(YUI) and ExtJS\footnote{ExtJS documentation,\url{http://docs.sencha.com/extjs/4.2.2/}}, as shown in the Table 5.1. 
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|L{3cm}|l|L{2cm}|l|L{2cm}|L{2cm}|}
-	\hline
-	Target 			& jQuery & Dojo & Prototype & YUI & ExtJS \\
-	\hline
-	\hline
-	License		& MIT & BSD \& AFL & MIT & BSD & GPL and Commercial \\
-	\hline
-	Size		& 32 kB & 41 kB & 46–278 kB & 31 kB & 84–502 kB \\
-	\hline
-	Dependencies		& JavaScript & JavaScript + HTML & JavaScript &  Javascript + HTML + CSS & JavaScript \\
-	\hline
-	Layout Grid		& yes & yes & yes & - & yes  \\
-	\hline
-	DOM wrapped		& yes & yes & yes & no & yes \\
-	\hline
-	Data retrieval formats		& XML, HTML & XML, HTML, CSV, ATOM & - & yes & XML  \\
-	\hline
-	Server push data retrieval		& yes & yes & - & via plugin & yes \\
-	\hline 		
-	Touch events		& with plugin & yes & yes & - & yes \\
-	\hline 
-	\end{tabular}
-	\caption[Comparison of JavaScript frameworks]{Comparison of JavaScript frameworks}
-	\label{tab:JS_frameworks}
-	\end{table}
-	Also the most important part is browser support which is presented in the Table 5.2 . jQuery\footnote{jQuery browser support, \url{http://jquery.com/browser-support/}}, Dojo\footnote{Dojo browser support,\url{http://livedocs.dojotoolkit.org/releasenotes/1.4}}, Prototype\footnote{Prototype browser support, \url{http://prototypejs.org/doc/latest/Prototype/Browser/index.html}}, YUI\footnote{YUI browser support, \url{http://yuilibrary.com/yui/environments/}}, ExtJS\footnote{ExtJS browser support, \url{http://www.sencha.com/products/extjs/}}.
+To select additional software tools responsible for css selectors, function chaining, event handlers, AJAX etc, a comprehensive comparison of libraries was made, including most popular web toolkits like jQuery\footnote{jQuery Javascript library, \url{http://jquery.com/}}, Dojo\footnote{Dojo documentation, \url{http://dojotoolkit.org/features/}}, Prototype\footnote{Prototype documentation, \url{http://prototypejs.org/}}, Yahoo User Interface(YUI) and ExtJS\footnote{ExtJS documentation,\url{http://docs.sencha.com/extjs/4.2.2/}}, as shown in the Table 5.1. 
+\begin{table}[H]
+\centering
+\begin{tabular}{|L{3cm}|l|L{2cm}|l|L{2cm}|L{2cm}|}
+\hline
+Target 			& jQuery & Dojo & Prototype & YUI & ExtJS \\
+\hline
+\hline
+License		& MIT & BSD \& AFL & MIT & BSD & GPL and Commercial \\
+\hline
+Size		& 32 kB & 41 kB & 46–278 kB & 31 kB & 84–502 kB \\
+\hline
+Dependencies		& JavaScript & JavaScript + HTML & JavaScript &  Javascript + HTML + CSS & JavaScript \\
+\hline
+Layout Grid		& yes & yes & yes & - & yes  \\
+\hline
+DOM wrapped		& yes & yes & yes & no & yes \\
+\hline
+Data retrieval formats		& XML, HTML & XML, HTML, CSV, ATOM & - & yes & XML  \\
+\hline
+Server push data retrieval		& yes & yes & - & via plugin & yes \\
+\hline 		
+Touch events		& with plugin & yes & yes & - & yes \\
+\hline 
+\end{tabular}
+\caption[Comparison of JavaScript frameworks]{Comparison of JavaScript frameworks}
+\label{tab:JS_frameworks}
+\end{table}
+Also the most important part is browser support which is presented in the Table 5.2 . jQuery\footnote{jQuery browser support, \url{http://jquery.com/browser-support/}}, Dojo\footnote{Dojo browser support,\url{http://livedocs.dojotoolkit.org/releasenotes/1.4}}, Prototype\footnote{Prototype browser support, \url{http://prototypejs.org/doc/latest/Prototype/Browser/index.html}}, YUI\footnote{YUI browser support, \url{http://yuilibrary.com/yui/environments/}}, ExtJS\footnote{ExtJS browser support, \url{http://www.sencha.com/products/extjs/}}.
 
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|r|l|l|l|l|l|}
-	\hline
-	Target 			& jQuery & Dojo & Prototype & YUI & ExtJS \\
-	\hline
-	\hline
-	Chrome		& 1+ & 3 & 1+ & - & 10+ \\
-	\hline
-	Opera		& 9+ & 10.50+ & 9.25+ & 10.0+ & 11+ \\
-	\hline
-	Safari		& 3+ & 4 & 2.0.4+ & 4.0 & 4+ \\
-	\hline
-	Mozilla Firefox		& 2+ & 3+ & 1.5+ & 3+ & 3.6+ \\
-	\hline
-	Internet Explorer		& 6+ & 6+ & 6+ & 6+ & 6+ \\
-	\hline
-	\end{tabular}
-	\caption[Browser Support]{Browser Support}
-	\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|l|l|l|l|}
+\hline
+Target 			& jQuery & Dojo & Prototype & YUI & ExtJS \\
+\hline
+\hline
+Chrome		& 1+ & 3 & 1+ & - & 10+ \\
+\hline
+Opera		& 9+ & 10.50+ & 9.25+ & 10.0+ & 11+ \\
+\hline
+Safari		& 3+ & 4 & 2.0.4+ & 4.0 & 4+ \\
+\hline
+Mozilla Firefox		& 2+ & 3+ & 1.5+ & 3+ & 3.6+ \\
+\hline
+Internet Explorer		& 6+ & 6+ & 6+ & 6+ & 6+ \\
+\hline
+\end{tabular}
+\caption[Browser Support]{Browser Support}
+\end{table}
 
 
-	 Considering aforesaid evaluation, jQuery library has been selected as a main Javascript dependency. The goal of such software components selection is to make resulting code more short, readable, and easier to support for other developers.
-
-    \subsection{XMPP Client on JavaScript}
-
-	Web applications are cross-platform, easily deployable, and come with a large user base already familiar with them. Web technologies rely on HTML, and it is usually the case that tools for manipulating HTML are also compatible with XML, making a good basis for work with XMPP stanzas. In order to implement web-based client-side application supporting XMPP streams Strophe.js\footnote{Strophe.js an XMPP library for JavaScript, MIT licensed, \url{http://strophe.im/strophejs/}} library was used.
-
-    \textbf{Strophe.js} is a library for invoking the XMPP protocol from a web-browser, targeting web clients. While most of XMPP libraries are focused on chat-based applications, Strophe.js can to also power real-time games, notification systems and search engines, etc. It is production-ready since 2009, and therefore well tested, documented, and easy to extend. It uses BOSH, a standard binding of XMPP to HTTP using long polling.
+ Considering aforesaid evaluation, jQuery library has been selected as a main Javascript dependency. The goal of such software components selection is to make resulting code more short, readable, and easier to support for other developers.
 
 \subsection{Frontent Frameworks}
-   \subsubsection{Integrating CSS toolkit}
-	Twitter Bootstrap was selected as one of the most popular and widely used css frameworks nowadays, offering basic style and usability components for web pages, such as responsive CSS grid, adaptive class mixins, various widgets, etc. 
+\subsubsection{Integrating CSS toolkit}
+Twitter Bootstrap was selected as one of the most popular and widely used css frameworks nowadays, offering basic style and usability components for web pages, such as responsive CSS grid, adaptive class mixins, various widgets, etc. 
 
-	It consists of four main modules:
-	\begin{enumerate}
-	\item Scaffolding – global styles, responsive 12-column grids and layouts. Has some expressive features like tablets and mobile grids which maintain the grid column structure instead of collapsing the grid columns into individual rows when the viewport is below 768 or 480 pixels wide.
-	\item Base CSS – this includes fundamental HTML elements like tables, forms, buttons, and images, styled and enhanced with extensible classes.
-	\item Components – collection of reusable components like dropdowns, button groups, navigation controls (tabs, pills, lists, breadcrumbs, pagination), thumbnails, progress bars, media objects, and more.
-	\item JavaScript – jQuery plugins which bring the above components to life, and adding transitions, modals, tool tips, popovers, scrollspy, carousel, typeahead, affix navigation, and more. 
-	\end{enumerate}
+It consists of four main modules:
+\begin{enumerate}
+\item Scaffolding – global styles, responsive 12-column grids and layouts. Has some expressive features like tablets and mobile grids which maintain the grid column structure instead of collapsing the grid columns into individual rows when the viewport is below 768 or 480 pixels wide.
+\item Base CSS – this includes fundamental HTML elements like tables, forms, buttons, and images, styled and enhanced with extensible classes.
+\item Components – collection of reusable components like dropdowns, button groups, navigation controls (tabs, pills, lists, breadcrumbs, pagination), thumbnails, progress bars, media objects, and more.
+\item JavaScript – jQuery plugins which bring the above components to life, and adding transitions, modals, tool tips, popovers, scrollspy, carousel, typeahead, affix navigation, and more. 
+\end{enumerate}
 
-	It was decided to use first three modules for GUI development, maximally reducing Javascript dependencies. All animations, appearence, and dynamic adaptivity was done by using special tags, anchors and classes.
+It was decided to use first three modules for GUI development, maximally reducing Javascript dependencies. All animations, appearence, and dynamic adaptivity was done by using special tags, anchors and classes.
 
- 	Examples of used modules are shown on a screenshots in the section \ref{section:use-case-scenario}. It contains buttons, navigation tabs bar, log in form, search field, 4/3/2-columns  grid layout, modals, tooltips and carousel for previews.
+Examples of used modules are shown on a screenshots in the section \ref{section:use-case-scenario}. It contains buttons, navigation tabs bar, log in form, search field, 4/3/2-columns  grid layout, modals, tooltips and carousel for previews.
 
 \subsubsection{Integrating JavaScript MVC}
-	As mentioned in the section \ref{section:web-frontend}, it is important to implement the system in a loosely-coupled way. Visualization, user management, content retrieving and data aggregation modules have to be separated and accessable through strictly defined interfaces.
+As mentioned in the section \ref{section:web-frontend}, it is important to implement the system in a loosely-coupled way. Visualization, user management, content retrieving and data aggregation modules have to be separated and accessable through strictly defined interfaces.
 
-	In order to structure the code and enforce module decoupling, AngularJS\footnote{AngularJS,\url{http://angularjs.org/}} framework was selected. It assists running single-page application with a goal to augment it with model–view–controller (MVC) capability, making development, testing and support simpler.
+In order to structure the code and enforce module decoupling, AngularJS\footnote{AngularJS,\url{http://angularjs.org/}} framework was selected. It assists running single-page application with a goal to augment it with model–view–controller (MVC) capability, making development, testing and support simpler.
 
-	Angular.js parces HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is extensible and works well with other libraries such as jQuery. Every feature can be modified or replaced to suit unique development workflow and feature needs.
+Angular.js parces HTML that contains additional custom tag attributes; it then obeys the directives in those custom attributes, and binds input or output parts of the page to a model represented by standard JavaScript variables. The values of those JavaScript variables can be manually set, or retrieved from static or dynamic JSON resources\cite{ wiki:angular}. AngularJS is a toolset for building the framework most suited to application development. It is extensible and works well with other libraries such as jQuery. Every feature can be modified or replaced to suit unique development workflow and feature needs.
 
-    The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding (Figure \ref{img:data-binding}) that allows automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
+The framework adapts and extends traditional HTML to better serve dynamic content through two-way data-binding (Figure \ref{img:data-binding}) that allows automatic synchronization of models and views. As a result, AngularJS deemphasizes DOM manipulation and improves testability.
 
-	    \begin{figure}[!ht]
-		\centering
-		\includegraphics[scale=0.8]{images/2wayBinding.png}   
-		\caption[Two-way data binding]{Two-way data binding\footnote{Angular JS Two-Way Data Binding,\url{http://docs.angularjs.org/guide/databinding}}}
-		\label{img:data-binding}
-		\end{figure}
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.8]{images/2wayBinding.png}   
+	\caption[Two-way data binding]{Two-way data binding\footnote{Angular JS Two-Way Data Binding,\url{http://docs.angularjs.org/guide/databinding}}}
+	\label{img:data-binding}
+	\end{figure}
 
-	\emph{Design goals}
-	\newline
-	Decouple DOM manipulation from application logic. This improves the testability of the code. Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the overheads on the backend is reduced, leading to much lighter web applications.
+\emph{Design goals}
+\newline
+Decouple DOM manipulation from application logic. This improves the testability of the code. Decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.	Angular follows the MVC pattern of software engineering and encourages loose coupling between presentation, data, and logic components. Using dependency injection, Angular brings traditional server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the overheads on the backend is reduced, leading to much lighter web applications.
 
-   \emph{Two-way data binding}
-   \newline
-	AngularJS two-way data binding is a most notable feature and reduces the amount of code written by relieving the server backend from templating responsibilities. Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model. The \$scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.
+\emph{Two-way data binding}
+\newline
+AngularJS two-way data binding is a most notable feature and reduces the amount of code written by relieving the server backend from templating responsibilities. Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model. The \$scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.
 
-	The way Angular templates works is different, as illustrated on the Figure \ref{img:tmv}. They are different because first the template (which is the uncompiled HTML along with any additional markup or directives) is compiled on the browser, and second, the compilation step produces a live view. Any changes to the view are immediately reflected in the model, and any changes in the model are propagated to the view. This makes the model always the single source for the application state, simplifying the programming model for the developer. View is therefore an instant projection of a model.
+The way Angular templates works is different, as illustrated on the Figure \ref{img:tmv}. They are different because first the template (which is the uncompiled HTML along with any additional markup or directives) is compiled on the browser, and second, the compilation step produces a live view. Any changes to the view are immediately reflected in the model, and any changes in the model are propagated to the view. This makes the model always the single source for the application state, simplifying the programming model for the developer. View is therefore an instant projection of a model.
 
-	    \begin{figure}[!ht]
-		\centering
-		\includegraphics[scale=0.6]{images/3wayBinding.png}   
-		\caption[Template Model View]{Template Model View} 
-		\label{img:tmv}
-		\end{figure}
-        
-    Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. As shown on the figure above, the resulting view can be applied to every data available on a backend. Model handler automaticaly generates a view for every new sensor. No need to change code or add new id and dependent handlers, variables, channels. 
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.6]{images/3wayBinding.png}   
+	\caption[Template Model View]{Template Model View} 
+	\label{img:tmv}
+	\end{figure}
     
-    The template declaire the structure of what have to be shown on user view. Model repeats to generate the same view of every sensor in the list, which is coming from a controller as parameter {{sensor}} with possible attributes {{sensor.icon}} and {{sensor.titel}}, till the list of registered sensors will be finished.
+Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. As shown on the figure above, the resulting view can be applied to every data available on a backend. Model handler automaticaly generates a view for every new sensor. No need to change code or add new id and dependent handlers, variables, channels. 
 
-    The code of such flow is shown on the Listing~\ref{angular_template}
-    \begin{lstlisting}[label=angular_template,caption=Template registry.html]
+The template declaire the structure of what have to be shown on user view. Model repeats to generate the same view of every sensor in the list, which is coming from a controller as parameter {{sensor}} with possible attributes {{sensor.icon}} and {{sensor.titel}}, till the list of registered sensors will be finished.
+
+The code of such flow is shown on the Listing~\ref{angular_template}.
+
+	\begin{lstlisting}[label=angular_template,caption=Template registry.html]
 <div id="sensor_list">
     <div class="grid-sizer"></div>
     <div class="masonry-brick sensor-wrapper" id="{{sensor.id}}" ng-repeat="sensor in sensors | filter:{title: query}">
@@ -146,9 +141,9 @@
 </div>
     \end{lstlisting}
 
-    Model is explicitly integrated to the HTML by using directives: ng-repeat, ng-src, ng-click and sensor prototype attributes {{sensor.*}}, as shown on the listing~\ref{angular_template}. Next, listing~\ref{angular_controller} shows the ``RegistryCtrl'' controller implementation.
+Model is explicitly integrated to the HTML by using directives: ng-repeat, ng-src, ng-click and sensor prototype attributes {{sensor.*}}, as shown on the listing~\ref{angular_template}. Next, listing~\ref{angular_controller} shows the basic implementation of ``RegistryCtrl'' controller.
 
-    \begin{lstlisting}[label=angular_controller,caption=Controller controller.js]
+	\begin{lstlisting}[language=java,label=angular_controller,caption=Registry Controller]
 var sensdash_controllers = angular.module("sensdash.controllers", []);
 
 sensdash_controllers.controller("RegistryCtrl", ["$scope", "Registry", "User",
@@ -160,175 +155,33 @@ sensdash_controllers.controller("RegistryCtrl", ["$scope", "Registry", "User",
     }]);
     \end{lstlisting}
 
-	On the Listing~\ref{angular_service} a Registry service is shown, an application module that asynchronously requests and parses JSON responses from registries, concatenate them and returns single sensors array based on a factory pattern. Such type of loose coupling helps to avoid code overhead and simplify maintenance.  
 
-    \begin{lstlisting}[label=angular_service,caption=Factory Service of Registry]
-var sensdash_services = angular.module('sensdash.services', ['ngResource']);
+\subsection{XMPP support}
 
-sensdash_services.factory("Registry", ["$http", "$q", "User", function ($http, $q, User) {
-    var registry = {
-        load: function () {
-            var requests = [];
-            var all_registries = User.registries.concat(Config.REGISTRIES);
-            for (var i = 0; i < all_registries.length; i++) {
-                requests.push($http.get(all_registries[i]));
-            }
-            var q = $q.all(requests);
-            var flat_list = q.then(function (result) {
-                var list = [];
-                for (var i = 0; i < result.length; i++) {
-                    list = list.concat(result[i].data);
-                }
-                return list;
-            });
-            return flat_list;
-        }
-    }
-    return registry;
-}])
-    \end{lstlisting}
+\subsubsection{Message broadcasting protocol}
+In scope of this Master Thesis some limited conferencing functionality is required to broadcast messages from sensors to users. This functionality is partially covered in XMPP extensions. Two main extensions: MUC and PubSub will be described next, followed by decision of protocol support.
 
-
-\section{Interface Implementation}
-	 According to the concept architecture, system has to implement two main intefaces:
-	 \begin{itemize}
-	 \item Registry -- Directory Manager
-	 \item Data Hub -- DataStream Manager and AuthHandler 
-	 \end{itemize}
-	 Implementation of aforesaid interfaces and related modules will be described next.
-
-\subsection{Registry -- Directory Manager}
-    A Directory Manager on the Listing~\ref{angular_registry}
-    \begin{lstlisting}[label=angular_registry,caption=Factory Service of Registry]
-    sensdash_services.factory("Sensor", ["$resource",
-    function ($resource) {
-        return $resource("api/sensors/:sensorId", {}, {
-            query: {method: "GET", params: {sensorId: "all"}, isArray: true}
-        });
-    }]);
-    \end{lstlisting}
-It send HTTP GET request to all Registries existed in user.registries[]. Than continues parsing Registries data in JSON format as shown On the Listing~\ref{angular_service}. 
-
-\subsection{Data Hub -- DataStream Manager and AuthHandler}
-	A DataStream Manager maintains an XMPP connection and provides access to it via HTTP long polling technique.
-	    \begin{figure}[!ht]
-		\centering
-		\includegraphics[scale=0.6]{images/XMPPflow.png}   
-		\caption[System Interfaces]{System Interfaces}
-        \label{img:interface}                      
-		\end{figure}
-
-	The browser and the DataStream Manager communicate over HTTP using a Bidirectional-streams Over Synchronous HTTP(BOSH). Essentially, BOSH helps an HTTP client to establish a new XMPP session, then transports stanzas back and forth over HTTP wrapped in a special <body> element. It also provides some security features to make sure that XMPP sessions cannot be easily hijacked. The DataStream Manager communicates with the XMPP server as a normal client. In this way, an HTTP application can control a real XMPP session. Because of the efficiency and low latency afforded by the long polling technique, the end result competes with native connections.
-
-\subsubsection{XMPP Stanzas}
-	In XMPP Message transfering is accomplished by the sending and receiving of XMPP stanzas over an XMPP stream. Three basic stanzas make up the core XMPP toolset. These stanzas are <presence>, <message>, and <iq>. Each type of stanza has its place and purpose, and by composing the right kinds of quantities of these stanzas, sophisticated behaviors can be achieved. An XMPP stream is a set of two XML documents, one for each direction of communication. These documents have a root <stream:stream> element. The children of this <stream:stream> element consist of routable stanzas and stream related top-level children. Each stanza is an XML element, including its children. The end points of XMPP communication process input and generate output on a stanza-by-stanza basis. The following example shows a simplified and short XMPP session on the listing~\ref{code:stanzas}
-		\begin{lstlisting}[label=code:stanzas,caption=Stanzas Format]
-		<stream:stream>
-			<iq type="get">
-				<query xmlns="jabber:iq:roster"/>
-			</iq>
-			<presence/>
-			<message to="user@inf.tu-dresden.de"
-					 from="room@inf.tu-dresden.de/chatroom"
-			         type="chat">
-			    <body>Room test</body>
-			</message> 
-			<presence type="unavailable"/>
-		</stream:stream>
-		\end{lstlisting}
-
-	In this example, sensor created an XMPP stream by sending the opening <stream:stream> tag. With the stream open, it sends a first stanza, an <iq> element. This <iq> element requested sensor roster. Next, it notifies the server that it was online and available with a <presence> stanza. After noticing that user was online, it sent him a short <message> stanza. Finally, sensor sent another <presence> stanza to inform the server she was unavailable and closed the <stream:stream> element, ending the session.
-    
-    \subsubsection{Server communication}
-	The set of XMPP servers that can mutually communicate forms an XMPP network. The set of public XMPP servers forms the global, federated XMPP network. If a server does not speak the server-to-server protocol, it becomes an island, unable to communicate with external servers. An XMPP server will usually allow users to connect to it. It is, however, also possible to write applications or services that speak the server-to-server protocol directly in order to improve efficiency by eliminating routing overhead. Anyone can run an XMPP server, and full-featured servers are available for nearly every platform. Ejabberd, Openfire, and Tigase are three popular open source choices that will work on Windows, Mac OS X, or Linux systems. Several commercial XMPP servers are available as well, including M-Link and Jabber XCP.
-	
-	\subsubsection{Generic Connections}
-	Before any stanzas are sent, an XMPP stream is necessary. Before an XMPP stream can exist, a connection must be made to an XMPP server. XMPP includes some sophisticated support for establishing connections to the right servers. Typically clients and servers utilize the domain name system (DNS) to resolve a server's domain name into an address they can connect to. Email services in particular use mail exchange (MX) records to provide a list of servers that handle mail for a given domain so that one well-known server address does not have to handle every service. Email, being an early Internet application, got special treatment in DNS. These days, service records (SRV) are used to provide a similar function for arbitrary services. The first thing an XMPP client or server does when connecting to another XMPP server is to query the appropriate SRV record at the server’s domain. The response may include multiple SRV records, which can be used to load balance connections across multiple servers. If an appropriate SRV record cannot be found, the application tries to connect to the given domain directly as a fallback. Most libraries also allow you to specify a server to connect explicitly.
-
-	\subsubsection{Web-based Connections}
-	XMPP connections are managed through the Connection object, implemented by Strophe library. DataStream Manager includes a pool of BOSH connection managers that require HTTP-bind URL to establish connections. Major XMPP servers come with support for BOSH built in, and they typically expose HTTP-bind service at http://example.com:5280/http-bind or http://example.com:5280/xmpp-httpbind.
-
-	Although getting XMPP into a browser certainly involves extra development effort, this technique has some advantages over direct XMPP connections:
-	\begin{itemize}
-	\item Interactions with the connection manager are request by request, which allows the client to move from network to network. The managed connection stays available even if the end user's IP address changes several times.
-	\item Because one failing request doesn't terminate the managed connection, managed sessions are extremely robust and tolerant of temporary network failure.
-	\item Because connection managers cache and resend data for a request, no needs to worry about losing data when connection is interrupted.
-	\item HTTP is extremely firewall friendly, and because most connection managers run on standard HTTP ports, managed connections still work even in limited network environments that don’t allow anything but HTTP.
-	\end{itemize}
-
-	Creation of the new Strophe.Connection object is shown on listing ~\ref{code:js_object}. Once a connection object was created, calls connect() and disconnect() can be used to start and end communication with the server:
-
-	    \begin{lstlisting}[label=code:js_object,caption=Stanzas Format]
-		var conn = new Strophe.Connection("http://example.com:5280/xmpp-httpbind");
-		// starting a connection to example.com
-		conn.connect(jid, "password", callback);
-		// disconnecting
-		conn.disconnect();
-	    \end{lstlisting}
-
-	The first two parameters to connect() are the JID and password to use to authenticate the session, and the last parameter is the callback function. The callback function will be called with a single parameter that is set to one of the statuses (CONNECTED, DISCONNECTED, AUTHFAIL, CONNFAIL etc.). An example of function that checks login credentials and saves cookies once the connection reaches the CONNECTED phase is shown on listing~\ref{code:connect_callback}: 
-
-	\begin{lstlisting}[label=code:connect_callback,caption=Stanzas Format]
-		var update_connection = function (status) {
-            ...
-		if (status == Strophe.Status.CONNECTED) {
-                    console.log('XMPP connection established.');
-                    $scope.xmpp.connection.send($pres().tree());
-                    // Login was successful, save cookies
-                    $scope.process = '';
-                    $scope.in_progress = false;
-                    $cookies.myID = $scope.user.jid;
-                    $cookies.myToken = $scope.user.pass;
-                    User.reload();
-                }
-	\end{lstlisting}
-
-Every time the connection changes its status, this callback function is executed. The callback function simply ignores any status but the CONNECTED status, and disconnects once the connection has reached that status.
-
-\subsubsection{Session Mechanism}
-XMPP is a TCP-based protocol, like HTTP, and communication happens over an established, mostly reliable socket between two endpoints. The BOSH extension to XMPP provides a bridge between this bidirectional, stateful protocol and HTTP, which is unidirectional and stateless. Because a web browser cannot directly connect to an XMPP server, a BOSH connection manager responds to requests from a browser using HTTP and uses them to manage an XMPP connection on behalf of the user (Figure~\ref{img:xmpp-bosh}).  XMPP's basic model of communication is Client -> Server -> Server -> Client, and in support of this it defines a Client to Server protocol and a Server to Server protocol.
-  \begin{figure}[!ht]
-  \centering
-  \includegraphics[scale=0.6]{images/xmpp-bosh.png}   
-  \caption[BOSH]{XMPP BOSH}
-  \label{img:xmpp-bosh}                        
-  \end{figure} 
-
-Aside from the socket needed for XMPP communication, each managed connection has two other pieces of data associated with it: the session identifier(SID) and the request identifier(RID). SID stands for Session Identifier. This uniquely identifies the managed XMPP connection, and it is often a long, opaque alphanumeric string. Even though it is enough to identify the session, it is not very useful on its own. The RID identifies a particular HTTP request associated with a BOSH-managed connection. Before a connection is established, the client sends a random RID to the DataStream Manager along with its first request. Each subsequent request increments the RID by one. The SID and the RID together provide enough information to interact with the underlying XMPP connection. Because the RID is generated randomly from a very large range of numbers, it is virtually impossible to guess the RID. Also, the DataStream Manager will reject RIDs that fall outside of a narrow window around the current request. In this way, the BOSH-managed connection is tolerant of small errors like out of order delivery but robust to attacks like hijacking the connection. Because these two identifiers are enough to both address and make use of a managed XMPP session, if an application knows the SID and the RID, it can take over or attach to the underlying session.
-
-The attach() function demonstrats sending SID and RID through a BOSH connection in the Listing~\ref{BOSH_callback}):
-	    \begin{lstlisting}[label=BOSH_callback,caption=BOSH Callback]
-		var connection = new Strophe.Connection(BOSH_URL);
-        connection.attach(jid, sid, rid, callback);
-	    \end{lstlisting}
-
-BOSH sessions can be encrypted, and often the underlying XMPP sessions are encrypted as well. Because XMPP makes use of SASL, the authentication mechanisms are strong.
-
-\subsection{XEP-0045: Multi-User Chat}
-Traditionally, instant messaging is thought to consist of one-to-one chat rather than many-to-many chat, which is called variously ``groupchat'' or ``text conferencing''. The Jabber/XMPP community developed and implemented a basic groupchat protocol since 1999. That ``groupchat 1.0'' protocol provided a minimal feature set for chat rooms but was rather limited in scope. The Multi-User Chat or MUC builds on the older groupchat 1.0 protocol in a backwards-compatible manner but provides advanced features such as invitations, message presence, room moderation and administration, and specialized room types\footnote{XEP0045, \url{http://xmpp.org/extensions/xep-0045.html}}.
-
-\subsubsection{Requirements}
-In scope of this Master Thesis only the limited functionality is required, provided by Jabber-based multi-user chat services. 
-
-Each room is identified as a ``room JID'' <room@service> (e.g. <jdev@conference.jabber.org>), where ``room'' is the name of the room and ``service'' is the hostname at which the multi-user chat service is running. Each occupant in a room is identified by ``occupant JID'' <room@service/nick>, where ``nick'' is the room nickname of the occupant as specified on entering the room or subsequently changed during the occupant's visit. A user enters a room (i.e. becomes an occupant) by sending directed presence to <room@service/nick>. An occupant can change the room nickname and availability status within the room by sending presence information to <room@service/newnick>. Messages sent within multi-user chat rooms are of a special type``groupchat'' and are addressed to the room itself (room@service), then reflected to all occupants. An occupant exits a room by sending presence of type ``unavailable'' to its current <room@service/nick>.
-
-The coommon system architecture has the next structure(Figure~\ref{img:muc-architecture}):
-  \begin{figure}[!ht]
-		\centering
-		\includegraphics[scale=0.8]{images/MUC.png}   
-		\caption[MUC]{MUC System Architecture}     
-		\label{img:muc-architecture}                    
-		\end{figure}
-
-\emph{Group Chat Services}
+\textbf{XEP-0045: Multi-User Chat}
 \newline
-Group chat is provided as a service, usually alongside a regular XMPP server. The group chat service has its own domain; for example, the jabber.org server runs a group chat service at conference.jabber.org. Each room on the group chat service gets its own address, which looks just like a user’s JID. Rooms can have access controls, moderators, administrators, and even automatic logging and archival of the group’s communications.
+Multi-User Chat (MUC), is a standard XMPP conference protocol, supporting features like invitations, message presence, room moderation and administration, and specialized room types\footnote{XEP0045, \url{http://xmpp.org/extensions/xep-0045.html}}.
+
+Each room is identified as a ``room JID'' <room@service> (e.g. <sensor@conference.tu-dresden.de>), where ``room'' is the name of the room and ``service'' is the hostname at which the multi-user chat service is running. Each occupant in a room is identified by ``occupant JID'' <room@service/nick>, where ``nick'' is the room nickname of the occupant as specified on entering the room or subsequently changed during the occupant's visit. A user enters a room (i.e. becomes an occupant) by sending directed presence to <room@service/nick>. An occupant can change the room nickname and availability status within the room by sending presence information to <room@service/newnick>. Messages sent within multi-user chat rooms are of a special type``groupchat'' and are addressed to the room itself (room@service), then reflected to all occupants. An occupant exits a room by sending presence of type ``unavailable'' to its current <room@service/nick>.
+
+The MUC conference has next structure(Figure~\ref{img:muc-architecture}):
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[scale=0.8]{images/MUC.png}
+		\caption[MUC]{MUC System structure}
+		\label{img:muc-architecture}                    
+	\end{figure}
+
+Group chat is provided as a service, usually having own domain. Each room on the group chat service gets its own address, which looks like a JID. Rooms can have access controls, moderators, administrators, and automatic logging and archival of the group communications.
 
 \emph{Entering and Leaving a Room}
 \newline
-Before making any changes in a chat room a user have to enter the room. This is also often referred to as joining the room. After a user done, he leaves the room. Because this mirrors the concept of a user coming and going on and offline, the multi-user chat designers decided to model this part of the protocol with <presence> stanzas. Users can join a group chat room by sending available presence to the room, along with a note that they understand the multi-user chat protocol. Sending presence directly to a JID instead of to the user’s server is called directed presence. Similarly, to leave, unavailable presence is sent to the room. Sending presence stanzas directly to a JID instead of to the user’s server is called sending directed presence.
+Joining and leaving a room is done using <presence> stanzas. Users can join a group chat room by sending available presence to the room. Similarly, to leave, unavailable presence is sent to the room.
 
-If Mark wants to join the group chat room with the Temperature sensor, they will both need to send directed presence to their desired identity in the room temperature@chat.sensor.lit. Their stanzas are shown in the Listing~\ref{code:stanzas_muc}:
+If a user wants to join the group chat room with the Temperature sensor, they will both need to send directed presence to their desired identity in the room temperature@chat.sensor.lit. Their stanzas are shown in the Listing~\ref{code:stanzas_muc}:
 \begin{lstlisting}[label=code:stanzas_muc,caption=Stanzas Format for MUC]
 <presence to="temperature@chat.sensor.lit/sensor"
           from="sensor@example.lit/sensor">
@@ -349,7 +202,7 @@ The room sends the affiliations and roles of each participant along with their p
 </presence>
 \end{lstlisting}
 
-\textbf{Creating Rooms}
+\emph{Creating Rooms}
 \newline
 Creating rooms is accomplished in the same manner as joining a room. Assuming the service allows the user to create new rooms, sending directed presence to the desired room JID of the new room will cause the room to be created and the user to be set as the room’s owner. On the Listing~\ref{code:room_creation}, sensor creates a new room for the News feed.
 
@@ -360,23 +213,12 @@ Creating rooms is accomplished in the same manner as joining a room. Assuming th
 </presence>
 	\end{lstlisting}
 
-The chat.news.lit service responds with the presence broadcast for the room’s new and only occupant(Listing~\ref{code:server_respond}).
+The chat.news.lit service responds with the presence broadcast for the room’s new and only occupant.
+Sensor has the owner affiliation and the moderator role. These attributes give the sensor special permissions within the room. More comprehensive information about roles, affiliations, erros and etc can be found in documentation \cite{XMPPbook}.
 
-	\begin{lstlisting}[label=code:server_respond,caption=Server Respond to Room Creation]
-<presence to="sensor@news.lit/drawing_room"
-          from="chatter@chat.news.lit/sensor">
-    <x xmlns="http://jabber.org/protocol/muc">
-        <item affiliation="owner" role="moderator"/>
-        <status code="110"/>
-        <status code="20"/>
-    </x>
-</presence>
-		\end{lstlisting}
-
-Sensor has the owner affiliation and the moderator role. These attributes give the sensor special permissions within the room. The 110 status code is sent, just as it was before, and a new status code of 201 is sent, it signals that a new room has been created. More comprehensive information about roles, affiliations, erros and etc can be found in documentation \cite{XMPPbook}.
-
-\subsection{XEP-0060: Publish-Subscribe}
-Publish-subscribe XMPP extension\footnote{XEP-0060: Publish-Subscribe, \url{http://xmpp.org/extensions/xep-0060.html}} provides a framework for a wide variety of applications, including news feeds, content syndication, extended presence, geolocation, trading systems, workflow systems, and any other application that requires event notifications (image~\ref{img:basic-pubsub}.
+\textbf{XEP-0060: Publish-Subscribe}
+\newline
+Publish-subscribe is another conference XMPP extension\footnote{XEP-0060: Publish-Subscribe, \url{http://xmpp.org/extensions/xep-0060.html}} that provides a framework for a wide variety of applications, including news feeds, content syndication, extended presence, geolocation, trading systems, workflow systems, and any other application that requires event notifications (image~\ref{img:basic-pubsub}.
 
 \begin{figure}[!ht]
     \centering
@@ -402,7 +244,7 @@ There is a channel of communication, subscribers who are interested in data sent
 		\end{lstlisting}
 	Most actions on pubsub nodes will look very similar to this one, the difference between MUC and PubSub stanzas is the <pubsub> element. Pubsub nodes and their configuration are necessary and useful, but they don't do much by themselves. The real value of pubsub nodes is in the events that are published to them and broadcast to subscribers. Anything can be included in a pubsub event. The pubsub service doesn’t know or care what is inside the event; it simply broadcasts this data to a node’s subscribers.
 
-\textbf{Retrieving Item}
+\emph{Retrieving Item}
 \newline
 User2 just subscribed to user1's sensor\_data node, and has missed his earlier event broadcasts.  User1 configured his node to persist items and anyone can query his node for the most recently published items. In listing~\ref{code:last-5-items}, user2 requests the last five items by sending an IQ-get stanza to the node with the <items>:
 \begin{lstlisting}[label=code:last-5-items,caption=PubSub: requesting last 5 items from history]
@@ -417,7 +259,7 @@ User2 just subscribed to user1's sensor\_data node, and has missed his earlier e
 \end{lstlisting}
 The <items> element contains a node attribute just like the other actions. User2 has also set the max\_items attribute to 5 because he is only interested in the recent history. If he had omitted max\_items, the server would interpret it as a request to send all the historical data it has been configured to keep. If he had set max\_items to 500, which is much larger than the configured maximum for the node, the server would have sent as many as were available.
 
-\textbf{PubSub Data Flow}
+\emph{PubSub Data Flow}
 \newline
 Figure \ref{img:pub_sub} shows the process flow of how and when a client can subscribe/retrieve data from a publisher of service through the XMPP PubSub approach. The first thing the DataSource 1 and 2 must do for a would-be presenter is to create a channel for them to publish data - nodes. Once a node is created and configured, Publishers can start send data. Once these events are published, pubsub takes over and makes sure that they get delivered to the subscribed users. In case Publishers want to get a list of their subscribers, it can be retrieved from the pubsub node so that it can present this data to them. If Publisher will become offline its <presence> will be changed automatically to ``unavailable'' and next time, becoming online and sending new data, all subscribers will receive this information immediately.
     \begin{figure}[!ht]
@@ -427,26 +269,242 @@ Figure \ref{img:pub_sub} shows the process flow of how and when a client can sub
     \label{img:pub_sub}                           
     \end{figure}
 	    
- \subsection{PubSub vs MUC}
-	\textbf{Pubsub Advantages}
-	\newline
-	Publish-subscribe is a very generic system, used by many different kinds of applications. The XMPP pubsub extension is similarly generic and is usable for a wide variety of purposes. It assumes nothing about the subscribers; they may be human, or they may be machines. Pubsub nodes, unlike multi-user chat rooms, are arranged in a tree-based hierarchy. This shape is often a more close match to a given problem domain. One of the benefits of the tree shape is that entities can subscribe to non-leaf nodes of the tree, and events published below that node can also be received. Events can be published as notifications or as full payloads, and the subscriber can choose which is most appropriate. Retrieval of the publishing history is built in and fairly fine grained. The subscriber has more fine grained control over the delivery destination. 
+\textbf{Comparison and Decision}
+\newline
+After reviewing possible ways to power message broadcasting mechanism, it is required to select the most appropriate one for implementation and support. A quick recap of muc/pubsub advantages and disadvantages is shown in table~\ref{tab:muc_vs_pubsub}.
 
-	\textbf{Pubsub Disadvantages}
-	\newline
-	Pubsub, by being so generic, is not optimized for specialized cases. The pubsub extension is not nearly as old or as widely implemented as MUC, and the support for features in both clients and servers varies in quality and depth. Unlike MUC, it is not yet clear what the most used features are, so one must shop around a bit when an advanced feature is needed. There is no special handling of presence built in. There are a few proposed extensions to pubsub that may change this. For example, it would sometimes be useful to limit delivery to available resources only. Tooling for pubsub node creation and configuration is lacking. MUC room creation and configuration is built in to most XMPP clients already. Pubsub has not built-in mechanism for subscribers to interact or find each other. 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|L{0.5cm}|L{7.5cm}|L{7.5cm}|}
+	\hline
+	\textbf{}		& \textbf{Publish-Subscribe} & \textbf{Multi-User Chat} \\
+	\hline
+	\hline 
+	\rot{\textbf{Advantages}}	
+	&  \begin{itemize}
+		\item Pubsub extension is generic, assuming nothing about the subscribers.
+		\item Pubsub nodes and subscriptions are arranged in a tree-based hierarchy.
+		\item Events can be published as notifications or as full payloads, and the subscriber can choose which is most appropriate.
+		\item Retrieval of the publishing history is built in and fine grained.
+		\item The subscriber has more fine grained control over the delivery destination. 
+		\end{itemize}
+	& \begin{itemize}
+		\item MUC is optimized for chat-related use cases and builds on huge experience of previous chat systems, e.g. IRC.
+		\item Presence handling is built in to MUC at a low level.
+		\item Common moderation, administration and privelege features are supported.
+		\item MUC has many implementations, both of clients and of servers.
+		\item MUC allows for multiple levels of anonymity to be used as well as private communication.
+		\end{itemize}\\
+	\hline
+	\rot{\textbf{Disadvantages}}
+	&  \begin{itemize}
+		\item By being generic, Pubsub is not optimized for specialized cases.
+		\item Support for Pubsub features varies in quality and depth, e.g. no tools for node creation and configuration.
+		\item No special handling of presence built in. 
+		\item Tooling for pubsub node creation and configuration is lacking. 
+		\item No built-in mechanism for subscribers to interact or find each other. 
+		\end{itemize}
+	& \begin{itemize}
+		\item It is possible to have bots as room occupants, but the experience is designed for human consumption. 
+		\item There is no way to organize chat rooms except as a flat hierarchy.
+		\item There is no way to share configurations or participation across collections of rooms.
+		\item Unlike pubsub, MUC implementations have a lot of edge cases in order to be user friendly and robust.
+		\end{itemize}\\
+	\hline
+	\hline
+	\end{tabular}
+	\caption[Pubsub and MUC comparison]{Pubsub and MUC comparison}
+	\label{tab:muc_vs_pubsub}
+	\end{table}
 
-	\textbf{Multi-User Chat Advantages}
-	\newline
-	Presence handling is built in to MUC at a low level. Presence is used to signal joining and leaving of room, and presence changes can also be shared with occupants of the room. MUC is optimized for chat-related use cases and builds on the decades of experience of previous chat systems, especially IRC. All the common moderation and administration features necessary in a collaborative environment are supported - kicking, banning, and various privilege levels. MUC already has many implementations, both of clients and of servers. It is one of the oldest XMPP extensions, and as such, is quite mature and robust. Occupants in MUC rooms can interact with each other, and MUC allows for multiple levels of anonymity to be used as well as private communication.
+Although both approaches are very similar, each one has own set of strength and weaknesses. MUC implementation would ensure support of many existing systems, while having Pubsub would be more future-oriented. Therefore, it was decided to fully cover MUC extension, but also include a basic Pubsub integration, so that both systems can work in parralel if needed.
 
-	\textbf{Multi-User Chat Disadvantages}
-	\newline
-	Groups of people chatting is the bread and butter of MUC, and MUC is highly optimized for this use case. For example, most MUC servers will automatically send conversation history to every new occupant and generate human-readable messages for most administrative actions. It's possible, and common, to have bots as room occupants, but the experience is designed for human consumption. There is no way to organize chat rooms except as a flat hierarchy, and there is no way to share configurations or participation across collections of rooms. The one exception to this is that most servers have a default configuration that is applied to all rooms on the server. All of these extra human-focused features and administration capabilities make implementation more difficult. Unlike pubsub, MUC implementations have a lot of edge cases in order to be user friendly and robust.
+\subsubsection{XMPP connection with JavaScript}
+In the web-application case, a connection to XMPP server can be only established through HTTP layer. This can be achieved by usnig Bidirectional-streams Over Synchronous HTTP (BOSH). Essentially, BOSH helps an HTTP client to establish a new XMPP session, then transports messages back and forth over HTTP wrapped in a special <body> element. It also provides some security features to make sure that XMPP sessions cannot be easily hijacked. The DataStream Manager communicates with the XMPP server as a normal client. In this way, an HTTP application can control a real XMPP session. Because of the efficiency and low latency afforded by the long polling technique, the end result competes with native connections.
+
+Web applications are cross-platform, easily deployable, and come with a large user base already familiar with them. Web technologies rely on HTML, and it is usually the case that tools for manipulating HTML are also compatible with XML, making a good basis for work with XMPP stanzas. In order to implement web-based client-side application supporting XMPP streams Strophe.js\footnote{Strophe.js an XMPP library for JavaScript, MIT licensed, \url{http://strophe.im/strophejs/}} library was used.
+
+\textbf{Strophe.js} is a library that will be used for invoking the XMPP protocol from a web-browser. While most of XMPP libraries are focused on chat-based applications, Strophe.js can to also power real-time games, notification systems and search engines, etc. It is production-ready since 2009, and therefore well tested, documented, and easy to extend. It uses BOSH, a standard binding of XMPP to HTTP using long polling.
+
+
+\section{Interface Implementation}
+	General architecture, as desined in the concept chaper, is shown on image~\ref{img:interfaces}
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[scale=0.6]{images/XMPPflow.png}   
+		\caption[System Interfaces]{System Interfaces}
+        \label{img:interfaces}                      
+		\end{figure}
+
+	 According to it, frontend application has to implement two main interfaces:
+	 \begin{enumerate}
+	 \item Registry -- Directory Manager
+	 \item XMPP/BOSH Server -- DataStream Manager and AuthHandler 
+	 \end{enumerate}
+
+	 Implementation of aforesaid interfaces and related modules will be described next.
+
+\subsection{Directory Manager}
+Directory Management module is responsible for querying registries and forming a list of available sensors along with metadata, such as availability and access information, SLA with expiration details, list of access endpoints etc.
+
+As stated in the concept, in order to provide this data, Registries implement a simple Web-API, responding to GET requests with JSON list of available sensors. Since a user might have an unlimited number of registries, it is important to reduce his waiting time, so that a relation between amount of Web-API end-points and total loading time would not grow linearly.
+
+A straightforward way to address the this issue is to query user Registries in parallel, making maximal loading time qeual to loading time of the slowest Registy. To accomplish this, the asynchronous Javascript nature will be used, combined with extension that implements defer/promise pattern: ``q-object'', provided by Angular.js.
+
+The purpose of this deferred object is to expose the associated Promise instance as well as APIs that can be used for signaling the successful or unsuccessful completion and the status of the task. The q-object advantage over traditional callback approach is that the promise API allows for composition, in particular serial or parallel joining of promises.
+
+The implementation of Directory Manager service, responsible for parallel querying of registries is shown on listing~\ref{code:q-object}. It is using http service requests combined into a single q-object, returned as a promice.  
+
+    \begin{lstlisting}[language=java,label=code:q-object,caption=Parallel requests to Registies combinied in q-object]
+	var sensdash_services = angular.module('sensdash.services', ['ngResource']);
+
+	sensdash_services.factory("Registry", ["$http", "$q", "User", function ($http, $q, User) {
+	    var registry = {
+	        load: function () {
+	            var requests = [];
+	            var all_registries = User.registries.concat(Config.REGISTRIES);
+	            for (var i = 0; i < all_registries.length; i++) {
+	                requests.push($http.get(all_registries[i]));
+	            }
+	            var q = $q.all(requests);
+	            var flat_list = q.then(function (result) {
+	                var list = [];
+	                for (var i = 0; i < result.length; i++) {
+	                    list = list.concat(result[i].data);
+	                }
+	                return list;
+	            });
+	            return flat_list;
+	        }
+	    }
+	    return registry;
+	}])
+    \end{lstlisting}
+
+This way, controllers that require combined registry data will receive a promise object, resolved upon completion of all parallel HTTP requests.
+
+\subsection{DataStream Manager}
+A DataStream Manager is responsible for maintaineing an XMPP connection and provides access to it via HTTP long polling technique. This connection is going to be used for sending and receiving XMPP messages (stanzas) over XMPP stream. Stanzas will be regarded as a basic information block sent from Sensor to User, or from User to Data Hub.
+
+Before any stanzas are sent, an XMPP stream is necessary. Before an XMPP stream can exist, a connection must be made to an XMPP server. Typically clients and servers utilize the domain name system (DNS) to resolve a server's domain name into an address they can connect to.
+
+In the presented web application XMPP connections will be managed through the Connection object, implemented by Strophe library. DataStream Manager includes a pool of BOSH connection managers that require HTTP-bind URL to establish connections. Major XMPP servers come with support for BOSH built in, and they typically expose HTTP-bind service at http://example.com:5280/http-bind or http://example.com:5280/xmpp-httpbind.
+
+Although getting XMPP into a browser certainly involves extra development effort, this technique has some advantages over direct XMPP connections:
+\begin{itemize}
+\item Interactions with the connection manager are request by request, which allows the client to move from network to network. The managed connection stays available even if the end user's IP address changes several times.
+\item Because one failing request does not terminate the managed connection, managed sessions are extremely robust and tolerant of temporary network failure.
+\item Because connection managers cache and resend data for a request, no data will be lost when connection is interrupted.
+\item HTTP is firewall friendly, and because most connection managers run on standard HTTP ports, managed connections still work even in limited network environments that don’t allow anything but HTTP.
+\end{itemize}
+
+Creation of the new Strophe.Connection object within ``xmpp'' service is shown on listing ~\ref{code:js_connection_object}. Once a connection object was created, calls connect() and disconnect() can be used to start and end communication with the server:
+
+    \begin{lstlisting}[language=java,label=code:js_connection_object,caption=Sample code of connecting/disconnectiong to XMPP BOSH]
+    var BOSH_SERVICE = Config.BOSH_SERVER;
+    var xmpp = {
+        connection: {connected: false},
+		connect: function (jid, pwd, callback) {
+            xmpp.connection = new Strophe.Connection(BOSH_SERVICE);
+            xmpp.connection.connect(jid, pwd, callback);
+        }
+        ...
+    }
+    \end{lstlisting}
+
+The first two parameters to connect() are the JID and password to use to authenticate the session, and the last parameter is the callback function. The callback function will be called with a single parameter that is set to one of the statuses (CONNECTED, DISCONNECTED, AUTHFAIL, CONNFAIL etc.). A fragment of function that checks login credentials and saves cookies once the connection reaches the CONNECTED phase is shown on listing~\ref{code:connect_callback}: 
+
+\begin{lstlisting}[language=java,label=code:connect_callback,caption=Stanzas Format]
+    var update_connection = function (status) {
+        ...
+        if (status == Strophe.Status.CONNECTED) {
+            console.log('XMPP connection established.');
+            $scope.xmpp.connection.send($pres().tree());
+            $scope.process = '';
+            $scope.in_progress = false;
+            User.reload();
+        }
+        else if (status == Strophe.Status.AUTHFAIL) {
+            $scope.process = 'Authentication failed';
+            $scope.xmpp.connection.flush();
+            $scope.xmpp.connection.disconnect();
+        }
+        else if (status == Strophe.Status.DISCONNECTED) {
+            $scope.in_progress = false;
+            User.init();
+            $scope.xmpp.connection.connected = false;
+            $scope.xmpp.connection.disconnected = true;
+        }
+    }
+\end{lstlisting}
+
+Every time the connection changes its status, this callback function is executed. It checks selected statuses and triggers appropriate actions.
+
+\subsubsection{Session Mechanism}
+XMPP is a TCP-based protocol, like HTTP, and communication happens over an established, mostly reliable socket between two endpoints. The BOSH extension to XMPP provides a bridge between this bidirectional, stateful protocol and HTTP, which is unidirectional and stateless. Because a web browser cannot directly connect to an XMPP server, a BOSH connection manager responds to requests from a browser using HTTP and uses them to manage an XMPP connection on behalf of the user (Figure~\ref{img:xmpp-bosh}).  XMPP's basic model of communication is Client -> Server -> Server -> Client, and in support of this it defines a Client to Server protocol and a Server to Server protocol.
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.6]{images/xmpp-bosh.png}   
+  \caption[BOSH]{XMPP BOSH}
+  \label{img:xmpp-bosh}                        
+  \end{figure} 
+
+Aside from the socket needed for XMPP communication, each managed connection has two other pieces of data associated with it: the session identifier(SID) and the request identifier(RID). SID stands for Session Identifier. This uniquely identifies the managed XMPP connection, and it is often a long, opaque alphanumeric string. Even though it is enough to identify the session, it is not very useful on its own. The RID identifies a particular HTTP request associated with a BOSH-managed connection. Before a connection is established, the client sends a random RID to the DataStream Manager along with its first request. Each subsequent request increments the RID by one. The SID and the RID together provide enough information to interact with the underlying XMPP connection. Because the RID is generated randomly from a very large range of numbers, it is virtually impossible to guess the RID. Also, the DataStream Manager will reject RIDs that fall outside of a narrow window around the current request. In this way, the BOSH-managed connection is tolerant of small errors like out of order delivery but robust to attacks like hijacking the connection. Because these two identifiers are enough to both address and make use of a managed XMPP session, if an application knows the SID and the RID, it can take over or attach to the underlying session.
+
+The attach() function demonstrats sending SID and RID through a BOSH connection in the Listing~\ref{BOSH_callback}):
+	    \begin{lstlisting}[label=BOSH_callback,caption=BOSH Callback]
+		var connection = new Strophe.Connection(BOSH_URL);
+        connection.attach(jid, sid, rid, callback);
+	    \end{lstlisting}
+
+BOSH sessions can be encrypted, and often the underlying XMPP sessions are encrypted as well. Because XMPP makes use of SASL, the authentication mechanisms are strong.
+
+\subsubsection{Message Handler}
+In order to support both MUC and PubSub message broadcasting, \verb|XMPP| service in frontend has a set of abstract methods like \verb|subscribe|, \verb|unsubscribe|, \verb|check node| and \verb|handle_message| that work with abstract entities omitting extension protocol details. It also has final methods \verb|handle_incoming_muc| and \verb|handle_incoming_pubsub|, implementing message consuming logic specific to each protocol.
+
+Listing \ref{code:handle_muc} shows simplified implementation of MUC-handler.
+
+\begin{lstlisting}[language=java,label=code:handle_muc,caption=Simplified MUC handler]
+	handle_incoming_muc: function (message) {
+            var sensor = xmpp.find_sensor(message);
+            if (!(sensor)) {
+                return true;
+            }
+            var text = Strophe.getText(message.getElementsByTagName("body")[0]);
+            if (sensor.type == 'text') {
+              if (typeof text == "string") {
+                   Text.updateTextBlock(text, sensor["id"]);
+               } else {
+                  throw_error("Message is not a Text");
+               }
+            } else if (sensor.type == 'chart') {
+                try {
+                    var data_array = JSON.parse(text);
+                    }
+                } catch (e) {
+                    throw_error("message is not a valid JSON", text);
+                    return true;
+                }
+                if (Array.isArray(data_array)) {
+                    Graph.update(data_array, sensor.id);
+                } else {
+                  throw_error("Message is not a JSON array");
+               }
+            }
+            return true;
+        },
+\end{lstlisting}
+
+%Following points describe the process of handling new incoming message by DataStream Manager
 
 
 \subsection{XEP-0049: Private XML Storage}
+<<<<<<< HEAD
 	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The main goal to use it is to make a storage for user personal preferences. Since web-based application has no access to the private storage of a device and frontend can not rely on a database used on the Data Hub in order to avoid tight dependencies, was decided to use one of the extension of XMPP family. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is a valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
+=======
+	\label{xep0049}
+	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
+>>>>>>> 8152817d7b37b6382644c7754b3d219920dc12d6
 	
 	\begin{figure}[!ht]
 		\centering
