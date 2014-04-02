@@ -58,45 +58,45 @@ Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entr
 while executing---line 944 of file unsrt.bst
 Name 1 in "Ed Ort, Sean Brydon, and Mark Basler" has a comma at the end for entry mashB
 while executing---line 944 of file unsrt.bst
-You've used 41 entries,
+You've used 40 entries,
             1791 wiz_defined-function locations,
-            670 strings with 10307 characters,
-and the built_in function-call counts, 9405 in all, are:
-= -- 839
-> -- 374
-< -- 17
-+ -- 144
-- -- 103
-* -- 490
-:= -- 1385
-add.period$ -- 128
-call.type$ -- 41
-change.case$ -- 39
+            665 strings with 10034 characters,
+and the built_in function-call counts, 9139 in all, are:
+= -- 815
+> -- 363
+< -- 16
++ -- 140
+- -- 100
+* -- 477
+:= -- 1347
+add.period$ -- 124
+call.type$ -- 40
+change.case$ -- 38
 chr.to.int$ -- 0
-cite$ -- 43
-duplicate$ -- 472
-empty$ -- 1002
-format.name$ -- 103
-if$ -- 2223
+cite$ -- 42
+duplicate$ -- 455
+empty$ -- 974
+format.name$ -- 100
+if$ -- 2155
 int.to.chr$ -- 0
-int.to.str$ -- 41
-missing$ -- 29
-newline$ -- 202
-num.names$ -- 43
-pop$ -- 212
+int.to.str$ -- 40
+missing$ -- 28
+newline$ -- 197
+num.names$ -- 42
+pop$ -- 205
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 260
+skip$ -- 253
 stack$ -- 0
-substring$ -- 465
-swap$ -- 164
-text.length$ -- 17
+substring$ -- 461
+swap$ -- 157
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 89
-width$ -- 43
-write$ -- 434
+while$ -- 87
+width$ -- 42
+write$ -- 422
 (There were 10 error messages)
