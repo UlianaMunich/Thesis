@@ -87,12 +87,12 @@
 \section{Application Tier}
   This layer coordinates processes commands, makes logical decisions and performs calculations. It also moves and processes data between the two surrounding layers.
 
-  Application tier consists all logical modules: Web server, Registry, Data Hub and Web-based Frontend. All these modules connect to each other as shown on the Figure . 
+  Application tier consists all logical modules: Web server, Registry, Data Hub and Web-based Frontend. All these modules connect to each other as shown on the Figure \ref{img:structure}. 
     \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.6]{images/Structure.png}   
     \caption[System Architecture]{System Architecture} 
-    \label{img:str}                        
+    \label{img:structure}                        
     \end{figure}
 
     System Architecture splitted to a backend and frontend, that gives an overview of how these two parts interconnected. Respectively ``backend/frontend implementation'' means that all modules of each side have to be implemented separately. Such module as Registry and Data Hub defined and standardized by frontend, in order to clarify interface of collaboration with backend. To the backend responsibility relate an implementation of Registry and Data Hub modules.
@@ -109,45 +109,49 @@
     \item be aware of metadata provided by Registry to frontend;
     \item bind metadata from Registry with real-time data streaming from sensor;
     \item get and parse sensor streaming data and reconvert it to the type supported by universal protocol;
-    \item implement universal protocol to provide exchange message with a server in order to make possible retrieve streaming data from sensor;
-    \item store history from a sensors and user personal prreferences.
+    \item implement universal protocol to provide exchange message with a server in order to retrieve streaming data from sensor;
+    \item store history from a sensors and user personal preferences.
     \end{itemize}
-
-    \subsection{Authentication Handler}
-    Authentication Handler(AuthHandler) responsible for registering user, providing User ID and define user role. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After a user verifies and confirms credentials stored on a Data Hub, it becomes possible to bind user ID with personal preferences. These preferences include: user subscriptions, favorites, social sharing information and even cookies. Since all these data have to be loosely coupled from backend, and web-based application has no access to internal storage of portable device, this problem solved enhancing functionality of a universal protocol and will be described in the Chapter 5.
+    
+    A GUI depends a lot on user personal preferences. It may consist sensor subscriptions list, favorite data sources, user profile and list of available sensors. All these data have to be stored on the Data Hub and loaded after authentication process was sucessfully passed.
 
   \subsection{Web-based Frontend}
   \label{section:web-frontend}
     \subsubsection{Web server}
-      The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to a text content. 
+    The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to a text content. 
   
-      In proposed concept Web server is responsible for robust and efficient serving of static files. The goal is to exclude dependencies on concrete backend platforms or frameworks and to provide generic frontend as easily plugable component. Such a common and simplified design decision makes possible to extend and scale every part of distributed system independently. Specific operation logic like authentication of user, registration of sensors and users are delegated to external components such as Registry, Data Hub and Authentication Hadler, these external components can be interchanged without dependency to the system itself.
+    In proposed concept Web server is responsible for robust and efficient serving of static files(*.html, *.css, *.js etc.). The goal is to exclude dependencies on concrete backend platforms or frameworks and to provide generic frontend as easily plugable component. Such a common and simplified design makes possible to extend and scale every part of a distributed system independently. Specific operation logic like authentication of user, registration of sensors and users are delegated to external components such as Registry, Data Hub and Authentication Hadler(AuthHandler), these external components can be interchanged without dependency to the system itself.
+
+    \subsubsection{AuthHandler}
+    Authentication Handler(AuthHandler) responsible for registering and log in a user to the the system. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After verification and confirmation of credentials, stored on a Data Hub, it becomes possible to bind user ID with personal preferences. These preferences include: user subscriptions, favorites, social sharing information and cookies.
 
     \subsubsection{Interfaces}
-      On the Figure 4.4 from a frontend prospect of view exist 3 communication channels: 
+      On the Figure \ref{img:structure} exist 3 communication channels: 
       \begin{itemize}
       \item Registry to Directory Manager (one-way connection);
       \item Data Hub to/from DataStream Handler (asynchronous duplex connection);
       \item Data Hub to/from AuthHandler (synchronous duplex connection). 
       \end{itemize}
 
-      \emph{Registry to Directory Manager Interface}
+      \textbf{Registry to Directory Manager Interface}
       \newline
-      According to Web API and simple structure of a registry data, communication between these two modules have to be done by using HTTP GET request and JSON format, retrieved from Registry. It is one-way connection, because frontend needs only metadata from Registry and all changes that occur on a web page and through interface between Data Hub and DataStream Handler. Such structure provides possibility independently integrate new Registries.
+      Registry contains pairs of attributes - values, which describe sensors. These type of data can be structured by using JSON format and retrieved by Directory Manager through one-direction channel via HTTP GET request. The Directory Manager sends HTTP GET request to the Registry in order to get list of availale sensors and their metadata. Once JSON file is parsed by frontend, values of attributes extracted and aggregated as graphical container with all dependencies. HTTP GET request and JSON format is a part of RESTful API approach. Combination of JSON fromat and HTTP GET request in the future sesctionas will be called Web API.
 
-      \emph{Data Hub to/from Directory Manager Interface/AuthHandler}
+      If system needs to use more then one Registry, HTTP GET requests will be sended to all of them. After getting all JSON lists of sensors, frontend will reparse all received data to a one file and immediately aggregate it on a web page.
+
+      \textbf{Data Hub -- Directory Manager Interface/AuthHandler}
       \newline
-      Communication between Data Hub and another 2 modules: DataStream Handler and AuthHandler, have to be supported through the one common universal interface. This interface have to satisfy next requirements:
+      Communication between Data Hub and another 2 modules: DataStream Handler and AuthHandler, have to be supported through the one common universal interface. It has to satisfy next requirements:
       \begin{itemize}
-      \item have a public license
-      \item handle Web API requests
-      \item support service-user n:n connections
-      \item support different data types sended through the one channel, message differentiation
-      \item keep connection alive(stateful, through the TCP in background)
-      \item simplicity of enhancement and customization
+      \item have a public license;
+      \item handle HTTP request from browser;
+      \item support multiple channels in one connection;
+      \item transfer different types of data in one channel, message differentiation;
+      \item keep connection alive(stateful, through the TCP in background);
+      \item simplicity of enhancement and customization.
       \end{itemize}
 
-      Three interfaces have to work with data sources in the way that shown on the Figure 4.6
+      The Data Hub -- Directory Manager/AuthHandler Interface flow are shown on the Figure \ref{img:protocol}. Such architecture decouple sensor specific interface and interface between frontend and backend.
 
       \begin{figure}[!ht]
       \centering
@@ -155,30 +159,25 @@
       \caption[Protocol flow]{Protocol flow}
       \label{img:protocol}                           
       \end{figure}
-      Such a structure decouple sensor specific interface and interface between frontend and backend. In such a way, any sensor can be added and retrieved by frontend. 
-    
-      The web browser is probably the most deployed and most used application platform that has ever existed. Web browsers exist on every kind of computer and even many mobile phones, and more importantly, the users of these devices tend to be very familiar with the browser and web applications. As more and more sophistication has been demanded of web applications, new technologies and abstractions have been created.
 
-      In order to satisfy all aforementioned requirements, nowadays exist two main protocols: \emph{XMPP\cite{XMPPbook}}:a protocol best for connecting devices to people, a special case of the device-to-server pattern, since people are connected to the servers and \emph{MQTT\footnote{MQ Telemetry Transport, \url{http://mqtt.org/}}}: a protocol for collecting device data and sending it to servers. Based on their functionality and specification can be managed questions of authentification, registration and user preferences storage.
+      In order to satisfy all aforementioned requirements, nowadays exist two main protocols: \emph{XMPP\cite{XMPPbook}}:a protocol for connecting devices to people, a special case of the device-to-server pattern, since people are connected to the servers and \emph{MQTT\footnote{MQ Telemetry Transport, \url{http://mqtt.org/}}}: a protocol for collecting device data and sending it to servers. 
 
       \textbf{MQTT}
       \newline
-      the Message Queue Telemetry Transport, targets device data collection (Fig. \ref{img:MQTT}\footnote{What i sMQTT, \url{https://www.ibm.com/developerworks/}}). As its name states, its main purpose is telemetry, or remote monitoring. Its goal is to collect data from many devices and transport that data to the IT infrastructure. It targets large networks of small devices that need to be monitored or controlled from the cloud.
+      the Message Queue Telemetry Transport, targets device data collection (Fig. \ref{img:MQTT}\footnote{What is MQTT?, \url{https://www.ibm.com/developerworks/}}). As its name states, its main purpose is telemetry, or remote monitoring. Its goal is to collect data from many devices and transport that data to the IT infrastructure. It targets large networks of small devices that need to be monitored or controlled from the cloud.
       \begin{figure}[!ht]
       \centering
       \includegraphics[scale=0.6]{images/MQTT.png}   
       \caption[Message Queue Telemetry Transport]{Message Queue Telemetry Transport}
       \label{img:MQTT}                           
       \end{figure}
-      MQTT makes little attempt to enable device-to-device transfer, nor to "fan out" the data to many recipients. Since it has a clear, compelling single application, MQTT is simple, offering few control options. It also does not need to be particularly fast. In this context, "real time" is typically measured in seconds.
-
-      A hub-and-spoke architecture is natural for MQTT. All the devices connect to a data concentrator server. So the protocol works on top of TCP, which provides a simple, reliable stream. Since the IT infrastructure uses the data, the entire system is designed to easily transport data into enterprise technologies.
+      MQTT makes little attempt to enable device-to-device transfer, nor to ``fan out'' the data to many recipients. Since it has a clear, compelling single application, MQTT offering few control options. In this context, ``real time'' for MQTT is typically measured in seconds. All the devices connect to a data concentrator server. So the protocol works on top of TCP, which provides a simple, reliable stream. Since the IT infrastructure uses the data, the entire system is designed to transport data into enterprise technologies.
 
       MQTT enables applications like monitoring a huge oil pipeline for leaks or vandalism. Those thousands of sensors must be concentrated into a single location for analysis. When the system finds a problem, it can take action to correct that problem. Other applications for MQTT include power usage monitoring, lighting control, and even intelligent gardening. They share a need for collecting data from many sources and making it available to the IT infrastructure.
 
      \textbf{XMPP}
       \newline 
-      XMPP was originally called "Jabber". It was developed for instant messaging (IM) to interconnect people via text messages (Fig. \ref{img:XMPP}\footnote{IoT, \url{http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things}}). XMPP stands for Extensible Messaging and Presence Protocol. The name belies the targeted use: presence, meaning people are intimately involved.
+      XMPP was originally called ``Jabber''. It was developed for instant messaging (IM) to interconnect people via text messages (Fig. \ref{img:XMPP}\footnote{IoT, \url{http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things}}). XMPP stands for Extensible Messaging and Presence Protocol. The targeted use is people-to-people communication.
       \begin{figure}[!ht]
       \centering
       \includegraphics[scale=0.7]{images/XMPP.png}   
@@ -187,7 +186,7 @@
       \end{figure}
       XMPP uses the XML text format as its native type, making person-to-person communications natural. Like MQTT, it runs over TCP, or over HTTP on top of TCP. Its key strength is a name@domain.com addressing scheme that helps connect the needles in the huge Internet haystack.
 
-      In the IoT context, XMPP offers an easy way to address a device. This is especially handy if that data is going between distant, mostly unrelated points, just like the person-to-person case. It’s not designed to be fast. In fact, most implementations use polling, or checking for updates only on demand. A protocol called BOSH (bidirectional streams over Synchronous HTTP) lets servers push messages. But "real time" to XMPP is on human scales, measured in seconds. Its strengths in addressing, security, and scalability make it ideal for consumer-oriented IoT applications.
+      In the IoT context, XMPP offers an easy way to address a device. This is especially handy if that data is going between distant, mostly unrelated points, just like the person-to-person case. In fact, most implementations use polling, or checking for updates only on demand. A protocol called \emph{BOSH} (bidirectional streams over Synchronous HTTP) lets servers push messages and ``real time'' to XMPP measured in seconds.
 
       XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
 

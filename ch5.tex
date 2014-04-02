@@ -160,7 +160,7 @@ sensdash_controllers.controller("RegistryCtrl", ["$scope", "Registry", "User",
     }]);
     \end{lstlisting}
 
-	On the listing~\ref{angular_service} a Registry service is shown, an application module that asynchronously requests and parses JSON responses from registries, concatenate them and returns single sensors array based on a factory pattern. Such type of loose coupling helps to avoid code overhead and simplify maintenance.  
+	On the Listing~\ref{angular_service} a Registry service is shown, an application module that asynchronously requests and parses JSON responses from registries, concatenate them and returns single sensors array based on a factory pattern. Such type of loose coupling helps to avoid code overhead and simplify maintenance.  
 
     \begin{lstlisting}[label=angular_service,caption=Factory Service of Registry]
 var sensdash_services = angular.module('sensdash.services', ['ngResource']);
@@ -193,18 +193,29 @@ sensdash_services.factory("Registry", ["$http", "$q", "User", function ($http, $
 	 According to the concept architecture, system has to implement two main intefaces:
 	 \begin{itemize}
 	 \item Registry -- Directory Manager
-	 \item Data Hub -- DataStream and Auth Handlers 
+	 \item Data Hub -- DataStream Manager and AuthHandler 
 	 \end{itemize}
-
 	 Implementation of aforesaid interfaces and related modules will be described next.
 
-\subsection{Directory Manager}
-\subsection{DataStream Manager}
+\subsection{Registry -- Directory Manager}
+    A Directory Manager on the Listing~\ref{angular_registry}
+    \begin{lstlisting}[label=angular_registry,caption=Factory Service of Registry]
+    sensdash_services.factory("Sensor", ["$resource",
+    function ($resource) {
+        return $resource("api/sensors/:sensorId", {}, {
+            query: {method: "GET", params: {sensorId: "all"}, isArray: true}
+        });
+    }]);
+    \end{lstlisting}
+It send HTTP GET request to all Registries existed in user.registries[]. Than continues parsing Registries data in JSON format as shown On the Listing~\ref{angular_service}. 
+
+\subsection{Data Hub -- DataStream Manager and AuthHandler}
 	A DataStream Manager maintains an XMPP connection and provides access to it via HTTP long polling technique.
 	    \begin{figure}[!ht]
 		\centering
 		\includegraphics[scale=0.6]{images/XMPPflow.png}   
-		\caption[XMPP BOSH/Stream]{XMPP interface flow}                      
+		\caption[System Interfaces]{System Interfaces}
+        \label{img:interface}                      
 		\end{figure}
 
 	The browser and the DataStream Manager communicate over HTTP using a Bidirectional-streams Over Synchronous HTTP(BOSH). Essentially, BOSH helps an HTTP client to establish a new XMPP session, then transports stanzas back and forth over HTTP wrapped in a special <body> element. It also provides some security features to make sure that XMPP sessions cannot be easily hijacked. The DataStream Manager communicates with the XMPP server as a normal client. In this way, an HTTP application can control a real XMPP session. Because of the efficiency and low latency afforded by the long polling technique, the end result competes with native connections.
@@ -250,19 +261,26 @@ sensdash_services.factory("Registry", ["$http", "$q", "User", function ($http, $
 	    \begin{lstlisting}[label=code:js_object,caption=Stanzas Format]
 		var conn = new Strophe.Connection("http://example.com:5280/xmpp-httpbind");
 		// starting a connection to example.com
-		conn.connect("user@example.com", "mypassword", my_callback);
+		conn.connect(jid, "password", callback);
 		// disconnecting
 		conn.disconnect();
 	    \end{lstlisting}
 
-	The first two parameters to connect() are the JID and password to use to authenticate the session, and the last parameter is the callback function. The callback function will be called with a single parameter that is set to one of the statuses (CONNECTED, DISCONNECTED, AUTHFAIL, CONNFAIL etc.). A simple callback function that disconnects once the connection reaches the CONNECTED phase is shown on listing~\ref{code:connect_callback}: 
+	The first two parameters to connect() are the JID and password to use to authenticate the session, and the last parameter is the callback function. The callback function will be called with a single parameter that is set to one of the statuses (CONNECTED, DISCONNECTED, AUTHFAIL, CONNFAIL etc.). An example of function that checks login credentials and saves cookies once the connection reaches the CONNECTED phase is shown on listing~\ref{code:connect_callback}: 
 
 	\begin{lstlisting}[label=code:connect_callback,caption=Stanzas Format]
-		function my_callback(status) {
-		if (status === Strophe.Status.CONNECTED) {
-		 conn.disconnect();
-		 }
-	    }
+		var update_connection = function (status) {
+            ...
+		if (status == Strophe.Status.CONNECTED) {
+                    console.log('XMPP connection established.');
+                    $scope.xmpp.connection.send($pres().tree());
+                    // Login was successful, save cookies
+                    $scope.process = '';
+                    $scope.in_progress = false;
+                    $cookies.myID = $scope.user.jid;
+                    $cookies.myToken = $scope.user.pass;
+                    User.reload();
+                }
 	\end{lstlisting}
 
 Every time the connection changes its status, this callback function is executed. The callback function simply ignores any status but the CONNECTED status, and disconnects once the connection has reached that status.
