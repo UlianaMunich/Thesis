@@ -148,7 +148,7 @@ But in comparison to subscriptions map of a user the his/her personal favorites 
 \chapter{AngularJS and Reliable Sensor Functionality}
 In the Section 5.3.2 \emph{SensDash Implementation} the one of the main functional characteristic of a sensor, namely reliability was implemented.
 
-Firstly, the list of end-points defined in Registry as "end\_points" have to be sorted based on their priority on a server side, example are in the Appendix A. Then, SensDash checks if the room is not empty and also if it has someone except of a user. The part of a code below are shown below:
+Firstly, the list of end-points defined in Registry as ``end\_points'' have to be sorted based on their priority on a server side, example are in the Appendix A. Than, SensDash checks if the room is not empty and also if it has someone except of a user. The part of a code below are shown below:
 \begin{lstlisting}
  check_room: function(full_room_name, end_points) {
             if (!xmpp.endpoints_to_handler_map[full_room_name]) {

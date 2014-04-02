@@ -380,7 +380,7 @@ Publish-subscribe XMPP extension\footnote{XEP-0060: Publish-Subscribe, \url{http
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.5]{images/XEP0049.png}   
+    \includegraphics[scale=0.5]{images/XEP0060.png}   
     \caption[General Event Subscription]{General Event Subscription}  
     \label{img:basic-pubsub}                    
 \end{figure}
@@ -419,10 +419,10 @@ The <items> element contains a node attribute just like the other actions. User2
 
 \textbf{PubSub Data Flow}
 \newline
-Figure 5.8 shows the process flow of how and when a client can subscribe/retrieve data from a publisher of service through the XMPP PubSub approach. The first thing the DataSource 1 and 2 must do for a would-be presenter is to create a channel for them to publish data - nodes. Once a node is created and configured, Publishers can start send data. Once these events are published, pubsub takes over and makes sure that they get delivered to the subscribed users. In case Publishers want to get a list of their subscribers, it can be retrieved from the pubsub node so that it can present this data to them. If Publisher will become offline its <presence> will be changed automatically to ``unavailable'' and next time, becoming online and sending new data, all subscribers will receive this information immediately.
+Figure \ref{img:pub_sub} shows the process flow of how and when a client can subscribe/retrieve data from a publisher of service through the XMPP PubSub approach. The first thing the DataSource 1 and 2 must do for a would-be presenter is to create a channel for them to publish data - nodes. Once a node is created and configured, Publishers can start send data. Once these events are published, pubsub takes over and makes sure that they get delivered to the subscribed users. In case Publishers want to get a list of their subscribers, it can be retrieved from the pubsub node so that it can present this data to them. If Publisher will become offline its <presence> will be changed automatically to ``unavailable'' and next time, becoming online and sending new data, all subscribers will receive this information immediately.
     \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.6]{images/PubSub.png}   
+    \includegraphics[scale=0.7]{images/PubSub.png}   
     \caption[Service PubSub]{Service PubSub}
     \label{img:pub_sub}                           
     \end{figure}
@@ -446,7 +446,7 @@ Figure 5.8 shows the process flow of how and when a client can subscribe/retriev
 
 
 \subsection{XEP-0049: Private XML Storage}
-	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
+	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The main goal to use it is to make a storage for user personal preferences. Since web-based application has no access to the private storage of a device and frontend can not rely on a database used on the Data Hub in order to avoid tight dependencies, was decided to use one of the extension of XMPP family. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is a valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
 	
 	\begin{figure}[!ht]
 		\centering
@@ -455,7 +455,7 @@ Figure 5.8 shows the process flow of how and when a client can subscribe/retriev
 		\label{img:xep49-methods}
 		\end{figure}
 	\subsubsection{Elements}
-	The root element of Private XML Storage namespace is query. At least one child element with a proper namespace must be included; otherwise the server must respond with a ``Not Acceptable'' error. A client must not query for more than one namespace in a single IQ get request. However, an IQ set or result may contain multiple elements qualified by the same namespace. Examples of saving and loading data are shown on listing~\ref{code:client_save} and ~\ref{code:client_load}.
+	The root element of Private XML Storage namespace is query. At least one child element with a proper namespace must be included; otherwise the server must respond with a ``Not Acceptable'' error. A client must not query for more than one namespace in a single IQ get request. However, an IQ set or result may contain multiple elements qualified by the same namespace. Examples of saving and loading data are shown on the Listing~\ref{code:client_save} and ~\ref{code:client_load}.
 
     \begin{lstlisting}[label=code:client_save,caption=Client Stores Private Data]
 		CLIENT:
@@ -495,33 +495,42 @@ Figure 5.8 shows the process flow of how and when a client can subscribe/retriev
 		</iq>
     \end{lstlisting}
 
-    The message format described above can be made by using two main functions: save(for saving data on the XMPP server) and load(to retrieve saved data from the XMPP server), as shown on the Listing~\ref{save_load_ns}:
+    The message format described above can be made by using two main functions: save(for saving data on the XMPP server) and load(to retrieve saved data from the XMPP server), as shown on the Listing~\ref{save_load_ns}. The method init() initiates creation of registries, subscriptions, favorites and profile storages for an every user. An example of subscriptons map and favorites array are presented in the Appendix B. All the subsequent manipulations made by a user will be automatically saved and the GUI will be updated automatically by invoking the method reload().
 	\begin{lstlisting}[label=save_load_ns,caption=Snippet of Save/Load preferences to a private namespace]
-	      	save: function (property) {
-	            xmpp.connection.private.set(property, property + ":ns", user[property], function (data) {
-	                    console.log(property + " saved: ", data);
-	                },
-	                console.log);
-	        },
-	        load: function (property) {
-	            xmpp.connection.private.get(property, property + ":ns", function (data) {
-	                    user[property] = data != undefined ? data : [];
-	                    if (property == 'subscriptions') {
-	                        for (var i = 0; i < user.subscriptions.length; i++) {
-	                            xmpp.subscribe(user.subscriptions[i]);
-	                        }
-	                    }
-	                    $rootScope.$apply();
-	                },
-	        }
+	    sensdash_services.factory("User", ["XMPP", "$rootScope", function (xmpp, $rootScope) {
+        var user = {
+            init: function () {
+                user.registries = [];
+                user.favorites = [];
+                user.subscriptions = {};
+                user.profile = {};
+            },
+            save: function (property) {
+                xmpp.connection.private.set(property, property + ":ns", user[property], function (data) {
+                        console.log(property + " saved: ", data);
+                    },
+                    console.log);
+            },
+            load: function (property) {
+                xmpp.connection.private.get(property, property + ":ns", function (data) {
+                        user[property] = data != undefined ? data : [];
+                        $rootScope.$apply();
+                    },
+                    console.log);
+            },
+            reload: function () {
+                user.load("registries");
+                user.load("profile");
+                user.load("subscriptions");
+                user.load("favorites");
+            }
 	\end{lstlisting}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%EVALUATION%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluation}
-Evaluation are done as a proof of concept by demonstrating a scenario of distributed XMPP-driven web site accessing data from a hardware and software sensors. Where as software sensor was taken a bot, which periodically sends some IT news in a text format. And as a hardware sensor was used a temperature sensor from university. To the prototype was given a name: SensDash(Sensor Dashboard). Temperature sensor was provided as a testing environment in scope of ACDSee project, together with TU Dresden, BTU Cottbus - Senftenberg and RWTH Aachen University. It locates in the room INF3084, Faculty of Information Technology, Chair of Computer Science. The sensor part represents a class of low-cost, high-performance sensors. It is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time. Everything concerning sensor are installed on Mobilis server. According to the system architecture on the Figure 5.10, everything concerning sensor data are assumed implemented on a DataHub. Which has pre-installed XMPP server supporting MUC rooms, each carry a description field which qualifies them as sensor MUC rooms. The temperature sensor itself is a Data Source 1 and Data Source 2 respectively is a software sensor  presented on the Figure 5.10.
+Evaluation is done as a proof of concept by demonstrating a use case scenario of a XMPP-driven web dashboard, which retrieves data from a hardware and software sensors. As an example of software sensor was taken a bot, which periodically sends some IT news in a text format. As a hardware sensor was used a temperature sensor from university. Both of them are accessed from a respective XMPP chat rooms(MUC). To the prototype was given a name: SensDash(Sensor Dashboard). Temperature sensor was provided as a testing environment in scope of ACDSense project, together with TU Dresden, BTU Cottbus - Senftenberg and RWTH Aachen University. It locates in the room INF3086, Faculty of Information Technology, Chair of Computer Science. It represents a class of low-cost, high-performance sensors, which is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at a boot time. Everything concerning sensors are installed on Mobilis server. According to the system architecture on the Figure \ref{img:system_arch}, everything concerning sensors real-time streaming are assumed implemented on a DataHub and includes pre-installed XMPP server supporting BOSH technology and MUC. The temperature sensor itself is a Data Source 1 and Data Source 2 respectively is a software sensor  presented on the Figure \ref{img:system_arch}.
 
-The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobilis-dev.inf.tu-dresden.de and has the next JSON description(Listing~\ref{json_sensor_1}):
+The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobilis-dev.inf.tu-dresden.de and has the next description(Listing~\ref{json_sensor_1}):
 	\begin{lstlisting}[label=json_sensor_1,caption=JSON Description Format]
 {
     "sensormuc": {
@@ -536,19 +545,20 @@ The temperature sensor available from a MUC room: xmpp://inf3084@conference.mobi
     }
 }
 	\end{lstlisting}
-     \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.6]{images/UseCaseScheme1.png}   
-        \caption[Use Case System Architecture Scheme]{System Architecture Scheme}                         
-        \end{figure}
-Firstly it has to be registered in the Sensor Registry with an unique id and fulfill the attributes defined in JSON Registry standard accordingly. Since in scope of Master Thesis neither in scope of ACDSee project not included to implement automative Registry, where sensor have to be registered, metadata describing temperature sensor was added manually. The full example of metadata existed in Registry can be found in Appendix A, and the Listing~\ref{sensor_registry} below presents only main charactristics, defined as attribute:
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/UseCaseScheme1.png}   
+    \caption[Use Case System Architecture Scheme]{System Architecture Scheme} 
+    \label{img:system_arch}                        
+    \end{figure}
+Firstly, every sensor has to be registered in the Registry with an unique id and fulfill the attributes defined in JSON Registry standard. Since in scope of Master Thesis neither in scope of ACDSense project not included implementation of an automative Registry, where sensor have to be registered, metadata of temperature and news sensors was added manually. The full example of metadata existed in Registry can be found in the Appendix A, and the Listing~\ref{sensor_registry} below presents only main charactristics, defined according to attributes:
 	\begin{lstlisting}[label=sensor_registry,caption=JSON Description Format]
 [
     {
             "id": "30",
             "title": "Ambient Temperature INF3084",
             "availability": true,
-            "description": "DSE students receive an opportunity to get current outdoor temperature in Dresden Momsenstr.20. This sensor provides temperature updates with 5-second frequency and represents a class of low-cost, high-performance sensors. It is implemented using a commercially available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time.",
+            "description": "This sensor provides temperature updates with 5-seconds frequency and represents a class of low-cost high-performance sensors. It is implemented using an available Raspberry Pi single-board computer with an affiliated USB thermometer and automatic WLAN and XMPP connections to a sensor MUC room established at boot time.",
             "sla": "Sensor resolution is 0.5 C, measurements taken every 5 seconds. Uptime 95% from 6:00 till 22:00.",
             "sla_last_update":"1395005996",
             "access": "private",
@@ -568,89 +578,124 @@ Firstly it has to be registered in the Sensor Registry with an unique id and ful
                 }
 
             ]
+    },
+    {
+        "id": "20",
+        "title": "IT News Feed",
+        "availability": true,
+        "last_update": "2014-04-05T11:14:34.000+02:00",
+        "description": "Provides up to date news in IT and Telecommunication area together with information about new gadgets.",
+        "sla": "",
+        "sla_last_update": "",
+        "access": "public",
+        "provider_name": "Provider TU Dresden",
+        "location": "Dresden",
+        "type": "text",
+        "end_points": [
+            {
+                "type": "muc",
+                "priority": "main",
+                "name": "xmpp://testraum@conference.mobilis-dev.inf.tu-dresden.de",
+                "pwd": null
+            }
+        ]        
     }
 ]
 	\end{lstlisting}
-Demonstration of activity scenario was made by using 3d party user which is application consumer developer. His name Max and he has to create specific mobile application. A sa result, firstly he needs to define which sensors to use and how to retrieve an info from it. 
+Use case scenario demonstrated using 3d party user -- mobile application developer Max. First of all he needs to define to which sensor subscribe and how to retrieve real-time streaming from it. 
 \subsection{Use Case Scenario}
 \label{section:use-case-scenario}
 
-\textbf{Step 1:} In order to find necessary sensor, explore description and data provided by it, Max has to sign in into the SensDash by using peronal JID and password, received from an dministrator of a SensDash(Figure 5.11).
+\textbf{Step 1:} In order to find necessary sensor, description and data format provided by it, Max has to log in into the SensDash by using peronal JID(max\_sensdash@likepro.co) and password, received from an administrator of a SensDash(Fig. \ref{img:log_in}).
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{Screenshots/signIn.png}   
-\caption[Log in to the SensDash]{Log in to the SensDash}                         
+\caption[Log in to the SensDash]{Log in to the SensDash}
+\label{img:log_in}                        
 \end{figure}
 
-\textbf{Step 2:} After successfully passing authorisation, Max can start searching necessary sensors. By using search field, he can enter the one of the key word which is clearly define purpose or type of a sensor, and immediately list of sensors will be sorted based on his search input. To get more detailed information about sensor he clicks on the field of sensor. In a new popup window(Figure 5.12), and if to be more precise, it is a new tool, called modal. In the appeared modal, user can get a detailed description about sensor, e.g. : SLA, location, provider, preview, development details such as end-points quantity, end-point configuration, administrator name and of course more sophisticated description. This information gives an overview of what type of data provided by data source. 
+\textbf{Step 2:} After successfully passing authentification process, Max can start searching necessary sensors(Fig. \ref{img:welcome_screen}).
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.6]{Screenshots/Welcome.png}   
+\caption[List of available sensors]{List of available sensors}
+\label{img:welcome_screen}                       
+\end{figure}
+
+ By using search field, he can enter the one of the key word which is clearly define purpose or type of a sensor, and immediately list of sensors will be sorted based on his search input. To get more detailed information about sensor he clicks on the field of sensor. In a new modal window(Fig. \ref{img:modal}) user can get a detailed description about sensor, e.g. : SLA, location, provider, preview, development details such as end-points quantity, administrator name and of course more sophisticated descriptions. This information gives an overview of what type of data provided by data source and which SLA have to accepted by Max if he wants to receive real-time data. 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{Screenshots/UseCaseWelcome.png}   
-\caption[Personal Modal of a Sensor]{Personal Modal of a Sensor}                         
+\caption[Personal Modal of a Sensor]{Personal Modal of a Sensor}
+\label{img:modal}                       
 \end{figure}
  
- In case of ambient temperature INF3084, Max can explore predefined preview, which consists graph of provided temperature, data values and it's frequency, security level and relialability. In case of software sensor it can be sample of news feed, provided by sensor. 
+ In case of ambient temperature INF3084, Max can explore predefined preview, which consists graphs of data values and its frequency, security level and relialability. In case of software sensor it can be sample of a news feed, provided by sensor. 
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{Screenshots/UseCaseScreenshot4.png}   
-\caption[Personal Subscribed Sensor]{Subscriptions list}                         
+\caption[Personal Subscribed Sensor]{Subscriptions list} 
+\label{img:subscriptions}                        
 \end{figure}
-\textbf{Step 3:} Since the ambient temperature sensor is a private sensor, Max has to accept SLA before getting a real-time data from it. In contrast to temperature sensor, a software sensor - IT news feed has a public access, thus, Max doesn't need to accept any SLA in order to see real-time data provided by this sensor. The common rule, which is applied to every sensor independently from its access type(public or private) is to subscribe to it. In such a way, all sensors, to which Max has subscribed will appear in the next tab called "Subscriptions". And as soon as new data become available SensDash retrieve it in this (Figure 5.13). Also, by using Subscriptions Tab and icon "star" in a right corner, become possible to add subscribed sensor to the Favorites. After clicking on the icon of favorites, sensor information will appear in a list of favorites in Favorites Tab.
+\textbf{Step 3:} Since the temperature sensor is a private sensor, Max has to accept SLA before getting a real-time data from it. In contrast to temperature sensor, a software sensor -- IT news feed has a public access, thus, no needs to accept any SLA in order to see real-time data provided by this sensor. The common rule, which is applied to every sensor independently from its access type(public or private) is to subscribe to it. In such a way, all sensors to which Max has subscribed will appear in the next tab called ``Subscriptions''. As soon as new data become available SensDash retrieves it(Figure \ref{img:subscriptions}). By using Subscriptions Tab and icon ``star'' located in a right upper corner, Max can add subscribed sensor to the Favorites. After clicking on the favorites ison, sensors information will appear in the Favorites Tab.
 
-\textbf{Step 4:} To get info about personal account Max have to use Settings Tab. Where exists personal profile settings(Figure 5.14). 
+\textbf{Step 4:} To get info about personal account Max have to use Settings Tab. Where he can find personal profile settings(Fig. \ref{img:settings}). 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{Screenshots/UseCaseScreenshot6.png}   
-\caption[Settings Tab]{Settings Tab}                         
+\caption[Settings Tab]{Settings Tab}
+\label{img:settings}                         
 \end{figure}
 
-\textbf{Step 5:} As a developer, Max might be interested in technical details of sensor data retieval process, e.g. API references, end-point configuration, sensor data format, interface and system architecture in order to interconnect with backend directly. So Max has to go to the Admin References Tab(Figure 5.15), where he can find all available implementation detailes of a frontend itself, protocol and its extensions realization and system architecture. 
+\textbf{Step 5:} As a developer, Max might be interested in technical details of a sensor data retieval process, e.g. API references, end-point configuration, sensor data format and system architecture in order to interconnect with backend directly or to add new Registry URL. So Max has to go to the Admin References Tab(Fig. \ref{img:admin}), where he can find all available implementation detailes of a SensDash, e.g. used XMPP services and extensions realization, interface workflow and etc. 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{Screenshots/UseCaseReferences.png}   
-\caption[Administrator Tab]{Administrator Tab}                         
+\caption[Administrator Tab]{Administrator Tab}
+\label{img:admin}                         
 \end{figure}
 
 \subsection{SensDash Implementation}
-After real example of SensDash usage was described in the previous section, needs to be clarified the concept overflow together with used and implemented XMPP extensions.
+After described above a real use case scenario of the SensDash needs to be clarified the concept overflow together with implemented XMPP extensions.
 
-\textbf{Log In}to the system can be possible only with valid JID and password, which have to be registered within any possible XMPP server. Since XMPP network structured very similar to DNS, doens't metter where registered JID. The only one important thing is to know which XMPP server carry on MUC room. Firstly, user credentials validated by input type on frontend side and only than sended to the backend. Once XMPP server authorize the user, JID and password are saved in a browser by using cookies. So the next time when the user will open abrowser URL of a SensDash, cookies will automatically log him/her into the system. 
+\textbf{Log In} to the system allowed only with valid JID and password, which have to be registered within XMPP server. Since XMPP network structure is highly-distributed, does not metter where was registered JID. The only one important thing is to be aware of which XMPP server carry on MUC room responsible for provisioning real-time data from a sensor. Firstly, user credentials validated by input type on a frontend side and only than sended to the XMPP server. Once XMPP server authorize the user, JID and password are saved in a browser by using cookies. So the next time when the user will open a browser URL of a SensDash, cookies will automatically log him/her into the system. 
 
-\textbf{Preferences Saving} are done by using XEP0049 and stored on the XMPP server. When a user sign in to the system first time, application logic creates fully empty account with no subscriptions and favorites. Once a user subscribes to any resource, this resource automatically appear on Subscriptions Tab and added to the subscriptions map. The same for favorites and Favorite Tab, but favorites, due to simple structure are saved in a simple favorites array. It means that system has saved this preferences on XMPP server by using one of the extension called XEP0049, based on private space for every JID without interconnection with backend. Next time when user will log in to the system, all saved subscriptions and favorites will be loaded in the meanwhile and appear in corresponding tabs. An example subscriptions map and favorites array for Max are presented in Appendix B.
+\textbf{Preferences Saving} are done by using XEP0049 and stored on the XMPP server(implementation details in teh Section \ref{xep0049}). When a user sign in to the system first time, application logic creates fully empty account with no subscriptions and favorites. Once a user subscribes to any resource, this resource automatically appear on Subscriptions Tab and added to the subscriptions map and saved on the XMPP server. The same for favorites and Favorite Tab, but favorites, due to simple structure are saved in a simple favorites array. Next time when user will log in to the system, all saved subscriptions and favorites will be loaded in the meanwhile and appear in corresponding tabs. Examples od subscriptions map and favorites array for Max are presented in the Appendix B.
 
 \subsubsection{Functional characteristic of a sensor}
-In the section 4.4 was clarified 3 main characteristics which acquire sensor based on a system architecture. Since realization of a Data Hub fully rely on a backend, but in proposed evaluation was used XMPP server, become possible to differentiate security, reliability and performance level based only on a server configuration. Where every end-point is a MUC chat room(Figure 5.16). 
+In the section 4.4 was clarified 3 main characteristics which acquire sensor characteristics based on a system architecture. Since realization of a Data Hub fully rely on a backend implementation and in proposed evaluation anyway was used own XMPP server, become possible to reliability level based only on a server configuration. Where every end-point is a MUC chat room(Fig. \ref{img:reliability}). 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{images/security.png}   
-\caption[Security]{Data secure transfer using Chat Rooms}                         
+\caption[Security]{Data secure transfer using Chat Rooms} 
+\label{img:reliability}                        
 \end{figure}
-Application logic calculate automatically number of available end-points for every sensor, based on Registry info and shows it on the main page as shown above on the Figure 5.17. The rules of how was calculated the security level or reliability are described in the Section 4.4, Subsection "Sensor Functional Characteristics"(Appendix C).
+Application logic automatically calculates a number of available end-points for every sensor, based on Registry info and shows it on the main page as shown above on the Figure \ref{img:icons}. The rules of how was calculated the reliability level is described in the Section 4.4, Subsection ``Sensor Functional Characteristics''(Appendix C).
 \newline
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1.0]{Screenshots/Icons.png}   
-\caption[GUI identification of security and reliability level]{GUI identification of security and reliability level}    
+\caption[GUI identification of security and reliability level]{GUI identification of security and reliability level}
+\label{img:icons}    
 \end{figure}
 
-\textbf{Search Bar} is made by using only frontend, as one of the feature of the AngularJS. It makes sorting of an graphical object through the all existed titles of a data source. It is fast and very straightforward in use. 
+\textbf{Search Bar} is made by using only frontend, as one of the feature of the AngularJS. It makes sorting of an graphical object through the all existed titles of a data source. It is fast and very straightforward in use for a end-user. 
 
-\textbf{Data Streaming} is the point where Data Hub as a part of a backend come into a picture. All data streaming works through XMPP extensions called XEP0049(MUC) or XEP0045(MUC). In presented example with ambient temprature in INF3084 was used MUC for retrieving real-time data throug the BOSH. Since generic frontend supposed to support all possible approaches, it also provides realization for PubSub(XEP0060). By using Strophe.js as a client-side web-based library was made refactoring according to skeleton defined by AngularJS. 
+\textbf{Data Streaming} is the point where Data Hub as a part of a backend come into a picture. All data streaming works through XMPP extensions called XEP0045(MUC) or XEP0060(PubSub). In presented example with ambient temprature in INF3084 was used MUC for retrieving real-time data through the BOSH technology. Since generic frontend supposed to support all possible approaches, it also provides realization for PubSub(XEP0060). By using Strophe.js as a client-side web-based library was made refactoring according to skeleton defined by AngularJS. 
 \newline
-The SensDash logic builded on top of AngularJS skeleton(Appendix D). By using two-way data binding, aggregation and presentation of a sensor metadatadata was done by using factory pattern. Together with creation of a sensor entity as a graphical object, all handlers, functionality and interconnection protocol also created for every object accrodnigly, based on abstract methods. Such a general manipulation of objects makes possible to loosely couple code and object. All sensors metadata will be automatically parsed from Sensor Registry and presented on a SensDash always in the same way. Everything done in runtime, such that if a new sensor registers itself in Registry it will appear as soon as user reload the page. 
+The SensDash logic was built on top of AngularJS skeleton(Appendix D). By using two-way data binding, aggregation and presentation of a sensor metadata. Together with creation of a sensor entity as a graphical object, all handlers, functionality and interconnection protocol also created for every object accordingly, based on abstract methods. A general manipulation of objects makes possible to loosely couple code and object. All sensors metadata will be automatically parsed from Registry and presented on a SensDash always in the same way. Everything done in runtime, such that if a new sensor registers in Registry it will appear as soon as user reload the page. 
 
 \section{Summary}
-This chapter presents details of implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation section 5.5. 
+This chapter presents details of an implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation Section 5.3. The use case scenario based on ambient temperature sensor from the room INF3084(hardware sensor) and IT news Feed(software sensor).
 
-At the begining of a chapter, choosen tools and development environment were discovered and presented: jQuery, HTML5, CSS as a programming languages, AngularJS together with Bootstrap to interconnect application logic with XMPP interface standard and Strophe.js was picked to implement the XMPP mechanism and it's extensions. Web API was defined and afterwards used to retrieve from the Registry all available sensors by sending direct HTTP GET request to the Registry. Authentification and data streaming handling through the XMPP server was made by using XMPP BOSH standard and XEP0049, XEP0045 extensions, based on Strophe.js. In order to connect, disconnet, authorize, save, load, initiate connection through the XMPP interface all these methods and functions was refactored as skeleton, based on AngularJS directives and syntax. 
+At the begining of a chapter, choosen tools and development environment were discovered and presented: JavaScript and its jQuery extensions as a programming languages, AngularJS together with Bootstrap to interconnect application logic with XMPP interface standard and Strophe.js -- to implement the XMPP mechanism and its extensions. Web API was defined and afterwards used to retrieve from the Registry all available sensors by sending direct HTTP GET request to the Registry. Authentification and data streaming handling through the XMPP server was made by using XMPP BOSH technology, XEP0049 and XEP0045 extensions, based on Strophe.js. In order to connect, disconnet, authorize, save, load, initiate connection through the XMPP all these methods and functions was refactored as skeleton, based on AngularJS directives and syntax. 
 
-Was presented the convinsing scenario based on ambient temperature sensor from room INF3084(hardware sensor) and IT news Feed(software sensor) and consumer application developer's requirements.
-
-All used technologies, protocols, libraries and methodologies was gathered together in order to realize working prototype. A summary overview of all implemented above components and tools are shown on the Figure 5.18.
+All used technologies, protocols, libraries and methodologies was gathered together in order to realize working prototype. A summary overview of all implemented above components and tools are shown on the Figure \ref{img:summary}.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{images/ch5Summary.png}   
-\caption[Implementation Architecture]{Integrated Implementation Architecture}                         
+\caption[Implementation Architecture]{Integrated Implementation Architecture}  
+\label{img:summary}                       
 \end{figure}
 
