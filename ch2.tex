@@ -15,9 +15,7 @@
 \end{itemize} 
 
 \subsection {Fine-grained structure}
-The fine-grained structure of a system provides a possibility to distribute tasks between responsible modules. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new parts of a system, without influence to an any another module. Also it guarantees necessary performance in response time and makes a system to be highly scalable. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from the load imbalance.
-
-Hereby, generic frontend have to be splitted to independent modules, responsible for a separated task, that in the same time gives a possibility to scale the system. Also, every module can be implemented independently from framework or language or interface of an implementation. 
+The fine-grained structure of a system provides a possibility to distribute tasks between responsible modules. It guarantees performing tasks in parallel, moreover, exchange, enhance and add new parts of a system, without influence to an any another module. Also it guarantees necessary performance in response time and makes a system to be highly scalable. If the granularity is too fine, the performance can suffer from the increased communication overhead. On the other side, if the granularity is too coarse, the performance can suffer from the load imbalance. Hereby, generic frontend have to be splitted to independent modules, responsible for a separated tasks, that in the same time gives a possibility to scale the system. 
 
 \subsection {Loose Coupling}
 The goal of loose coupling is to reduce dependencies between system's parts. And this term mostly related to an internal software structure of a system, e.g. classes, methods, asynchronous requests. After a comprehensive comparison of tight- and loose coupling properties in the Table \ref{tab:loose_coupling}\footnote{A High-level Comparison of Tight and Loose Coupling,\url{http://wiki.scn.sap.com/wiki/display/BBA/Loose+Coupling+Through+Web+Services}} becomes clear, that loose coupling plays an important role in building abstract and reusable frontend's modules.
@@ -84,7 +82,7 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 	Developer of a mobile application plays a role of a new user, that knows the purpose of a system and needs to find sensors in order to connect it with his/her own mobile application. Firstly, he/she needs to find necessary sensor, accept an SLA with sensor provider, if exist, get to know of what type of data retrived by choosen sensor and if it satisfies his/her requirements, download an SDK, documentations and configuration of end-points.
 
-	After a simple user log in to the system, without any knowledge of a system, should be clarified what should be shown on a main screen and how to structure the data in such a way, that user get used to the dashboard very fast. A dashboard responsibility is to make clear of which steps have to be performed by user in order to get started receiving real-time data.
+	A simple user log in to the system, without any knowledge of a system, should be clarified what should be shown on a main screen and how to structure the data in such a way, that user get used to the dashboard very fast. A dashboard responsibility is to make clear of which steps have to be performed by user in order to get started receiving real-time data.
 
 	In a context of a generic frontend the term multi-user binding means to satisfy personalized users' requirements with corresponding credentials, preferences and personal settings. To use client-side data binding and dependency injections to build dynamic views of data that change immediately on response to user actions.
 
@@ -98,7 +96,7 @@ The degree of the loose coupling can be measured by noting the number of changes
 	\emph{Third-party libraries}: Third-party libraries attempt to simplify cross-platform capability by ``hiding'' the complexities of client differentiation behind a single, unified API.
 
 \subsection {Responsive design}
-	Responsive design (RD)\cite{ wiki:RWD, CSS3} is a Web design approach aimed at crafting sites to provide an optimal viewing experience-easy reading and navigation with a minimum of re-sizing, panning, and scrolling-across a wide range of devices (from mobile phones to desktop computer monitors). An application designed with responsive design\cite{pettit, ethan} adapts the layout to the viewing environment by using fluid, proportion-based grids, flexible images, and adaptive styles.
+	Responsive design \cite{ wiki:RWD, CSS3} is a web design approach aimed at crafting sites to provide an optimal viewing, experience-easy reading and navigation with a minimum of re-sizing, panning, and scrolling-across a wide range of devices(from mobile phones to desktop computer monitors). An application designed with responsive design\cite{pettit, ethan} adapts the layout to the viewing environment by using fluid, proportion-based grids, flexible images, and adaptive styles.
     \begin{itemize}
 	\item The fluid grid concept calls for application elements sizing to be in relative units like percentages, rather than absolute units like pixels or points. 
 	\item Flexible images are also sized in relative units, so as to prevent them from displaying outside their containing element. 
@@ -161,13 +159,13 @@ The degree of the loose coupling can be measured by noting the number of changes
 	Size of Vendor 		        & Startup, Medium, Big, Global Player & How big is the vendor?  \\
 	\hline 
 	\end{tabular}
-	\caption[Categorization of Data Vendors]{Categorization of Data Vendors}
+	\caption[Categorization of Data Vendors in the Web]{Categorization of Data Vendors in the Web}
 	\label{tab:categorization}
 	\end{table}
 
 	Such categorization clarify main important attributes in which customer can be interest in, namely: data access, data output, trustworthiness, data origin and time frame. Such typization appear as an appropriate attribute in a data standard, which was described in details in the Section 4.3.1
 
-	As shown in the Table \ref{tab:categorization} the flexibility and modularity of APIs have made these the most popular of all data access methods. More than 70\% of all vendors offer an API. However, less than 30\% of all vendors have an API as their only way to access data. Most vendors offer an API next to other methods. For example, web interfaces or file downloads are used to give previews of the dataset, to make it easier and more accessible for the customer to see what the actual data looks like. Preview together with all data source descriptions as a metadata will be structurized and accessible through the Web API by using data standard description.
+	As shown in the Table \ref{tab:categorization} the flexibility and modularity of APIs have made these the most popular of all data access methods. More than 70\% of all vendors offer an API. However, less than 30\% of all vendors have an API as their only way to access data. Most vendors offer an API next to other methods. For example, web interfaces or file downloads are used to give previews of the dataset, to make it easier and more accessible for the customer to see what the actual data looks like. Preview of a real-time data and description of a data source, will be structurized and accessible through the Web API by using data standard description.
 
 	Besides aforementioned properties of a metadata format, the main issue for generic frontend is to dynamically retrieve information provided by data sources. It has to be done independently from the data type. Data can change its value during some period of time and as soon as it happens, user have to receive it immediately. A Frontend is responsible for collecting and aggregating data, keeping connection with it, notifying user and visualize it on a GUI. Does not matter how often the data will be changed because all data transfered as real-time streaming. The term streaming data, usually applied to such type of data as video, audio, or map of values and usual approaches as HTTP GET/POST become unuseful in this case. Therefore, one of the most important requirement to the concept is to define an interface between backend and frontend which can support real-time data retrieval. 
 
@@ -175,7 +173,7 @@ The degree of the loose coupling can be measured by noting the number of changes
     \begin{itemize}
     \item feeds from the web, RSS, video and music streaming;
     \item traffic information sensor network from the city ("smart city");
-    \item home automation sensors ("smart home");
+    \item home automation sensors (``smart home'');
     \item continuously growing log files from researchers;
     \item crowdsourced sensors, news;
     \item industrial/embedded sensors, robots;
