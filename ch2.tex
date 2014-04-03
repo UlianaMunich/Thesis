@@ -1,17 +1,17 @@
 %!TEX root = Thesis.tex
 \chapter{Foundation and Requirements Analysis}
-	The main goal of the following chapter is a definition of requirements to generic frontend for exploring sensor and information services. To achieve formalized goal, fundamental terms in the presented research area are formulated at the beginning of the chapter. Basic aspects concerning data source definition, types of information services in the web that have to be retrieved are described in the section 2.2. According to aforementioned parts of an approach, summary section underlines the chapter by combining needs of frontend and data sources and defines requirements to a common concept, which in details described in the chapter 4.
+	The main goal of the following chapter to define requirements to a generic frontend for exploring sensor and information services. To achieve formalized goals in the Chapter 1, fundamental terms in the presented research area are formulated at the beginning of the Chapter. Basic aspects concerning data source definition, types of information services in the web needed to be retrieved are described in the Section 2.2. Summary section underlines the Chapter by combining needs of frontend and data sources and defines requirements to a common concept, which is described in details in the Chapter 4.
 
 \section {Frontend's Requirements}
-	In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to confirm to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backend simplifies development and separates maintenance. Therefore need to be distinguished what are the main requirements of a generic frontend for exploring data sources, i.e. :
-\begin{itemize}
+	In computer science, the frontend is responsible for collecting input in various forms from the user and processing it to confirm to a specification the backend can use. The frontend is an interface between the user and the backend\cite{wiki:xxx} and the separation of software systems into front- and backend simplifies development and separates maintenance. Therefore needs to be distinguished what are the main requirements to a generic frontend, in order to be applicable to any backend system and type of a data source, i.e. :
 
+\begin{itemize}
 \item \emph{Loose coupling:} each of systems components has, or makes use of, little or no knowledge of the definitions of other separated components. Where the main goal is to avoid dependencies between new components, modules and easy deployment of future enhancement.
-\item \emph{Fine-grained structure:} split the system into a small parts (Logic Modules, universal interfaces for every type of data format, Information resources in the Web), such that it can be distributed across Internet, and can be applied to any resource and mobile device everywhere. It also includes ease of expansion and integration with backend system, independently from platform used on a backend and frameworks/tools used on a frontend side.
-\item \emph{Multi-user binding:} defining to every user according to their type and rights visibility rules and load personilized bookmarks/preferences, targeting by using JID\index{Jabber ID} and password. Every account have to be unique binded to a data source, contracts, personalized preferences. After that, GUI can be targeted according to it.
+\item \emph{Fine-grained structure:} split the system into a small parts (logic modules, universal interfaces for every type of data format, information resources in the Web), such that it can be distributed across Internet, and can be applied to any resource and used from any mobile device. It also includes ease of expansion and integration with backend system, independently from platform used on a backend and frameworks used on a frontend side.
+\item \emph{Multi-user binding:} defining to users visibility rules according to their type and rights and load personilized bookmarks/preferences, targeting by using ID and password. Every account have to be uniquely binded with a data source, contracts or personalized preferences. After that, GUI can be targeted according to it.
 \item \emph{Cross-platforming or multi-platform:} a possibility of application to be run on any type of device(e.g., smartphone, notebook, tablet) without special preparation or changes. This gives an possibility to be flexible.
 \item \emph{Responsive web design:} an ability of a GUI automatically adapt to any size of device screen, by provisioning high usability performance.
-\item \emph{Usability:} web-based interface, which gives an easy to understand user-friendly presentation of a different data types. User-oriented design provides fast and simple awareness of what frontend propose and how it can be explored by user.
+\item \emph{Usability:} web-based interface, which gives an easy to understand user-friendly interface of a different data types. User-oriented design provides fast and simple awareness of what frontend propose and how it can be explored by user.
 \end{itemize} 
 
 \subsection {Fine-grained structure}
@@ -97,7 +97,7 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 	\emph{Graceful degradation}
 	\newline
-	Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a "least common denominator" for more limited client browsers. For example, a user attempting to use a limited-feature browser to access web-based application may notice that application itself switches to "Basic Mode", with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
+	Graceful degradation attempts to provide the same or similar functionality to all users and platforms, while diminishing that functionality to a ``least common denominator'' for more limited client browsers. For example, a user attempting to use a limited-feature browser to access web-based application may notice that application itself switches to ``Basic Mode'', with reduced functionality. Some view this strategy as a lesser form of cross-platform capability.
 
 	\emph{Separation of functionality}
 	\newline
@@ -105,11 +105,11 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 	\emph{Multiple code base}
 	\newline
-	Multiple code base applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for "plugins" which may or may not be present for any given installation of a particular browser version.
+	Multiple code base applications present different versions of an application depending on the specific client in use. This strategy is arguably the most complicated and expensive way to fulfill cross-platform capability, since even different versions of the same client browser (within the same operating system) can differ dramatically between each other. This is further complicated by the support for ``plugins'' which may or may not be present for any given installation of a particular browser version.
 
 	\emph{Third-party libraries}
 	\newline
-	Third-party libraries attempt to simplify cross-platform capability by "hiding" the complexities of client differentiation behind a single, unified API.
+	Third-party libraries attempt to simplify cross-platform capability by ``hiding'' the complexities of client differentiation behind a single, unified API.
 
 
 \subsection {Responsive web design}
@@ -125,9 +125,9 @@ The degree of the loose coupling can be measured by noting the number of changes
 
 \subsection {Usability}
      Usability is the ease of use and learnability of a human-made object. In human-computer interaction and computer science, usability studies the elegance and clarity with which the interaction with a computer program or a web site (web usability) is designed.
-	 According to Jakob Nielsen, "Studies of user behavior on the Web find a low tolerance for difficult designs or slow sites. People don't want to wait. And they don't want to learn how to use a home page. There's no such thing as a training class or a manual for a Web site. People have to be able to grasp the functioning of the site immediately after scanning the home page—for a few seconds at most."\cite{wiki:usability} Otherwise, most casual users simply leave the site and browse elsewhere.
+	 According to Jakob Nielsen, ``Studies of user behavior on the Web find a low tolerance for difficult designs or slow sites. People don't want to wait. And they don't want to learn how to use a home page. There's no such thing as a training class or a manual for a Web site. People have to be able to grasp the functioning of the site immediately after scanning the home page—for a few seconds at most''\cite{wiki:usability}. Otherwise, most casual users simply leave the site and browse elsewhere.
 
-	ISO defines usability as "The extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use." The word "usability" also refers to methods for improving ease-of-use during the design process. Usability consultant Jakob Nielsen and computer science professor Ben Shneiderman have written (separately) about a framework of system acceptability, where usability is a part of "usefulness" and is composed of\cite{jakob}:
+	ISO defines usability as ``The extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use.''. The word "usability" also refers to methods for improving ease-of-use during the design process. Usability consultant Jakob Nielsen and computer science professor Ben Shneiderman have written (separately) about a framework of system acceptability, where usability is a part of ``usefulness'' and is composed of\cite{jakob}:
 	\begin{itemize}
 	\item Learnability: How easy is it for users to accomplish basic tasks the first time they encounter the design?
 	\item Efficiency: Once users have learned the design, how quickly can they perform tasks?
@@ -139,7 +139,7 @@ The degree of the loose coupling can be measured by noting the number of changes
 	In scope of this master thesis will be covered such characteristics of usability as: learnability, efficiency and satisfaction. Rest of it together with possible enhancement will be proposed in Chapter 6 in the section Future Work.
 
 \section {Types of Data Sources}
-    In order to distinguish what type of data sources can be retrieved, all data sources was differentiated as physical and software sensors. Sensor in such a way not just a hardware, but everything that "senses"/provides a data.
+    In order to distinguish what type of data sources can be retrieved, all data sources was differentiated as physical and software sensors. Sensor in such a way not just a hardware, but everything that ``senses''/provides a data.
 
 	\subsection {Physical Sensors}
 	A sensor is a converter that measures a physical quantity and converts it into a signal which can be read by a observer. After receiving this signal backend have to reconvert it to a signal that can be retrieved by frontend. The main task of frontend in this case to determine what are the main types of physical sensors, how to structure and differentiate it according to their functionality and make a standard data format, by using which, backend and frontend can not only easily integrate new sensors, but can always rely on it and understand how to visualize and present it to the user.

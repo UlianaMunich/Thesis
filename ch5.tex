@@ -499,13 +499,9 @@ Listing \ref{code:handle_muc} shows simplified implementation of MUC-handler.
 
 
 \subsection{XEP-0049: Private XML Storage}
-<<<<<<< HEAD
+\label{xep0049}
 	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The main goal to use it is to make a storage for user personal preferences. Since web-based application has no access to the private storage of a device and frontend can not rely on a database used on the Data Hub in order to avoid tight dependencies, was decided to use one of the extension of XMPP family. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is a valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
-=======
-	\label{xep0049}
-	Private XML Storage\footnote{XEP0049 specification,\url{http://xmpp.org/extensions/xep-0049.html}} is a Jabber extension, allowing a client to store any arbitrary XML on the XMPP server by sending an <iq/> stanza of type ``set'' to the server with a <query/> child scoped by the ``jabber:iq:private'' namespace. The <query/> element may contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an <iq/> stanza of type ``get'' with a <query/> child scoped by the ``jabber:iq:private'' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences. All available methods are displayed in table~\ref{img:xep49-methods}.
->>>>>>> 8152817d7b37b6382644c7754b3d219920dc12d6
-	
+
 	\begin{figure}[!ht]
 		\centering
 		\includegraphics[scale=0.9]{images/xep0049Queries.png}   
