@@ -97,36 +97,36 @@
     The System Architecture is splitted to a backend and frontend, that gives an overview of how these two parts interconnected. Respectively ``backend/frontend implementation'' means that all modules of each side have to be implemented separately. Such module as Registry and Data Hub defined and standardized by frontend, in order to clarify interface of collaboration with backend. To the backend responsibility relate an implementation of Registry and Data Hub modules.
 
   \subsection{Registry}
-    The Registry is a module responsible for storing an info about all registered sensors in order to provide descriptional overview to a user. The Frontend's GUI requests and aggregates info from the Registry about registered in it data sources and dynamically presents it to the user. The Registry contains next necessary attributes: unique id of a sensor, title, description, availability (true or false), access (private or public), provider of sensed data, service-level agreement (SLA) and its last update time, number of end-points available for one sensor and data format. JSON format fully satisfies described metadata format. The type of connection interface between the Registry and the frontend will be defined in the Section 4.3.3. Structured sensors' attributes within JSON format describes sensors metadata and gives an opportunity to transform it automatically to the graphical container of as a part of the GUI. Registries which provides defined standard can be easily added to the frontend in a runtime. The Registry specifies simple interface standard in JSON format to encode all available attributes and properties and it is much simpler and light-weighter than XML and separate metadata of a sensor from a real-time data stream. 
+    The Registry is a module responsible for storing an info about all registered sensors in order to provide descriptional overview to a user. The Frontend's GUI requests and aggregates information from the Registry about data sources registered in it and dynamically presents it to the user. The Registry contains next necessary attributes: unique id of a sensor, title, description, availability, private or public access description, data provider, service-level agreement (SLA) and its last update time, number of end-points available for one sensor and data format. JSON format fully satisfies described metadata format. The type of connection interface between the Registry and the frontend will be defined in the Section 4.3.3. Structured sensors' attributes within JSON format describes sensors metadata and gives an opportunity to transform it automatically to the graphical container of as a part of the GUI. Registries which provides defined standard can be easily added to the frontend in a runtime. The Registry specifies simple interface schema in JSON format to specify all available attributes and properties. It is a lightweight format, native to browser and much simpler to parse than XML. It separates metadata of a sensor from a real-time data stream. 
 
-    Before publishing data to the Registry, a data publisher, which is a part of a backend, have to fill in all attributes based on a description of a sensor. An important attribute of a sensor is its ``id''. It must be unique for every data source, in order to avoid inconsistency between different Registries. 
+    Before publishing data to the Registry, a data publisher, which is a part of a backend, should specify all required fields based on a description of a sensor. An important attribute of a sensor is its ``id'', which in order to avoid inconsistency between different Registries must be unique for every data source. Id can be an alphanumeric scring of arbitary length.
 
-    To get an access to a real-time data streams a user have to be subscribed to it. And the process of subscription to a public and private data sources differ significantly. The simple way of subscription has a public sensor, since it has a public access a user does not need to sign an SLA with a data provider. In contrast to private data sources, where a user before getting any real-time data needs to accept an SLA provided by vendor of a sensor. Once a user accepts the corresponding SLA become possible to get the real-time data as long as the SLA is up-to-date. When the provider of a data source makes changes in the SLA, a user have to be immediately notified and to avoid regulation problems automatically unsubscribed from a sensor. The implementation details are described in the Section 5.3.2.
+    To get an access to a real-time data streams a user have to be subscribed to it. The process of subscription to a public and private data sources differ. Sensors with a public access do not require explicit SLA accepting, while private data sources obligate a user to accept provider SLA before getting any real-time data. Once a user accepts the corresponding SLA real-time data becomes available as long as the SLA is up-to-date. When the provider of a data source makes changes in the SLA, a user has to be immediately notified and to avoid SLA disagreements automatically unsubscribed from a sensor. The implementation details are described in the Section 5.3.2.
 
-    End-points for a sensor, handles real-time data streaming and have to be sctuctured in heuristic order, in order to switch end-points when another one is failover. The number of end-points through which data streaming are performed not limited.
+    End-points for a sensor handle real-time data streaming and have to be sctuctured in a heuristic order, in order to switch end-points when another one fails. The number of sensor end-points for data streaming is not limited.
 
   \subsection{Data Hub}
-    Since the the Registry responsible for collecting metadata of sensors, the Data Hub is responsible for a mapping interface of particular sensor data stream format into a format supported by the frontend and delivered through the common universal protocol. It means that the Data Hub has to satisfy next requirements:
+    Since the the Registry responsible for collecting metadata of sensors, the Data Hub is responsible for mapping interface of particular sensor data stream format into a format supported by the frontend and delivered through the common universal protocol. It means that the Data Hub has to satisfy next requirements:
 
     \begin{itemize}
     \item be aware of a metadata provided by the Registry to the frontend;
     \item bind metadata from the Registry with real-time data streaming from a sensor;
     \item get and parse sensor streaming data and reconvert it to the type supported by universal protocol;
     \item implement universal protocol to provide exchange message with a server in order to retrieve streaming data from a sensor;
-    \item store history from a sensors and user personal preferences.
+    \item store history from sensors and user personal preferences.
     \end{itemize}
     
-    A GUI depends a lot on user personal preferences. It may consist sensor subscriptions list, favorite data sources, user profile and list of available sensors. All these data have to be stored on the Data Hub and loaded after authentication process was sucessfully passed.
+    A GUI depends a lot on user personal preferences. It may contain sensor subscriptions list, favorite data sources, user profile and list of available sensors. All these data has to be stored in the Data Hub and loaded after authentication process was sucessfully passed.
 
   \subsection{Web-based Frontend}
   \label{section:web-frontend}
     \subsubsection{Web server}
-    The primary function of a web server is to deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to a text content. 
-  
-    In proposed concept Web server is responsible for robust and efficient serving of static files (*.html, *.css, *.js etc.). The goal is to exclude dependencies on concrete backend platforms or frameworks and to provide generic frontend as easily plugable component. Such a common and simplified design makes possible to extend and scale every part of a distributed system independently. Specific operation logic like authentication of user, registration of sensors and users are delegated to external components such as Registry, Data Hub and Authentication Hadler (AuthHandler), these external components can be interchanged without dependency to the system itself.
+    The primary function of a web server is to deliver web content to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP).
+
+    In proposed concept Web server is responsible for robust and efficient serving of static files (*.html, *.css, *.js etc.). The goal is to exclude dependencies on concrete backend platforms or frameworks and to provide generic frontend as an easily plugable component. Such a common and simplified design makes it possible to extend and scale every part of a distributed system independently. Specific operation logic like authentication of user, registration of sensors and users are delegated to external components such as Registry, Data Hub and Authentication Hadler (AuthHandler), these external components can be interchanged without dependency to the system itself.
 
     \subsubsection{AuthHandler}
-    Authentication Handler (AuthHandler) responsible for registering and log in a user to the the system. After a user gets necessary ID and confirm his/her personality by using password and name, system automatically applies visibility rules. After verification and confirmation of credentials, stored on a Data Hub, it becomes possible to bind user ID with personal preferences. These preferences include: user subscriptions, favorites, social sharing information and cookies.
+    Authentication Handler (AuthHandler) is responsible for logging in and optionally registering a user in the the system. After a user gets necessary ID and confirms his/her personality using password and name, system automatically applies visibility rules. After verification and confirmation of credentials, stored on Data Hub, it becomes possible to bind user ID with personal preferences. These preferences include: user subscriptions, favorites, social sharing information and session data.
 
     \subsubsection{Interfaces}
       On the Figure \ref{img:structure} exist 3 communication channels: 
@@ -138,23 +138,24 @@
 
       \textbf{Registry to Directory Manager Interface}
       \newline
-      The Registry contains pairs of attributes - values, which describe sensors. These type of data can be structured by using JSON format and retrieved by Directory Manager through one-direction channel via HTTP GET request. The Directory Manager sends HTTP GET request to the Registry in order to get list of availale sensors and their metadata. Once JSON file is parsed by frontend, values of attributes extracted and aggregated as graphical container with all dependencies. HTTP GET request and JSON format is a part of RESTful API approach. Combination of JSON fromat and HTTP GET request in the future sesctionas will be called Web API.
+      The Registry contains pairs of attributes -- values, which describe sensors. These type of data can be structured by using JSON format and retrieved by Directory Manager. The Directory Manager can send HTTP GET request to the Registry and get a list of availale sensors with their metadata. Once JSON file is parsed by frontend, values of metadata are extracted and aggregated, resulting with appropriate system and user interface updates. HTTP GET requests and JSON responses are a part of RESTful API approach. It will be called Web API in following text.
 
-      If system needs to use more then one Registry, requests will be sent to all of them. After getting all JSON lists of sensors, frontend will reparse all received data foming a sensor list and immediately aggregate it on a web page.
+      If system needs to use more then one Registry, requests will be sent to all of them. It is important to minimize total waiting time at this point, preferring parallel Registry querying. After getting all JSON lists of sensors, frontend will reparse all received data foming a conbined sensor list and immediately representing it on a web page.
 
       \textbf{Data Hub -- Directory Manager Interface/AuthHandler}
       \newline
-      Communication between the Data Hub and another 2 modules: DataStream Handler and AuthHandler, have to be supported through the one common universal interface. It has to satisfy next requirements:
+      Communication between the Data Hub and another 2 modules: DataStream Handler and AuthHandler has to be supported through a single universal interface. It has to satisfy next requirements:
       \begin{itemize}
-      \item have a public license;
-      \item handle HTTP request from browser;
-      \item support multiple channels in one connection;
-      \item transfer different types of data in one channel, message differentiation;
-      \item keep connection alive (stateful, through the TCP in background);
-      \item simplicity of enhancement and customization.
+      \item be based on open formats;
+      \item handle HTTP requests to work with browser;
+      \item support multiple data streaming channels in a single HTTP connection;
+      \item support different types of data in one channel, message differentiation;
+      \item keep connection alive, and reconnect in case of failures;
+      \item simplicity of enhancement and customization;
+      \item popuratity within developers.
       \end{itemize}
 
-      The Data Hub -- Directory Manager/AuthHandler Interface flow are shown on the Figure \ref{img:protocol}. Such architecture decouple sensor specific interface and interface between frontend and backend.
+      The Sensors, Data Hub and Frontend communication is shown on the Figure~\ref{img:protocol}. Such architecture decouples sensor specific interface and interface between frontend and backend.
 
       \begin{figure}[!ht]
       \centering
@@ -163,7 +164,7 @@
       \label{img:protocol}                           
       \end{figure}
 
-      In order to satisfy all aforementioned requirements, nowadays exist two main protocols: \emph{XMPP}\cite{XMPPbook}:a protocol for connecting devices to people, a special case of the device-to-server pattern, since people are connected to the servers and \emph{MQTT\footnote{MQ Telemetry Transport, \url{http://mqtt.org/}}}: a protocol for collecting device data and sending it to servers. 
+      In order to satisfy all aforementioned requirements, two major protocols have been found: \emph{XMPP}\cite{XMPPbook}:a protocol for extensible messaging with a special case of the device-to-server pattern, since people are connected to the servers and \emph{MQTT\footnote{MQ Telemetry Transport, \url{http://mqtt.org/}}}: a protocol for collecting device data and sending it to servers. 
 
       \textbf{MQTT}
       \newline
@@ -174,33 +175,31 @@
       \caption[Message Queue Telemetry Transport]{Message Queue Telemetry Transport}
       \label{img:MQTT}                           
       \end{figure}
-      MQTT makes little attempt to enable device-to-device transfer, nor to ``fan out'' the data to many recipients. Since it has a clear, compelling single application, MQTT offering few control options. In this context, ``real time'' for MQTT is typically measured in seconds. All the devices connect to a data concentrator server. So the protocol works on top of TCP, which provides a simple, reliable stream. Since the IT infrastructure uses the data, the entire system is designed to transport data into enterprise technologies.
+      MQTT makes attempt to enable device-to-device transfer, nor to ``fan out'' the data to many recipients. Since it has a clear, compelling single application, MQTT is offering few control options. In this context, ``real time'' for MQTT is typically measured in seconds. All the devices connect to a data concentrator server. So the protocol works on top of TCP, which provides a simple, reliable stream. Since the IT infrastructure uses the data, the entire system is designed to transport data into enterprise technologies.
 
       MQTT enables applications like monitoring a huge oil pipeline for leaks or vandalism. Those thousands of sensors must be concentrated into a single location for analysis. When the system finds a problem, it can take action to correct that problem. Other applications for MQTT include power usage monitoring, lighting control, and even intelligent gardening. They share a need for collecting data from many sources and making it available to the IT infrastructure.
 
      \textbf{XMPP}
       \newline 
-      XMPP was originally called ``Jabber''. It was developed for instant messaging (IM) to interconnect people via text messages (Fig. \ref{img:XMPP}\footnote{IoT, \url{http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things}}). XMPP stands for Extensible Messaging and Presence Protocol. The targeted use is people-to-people communication.
+      XMPP was originally developed for instant messaging (IM) to connect people via text messages (Fig. \ref{img:XMPP}\footnote{IoT, \url{http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things}}). XMPP stands for Extensible Messaging and Presence Protocol. The targeted use is people-to-people communication.
       \begin{figure}[!ht]
       \centering
-      \includegraphics[scale=0.7]{images/XMPP.png}   
+      \includegraphics[scale=0.7]{images/XMPP.png}
       \caption[The Extensible Messaging and Presence Protocol (XMPP)]{The Extensible Messaging and Presence Protocol (XMPP)}
       \label{img:XMPP}                           
       \end{figure}
-      XMPP uses the XML text format as its native type, making person-to-person communications natural. Like MQTT, it runs over TCP, or over HTTP on top of TCP. Its key strength is a name@domain.com addressing scheme that helps connect the needles in the huge Internet haystack. XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of exciting creations.
 
-      In fact, most implementations use polling, or checking for updates only on demand. A protocol called \emph{BOSH} (bidirectional streams over Synchronous HTTP) lets servers push new messages and ``real time'' to XMPP measured in seconds. The core of XMPP is the exchange of small, structured chunks of information. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. Because of XMPP’s differences, it provides an 
-      companion protocol to HTTP. XMPP also has nearly 200 extensions, providing a broad and useful range of tools on which to build sophisticated applications. 
+      XMPP uses the XML format messages, making person-to-person communications natural. Like MQTT, it runs over TCP, or over HTTP on top of TCP. Its key strength is a name@domain.com addressing scheme that helps connect the needles in the huge Internet haystack. XMPP powers a wide range of applications including instant messaging, multi-user chat, voice and video conferencing, collaborative spaces, real-time gaming, data synchronization, and even search. Although XMPP started its life as an open, standardized alternative to proprietary instant messaging systems like ICQ and AOL Instant Messenger, it has matured into an extremely robust protocol for all kinds of messaging purposes.
 
-      After a short introduction become clear that XMPP fully satisfy all requirements in order to be used in concept of a generic frontend. So the interface \emph{Data Hub to/from Directory Manager Interface/AuthHandler} provided by using XMPP. Thus, it should be discovered in details.
+      Most implementations work directly with TCP connections, but \emph{BOSH} extension (bidirectional streams over Synchronous HTTP) lets servers push XMPP data through HTTP long polling sessions, enabling ``real time'' XMPP experience in web-application. Like HTTP, XMPP is a client-server protocol, but it differs from HTTP by allowing either side to send data to the other asynchronously. XMPP connections are long lived, and data is pushed instead of pulled. XMPP has nearly 200 extensions, providing a broad and useful range of tools on which sophisticated applications can be build. 
+
+      After a short research XMPP pecularities clearly show that this protocol can fully satisfy all requirements and be used in generic frontend. So the interface \emph{Data Hub to/from Directory Manager Interface/AuthHandler} will be powered by using XMPP. Thus, it should be discovered in details.
    
       XMPP, like all protocols, defines a format for moving data between two or more communicating entities. In XMPP’s case, the entities are normally a client and a server, although it also allows for peer-to-peer communication between two servers or two clients. Many XMPP servers exist on the Internet, accessible to all, and form a federated network of interconnected systems. Data exchanged over XMPP is in XML, giving the communication a rich, extensible structure. One major feature XMPP gets by using XML is XML's insensibility. This extensibility is put to great use in the more than 200 protocol extensions registered with the XMPP Standards Foundation and has provided developers with a rich set of tools. XML is known primarily as a document format, but in XMPP, XML data is organized as a pair of streams, one stream for each direction of communication. Each XML stream consists of an opening element, followed by XMPP stanzas and other top-level elements, and then a closing element. Each XMPP stanza is a first-level child element of the stream with all its descendant elements and attributes. At the end of an XMPP connection, the two streams form a pair of valid XML documents. The Extensible Messaging and Presence Protocol is the IETF's formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber community\cite{xmpp}.
 
       \textbf{Pushing Data}
 
-      HTTP clients can only request data from a server. Unless the server is responding to a client request,
-      it can not send data to the client. XMPP connections, on the other hand, are bidirectional. Either party
-      can send data to the other at any time, as long as the connection is open. This ability to push data expands the possibilities for web applications and protocol design. Instead of inefficient polling for updates, applications can instead receive notifications when new information is available.
+      HTTP clients can only request data from a server. Unless the server is responding to a client request, it can not send data to the client. XMPP connections, on the other hand, are bidirectional. Either party can send data to the other at any time, as long as the connection is open. This ability to push data expands the possibilities for web applications and protocol design. Instead of inefficient polling for updates, applications can instead receive notifications when new information is available.
 
       \textbf{Pleasing Firewalls}
 
@@ -236,56 +235,58 @@
     Data Hub and Registry are two modules that have been standardized by frontend and have to be fully implemented on a backend side. Since both of these parts support common standards such as Web API, AJAX, JSON or XML file format, it makes possible to implement every functional module on a backend side without dependency on OS type, framework or language of implementation. Separation between metadata and streaming data increase scalaility of a system, such that any number of Registries and Data Hubs can be deployed in runtime. Defined Web API and XMPP-based interfaces between frontend's and backend's sides based on open standards. In case of XMPP-based interface, all communication are flows through a distributed XMPP network. Thus, Data Hub needs to have its own XMPP server or sends a requests through any alternative server.
 
 \section{Data Tier}
-   As was mentioned in the Section 4.1 data tier contains data sources that have to be retrieved via application tier to a client tier. Data tier consists of hardware and software sensors, which provide an information to a user. The data format which can be retrieved by frontend via XMPP connection has no limitation, but in scope of this master thesis was defined such type of information as text and map of values. Text format is used as an example of information provided by software sensor. In the same time hardware sensor periodically sends measured map o values. These types of data changes with some time-frequency and automatically retrieved by the client tier as a real-time data stream.
+   As was mentioned in the Section 4.1 data tier contains data sources that have to be retrieved via application tier to a client tier. Data tier consists of hardware and software sensors, which provide information to a user. The data format which can be retrieved by frontend via XMPP connection has no limitation, but in scope of this master thesis such type of information was defined as text and hashmap of values. Text format is used as an example of information provided by software sensor. In the same time hardware sensor periodically sends measured map o values. These types of data changes with some time-frequency and automatically retrieved by the client tier as a real-time data stream.
 
-  An important aspect in streaming data that some of data can be cashed on a server side, thus become possible to retrieve data after it was produced. But some streaming data consists only live data, thus there is no other options except live streaming, where the connection configuration, aliveness and quality become a key aspect. All these properties are already covered by XMPP. Consider absence of any concrete backend system, cashing of a data can be done based on XMPP server configuration. 
+  An important aspect in streaming data that some of data can be cashed on a server side, thus become possible to retrieve data after it was produced. But sometimes relevant data has to be live, thus there is no other options except of live streaming, where the connection configuration, aliveness and quality become a key aspect. All these properties are already covered by XMPP. Considering the absence of any concrete backend system, cashing of a data can be done based on XMPP server configuration. 
 
   \textbf{Sensor Functional Characteristics}
   \newline
-  An essential part of a concept is to garantee reliable and secure data transportation. Thus, every data source can acquire additional properties based on a system architecture:
+  An essential part of a concept is to guarantee reliable and secure data transportation. Thus, every data source can acquire additional properties based on a system architecture:
   \begin{itemize}
-  \item reliability,
-  \item perfomance,
-  \item security.
+  \item reliability
+  \item perfomance
+  \item security
   \end{itemize}
-  All these three characteristics rely on a quantity of available Data Hubs which include XMPP modules and handle data streaming. Since Data Hub have to provide data from a sensor to a frontend by using XMPP connection, it has to support XMPP data channel configurations and may play a role of end-point for frontend. If sensor has 2 end-points it should be mentioned in Registry together with a type of data transfer protocol (covered in the Section 5.2).
+  All these three characteristics rely on a quantity of available Data Hubs which include XMPP modules and handle data streaming. Since Data Hub has to provide data from sensor to frontend by using XMPP connection, it has to support XMPP data channel configurations and may play a role of end-point for frontend. If sensor has 2 end-points it should be mentioned in Registry together with a type of data transfer protocol (covered in the Section 5.2).
 
-  A simple sensor, with a low level of reliability, has one and only one end-point (Figure \ref{img:end_points} a). A reliable sensor has two end-points, where is one is a primary, the other one is a backup/failover (Figure \ref{img:end_points} c). A highly reliable sensor has three end-points, which is guarantee data arrival in case of failover of another end-points. 
+  A simple sensor with a low level of reliability has only a single end-point (Figure~\ref{img:end_points}~a). A reliable sensor has two, where first one is primary, and next serves as backup/failover (Figure~\ref{img:end_points}~c). A highly reliable sensor has three or more end-points, which guarantee data delivery in case of n-1 endpoints failing. 
      \begin{figure}[!ht]
      \centering
      \includegraphics[scale=0.6]{images/FuncCharacteristics.png}   
      \caption[MVC Pattern]{Sensor Functional Characteristics} 
      \label{img:end_points}                     
      \end{figure}
-  A high-performance sensor has more than 2 end-points (Figure \ref{img:end_points} c), out of which one is always chosen based on minimal latency message income. In case of big data transportation, all data can be splitted and partially  sended in parallel through more than 2 end-points. 
-    
-  A secure sensor maintained by at least two end-points, each of which carries some part of a data (Figure \ref{img:end_points} b). Without each part of a message become not possible to retrieve whole data at all. 
+A high-performance sensor has two or more end-points (Figure \ref{img:end_points}~c) working in parralell. In contrast to reliability end-points, high performance does not perform failovers, using all endpoints in the same time to achieve better bandwith and minimize latency.
 
- All functional characteristics have to be automatically captured by frontend from a predefined attributes located in a Registry. So that user can get to know about the expected quality of the data streams even in case some end-points become unavailable. In the meanwhile, frontend has predefined logic, which calculates numbers of related end-point for every sensor and by using graphical elements such as icons and labels, presents this information to the user on the welcome screen. In case of failover of an end-point and data source has additional end-point, frontend automatically  reconnects to the next end-point, by using AJAX request, and user can continue receiving data. Such users, as developer of a mobile application, which wants to use frontend as a proxy for their application, would be necessary to understand the order of end-points, and clarify how to interconnect them in order to provide high-secure, reliable and high-performance data retrieval.
+A secure sensor should be maintained by at least two end-points, each transporting an unrecoverable part of a data (Figure~\ref{img:end_points} b). This way, even by compromising some of endpoints, a full message could not be stolen. 
+
+All functional characteristics of sensors should be automatically retrieved by frontend from predefined attributes located in Registries. Users then would be able to estimate conditions and quality of data streams before subscribing to them. Frontend should have a logic which calculates a number sensor end-points, analyses their basic characteristics and graphically represents it using icons and labels, presenting most important technical metadata in a user-friendly way. In case of end-point problems, frontend should automatically perform a failover to the next available endpoint, if it exists. Developers that want want to use generic frontend as a proxy for their application, should care about correct ordering of end-points, and pay attention to connection process in order to provide high-secure, reliable and high-performance data retrieval.
 
 \section{Summary}
-	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Fine-grained structure provides clear separation of concerns between different module of the concept.The  client tier consists GUI content and the client framework; the application tier provides an application logic in order to interconnect a backend and the client tier; and finally, the data tier describes typization of a data in order to interconnect it easily with the application tier and visually retrieve it by using the client tier. To an every data souce was assigned such functional characteristics as reliability, perfomance and security level of information. Every characteristics rely on a number of responsible for sensor end-points. 
+	In this chapter, according to a 3-tier architecture, the first web-based concept for sensor streaming services has been created. Fine-grained structure provides clear separation of concerns between different modules of the concept. The client tier consists of GUI content and client framework; the application tier provides an application logic to interconnect backend and client tier; and finally, the data tier describes format of a data in order to easily connect it with the application tier and visually represent it by using the client tier. Every data souce was assigned such functional characteristics as reliability, perfomance and security level of information streams. Every characteristic relies on a number of end-points responsible for sensor. 
 
-    As a result fine-grained structure of the concept was built on top of next modules: 
+  As a result a fine-grained structure of the concept was built on top of next modules: 
+  
   Registry responsibilities:
   \begin{itemize}
-  \item stores an metadta about available sensors registered in the network;
-  \item provides Web API by using JSON format.
+  \item stores an metadata about available sensors registered in the network;
+  \item provides HTTP Web API in JSON format.
   \end{itemize}
+  
   Data Hub responsibilities:
   \begin{itemize}
-    \item be aware of metadata provided by the Registry to a frontend;
+    \item be aware of metadata provided by the Registry;
     \item bind metadata from the Registry with real-time data streaming from a sensor;
-    \item get and parse sensor streaming data and reconvert sensor-specific protocol to a XMPP;
-    \item implement XMPP services and quarantee message exchange between the frontend and sensors;
+    \item get and parse sensor streaming data and reconvert sensor-specific protocol to XMPP;
+    \item implement XMPP services and guarantee message exchange between the frontend and sensors;
     \item store history of data sources and personal user preferences.
   \end{itemize}
 
-  Web-server responsibilities: handles delivery to a user static structure of the web-page.
+  Web-server responsibilities: handles delivery of static web content.
 
   Frontend responsibilities:
   \begin{itemize}
   \item interconnect all modules by using appropriate interfaces: Web API for Registry and XMPP interface for Data Hub and AuthHandler;
-  \item build a responsive and adaptive to changes GUI;
-  \item scalable system structure (adding new Registries/sensors through a web form, changing personal preferences).
+  \item build a responsive and adaptive GUI;
+  \item implement a scalable and efficient system structure (adding new Registries/sensors through a web form, changing personal preferences, and other typical frontend functions should productive, user-friendly, and easily extensible).
   \end{itemize}
