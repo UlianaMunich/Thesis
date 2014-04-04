@@ -622,7 +622,7 @@ First, every sensor has to be put in the Registry with a unique id and fill-in t
             "sla_last_update":"1395005996",
             "access": "private",
             "provider_name": "Provider TU Dresden",
-            "location": "Dresden",            
+            "location": "Cottbus",            
             "type": "chart",
             "end_points": [
                 {
@@ -751,10 +751,11 @@ Application logic automatically calculates a number of available end-points for 
 \label{img:icons}    
 \end{figure}
 
+\textbf{SLA Updates}
+
 \textbf{Search Bar} was made by using frontend-based model filtering, implemented with Angular.js filter concept and directly binded to template. It performs real-time sorting and filtering based on metadata of sensors in all registries. It is fast very straightforward for end-user. 
 
 \textbf{Data Streaming} is the point where Data Hub joins the system as a part of backend. All data streaming works through XMPP extensions. In presented example with ambient temprature in INF3084 a MUC extension (XEP0045) was used for retrieving real-time data through BOSH service. But since generic frontend should support maximum of approaches, PubSub extension (XEP0060) support was also provided. Strophe.js was used as a client-side XMPP library; some code was refactored to be MVC-structured.
-\newline
 
 SensDash logic was built using AngularJS MVC skeleton (Appendix D). This enabled two-way data binding between controllers and templates, presenting updates from data stream in real-time. Multiple endpoints in sensor metadata provide a ground for building redundant data streams, which have been used for adding an extra layer of reliability and/or security. 
 
