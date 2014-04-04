@@ -742,7 +742,7 @@ Since XMPP server was introduced as an essential part of the Data Hub, XMPP MUC 
 \caption[Security]{Data secure transfer using Chat Rooms} 
 \label{img:reliability}                        
 \end{figure}
-Application logic automatically calculates a number of available end-points for every sensor, based on Registry metadata and shows it on the main page, as shown on Figure~\ref{img:icons}. The rules of how the reliability level was calculated is described in the Section 4.4, Subsection ``Sensor Functional Characteristics''(Appendix C).
+Application logic automatically calculates a number of available end-points for every sensor, based on Registry metadata and shows it on the main page, as shown on Figure~\ref{img:icons}. The rules of how the reliability level was calculated is described in the Section 4.4, Subsection ``Sensor Functional Characteristics'' (Appendix C).
 \newline
 \begin{figure}[!ht]
 \centering
@@ -751,7 +751,7 @@ Application logic automatically calculates a number of available end-points for 
 \label{img:icons}    
 \end{figure}
 
-\textbf{SLA Updates}
+\textbf{SLA Updates}. A hardware or software sensor may have an owner, vendor or provider with whom a user have to sign an agreement -- service-level agreement (SLA). The Frontend responsible for retrieving SLA description and its ``last time update'' for the user. Once Max has accepted the sensor' SLA, he will receive a real-time data till the moment when SLA will not be changed by provider. As soon as SLA ``last time update'' in the list of subscribtions of Max will no match the SLA ``last time update'' provided by the Registry through the Web API, Max will be automatically unsubscribed from corresponding sensor and notified via popup alert window.
 
 \textbf{Search Bar} was made by using frontend-based model filtering, implemented with Angular.js filter concept and directly binded to template. It performs real-time sorting and filtering based on metadata of sensors in all registries. It is fast very straightforward for end-user. 
 
