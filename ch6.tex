@@ -2,87 +2,81 @@
 \chapter{Conclusions and Outlook}
 
 \section{Conclusions}
-	This chapter contains the achivement of the presented thesis and provides a brief overview of each chapter. The presented thesis consists of six chapters including the current chapter. An overall answers to the addressed researched questions are given. And chapter underlined with future work proposals and descriptions.
+This chapter contains the summary of the presented thesis and provides a brief overview of each chapter. The presented thesis consists of six chapters including the current one. Overall answers to the addressed researched questions are given. The chapter is concluded with future work proposals and descriptions.
 
-	\textbf{Chapter 1}:Introduction
-	\newline
-	 the motivation(Section 1.1) of the work arguing the necessity of creation of a generic frontend. A global area of application usage presented in the Section 1.2, covering infrastructure, tools and protocols and application overview iself. The main research questions and the goals that have to be achieved in the thesis are formalized in the section 1.2. The structure of the master thesis(Section 1.4) completes the first chapter. 
+\textbf{Chapter 1, Introduction:} the motivation (Section 1.1) of the work arguing the necessity of creation of a generic frontend. A global area of application usage is presented in the Section 1.2, covering infrastructure, tools, protocols and application overview itself. Main research questions and goals that have to be achieved in the thesis are formalized in the section 1.2. The structure of the master thesis (Section 1.4) completes the first chapter. 
    
-    \textbf{Chapter 2}: Foundation and Requirements
-    \newline
-    gives an overview of a basic requirements to a generic frontend. Starting from main properties in Section 2.1 namely, loose coupling, fine-grained structure, multi-user binding, cross-platforming, responsive design and usability. And continuing in Section 2.2 with definition of data sources, typization and separation to a physical and software sensors. It helps to define main channels of retrieved data in which user can be interested in and based on that build a system architecture. An important part of data retrieval, without dependency on data type, is to guarantee real-time streaming. This approach provides an universal way to derive information services and possible solutions for implementation described and explained in details in the Chapter 5.
+\textbf{Chapter 2, Foundation and Requirements:} gives an overview of a basic requirements to a generic frontend. Starting from main properties in Section 2.1 namely loose coupling, fine-grained structure, multi-user binding, cross-platforming, responsive design and usability. And continuing in Section 2.2 with definition of data sources, typization and separation to a physical and software sensors. It helps to define main channels of retrieved data in which user can be interested in and based on that build a system architecture. An important part of data retrieval, without dependency on data type, is to guarantee a real-time streaming. This approach provides an universal way to derive information services and possible solutions for implementation described and explained in details in the Chapter 5.
     
-    \textbf{Chapter 3}: State of the Art
-    \newline
-	has introduced main approaches of building web-based dashboards for different types of sensed data. The section 3.1 provides list of projects devoted to retrieve sensed data from the web and another resources such as: temperature, humidity, traffic sensors. During writing this thesis, not only scientific research projects were discovered but also private customer-oriented solutions for Big Data management. In total 13 projects were structured and characterized according to formulated properties of a generic frontend concept.
+\textbf{Chapter 3, State of the Art:} has introduced main approaches of building web-based dashboards for different types of sensed data. Section 3.1 provides a list of projects devoted to retrieve sensed data such as: temperature, humidity, traffic sensors. Not only scientific research projects were discovered but also private customer-oriented solutions for Big Data management. In total 13 projects were structured and characterized according to formulated properties of a generic frontend concept.
 
-	The section 3.2 consists of main methodologies of a design and implementation of a generic frontend: portal with portles, mashup, native applications and non-browser based systems. As result, mashup technologies based on browser satisfy all necessary requirements to create generic frontend for exploring sensor and information services. Based on this decision in the chapter 4, defined system architecture and described responsibility of an every module.
+The section 3.2 consists of main methodologies of a design and implementation of a generic frontend: portal with portles, mashup, native applications and non-browser based systems. As a result, mashup technologies based on browser satisfy all necessary requirements to create generic frontend for exploring sensor and information services. Based on this decision in the chapter 4, defined system architecture and described responsibility of an every module.
 
-    \textbf{Chapter 4}: Concept
-    \newline
-    according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Fine-grained structure provides clear separation of concern between different module of concept. Client tier consists GUI description and content, Application Tier provides application logic in order to interconnect backend and Client Tier, and finally, Data Tier describes typization of data in order to easily interconnect it with Application Tier and visually retrieve it by using Client Tier. To an every data souce was assigned such characteristics as reliability, perfomance and level of secure information. Every characteristics rely on a number of responsible for sensor end-point. As a result was identified next most important modules of Application Tier: Registry, Data Hub, AuthHandler.
+\textbf{Chapter 4, Concept:} according to a 3-tier architecture, the first web-based concept for sensor streaming services is to be created. Fine-grained structure provides a clear separation of concerns between different modules of concepts. Client tier contains GUI description and content, Application Tier provides application logic in order to connect backend and Client Tier, and finally, Data Tier describes typization of data in order to easily connect it with Application Tier and visually retrieve it by using Client Tier. Characteristics as reliability, perfomance and level of information security have been assigned to every data souce. Every characteristic relies on a number of end-points responsible for sensors. As a result next most important modules of Application Tier was identified: Registry, Data Hub, AuthHandler.
 
-    \textbf{Chapter 5}: Implementation and Evaluation
-    \newline
-    presents details of implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation section 5.5. At the begining of a chapter, choosen tools and development environment were discovered and presented: jQuery, HTML5, CSS as a programming languages, AngularJS together with Bootstrap to interconnect application logic with XMPP interface standard and Strophe.js was picked to implement the XMPP mechanism and it's extensions. Web API was defined and afterwards used to retrieve from the Registry all available sensors by sending direct HTTP GET request to the Registry. Authentification and data streaming handling through the XMPP server was made by using XMPP BOSH standard and XEP0049, XEP0045 extensions, based on Strophe.js. In order to connect, disconnet, authorize, save, load, initiate connection through the XMPP interface all these methods and functions was refactored as skeleton, based on AngularJS directives and syntax. As an example of hardware sensor was used temperature sensor from INF3084 room in university, and as software sensor was used IT newws feed autamotic bot generator.
+\textbf{Chapter 5, Implementation and Evaluation:} presents details of implementation of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the evaluation section 5.5. At the begining of a chapter, choosen tools and development environment were discovered and presented: Javascript with jQuery extensions as a programming languages, HTML5 and CSS for markup, AngularJS together with Bootstrap as frontend frameworks, Strophe.js for XMPP client interface implementation. Web API was defined and afterwards used to retrieve all available sensors from the Registry by requesting a simple Web-API. Authentification and data streaming handling through the XMPP server was made by using XMPP BOSH standard and XEP0049, XEP0045 extensions. In order to connect, disconnet, authorize, save, load, initiate connection through the XMPP interface all these methods and functions where structured within AngularJS MVC skeleton. As an example of hardware sensor a temperature sensor from INF3084 university room was used, and as software sensor IT news feed bot was used.
 
 \section{Achieved Goals}
-	   \textbf{Which architecture should have a concept of a generic frontend?How should it be designed in order to provide ease of integration with any backend system?}
-	   \newline
-	   The concept has to have as much fine-grained structure as possible. Thus every module has to perform independent task. In such a way provides a possibility to scale and maintain system without influence to another modules. 
+\textbf{Which architecture should have a concept of a generic frontend? How should it be designed in order to provide ease of integration with any backend system?}
+\newline
+The concept has to have as much fine-grained structure as possible. Thus every module has to perform independent task. It provides a possibility to scale and maintain system without influence to another modules. 
 
-       \textbf{What type of data sources have to be retrieved and what is the most universal interface for collaboration between backend and frontend systems? Which protocol can perform real-time data streaming and access to historical archives of data streams independently from type of data in it and bind it with user personal preferences?}
-       \newline
-       The main type of data that have to be retrieved is a real-time streaming data. Based on XMPP interface it becomes not important which concreate type of data has any stream: text, images, array or map of vallues etc. The main technic that can be used for keeping a connection alive and guarantee the information arrival to a client side is a long-polling. 
-       \newline
-       XMPP BOSH approach satisfies all requirements to the system interface completely. Together with its extensions XEP0049, XEP0060 and XEP0049 it shows only part of possible strength.
+\textbf{What types of data sources have to be retrieved and what is the most universal interface for collaboration between backend and frontend systems? Which protocol can perform real-time data streaming and access historical archives of data streams independently from type of data in it and bind it with user personal preferences?}
+\newline
+The main type of data that has to be retrieved is a real-time streaming data. Based on XMPP interface it becomes not important which concreate type of data has any stream: text, images, array or map of values etc. The technique that can be used for keeping a connection alive and guarantee the information arrival to a client side is http long-polling. 
+\newline
+XMPP with BOSH and XEP0049, XEP0060, XEP0049 extensions satisfies all requirements to the system interface.
 
-       \textbf{Which software components might be applied to the concept in order to be applicable to the most available data sources and platforms? How can be a generic GUI designed and implemented by providing dynamic content retrieving?} 
-       \newline
-       Nowadays a variety of different software solutions for a web-based applications are available. Among all of them for the GUI implementation Twitter Bootstrap version 3.0, together with HTML5 and CSS were used. Also, only one successful library for XMPP client-oriented application are available - Strophe.js, which is build on top of jQuery and JavaScript of course. And to combine all aforementioned tecnologies together and to make  easy extensible and maintainable code AngularJS (MVC JavaScript Framework) was used. Without AngularJS it would not be possible to create a dynamic content visualization on GUI in such a canonical structure of the code.
+\textbf{Which software components might be applied to the concept in order to be applicable to the most available data sources and platforms? How can be a generic GUI designed and implemented by providing dynamic content retrieval?} 
+\newline
+!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!
+Nowadays a variety of different software solutions for a web-based applications are available. Among all of them for the GUI implementation Twitter Bootstrap version 3.0, together with HTML5 and CSS were used. Also, only one successful library for XMPP client-oriented application are available - Strophe.js, which is build on top of jQuery and JavaScript of course. And to combine all aforementioned tecnologies together and to make  easy extensible and maintainable code AngularJS (MVC JavaScript Framework) was used. Without AngularJS it would not be possible to create a dynamic content visualization on GUI in such a canonical structure of the code.
 
- \section{Future work}
-	To conclude the thesis, suggestions for the future work are made. These suggestions are devoted to improve either the conceptual aspects or the current implementation.
+\section{Future work}
+To conclude the thesis, suggestions for the future work have been proposed. These suggestions are devoted to improve either the conceptual aspects or the current implementation.
 
 \subsection{Conceptual Aspects}
-	This subsection describes possible improvements on the concept level.
-		\subsubsection {SLA}
-		Differentiation of SLA depending on user type/rights. Easy of enhancement in case of SLA changes brings next questions into a picture: 
-        \begin{itemize}
-        \item How to re-sign SLA with user (On the example of SensDash it was done by automatically unsubscribing from a sensor)?
-        \item How to notify the frontend and user himself about changes, that have already accepted it once?
-        \item How will system react in case of user will not accept new SLA?
-        \item How can frontend predefine all future changes that can appear according to SLA changes?
-        \item Is it possible to accept one SLA which gives an access to many sensors?
-        \item How to handle billing aspects?
-        \end{itemize}
+This subsection describes possible improvements on the concept level.
+\subsubsection {SLA}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!
+Differentiation of SLA depending on user type/rights. Easy of enhancement in case of SLA changes brings next questions into a picture: 
+  \begin{itemize}
+  \item How to re-sign SLA? (On the example of SensDash it was done by automatically unsubscribing from a sensor)
+  !!!!!!!!!!!!!!!! \item How to notify the frontend and user himself about changes, that have already accepted it once?
+  \item How will system react in case of user not accepting new SLA?
+  \item How can frontend predefine all future changes that can appear according to SLA changes?
+  \item Is it possible to accept one SLA which provides access to many sensors?
+  \item How to handle billing aspects?
+  \end{itemize}
 
-		The thesis was focused on the core architectural design and development aspects, so current contracting implementation is mostly a not ``user-friendly'' design, but shows possible way of the contracting mechanism. The questions of billing, contracting and SLA are still open ed and left for future work. The billing should use fine-grained approach to make sure that the consumers of cloud resources only pay for what they use. Contract phase may be more closely integrated with the SPACE platform by reusing the Contract Wizard component. The SLA should be taken into account during on-the-fly rescaling, as this procedure may result in the capacity change, which in its turn result in pricing changes. 
+The thesis was focused on the core architectural design and development aspects, so while current contracting implementation has not so ``user-friendly'' design, it demonstrates a possible implementation of the contracting mechanism. The questions of billing, contracting and SLA are still open and left for future work. The billing should use fine-grained approach to make sure that consumers of cloud resources only pay for what they use. Contract phase may be more closely integrated with the SPACE platform by reusing the Contract Wizard component. The SLA should be taken into account during on-the-fly rescaling, as this procedure may result in the capacity change, which in its turn result in pricing changes. 
 
-	\subsection{Implementation Area}
-    This subsection describes possible improvements and enhancement on the implementation level.
+\subsection{Implementation Area}
+This subsection describes possible improvements and enhancement on the implementation level.
 
-		\subsubsection {Introducing the interaction awareness}
-		In principle, when a user opens an application first time, different information can be interesting for him. Therefore, to introduce a convenient awareness, the following research questions should be investigated:
-		 \begin{itemize}
-		\item What kind of interaction awareness information end users are really need?
-		\item Does a user want to configure the received awareness information?
-		\item In case of providing a configuration, what an appropriate visualization and interaction metaphor can be provided? 
-		\end{itemize}
+\subsubsection {Introducing the interaction awareness}
+In principle, when a user opens an application first time, different information can be interesting to him. Therefore, to introduce a convenient awareness, the following research questions should be investigated:
+ \begin{itemize}
+\item What kind of interaction awareness information end users really need?
+\item Does a user want to configure the received awareness information?
+\item In case of providing a configuration, what an appropriate visualization and interaction metaphor can be provided? 
+\end{itemize}
 
-		\subsubsection{Privacy and security}
-		Personal credentials stored via cookies inside any browser on any kind of device can be easily stollen via hacking attack. Especially when system use single sign on approach it can lead to more global problems. To avoid this additional possibility to encrypt data or to make authorisation process more secure should be researched.
-        \newline
-        An opportunity to specify data source as high secure if its data would be splitted between more than 1 end-points have to be discovered. Even if the data will be splitted onto 2, 3 or more parts and then combined to one on a frontend side, an encryption system have to be used. Since all frontend are client-based, exists an opportunity to debug and rewrite everything from a console of a browser, if JID and password are known.
+\subsubsection{Privacy and security}
+Session credentials stored via cookies inside any browser on any kind of device can be stollen relatively easy. To avoid this additional possibility of data encryption or more secure authorisation process should be researched.
+\newline
+An option to specify a data source as highly secure if its data would be splitted between two or more end-points have to be researched. Even if the data will be splitted onto 2, 3 or more parts and then combined to one on a frontend side, an encryption system have to be used. Since frontend is web-based, a possibility to debug its hidden login from a web-console of a browser has to be concidered.
 
-        \subsubsection{Collaborative space}
-         In order to perform social collaboration between different users, it would be helpful to have a possibility to rate the data source or left comments. Users can share their experience, help each other, define hot topics, leave personal rating and help administrator to improve the system itself. Since now, personal preferences such as: subscriptions, favorites, user data are stored on a XMPP server by using XEP0049(XML-based private namespace), it is not possible to share personal rating or comments with someone else, because someone else can change everything froma  browser. Thus, another family of XMPP extension, which can provide sharing space with opportunity to lock possibility to vote twice, or to change comments of another user and etc needed to be explored .  
+\subsubsection{Collaborative space}
+ In order to perform social collaboration between different users, it would be helpful to have a possibility to rate the data source or leave comments. Users can share their experience, help each other, define hot topics, leave personal rating and help administrator to improve the system itself. Since now, personal preferences such as: subscriptions, favorites, user data are stored on a XMPP server by using XEP0049 (XML-based private namespace), it is not possible to share personal rating or comments with someone else, because someone else can change everything from a  browser console. Thus, another XMPP extension needs to be found, which can provide sharing space with access control.  
 
-		\subsubsection {Integration with other application via Internet}
-		 The best opportunity to make application widely-used is to enhance list of supported hardware and software sensors. But a lot of system already propose their own sensors and corresponding app to it. How possible will be to create additional module for enhancement that will play a role of retranslator or proxy between two different systems? In which information in such a case a developer of a consumer application would be interested? Would not it be better to specify main topics and propose to choose the most relevant for his/her search at first?
+\subsubsection {Integration with other applications via Internet}
+ The best chance to make an application widely-used is to enhance a list of supported hardware and software sensors. But a lot of systems already propose their own sensors and corresponding app to it. How possible will it be to create an additional module for enhancement that will play a role of retranslator or proxy between two different systems? In which information in such a case a developer of a consumer application would be interested? Would not it be better to specify main topics and propose to choose the most relevant for his/her search at first?
 
-		\subsubsection {Resource limitations: energy, bandwidth and computation}
-		Since mobile devices face internal and external resource limitations, the need of differentiation of connection properties is important. For example, location data can be provided using GPS, WiFi, and GSM, with decreasing levels of accuracy. Compared to WiFi and GSM, continuous GPS location sampling drains the battery faster. One approach to this problem uses low duty cycling to reduce energy consumption of high-quality sensors (i.e., GPS), and alternates between high- and low-quality sensors depending on the energy levels of the device (e.g., sample WiFi often when battery level is less than 70 percent). This approach trades off data quality and accuracy for energy. 
+\subsubsection {Resource limitations: energy, bandwidth and computation}
+Since mobile devices face internal and external resource limitations, the need of differentiation of connection properties is important. For example, location data can be provided using GPS, WiFi, and GSM, with decreasing levels of accuracy. Compared to WiFi and GSM, continuous GPS location sampling drains the battery faster. One approach to this problem uses low duty cycling to reduce energy consumption of high-quality sensors (i.e., GPS), and alternates between high- and low-quality sensors depending on the energy levels of the device (e.g., sample WiFi often when battery level is less than 70 percent). This approach trades off data quality and accuracy for energy. 
 
-		\subsubsection {Visibility Rules}
-		In scope of this master thesis was not cover the definition of roles of every user and visibility rules according to it. Assigning a role ``administrator'', ``backend developer'', ``vendor of sensor'', ``3d party developer'' , ``consumer'' to user groups significantly expand a graphical interface. Also it makes possible to add new modules such as: statistic of sensor usage/subscriptions, overview of user behaviour, business analysis of user interests, feedbacks, comments and ratings. In the meanwhile, for ``administrator'' and ``backend developer'' modules oriented on ``sales'' or ``marketing'' can be hidden, in order to leave only technical part of implementation. Such features as: receiving notification about new changes from subscriptions by e-mail or sms can become also very interesting for the user.
+\subsubsection {Visibility Rules}
+The definition of roles for every user with according visibility rules was not covered in scope of this master thesis. Assigning a role ``administrator'', ``backend developer'', ``vendor of sensor'', ``3d party developer'' , ``consumer'' etc to user groups can significantly expand a graphical interface. Also it makes possible to add new modules such as: statistics of sensor usage/subscriptions, overview of user behaviour, business analysis of user interests, feedbacks, comments and ratings. In the meanwhile, for ``administrator'' and ``backend developer'' modules oriented on ``sales'' or ``marketing'' can be hidden, in order to leave only technical part of implementation. Such features as receiving notifications about new changes from subscriptions by e-mail or sms can become also very interesting for the user.
