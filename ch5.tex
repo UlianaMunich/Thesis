@@ -733,6 +733,16 @@ First, user credentials are checked with regular expression on the frontend side
 
 \textbf{Preferences Persistance} is implemented using XEP0049 and stored on the XMPP server (implementation details available in section~\ref{xep0049}). When a user signs in to the system for the first time, the application logic creates an empty account and initiates empty containers for subscriptions and favorites. Once a user subscribes to any resource, this resource automatically appears in Subscriptions Tab and added to the subscriptions map, saved on the XMPP server. The same is valid for favorites and Favorites Tab. Next time when the user will log in to SensDash, all saved subscriptions, favorites and other private data will be automatically loaded and appear in corresponding tabs. Examples od subscriptions map and favorites array for Max are presented in the Appendix B.
 
+\textbf{SLA Updates}. A hardware or software sensor may have an owner, vendor or provider with whom a user have to sign an agreement -- service-level agreement (SLA). The Frontend responsible for retrieving SLA description and its ``last time update'' for the user. Once Max has accepted the sensor' SLA, he will receive a real-time data till the moment when SLA will not be changed by provider. As soon as SLA ``last time update'' in the list of subscribtions of Max will no match the SLA ``last time update'' provided by the Registry through the Web API, Max will be automatically unsubscribed from corresponding sensor and notified via popup alert window.
+
+\textbf{Search Bar} was made by using frontend-based model filtering, implemented with Angular.js filter concept and directly binded to template. It performs real-time sorting and filtering based on metadata of sensors in all registries. It is fast very straightforward for end-user. 
+
+\textbf{Data Streaming} is the point where Data Hub joins the system as a part of backend. All data streaming works through XMPP extensions. In presented example with ambient temprature in INF3084 a MUC extension (XEP0045) was used for retrieving real-time data through BOSH service. But since generic frontend should support maximum of approaches, PubSub extension (XEP0060) support was also provided. Strophe.js was used as a client-side XMPP library; some code was refactored to be MVC-structured.
+
+SensDash logic was built using AngularJS MVC skeleton (Appendix D). This enabled two-way data binding between controllers and templates, presenting updates from data stream in real-time. Multiple endpoints in sensor metadata provide a ground for building redundant data streams, which have been used for adding an extra layer of reliability and/or security. 
+
+Incoming messages are dispatched to appropriate handlers based on sensor type and ID, this data is cached in a hashmap for instant propagation of updates. Message handler services have been implemented with an aim to be easily pluggable, so that generic frontend can be easily extended with new types of sensors.
+
 \subsubsection{Functional characteristics of a sensor}
 In the Section 4.4 3 main functional characteristics were clarified, that grant sensor with properties based on a system architecture.
 Since XMPP server was introduced as an essential part of the Data Hub, XMPP MUC rooms have been used as one of possible realization of end-points (Fig.~\ref{img:reliability}). 
@@ -751,15 +761,6 @@ Application logic automatically calculates a number of available end-points for 
 \label{img:icons}    
 \end{figure}
 
-\textbf{SLA Updates}. A hardware or software sensor may have an owner, vendor or provider with whom a user have to sign an agreement -- service-level agreement (SLA). The Frontend responsible for retrieving SLA description and its ``last time update'' for the user. Once Max has accepted the sensor' SLA, he will receive a real-time data till the moment when SLA will not be changed by provider. As soon as SLA ``last time update'' in the list of subscribtions of Max will no match the SLA ``last time update'' provided by the Registry through the Web API, Max will be automatically unsubscribed from corresponding sensor and notified via popup alert window.
-
-\textbf{Search Bar} was made by using frontend-based model filtering, implemented with Angular.js filter concept and directly binded to template. It performs real-time sorting and filtering based on metadata of sensors in all registries. It is fast very straightforward for end-user. 
-
-\textbf{Data Streaming} is the point where Data Hub joins the system as a part of backend. All data streaming works through XMPP extensions. In presented example with ambient temprature in INF3084 a MUC extension (XEP0045) was used for retrieving real-time data through BOSH service. But since generic frontend should support maximum of approaches, PubSub extension (XEP0060) support was also provided. Strophe.js was used as a client-side XMPP library; some code was refactored to be MVC-structured.
-
-SensDash logic was built using AngularJS MVC skeleton (Appendix D). This enabled two-way data binding between controllers and templates, presenting updates from data stream in real-time. Multiple endpoints in sensor metadata provide a ground for building redundant data streams, which have been used for adding an extra layer of reliability and/or security. 
-
-Incoming messages are dispatched to appropriate handlers based on sensor type and ID, this data is cached in a hashmap for instant propagation of updates. Message handler services have been implemented with an aim to be easily pluggable, so that generic frontend can be easily extended with new types of sensors.
 
 \section{Summary}
 This chapter presents implementation details of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the Evaluation section 5.3. The use case was based on subscribing to ambient temperature sensor from the room INF3084 (hardware sensor) and IT news Feed (software sensor).
