@@ -116,7 +116,7 @@ The way Angular templates works is different, as illustrated on the Figure \ref{
 	\label{img:tmv}
 	\end{figure}
     
-Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. As shown on the figure above, the resulting view can be applied to every data available on a backend. Model handler automaticaly generates a view for every new sensor. No need to change code or add new id and dependent handlers, variables, channels. 
+Because the view is just a projection of the model, the controller is completely separated from the view and unaware of it. As shown on the Figure above, the resulting view can be applied to every data available on a backend. Model handler automaticaly generates a view for every new sensor. No need to change code or add new id and dependent handlers, variables, channels. 
 
 The template declaire the structure of what have to be shown on user view. Model repeats to generate the same view of every sensor in the list, which is coming from a controller as parameter {{sensor}} with possible attributes {{sensor.icon}} and {{sensor.titel}}, till the list of registered sensors will be finished.
 
@@ -261,7 +261,7 @@ The <items> element contains a node attribute just like the other actions. User2
 
 \emph{PubSub Data Flow}
 \newline
-Figure \ref{img:pub_sub} shows the process flow of how and when a client can subscribe/retrieve data from a publisher of service through the XMPP PubSub approach. The first thing the DataSource 1 and 2 must do for a would-be presenter is to create a channel for them to publish data - nodes. Once a node is created and configured, Publishers can start send data. Once these events are published, pubsub takes over and makes sure that they get delivered to the subscribed users. In case Publishers want to get a list of their subscribers, it can be retrieved from the pubsub node so that it can present this data to them. If Publisher will become offline its <presence> will be changed automatically to ``unavailable'' and next time, becoming online and sending new data, all subscribers will receive this information immediately.
+The Figure \ref{img:pub_sub} shows the process flow of how and when a client can subscribe/retrieve data from a publisher of service through the XMPP PubSub approach. The first thing the DataSource 1 and 2 must do for a would-be presenter is to create a channel for them to publish data - nodes. Once a node is created and configured, Publishers can start send data. Once these events are published, pubsub takes over and makes sure that they get delivered to the subscribed users. In case Publishers want to get a list of their subscribers, it can be retrieved from the pubsub node so that it can present this data to them. If Publisher will become offline its <presence> will be changed automatically to ``unavailable'' and next time, becoming online and sending new data, all subscribers will receive this information immediately.
     \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.7]{images/PubSub.png}   
@@ -760,7 +760,6 @@ Application logic automatically calculates a number of available end-points for 
 \caption[GUI identification of security and reliability level]{GUI identification of security and reliability level}
 \label{img:icons}    
 \end{figure}
-
 
 \section{Summary}
 This chapter presents implementation details of the generic frontend concept and proposes first working prototype, which is shown by using convincing scenario in the Evaluation section 5.3. The use case was based on subscribing to ambient temperature sensor from the room INF3084 (hardware sensor) and IT news Feed (software sensor).
