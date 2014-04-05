@@ -1,5 +1,5 @@
 \chapter{Registry JSON Standard}
-In the Section 5.3 \emph{Evaluation} was introduced only some part of a Regisry interface standrad. The whole metadata which is needed from sensor in order to dynamically build whole content and functional handlers are shown in the Listing~\ref{hardware_registry}, on the example of ambient temperature sensor. Type of data provided by this sensor is a map of temperature values, which is updated every 5 seconds.
+In the Section 5.3 \emph{Evaluation} only some part of a Regisry interface standard was introduced. The metadata which describes sensor and needed for dynamically build whole content and functional handlers, are shown in the Listing~\ref{hardware_registry}, by using example of an ambient temperature sensor. Type of data provided by this sensor is a map of temperature values, which is updated every 5 seconds.
 \begin{lstlisting}[label=hardware_registry,caption=JSON Description Format]
 [
      {
@@ -77,7 +77,7 @@ In the Section 5.3 \emph{Evaluation} was introduced only some part of a Regisry 
         }
 ]
 \end{lstlisting}
-For software sensor,which produces text messages, a standart metadata descriptions shown in the Listing~\ref{software_registry}
+For software sensor which produces text messages, a standart metadata descriptions are shown in the Listing~\ref{software_registry}
 \begin{lstlisting}[label=software_registry,caption=JSON Description Format for Software Sensor]
 [
     {
@@ -111,7 +111,7 @@ For software sensor,which produces text messages, a standart metadata descriptio
 \end{lstlisting}
 
 \chapter{XEP0049 saving user preferences}
-In the Section 5.3.2 \emph{SensDash Implementation} the functionality to save and retrieve personal preferences of a user by using the XMPP private XML-based namespace are shown below in the subscriptions map:
+In the Section 5.3.2 \emph{SensDash Implementation} the functionality to save and retrieve personal preferences of a user by using the XMPP private XML-based namespace are shown below:
 \begin{lstlisting}
 {
     "20": [
@@ -143,12 +143,12 @@ In the Section 5.3.2 \emph{SensDash Implementation} the functionality to save an
     ]
 }
 \end{lstlisting}
-But in comparison to subscriptions map of a user the his/her personal favorites are saved in array, which consists only ids of sensor: ["20", "30"].
+But in comparison to subscriptions map, favorites are saved in array which consists only ids of sensors: ["20", "30"].
 
 \chapter{AngularJS and Reliable Sensor Functionality}
 In the Section 5.3.2 \emph{SensDash Implementation} the one of the main functional characteristic of a sensor, namely reliability was implemented.
 
-Firstly, the list of end-points defined in Registry as ``end\_points'' have to be sorted based on their priority on a server side, example are in the Appendix A. Than, SensDash checks if the room is not empty and also if it has someone except of a user. The part of a code below are shown below:
+Firstly, the list of end-points in Registry (attribute: ``end\_points'') have to be sorted based on their priority on a server side, example are in the Appendix A. Than, SensDash checks if the room is not empty and also if it has someone except of a user. The part of a code below are shown below:
 \begin{lstlisting}
  check_room: function(full_room_name, end_points) {
             if (!xmpp.endpoints_to_handler_map[full_room_name]) {
@@ -173,7 +173,7 @@ Firstly, the list of end-points defined in Registry as ``end\_points'' have to b
 This functionality enhance the basic list of xmpp-based functions and called for xmpp subscriptions(joining the room).
 
 \chapter{AngularJS factory for XMPP Connection}
-In the Section 5.3.2 \emph{SensDash Implementation} in order to handle all requests which goes through the XMPP, was implemented next skeleton:
+In the Section 5.3.2 \emph{SensDash Implementation} in order to handle all requests which goes through the XMPP, was implemented next abstract methods which helps to invoke XMPP via Strophe.js:
 \begin{lstlisting}
 sensdash_services.factory("XMPP", ["$location", "Graph", "Text", function ($location, Graph, Text) {
     if (typeof Config === "undefined") {
@@ -313,4 +313,4 @@ sensdash_services.factory("XMPP", ["$location", "Graph", "Text", function ($loca
     return xmpp;
 }]);
 \end{lstlisting}
-Which has main functions: XMPP.connect(), XMPP.subscribe()(In case of MUC chat room it means join the room), XMPP.unsubscribe()(For MUC chat rooms it means leave the room), XMPP.handle\_incoming\_muc(), XMPP.handle\_incoming\_pubsub(). Last two functions handles MUC or PubSub connection, based on the type of end\_point, given in a Registry.
+Which has main methods: XMPP.connect(), XMPP.subscribe()(In case of MUC chat room it means join the room), XMPP.unsubscribe()(For MUC chat rooms it means leave the room), XMPP.handle\_incoming\_muc(), XMPP.handle\_incoming\_pubsub(). Last two functions handles MUC or PubSub connection, based on the type of end\_point, defined in the Registry.
